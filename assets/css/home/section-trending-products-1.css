@@ -63,14 +63,10 @@
   will-change: transform;
   transition: all 0.4s linear;
   filter: brightness(94%);
-  filter: blur(2px);
 }
 
 .trend-prod-1__item-link:hover .trend-prod-1__item-img {
-  transform: scale(1.03);
-  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
-    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  transform: scale(1.05);
 }
 
 .trend-prod-1__item-title {
@@ -104,6 +100,9 @@
  */
 /* Mobile & Tablet */
 @media (max-width: 1023px) {
+  .trend-prod-1__product-list {
+    gap: 12px;
+  }
   .trend-prod-1__item-title {
     right: 24px;
     bottom: 26px;
