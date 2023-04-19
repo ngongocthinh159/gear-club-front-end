@@ -1,0 +1,68 @@
+.trend-prod {
+  --section-trending-product-height: 720px;
+  height: var(--section-trending-product-height);
+  background-image: url('../../imgs/home/top-background.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: end;
+  position: relative;
+}
+
+.trend-prod::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.trend-prod-wrapper {
+  height:  calc(var(--section-trending-product-height) - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.trend-prod__product-description {
+  margin: 0;
+  font-size: 1.6rem;
+  color: var(--text-white-color);
+  margin-bottom: 32px;
+}
+
+.trend-prod__product-name,
+.trend-prod__product-subname {
+  font-size: 6.4rem;
+  line-height: 6.4rem;
+  margin: 0;
+  color: var(--text-white-color);
+  font-weight: 400;
+}
+
+.trend-prod__product-subname {
+  margin-bottom: 32px;
+}
+
+.trend-prod__view-button {
+  background-color: var(--white-color);
+  color: var(--text-dark-color);
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 22px 41px;
+  border-radius: var(--border-radius-pill);
+  box-shadow: var(--box-shadow-btn);
+  transition: all 0.1s linear;
+}
+
+.trend-prod__view-button:hover {
+  outline: 1px solid var(--text-white-color);
+  color: var(--text-white-color);
+  background-color: rgba(0, 0, 0, 0.09);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
