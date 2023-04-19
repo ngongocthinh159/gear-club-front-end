@@ -76,13 +76,11 @@
 .trend-prod-1__item-title {
   position: absolute;
   font-size: 2.4rem;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 10%;
+  right: 46px;
+  bottom: 50px;
   margin: 0;
   color: var(--text-white-color);
   font-weight: 300;
-  text-align: center;
   --line-height: 2.8rem;
   line-height: var(--line-height);
   max-height: calc(var(--line-height) * 2);
@@ -94,11 +92,22 @@
   text-overflow: ellipsis;
 }
 
+.trend-prod-1__item-1 .trend-prod-1__item-title,
+.trend-prod-1__item-2 .trend-prod-1__item-title {
+  right: 50%;
+  text-align: center;
+  transform: translateX(50%);
+}
+
 /* Reponsive
  *
  */
 /* Mobile & Tablet */
 @media (max-width: 1023px) {
+  .trend-prod-1__item-title {
+    right: 24px;
+    bottom: 26px;
+  }
 }
 
 /* Tablet */
@@ -138,5 +147,8 @@
   .trend-prod-1__item-7 {
     grid-column: unset;
     padding-top: 40%;
+  }
+  .trend-prod-1__item-title {
+    font-size: 1.8rem;
   }
 }
