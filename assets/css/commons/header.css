@@ -62,7 +62,8 @@
   display: none;
 }
 
-.header__nav-container:has(.header__nav-pannel--active) .header__nav-container-overlay {
+.header__nav-container:has(.header__nav-pannel--active)
+  .header__nav-container-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -423,6 +424,7 @@
   font-weight: 400;
   will-change: color;
   transition: all 0.3s linear;
+  position: relative;
 }
 
 .header__search-type-item:hover {
@@ -434,9 +436,15 @@
 }
 
 .header__search-result-list {
+
 }
 
 .header__search-result-item {
+  position: relative;
+}
+
+.header__search-result-item:not(:last-child) {
+  margin-bottom: 8px;
 }
 
 .header__search-result-item-link {

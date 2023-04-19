@@ -200,14 +200,22 @@
             </li>
 
             <div class="header__search-container">
-              <div class="header__search-container-overlay" data-search-toggler></div>
+              <div
+                class="header__search-container-overlay"
+                data-search-toggler
+              ></div>
 
               <div class="header__search-container-main">
-                <button class="header__search-container-close-btn" data-search-toggler><i class="bi bi-x"></i></button>
+                <button
+                  class="header__search-container-close-btn"
+                  data-search-toggler
+                >
+                  <i class="bi bi-x"></i>
+                </button>
 
                 <input
                   type="search"
-                  class="header__search-input header__search-input--search-done"
+                  class="header__search-input"
                   placeholder="Tìm kiếm sản phẩm..."
                 />
 
@@ -244,10 +252,67 @@
                         </div>
                       </a>
                     </li>
+                    <li class="header__search-result-item">
+                      <a href="" class="header__search-result-item-link">
+                        <img
+                          class="header__search-result-item-img"
+                          src="./assets/imgs/home/item-img-header-mock.avif"
+                          alt=""
+                        />
+
+                        <div
+                          class="header__search-result-item-info header__search-result-item-info--price"
+                        >
+                          <h3 class="header__search-result-item-title">
+                            Chuột không dây siêu nhẹ Lamzu Atlantis Mini
+                          </h3>
+                          <span class="header__search-result-item-price"
+                            >2.499.999đ</span
+                          >
+                          <span class="header__search-result-item-quantity"
+                            >6 sản phẩm</span
+                          >
+                        </div>
+                      </a>
+                    </li>
                   </ul>
                 </div>
 
-                <div class="header__search-result-loading">Loading...</div>
+                <div class="header__search-result-loading">
+                  <ul class="header__search-type-list">
+                    <li
+                      class="header__search-type-item"
+                    >
+                      <div
+                        class="skeleton"
+                        style="width: 100px; height: 40px"
+                      ></div>
+                    </li>
+                    <li class="header__search-type-item">
+                      <div
+                        class="skeleton"
+                        style="width: 100px; height: 40px"
+                      ></div>
+                    </li>
+                  </ul>
+                  <ul class="header__search-result-list">
+                    <li class="header__search-result-item">
+                      <div class="skeleton" style="height: 96px"></div>
+                    </li>
+                    <li class="header__search-result-item">
+                      <div class="skeleton" style="height: 96px"></div>
+                    </li>
+                    <li class="header__search-result-item">
+                      <div class="skeleton" style="height: 96px"></div>
+                    </li>
+                    <li class="header__search-result-item">
+                      <div class="skeleton" style="height: 96px"></div>
+                    </li>
+                    <li class="header__search-result-item">
+                      <div class="skeleton" style="height: 96px"></div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </ul>

@@ -4,7 +4,9 @@ const pannel2Togglers = document.querySelectorAll('[data-pannel-2-toggler]');
 const pannel3Openers = document.querySelectorAll('[data-pannel-3-opener]');
 const pannel3Closers = document.querySelectorAll('[data-pannel-3-closer]');
 const allPannelsCloseBtn = document.querySelector('[data-all-pannels-close]');
-const navContainerOverlay = document.querySelector('.header__nav-container-overlay');
+const navContainerOverlay = document.querySelector(
+  '.header__nav-container-overlay'
+);
 const pannel1 = document.querySelector('#nav-pannel-1');
 const pannel2 = document.querySelector('#nav-pannel-2');
 const pannel3 = document.querySelector('#nav-pannel-3');
@@ -46,7 +48,7 @@ allPannelsCloseBtn.addEventListener('click', () => {
 
 navContainerOverlay.addEventListener('click', () => {
   allPannelsCloseBtn.click();
-})
+});
 
 searchTogglers.forEach((searchToggler) => {
   searchToggler.addEventListener('click', (e) => {
@@ -62,4 +64,25 @@ window.addEventListener('resize', (e) => {
   }
 
   prevWidth = window.innerWidth;
+});
+
+// Handle input searching
+const searchInput = document.querySelector('.header__search-input');
+let prevTimeout = null;
+const DELAY_SEARCH_TIME = 500;
+searchInput.addEventListener('input', (e) => {
+  searchInput.classList.remove('header__search-input--search-done');
+  if (!e.target.value) {
+    searchInput.classList.remove('searching');
+  } else {
+    searchInput.classList.add('header__search-input--searching');
+  }
+
+  if (prevTimeout) clearTimeout(prevTimeout);
+  prevTimeout = setTimeout(() => {
+    // TODO: implement fetch data
+    
+    searchInput.classList.remove('header__search-input--searching');
+    searchInput.classList.add('header__search-input--search-done');
+  }, DELAY_SEARCH_TIME);
 });
