@@ -32,7 +32,6 @@
     <!-- Common components CSS -->
     <link rel="stylesheet" href="./assets/css/commons/base.css" />
     <link rel="stylesheet" href="./assets/css/commons/grid.css" />
-    <link rel="stylesheet" href="./assets/css/commons/sub-header.css" />
     <link rel="stylesheet" href="./assets/css/commons/header.css" />
     <link rel="stylesheet" href="./assets/css/commons/footer.css" />
 
@@ -42,9 +41,6 @@
       href="./assets/css/home/section-trending-product.css"
     />
     <link rel="stylesheet" href="./assets/css/home/responsive.css" />
-
-    <!-- Common components JS -->
-    <script src="./assets/js/commons/header.js" defer></script>
   </head>
   <body>
     <div class="sub-header">
@@ -65,260 +61,7 @@
       </ul>
     </div>
 
-    <header class="header">
-      <div class="grid wide">
-        <div class="header-wrapper">
-          <button class="header__burger-btn" data-pannel-1-toggler>
-            <i class="bi bi-list"></i>
-          </button>
-
-          <a href="./index.html" class="header__logo-link">
-            <img
-              src="./assets/imgs/logo.avif"
-              alt="Gear Club logo"
-              class="header__logo-img"
-            />
-          </a>
-
-          <div class="header__nav-container">
-            <div class="header__nav-container-overlay"></div>
-
-            <div class="header__nav-header">
-              <button class="header__nav-close-btn" data-all-pannels-close>
-                <i class="bi bi-x"></i>
-              </button>
-            </div>
-
-            <div class="header__nav-body">
-              <div id="nav-pannel-1" class="header__nav-pannel">
-                <ul class="header__nav-list">
-                  <li class="header__nav-item header__nav-item--hide-on-pc">
-                    <a href="" class="header__nav-item-link">Tài khoản</a>
-                  </li>
-                  <li class="header__nav-item" data-pannel-2-toggler>
-                    Sản phẩm<i
-                      class="header__nav-item-icon-down-chevon bi bi-chevron-down"
-                    ></i
-                    ><i
-                      class="header__nav-item-icon-right-chevon bi bi-chevron-right"
-                    ></i>
-                  </li>
-                  <li class="header__nav-item">
-                    <a href="" class="header__nav-item-link">Dịch vụ</a>
-                  </li>
-                  <li class="header__nav-item">
-                    <a href="" class="header__nav-item-link">Tin tức</a>
-                  </li>
-                  <li class="header__nav-item">
-                    <a href="" class="header__nav-item-link">Tích điểm</a>
-                  </li>
-                  <li class="header__nav-item">
-                    <a href="" class="header__nav-item-link">Liên hệ</a>
-                  </li>
-                </ul>
-              </div>
-
-              <div id="nav-pannel-2" class="header__nav-pannel">
-                <ul class="header__nav-list">
-                  <button class="header__nav-back-btn" data-pannel-2-toggler>
-                    <i class="header__nav-back-btn-icon bi bi-chevron-left"></i
-                    >Sản phẩm
-                  </button>
-
-                  <li class="header__nav-item" data-pannel-3-opener>
-                    Bundle<i
-                      class="header__nav-item-icon-right-chevon bi bi-chevron-right"
-                    ></i>
-                  </li>
-                  <li class="header__nav-item" data-pannel-3-opener>
-                    Chuột<i
-                      class="header__nav-item-icon-right-chevon bi bi-chevron-right"
-                    ></i>
-                  </li>
-                  <li class="header__nav-item" data-pannel-3-opener>
-                    Bàn phím cơ<i
-                      class="header__nav-item-icon-right-chevon bi bi-chevron-right"
-                    ></i>
-                  </li>
-                  <li class="header__nav-item" data-pannel-3-opener>
-                    Lót chuột<i
-                      class="header__nav-item-icon-right-chevon bi bi-chevron-right"
-                    ></i>
-                  </li>
-                  <li class="header__nav-item">
-                    <a href="" class="header__nav-item-link">Tai nghe</a>
-                  </li>
-                </ul>
-              </div>
-
-              <div id="nav-pannel-3" class="header__nav-pannel">
-                <ul class="header__nav-list">
-                  <button class="header__nav-back-btn" data-pannel-3-closer>
-                    <i class="header__nav-back-btn-icon bi bi-chevron-left"></i
-                    >Bundle
-                  </button>
-
-                  <li class="header__nav-item">
-                    <a href="" class="header__nav-item-link">
-                      <img
-                        src="./assets/imgs/home/item-img-header-mock.avif"
-                        alt=""
-                        class="header__nav-item-img"
-                      />
-                      Bundle cho chuột
-                    </a>
-                  </li>
-
-                  <li class="header__nav-item">
-                    <a href="" class="header__nav-item-link">
-                      <img
-                        src="./assets/imgs/home/item-img-header-mock.avif"
-                        alt=""
-                        class="header__nav-item-img"
-                      />
-                      Bundle cho chuột
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <ul class="header__side-nav-list">
-            <li class="header__side-nav-item" data-search-toggler>
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </li>
-            <li class="header__side-nav-item">
-              <a href="" class="header__side-nav-link"
-                ><i class="fa-regular fa-user"></i
-              ></a>
-            </li>
-            <li class="header__side-nav-item">
-              <a href="" class="header__side-nav-link"
-                ><i class="header__side-nav-icon bi bi-bag-heart"></i
-              ></a>
-            </li>
-
-            <div class="header__search-container">
-              <div
-                class="header__search-container-overlay"
-                data-search-toggler
-              ></div>
-
-              <div class="header__search-container-main">
-                <button
-                  class="header__search-container-close-btn"
-                  data-search-toggler
-                >
-                  <i class="bi bi-x"></i>
-                </button>
-
-                <input
-                  type="search"
-                  class="header__search-input"
-                  placeholder="Tìm kiếm sản phẩm..."
-                />
-
-                <div class="header__search-result-wrapper">
-                  <ul class="header__search-type-list">
-                    <li
-                      class="header__search-type-item header__search-type-item--active"
-                    >
-                      Sản phẩm
-                    </li>
-                    <li class="header__search-type-item">Danh mục</li>
-                  </ul>
-                  <ul class="header__search-result-list">
-                    <li class="header__search-result-item">
-                      <a href="" class="header__search-result-item-link">
-                        <img
-                          class="header__search-result-item-img"
-                          src="./assets/imgs/home/item-img-header-mock.avif"
-                          alt=""
-                        />
-
-                        <div
-                          class="header__search-result-item-info header__search-result-item-info--price"
-                        >
-                          <h3 class="header__search-result-item-title">
-                            Chuột không dây siêu nhẹ Lamzu Atlantis Mini
-                          </h3>
-                          <span class="header__search-result-item-price"
-                            >2.499.999đ</span
-                          >
-                          <span class="header__search-result-item-quantity"
-                            >6 sản phẩm</span
-                          >
-                        </div>
-                      </a>
-                    </li>
-                    <li class="header__search-result-item">
-                      <a href="" class="header__search-result-item-link">
-                        <img
-                          class="header__search-result-item-img"
-                          src="./assets/imgs/home/item-img-header-mock.avif"
-                          alt=""
-                        />
-
-                        <div
-                          class="header__search-result-item-info header__search-result-item-info--price"
-                        >
-                          <h3 class="header__search-result-item-title">
-                            Chuột không dây siêu nhẹ Lamzu Atlantis Mini
-                          </h3>
-                          <span class="header__search-result-item-price"
-                            >2.499.999đ</span
-                          >
-                          <span class="header__search-result-item-quantity"
-                            >6 sản phẩm</span
-                          >
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="header__search-result-loading">
-                  <ul class="header__search-type-list">
-                    <li
-                      class="header__search-type-item"
-                    >
-                      <div
-                        class="skeleton"
-                        style="width: 100px; height: 40px"
-                      ></div>
-                    </li>
-                    <li class="header__search-type-item">
-                      <div
-                        class="skeleton"
-                        style="width: 100px; height: 40px"
-                      ></div>
-                    </li>
-                  </ul>
-                  <ul class="header__search-result-list">
-                    <li class="header__search-result-item">
-                      <div class="skeleton" style="height: 96px"></div>
-                    </li>
-                    <li class="header__search-result-item">
-                      <div class="skeleton" style="height: 96px"></div>
-                    </li>
-                    <li class="header__search-result-item">
-                      <div class="skeleton" style="height: 96px"></div>
-                    </li>
-                    <li class="header__search-result-item">
-                      <div class="skeleton" style="height: 96px"></div>
-                    </li>
-                    <li class="header__search-result-item">
-                      <div class="skeleton" style="height: 96px"></div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </ul>
-        </div>
-      </div>
-    </header>
+    <header class="header"></header>
 
     <!-- Section trending product -->
     <section class="trend-prod">
@@ -333,5 +76,11 @@
         </div>
       </div>
     </section>
+
+    <script type="module">
+      import { renderHeader } from './assets/js/commons/header.js';
+      const header = document.querySelector('header.header');
+      renderHeader(header);
+    </script>
   </body>
 </html>
