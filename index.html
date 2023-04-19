@@ -43,8 +43,8 @@
     />
     <link rel="stylesheet" href="./assets/css/home/responsive.css" />
 
-    <!-- JS -->
-    <script src="./assets/js/home/index.js" defer></script>
+    <!-- Common components JS -->
+    <script src="./assets/js/commons/header.js" defer></script>
   </head>
   <body>
     <div class="sub-header">
@@ -81,6 +81,8 @@
           </a>
 
           <div class="header__nav-container">
+            <div class="header__nav-container-overlay"></div>
+
             <div class="header__nav-header">
               <button class="header__nav-close-btn" data-all-pannels-close>
                 <i class="bi bi-x"></i>
@@ -88,10 +90,7 @@
             </div>
 
             <div class="header__nav-body">
-              <div
-                id="nav-pannel-1"
-                class="header__nav-pannel"
-              >
+              <div id="nav-pannel-1" class="header__nav-pannel">
                 <ul class="header__nav-list">
                   <li class="header__nav-item header__nav-item--hide-on-pc">
                     <a href="" class="header__nav-item-link">Tài khoản</a>
@@ -119,14 +118,11 @@
                 </ul>
               </div>
 
-
-              <div
-                id="nav-pannel-2"
-                class="header__nav-pannel"
-              >
+              <div id="nav-pannel-2" class="header__nav-pannel">
                 <ul class="header__nav-list">
                   <button class="header__nav-back-btn" data-pannel-2-toggler>
-                    <i class="header__nav-back-btn-icon bi bi-chevron-left"></i>Sản phẩm
+                    <i class="header__nav-back-btn-icon bi bi-chevron-left"></i
+                    >Sản phẩm
                   </button>
 
                   <li class="header__nav-item" data-pannel-3-opener>
@@ -155,34 +151,41 @@
                 </ul>
               </div>
 
-
               <div id="nav-pannel-3" class="header__nav-pannel">
                 <ul class="header__nav-list">
                   <button class="header__nav-back-btn" data-pannel-3-closer>
-                    <i class="header__nav-back-btn-icon bi bi-chevron-left"></i>Bundle
+                    <i class="header__nav-back-btn-icon bi bi-chevron-left"></i
+                    >Bundle
                   </button>
 
                   <li class="header__nav-item">
                     <a href="" class="header__nav-item-link">
-                      <img src="./assets/imgs/home/item-img-header-mock.avif" alt="" class="header__nav-item-img">
+                      <img
+                        src="./assets/imgs/home/item-img-header-mock.avif"
+                        alt=""
+                        class="header__nav-item-img"
+                      />
                       Bundle cho chuột
                     </a>
                   </li>
 
                   <li class="header__nav-item">
                     <a href="" class="header__nav-item-link">
-                      <img src="./assets/imgs/home/item-img-header-mock.avif" alt="" class="header__nav-item-img">
+                      <img
+                        src="./assets/imgs/home/item-img-header-mock.avif"
+                        alt=""
+                        class="header__nav-item-img"
+                      />
                       Bundle cho chuột
                     </a>
                   </li>
-                  
                 </ul>
               </div>
             </div>
           </div>
 
-          <ul class="header__side-nav-list" data-search-toggler>
-            <li class="header__side-nav-item">
+          <ul class="header__side-nav-list">
+            <li class="header__side-nav-item" data-search-toggler>
               <i class="fa-solid fa-magnifying-glass"></i>
             </li>
             <li class="header__side-nav-item">
@@ -195,6 +198,58 @@
                 ><i class="header__side-nav-icon bi bi-bag-heart"></i
               ></a>
             </li>
+
+            <div class="header__search-container">
+              <div class="header__search-container-overlay" data-search-toggler></div>
+
+              <div class="header__search-container-main">
+                <button class="header__search-container-close-btn" data-search-toggler><i class="bi bi-x"></i></button>
+
+                <input
+                  type="search"
+                  class="header__search-input header__search-input--search-done"
+                  placeholder="Tìm kiếm sản phẩm..."
+                />
+
+                <div class="header__search-result-wrapper">
+                  <ul class="header__search-type-list">
+                    <li
+                      class="header__search-type-item header__search-type-item--active"
+                    >
+                      Sản phẩm
+                    </li>
+                    <li class="header__search-type-item">Danh mục</li>
+                  </ul>
+                  <ul class="header__search-result-list">
+                    <li class="header__search-result-item">
+                      <a href="" class="header__search-result-item-link">
+                        <img
+                          class="header__search-result-item-img"
+                          src="./assets/imgs/home/item-img-header-mock.avif"
+                          alt=""
+                        />
+
+                        <div
+                          class="header__search-result-item-info header__search-result-item-info--price"
+                        >
+                          <h3 class="header__search-result-item-title">
+                            Chuột không dây siêu nhẹ Lamzu Atlantis Mini
+                          </h3>
+                          <span class="header__search-result-item-price"
+                            >2.499.999đ</span
+                          >
+                          <span class="header__search-result-item-quantity"
+                            >6 sản phẩm</span
+                          >
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="header__search-result-loading">Loading...</div>
+              </div>
+            </div>
           </ul>
         </div>
       </div>
