@@ -7,7 +7,13 @@
     <title>Document</title>
 
     <!-- Reset css -->
-    <link rel="stylesheet" href="./assets/css/commons/normalize.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
     <!-- Font awesome icom -->
     <link
@@ -40,9 +46,11 @@
       rel="stylesheet"
       href="./assets/css/home/section-trending-product.css"
     />
+    <link rel="stylesheet" href="./assets/css/home/section-under-top.css" />
     <link rel="stylesheet" href="./assets/css/home/responsive.css" />
   </head>
   <body>
+    <!-- Sub-header -->
     <div class="sub-header">
       <ul class="sub-header__list">
         <li class="sub-header__item">Miễn phí giao hàng đơn từ 1.000.000đ</li>
@@ -61,20 +69,362 @@
       </ul>
     </div>
 
+    <!-- Header render with JS -->
     <header class="header"></header>
 
-    <!-- Section trending product -->
-    <section class="trend-prod">
+    <!-- Section top page product -->
+    <section class="top-page-prod">
       <div class="grid wide">
-        <div class="trend-prod-wrapper">
-          <h3 class="trend-prod__product-description">
+        <div class="top-page-prod-wrapper">
+          <h3 class="top-page-prod__product-description">
             Chuột không dây LED RGB siêu sáng
           </h3>
-          <h3 class="trend-prod__product-name">Glorious Model O 2</h3>
-          <h3 class="trend-prod__product-subname">Wireless</h3>
-          <a href="" class="trend-prod__view-button">Xem thêm</a>
+          <h3 class="top-page-prod__product-name">Glorious Model O 2</h3>
+          <h3 class="top-page-prod__product-subname">Wireless</h3>
+          <a href="" class="top-page-prod__view-button">Xem thêm</a>
         </div>
       </div>
+    </section>
+
+    <!-- Section under top -->
+    <section class="under-top">
+      <div class="grid wide">
+        <ul class="under-top__category-list">
+          <div class="row">
+            <div class="col l-2-4 m-4 c-6">
+              <li class="under-top__category-item">
+                <a href="" class="under-top__category-item-link">
+                  <img
+                    class="under-top__category-item-img"
+                    src="./assets/imgs/home/under-top-category-1.webp"
+                    alt="Product category"
+                  />
+                  <p class="under-top__category-name">Bàn phím cơ</p>
+                </a>
+              </li>
+            </div>
+
+            <div class="col l-2-4 m-4 c-6">
+              <li class="under-top__category-item">
+                <a href="" class="under-top__category-item-link">
+                  <img
+                    class="under-top__category-item-img"
+                    src="./assets/imgs/home/under-top-category-2.webp"
+                    alt="Product category"
+                  />
+                  <p class="under-top__category-name">Chuột</p>
+                </a>
+              </li>
+            </div>
+            <div class="col l-2-4 m-4 c-6">
+              <li class="under-top__category-item">
+                <a href="" class="under-top__category-item-link">
+                  <img
+                    class="under-top__category-item-img"
+                    src="./assets/imgs/home/under-top-category-3.webp"
+                    alt="Product category"
+                  />
+                  <p class="under-top__category-name">Lót chuột</p>
+                </a>
+              </li>
+            </div>
+            <div class="col l-2-4 m-4 c-6">
+              <li class="under-top__category-item">
+                <a href="" class="under-top__category-item-link">
+                  <img
+                    class="under-top__category-item-img"
+                    src="./assets/imgs/home/under-top-category-4.webp"
+                    alt="Product category"
+                  />
+                  <p class="under-top__category-name">Feet chuột</p>
+                </a>
+              </li>
+            </div>
+            <div class="col l-2-4 m-4 c-6">
+              <li class="under-top__category-item">
+                <a href="" class="under-top__category-item-link">
+                  <img
+                    class="under-top__category-item-img"
+                    src="./assets/imgs/home/under-top-category-5.webp"
+                    alt="Product category"
+                  />
+                  <p class="under-top__category-name">Switch & Lube</p>
+                </a>
+              </li>
+            </div>
+          </div>
+        </ul>
+
+        <div class="under-top__brand-container">
+          <h3 class="under-top__brand-heading">Các thương hiệu phân phối</h3>
+
+          <ul class="under-top__brand-list">
+            <div class="row">
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__brand-item">
+                  <a href="" class="under-top__brand-item-link"
+                    ><img
+                      class="under-top__brand-item-img"
+                      src="./assets/imgs/home/under-top-brand-1.webp"
+                      alt="Brand 1"
+                  /></a>
+                </li>
+              </div>
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__brand-item">
+                  <a href="" class="under-top__brand-item-link"
+                    ><img
+                      class="under-top__brand-item-img"
+                      src="./assets/imgs/home/under-top-brand-2.webp"
+                      alt="Brand 2"
+                  /></a>
+                </li>
+              </div>
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__brand-item">
+                  <a href="" class="under-top__brand-item-link"
+                    ><img
+                      class="under-top__brand-item-img"
+                      src="./assets/imgs/home/under-top-brand-3.webp"
+                      alt="Brand 3"
+                  /></a>
+                </li>
+              </div>
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__brand-item">
+                  <a href="" class="under-top__brand-item-link"
+                    ><img
+                      class="under-top__brand-item-img"
+                      src="./assets/imgs/home/under-top-brand-4.webp"
+                      alt="Brand 4"
+                  /></a>
+                </li>
+              </div>
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__brand-item">
+                  <a href="" class="under-top__brand-item-link"
+                    ><img
+                      class="under-top__brand-item-img"
+                      src="./assets/imgs/home/under-top-brand-5.avif"
+                      alt="Brand 5"
+                  /></a>
+                </li>
+              </div>
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__brand-item">
+                  <a href="" class="under-top__brand-item-link"
+                    ><img
+                      class="under-top__brand-item-img"
+                      src="./assets/imgs/home/under-top-brand-6.avif"
+                      alt="Brand 6"
+                  /></a>
+                </li>
+              </div>
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__brand-item">
+                  <a href="" class="under-top__brand-item-link"
+                    ><img
+                      class="under-top__brand-item-img"
+                      src="./assets/imgs/home/under-top-brand-7.avif"
+                      alt="Brand 7"
+                  /></a>
+                </li>
+              </div>
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__brand-item">
+                  <a href="" class="under-top__brand-item-link"
+                    ><img
+                      class="under-top__brand-item-img"
+                      src="./assets/imgs/home/under-top-brand-8.webp"
+                      alt="Brand 8"
+                  /></a>
+                </li>
+              </div>
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__brand-item">
+                  <a href="" class="under-top__brand-item-link"
+                    ><img
+                      class="under-top__brand-item-img"
+                      src="./assets/imgs/home/under-top-brand-9.webp"
+                      alt="Brand 9"
+                  /></a>
+                </li>
+              </div>
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__brand-item">
+                  <a href="" class="under-top__brand-item-link"
+                    ><img
+                      class="under-top__brand-item-img"
+                      src="./assets/imgs/home/under-top-brand-10.webp"
+                      alt="Brand 10"
+                  /></a>
+                </li>
+              </div>
+            </div>
+          </ul>
+        </div>
+
+        <div class="under-top__hot-products-container">
+          <div class="under-top__hot-products-heading-wrapper">
+            <h3 class="under-top__hot-products-heading">
+              Các sản phẩm thịnh hành
+            </h3>
+
+            <a href="" class="under-top__hot-products-view-more-btn">
+              Xem thêm<i class="bi bi-chevron-right"></i>
+            </a>
+          </div>
+
+          <ul class="under-top__hot-list">
+            <div class="row">
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__hot-item">
+                  <a href="" class="under-top__hot-item-link">
+                    <div class="under-top__hot-item-img-wrapper">
+                      <img
+                        class="under-top__hot-item-img main-img"
+                        src="./assets/imgs/home/mock-product.webp"
+                        alt="Hot product image"
+                      />
+
+                      <img
+                        class="under-top__hot-item-img hover-img"
+                        src="./assets/imgs/home/mock-product-2.webp"
+                        alt="Hot product image"
+                      />
+
+                      <button class="btn btn-primary under-top__hot-item-add-cart-btn">+ Thêm</button>
+                    </div>
+
+                    <p class="under-top__hot-item-name">
+                      Chuột không dây siêu nhẹ Pulsar X2 Wireless X RandomfrankP
+                      (Limited Edition)
+                    </p>
+                    <p class="under-top__hot-item-price">2.499.000đ</p>
+                  </a>
+                </li>
+              </div>
+
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__hot-item">
+                  <a href="" class="under-top__hot-item-link">
+                    <div class="under-top__hot-item-img-wrapper">
+                      <img
+                        class="under-top__hot-item-img main-img"
+                        src="./assets/imgs/home/mock-product.webp"
+                        alt="Hot product image"
+                      />
+
+                      <img
+                        class="under-top__hot-item-img hover-img"
+                        src="./assets/imgs/home/mock-product-2.webp"
+                        alt="Hot product image"
+                      />
+
+                      <button class="btn btn-primary under-top__hot-item-add-cart-btn">+ Thêm</button>
+                    </div>
+
+                    <p class="under-top__hot-item-name">
+                      Chuột không dây siêu nhẹ Pulsar X2 Wireless X RandomfrankP
+                      (Limited Edition)
+                    </p>
+                    <p class="under-top__hot-item-price">2.499.000đ</p>
+                  </a>
+                </li>
+              </div>
+
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__hot-item">
+                  <a href="" class="under-top__hot-item-link">
+                    <div class="under-top__hot-item-img-wrapper">
+                      <img
+                        class="under-top__hot-item-img main-img"
+                        src="./assets/imgs/home/mock-product.webp"
+                        alt="Hot product image"
+                      />
+
+                      <img
+                        class="under-top__hot-item-img hover-img"
+                        src="./assets/imgs/home/mock-product-2.webp"
+                        alt="Hot product image"
+                      />
+
+                      <button class="btn btn-primary under-top__hot-item-add-cart-btn">+ Thêm</button>
+                    </div>
+
+                    <p class="under-top__hot-item-name">
+                      Chuột không dây siêu nhẹ Pulsar X2 Wireless X RandomfrankP
+                      (Limited Edition)
+                    </p>
+                    <p class="under-top__hot-item-price">2.499.000đ</p>
+                  </a>
+                </li>
+              </div>
+
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__hot-item">
+                  <a href="" class="under-top__hot-item-link">
+                    <div class="under-top__hot-item-img-wrapper">
+                      <img
+                        class="under-top__hot-item-img main-img"
+                        src="./assets/imgs/home/mock-product.webp"
+                        alt="Hot product image"
+                      />
+
+                      <img
+                        class="under-top__hot-item-img hover-img"
+                        src="./assets/imgs/home/mock-product-2.webp"
+                        alt="Hot product image"
+                      />
+
+                      <button class="btn btn-primary under-top__hot-item-add-cart-btn">+ Thêm</button>
+                    </div>
+
+                    <p class="under-top__hot-item-name">
+                      Chuột không dây siêu nhẹ Pulsar X2 Wireless X RandomfrankP
+                      (Limited Edition)
+                    </p>
+                    <p class="under-top__hot-item-price">2.499.000đ</p>
+                  </a>
+                </li>
+              </div>
+
+              <div class="col l-2-4 m-4 c-6">
+                <li class="under-top__hot-item">
+                  <a href="" class="under-top__hot-item-link">
+                    <div class="under-top__hot-item-img-wrapper">
+                      <img
+                        class="under-top__hot-item-img main-img"
+                        src="./assets/imgs/home/mock-product.webp"
+                        alt="Hot product image"
+                      />
+
+                      <img
+                        class="under-top__hot-item-img hover-img"
+                        src="./assets/imgs/home/mock-product-2.webp"
+                        alt="Hot product image"
+                      />
+
+                      <button class="btn btn-primary under-top__hot-item-add-cart-btn">+ Thêm</button>
+                    </div>
+
+                    <p class="under-top__hot-item-name">
+                      Chuột không dây siêu nhẹ Pulsar X2 Wireless X RandomfrankP
+                      (Limited Edition)
+                    </p>
+                    <p class="under-top__hot-item-price">2.499.000đ</p>
+                  </a>
+                </li>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section trending product 1-->
+    <section class="trend-prod-1">
+      
     </section>
 
     <script type="module">

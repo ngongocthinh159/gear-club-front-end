@@ -1,0 +1,234 @@
+.under-top {
+  padding: 0 0 80px 0;
+}
+
+.under-top__category-list {
+  display: flex;
+  padding: 0 12px;
+  margin-bottom: 32px;
+}
+
+.under-top__category-item {
+}
+
+.under-top__category-item-link {
+  position: relative;
+  display: block;
+}
+
+.under-top__category-item-img {
+  width: 100%;
+  object-fit: cover;
+  transition: all 0.2s linear;
+}
+
+.under-top__category-item-link:hover .under-top__category-item-img {
+  transform: scale(1.1);
+}
+
+.under-top__category-name {
+  text-align: end;
+  font-size: 2rem;
+  position: absolute;
+  right: 0;
+  bottom: 15%;
+  margin: 0;
+  color: var(--text-dark-color);
+  transition: all 0.2s linear;
+}
+
+.under-top__category-name::after {
+  position: absolute;
+  content: '\F285';
+  font-family: 'Bootstrap-icons';
+  bottom: 30px;
+  font-size: 1.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 32px;
+  width: 32px;
+  border: 1px solid var(--text-dark-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  visibility: hidden;
+}
+
+.under-top__category-item-link:hover .under-top__category-name::after {
+  visibility: visible;
+}
+
+.under-top__category-item-link:hover .under-top__category-name {
+  transform: translateY(8px);
+}
+
+.under-top__brand-container {
+  padding: 0 12px;
+  margin-bottom: 80px;
+}
+
+.under-top__brand-heading {
+  margin: 0;
+  font-size: 4rem;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 60px;
+  color: var(--text-dark-color);
+}
+
+.under-top__brand-list {
+}
+
+.under-top__brand-item {
+}
+
+.under-top__brand-item-link {
+  background-color: rgba(0, 0, 0, 0.05);
+  height: 146px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s linear;
+}
+
+.under-top__brand-item-link:hover {
+  transform: translateY(-2px);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.under-top__brand-item-img {
+  height: 40px;
+}
+
+.under-top__hot-products-container {
+  padding: 0 12px;
+}
+
+.under-top__hot-products-heading-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.under-top__hot-products-heading {
+  margin: 0;
+  font-size: 4rem;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 60px;
+  color: var(--text-dark-color);
+}
+
+.under-top__hot-products-view-more-btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  color: var(--text-dark-color);
+}
+
+.under-top__hot-products-view-more-btn:hover {
+  opacity: 0.6;
+}
+
+.under-top__hot-products-view-more-btn i {
+  height: 20px;
+  width: 20px;
+  font-size: 1rem;
+  margin-left: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.under-top__hot-list {
+}
+
+.under-top__hot-item {
+}
+
+.under-top__hot-item-link {
+  display: block;
+  text-align: center;
+}
+
+.under-top__hot-item-img-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.under-top__hot-item-img {
+  width: 80%;
+  display: block;
+  margin-bottom: 36px;
+}
+
+.under-top__hot-item-link:hover .under-top__hot-item-img.main-img {
+  display: none;
+}
+
+.under-top__hot-item-img.hover-img {
+  display: none;
+}
+
+.under-top__hot-item-link:hover .under-top__hot-item-img.hover-img {
+  display: block;
+  animation: fadeIn 0.2s linear;
+}
+
+.under-top__hot-item-add-cart-btn {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-shrink: 0;
+  min-width: 120px;
+  visibility: hidden;
+}
+
+.under-top__hot-item-img-wrapper:hover .under-top__hot-item-add-cart-btn {
+  visibility: visible;
+  animation: slideUp 0.2s linear;
+}
+@keyframes slideUp {
+  0% {
+    transform: translate(-50%, 20%);
+  }
+  100% {
+    transform: translateY(-50%, 0%);
+  }
+}
+
+.under-top__hot-item-name {
+  font-size: 1.6rem;
+  font-weight: 900;
+  margin: 0;
+  margin-bottom: 6px;
+  color: var(--text-dark-color);
+  text-align: start;
+  --line-height: 2.4rem;
+  line-height: var(--line-height);
+  max-height: calc(var(--line-height) * 3);
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.under-top__hot-item-price {
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--text-dark-color);
+  margin-bottom: 12px;
+  text-align: start;
+}

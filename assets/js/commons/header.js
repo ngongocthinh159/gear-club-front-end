@@ -136,6 +136,18 @@ function handleHeaderEvents(headerDOMNode) {
       }
     });
   });
+
+  // Handle scroll top to change color of header
+  window.addEventListener('scroll', () => {
+    if (window.scrollY >= 48 /* Sub-header height */) {
+      headerDOMNode.style.backgroundColor = 'rgb(39, 39, 39)';
+      headerDOMNode.style.boxShadow =
+        'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px';
+    } else {
+      headerDOMNode.style.backgroundColor = 'transparent';
+      headerDOMNode.style.boxShadow = 'none';
+    }
+  });
 }
 
 /**
@@ -242,7 +254,7 @@ function renderHeader(headerDOMNode) {
                   <li class="header__nav-item">
                     <a href="" class="header__nav-item-link">
                       <img
-                        src="./assets/imgs/home/item-img-header-mock.avif"
+                        src="./assets/imgs/home/mock-product.webp"
                         alt=""
                         class="header__nav-item-img"
                       />
@@ -253,7 +265,7 @@ function renderHeader(headerDOMNode) {
                   <li class="header__nav-item">
                     <a href="" class="header__nav-item-link">
                       <img
-                        src="./assets/imgs/home/item-img-header-mock.avif"
+                        src="./assets/imgs/home/mock-product.webp"
                         alt=""
                         class="header__nav-item-img"
                       />
@@ -320,7 +332,7 @@ function renderHeader(headerDOMNode) {
                       <a href="" class="header__search-result-item-link">
                         <img
                           class="header__search-result-item-img"
-                          src="./assets/imgs/home/item-img-header-mock.avif"
+                          src="./assets/imgs/home/mock-product.webp"
                           alt=""
                         />
 
@@ -343,7 +355,7 @@ function renderHeader(headerDOMNode) {
                       <a href="" class="header__search-result-item-link">
                         <img
                           class="header__search-result-item-img"
-                          src="./assets/imgs/home/item-img-header-mock.avif"
+                          src="./assets/imgs/home/mock-product.webp"
                           alt=""
                         />
 
@@ -370,13 +382,13 @@ function renderHeader(headerDOMNode) {
                     <li class="header__search-type-item">
                       <div
                         class="skeleton"
-                        style="width: 100px; height: 40px"
+                        style="width: 100px; height: 30px"
                       ></div>
                     </li>
                     <li class="header__search-type-item">
                       <div
                         class="skeleton"
-                        style="width: 100px; height: 40px"
+                        style="width: 100px; height: 30px"
                       ></div>
                     </li>
                   </ul>

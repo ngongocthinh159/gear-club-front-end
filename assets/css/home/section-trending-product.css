@@ -1,4 +1,4 @@
-.trend-prod {
+.top-page-prod {
   --section-trending-product-height: 720px;
   height: var(--section-trending-product-height);
   background-image: url('../../imgs/home/top-background.webp');
@@ -8,9 +8,10 @@
   display: flex;
   align-items: end;
   position: relative;
+  margin-top: calc(var(--header-height) * -1);
 }
 
-.trend-prod::before {
+.top-page-prod::before {
   content: "";
   position: absolute;
   top: 0;
@@ -20,7 +21,7 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.trend-prod-wrapper {
+.top-page-prod-wrapper {
   height:  calc(var(--section-trending-product-height) - var(--header-height));
   display: flex;
   flex-direction: column;
@@ -29,15 +30,15 @@
   position: relative;
 }
 
-.trend-prod__product-description {
+.top-page-prod__product-description {
   margin: 0;
   font-size: 1.6rem;
   color: var(--text-white-color);
   margin-bottom: 32px;
 }
 
-.trend-prod__product-name,
-.trend-prod__product-subname {
+.top-page-prod__product-name,
+.top-page-prod__product-subname {
   font-size: 6.4rem;
   line-height: 6.4rem;
   margin: 0;
@@ -45,11 +46,11 @@
   font-weight: 400;
 }
 
-.trend-prod__product-subname {
+.top-page-prod__product-subname {
   margin-bottom: 32px;
 }
 
-.trend-prod__view-button {
+.top-page-prod__view-button {
   background-color: var(--white-color);
   color: var(--text-dark-color);
   font-size: 1.6rem;
@@ -60,9 +61,10 @@
   transition: all 0.1s linear;
 }
 
-.trend-prod__view-button:hover {
+.top-page-prod__view-button:hover {
   outline: 1px solid var(--text-white-color);
   color: var(--text-white-color);
   background-color: rgba(0, 0, 0, 0.09);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  transform: translateY(-4px);
 }
