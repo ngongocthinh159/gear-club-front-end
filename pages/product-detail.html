@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  
+  <title>Prodcut details</title>
 
   <!-- Reset css -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
@@ -39,6 +40,7 @@
   <link rel="stylesheet" href="../assets/css/product-detail/product-gallery.css" />
   <link rel="stylesheet" href="../assets/css/product-detail/product-carousal.css" />
   <link rel="stylesheet" href="../assets/css/product-detail/product-info.css" />
+  <link rel="stylesheet" href="../assets/css/product-detail/review.css" />
 </head>
 
 <body>
@@ -743,31 +745,33 @@
             data-id="7993893847285">
             <div class="jdgm-rev-widg" data-updated-at="2023-04-20T06:45:37Z" data-average-rating="5.00"
               data-number-of-reviews="3" data-number-of-questions="0">
-              <style class="jdgm-temp-hiding-style">
-                .jdgm-rev-widg {
-                  display: none
-                }
-              </style>
+
               <div class="jdgm-rev-widg__header">
                 <h2 class="jdgm-rev-widg__title">Phản hồi từ khách hàng</h2>
                 <div class="jdgm-row-stars">
                   <div class="jdgm-rev-widg__summary">
                     <div class="jdgm-rev-widg__summary-inner">
                       <div class="jdgm-rev-widg__summary-stars" aria-label="Average rating is 5.00 stars" role="img"> <span
-                          class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span
-                          class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span
-                          class="jdgm-star jdgm--on"></span> <span class="jdgm-rev-widg__summary-average"><a
-                            class="jdgm-link" target="_blank" href="https://judge.me/reviews/phongcachxanh.vn">5.00 trên 5
-                            sao</a></span></div>
+                          class="jdgm-star jdgm--on"></span>
+                          <span class="jdgm-star jdgm--on"></span>
+                          <span class="jdgm-star jdgm--on"></span>
+                          <span class="jdgm-star jdgm--on"></span>
+                          <span class="jdgm-star jdgm--on"></span>
+                          <span class="jdgm-rev-widg__summary-average">
+                            <a class="jdgm-link" target="_blank" href="https://judge.me/reviews/phongcachxanh.vn">5.00 trên 5
+                            sao</a>
+                          </span>
+                        </div>
                       <div class="jdgm-rev-widg__summary-text">Dựa trên 3 đánh giá</div><a class="jdgm-link" target="_blank"
-                        href="https://judge.me/trust">được xác thực bởi Judge.me</a>
+                        href="https://judge.me/trust">được xác thực bởi Judge.me (cho culoz nay bo nhi, xac thuc cai loz)</a>
                     </div>
                   </div>
                   <div class="jdgm-histogram jdgm-temp-hidden">
                     <div class="jdgm-histogram__row" data-rating="5" data-frequency="3" data-percentage="100">
                       <div class="jdgm-histogram__star" role="button" aria-label="100% (3) reviews with 5 star rating"
                         tabindex="0"><span class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span
-                          class="jdgm-star jdgm--on"></span><span class="jdgm-star jdgm--on"></span><span
+                          class="jdgm-star jdgm--on"></span>
+                          <span class="jdgm-star jdgm--on"></span><span
                           class="jdgm-star jdgm--on"></span></div>
                       <div class="jdgm-histogram__bar">
                         <div class="jdgm-histogram__bar-content" style="width: 100%;"> </div>
@@ -1083,7 +1087,8 @@
                       <option value="pictures-first">Hình ảnh đầu tiên</option>
                       <option value="videos-first">Video đầu tiên</option>
                       <option value="most-helpful">Hữu ích nhất</option>
-                    </select><span class="jdgm-sort-dropdown-arrow"></span>
+                    </select>
+                    <span class="jdgm-sort-dropdown-arrow"></span>
                   </div>
                 </div>
               </div>
@@ -1231,11 +1236,96 @@
     </section>
   </main>
 
+  <style class="jdgm-miracle-styles">
+    @-webkit-keyframes jdgm-spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg)
+      }
+  
+      100% {
+        -webkit-transform: rotate(359deg);
+        -ms-transform: rotate(359deg);
+        transform: rotate(359deg)
+      }
+    }
+  
+    @keyframes jdgm-spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg)
+      }
+  
+      100% {
+        -webkit-transform: rotate(359deg);
+        -ms-transform: rotate(359deg);
+        transform: rotate(359deg)
+      }
+    }
+  
+    @font-face {
+      font-family: 'JudgemeStar';
+      src: url("data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAScAA0AAAAABrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAEgAAAABoAAAAcbyQ+3kdERUYAAARgAAAAHgAAACAAMwAGT1MvMgAAAZgAAABGAAAAVi+vS9xjbWFwAAAB8AAAAEAAAAFKwBMjvmdhc3AAAARYAAAACAAAAAj//wADZ2x5ZgAAAkAAAAEJAAABdH33LXtoZWFkAAABMAAAAC0AAAA2BroQKWhoZWEAAAFgAAAAHAAAACQD5QHQaG10eAAAAeAAAAAPAAAAFAYAAABsb2NhAAACMAAAAA4AAAAOAO4AeG1heHAAAAF8AAAAHAAAACAASgAvbmFtZQAAA0wAAADeAAABkorWfVZwb3N0AAAELAAAACkAAABEp3ubLXgBY2BkYADhPPP4OfH8Nl8ZuJkYQODS2fRrCPr/aSYGxq1ALgcDWBoAO60LkwAAAHgBY2BkYGDc+v80gx4TAwgASaAICmABAFB+Arl4AWNgZGBgYGPQYWBiAAIwyQgWc2AAAwAHVQB6eAFjYGRiYJzAwMrAwejDmMbAwOAOpb8ySDK0MDAwMbByMsCBAAMCBKS5pjA4PGB4wMR44P8BBj3GrQymQGFGkBwAjtgK/gAAeAFjYoAAEA1jAwAAZAAHAHgB3crBCcAwDEPRZydkih567CDdf4ZskmLwFBV8xBfCaC4BXkOUmx4sU0h2ngNb9V0vQCxaRKIAevT7fGWuBrEAAAAAAAAAAAA0AHgAugAAeAF9z79Kw1AUx/FzTm7un6QmJtwmQ5Bg1abgEGr/BAqlU6Gju+Cgg1MkQ/sA7Vj7BOnmO/gUvo2Lo14NqIO6/IazfD8HEODtmQCfoANwNsyp2/GJt3WKQrd1NLiYYWx2PBqOsmJMEOznPOTzfSCrhAtbbLdmeFLJV9eKd63WLrZcIcuaEVdssWCKM6pLCfTVOYbz/0pNSMSZKLIZpvh78sAUH6PlMrreTCabP9r+Z/puPZ2ur/RqpQHgh+MIegCnXeM4MRAPjYN//5tj4ZtTjkFqEdmeMShlEJ7tVAly2TAkx6R68Fl4E/aVvn8JqHFQ4JS1434gXKcuL31dDhzs3YbsEOAd/IU88gAAAHgBfY4xTgMxEEVfkk0AgRCioKFxQYd2ZRtpixxgRU2RfhU5q5VWseQ4JdfgAJyBlmNwAM7ABRhZQ0ORwp7nr+eZAa54YwYg9zm3ynPOeFRe8MCrciXOh/KSS76UV5L/iDmrLiS5AeU519wrL3jmSbkS5115yR2fyivJv9kx0ZMZ2RLZw27q87iNQi8EBo5FSPIMw3HqBboi5lKTGAGDp8FKXWP+t9TU01Lj5His1Ba6uM9dTEMwvrFmbf5GC/q2drW3ruXUhhsCiQOjznFlCzYhHUZp4xp76vsvQh89CQAAeAFjYGJABowM6IANLMrEyMTIzMjCXpyRWJBqZshWXJJYBKOMAFHFBucAAAAAAAAB//8AAngBY2BkYGDgA2IJBhBgAvKZGViBJAuYxwAABJsAOgAAeAFjYGBgZACCk535hiD60tn0azAaAEqpB6wAAA==") format("woff");
+      font-weight: normal;
+      font-style: normal
+    }
+  
+    .jdgm-star:hover {
+      opacity: 1
+    }
+  
+    .jdgm-star:last-of-type {
+      padding: 0 !important
+    }
+  
+    .jdgm-star.jdgm--on:before {
+      content: "\e000"
+    }
+  
+    .jdgm-star.jdgm--off:before {
+      content: "\e001"
+    }
+  
+    .jdgm-star.jdgm--half:before {
+      content: "\e002"
+    }
+  
+    .jdgm-hidden {
+      display: none !important;
+      visibility: hidden !important
+    }
+  
+    .jdgm-temp-hidden {
+      display: none
+    }
+  
+    .jdgm-spinner {
+      width: 40px;
+      height: 40px;
+      margin: auto;
+      border-radius: 50%;
+      border-top: 2px solid #eee;
+      border-right: 2px solid #eee;
+      border-bottom: 2px solid #eee;
+      border-left: 2px solid #ccc;
+      -webkit-animation: jdgm-spin 0.8s infinite linear;
+      animation: jdgm-spin 0.8s infinite linear
+    }
+  
+    .jdgm-prev-badge {
+      display: block !important
+    }
+  </style>
+
   <script type="module">
     import { renderHeader } from '../assets/js/commons/header.js';
     const header = document.querySelector('header.header');
     renderHeader(header);
   </script>
 </body>
+
+<script type="text/javascript" src="../assets/js/product-detail/variant-pick.js"></script> 
 
 </html>

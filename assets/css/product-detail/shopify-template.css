@@ -89,3 +89,12 @@
 #shopify-section-template--16714356457717__16769949917a009ef7+* {
   --previous-section-background-hash: 0;
 }
+
+[role=main] .shopify-section {
+  --section-is-first: 0;
+  --hash-difference: calc(var(--section-background-hash) - var(--previous-section-background-hash, -1));
+  --hash-difference-abs: max(var(--hash-difference), -1 * var(--hash-difference));
+  --background-differs-from-previous: max(0, min(var(--hash-difference-abs, 1), 1));
+  background: rgb(var(--background));
+  position: relative;
+}

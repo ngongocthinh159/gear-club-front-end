@@ -133,6 +133,11 @@ pre {
     display: flex
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
 /* Prose  */
 .prose a:not(.button) {
     text-underline: none;
@@ -577,6 +582,11 @@ img {
 
 :checked+.block-swatch.is-disabled {
     background-image: linear-gradient(to bottom right, transparent 50%, rgb(var(--text-color)) 50% calc(50% + 2px), transparent calc(50% + 2px))
+}
+
+:checked+.block-swatch:before, .block-swatch.is-selected:before {
+    opacity: 1;
+    transform: scale(1);
 }
 
 /* :checked+.block-swatch:before,
