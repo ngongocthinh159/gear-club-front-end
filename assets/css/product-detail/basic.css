@@ -1,0 +1,245 @@
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: 0;
+    border-color: rgb(var(--text-color) / .12)
+}
+
+html {
+    /* font-size: 62.5%; */
+    /* line-height: 1.6rem; */
+    font-family: 'Inter', sans-serif;
+
+    /* Chrome 9-, Safari 5-, iOS 4.2-, Android 3-, Blackberry 7- */
+    -webkit-box-sizing: border-box;
+    /* Firefox (desktop or Android) 28- */
+    -moz-box-sizing: border-box;
+    /* Firefox 29+, IE 8+, Chrome 10+, Safari 5.1+, Opera 9.5+, iOS 5+, Opera Mini Anything, Blackberry 10+, Android 4+ */
+    box-sizing: border-box;
+
+    -webkit-text-size-adjust: 100%;
+    -moz-tab-size: 4;
+    tab-size: 4;
+    scroll-padding-block-start: calc(var(--sticky-area-height) + 20px);
+    line-height: 1.5
+}
+
+body {
+    --background: var(--background-primary);
+    --text-color: var(--text-primary);
+    background: rgb(var(--background));
+    color: rgb(var(--text-color));
+    font: var(--text-font-style) var(--text-font-weight) var(--text-base) / 1.6 var(--text-font-family);
+    letter-spacing: var(--text-letter-spacing);
+    margin: 0;
+    position: relative
+}
+
+legend {
+    padding: 0
+}
+
+fieldset {
+    margin: 0;
+    padding: 0
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+hr {
+    height: 0;
+    color: inherit;
+    border-top-width: 1px
+}
+
+button,
+select {
+    text-transform: none
+}
+
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+    -webkit-appearance: button;
+    text-align: inherit;
+    background-color: #0000;
+    background-image: none
+}
+
+button,
+label,
+summary,
+[role=button],
+[type=checkbox],
+[type=radio],
+[type=submit] {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    cursor: pointer
+}
+
+/* Inputs  */
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0
+}
+
+.input,
+.textarea,
+.select {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: var(--input-height);
+    border-radius: var(--rounded-input);
+    background: rgb(var(--input-background, transparent));
+    color: rgb(var(--input-text-color, var(--text-color)));
+    text-align: start;
+    border-width: 1px;
+    padding-inline-start: var(--input-padding-inline);
+    padding-inline-end: var(--input-padding-inline)
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus-visible {
+    border-color: currentColor;
+    outline: none;
+    box-shadow: inset 0 0 0 1px
+}
+
+.input.is-floating,
+.select.is-floating {
+    height: calc(var(--input-height) + .625rem);
+    padding-block-start: var(--spacing-4)
+}
+
+.button,
+.btn {
+    --button-background: var(--button-background-primary) / var(--button-background-opacity, 1);
+    --button-text-color: var(--button-text-primary);
+    --button-outline-color: var(--button-background-primary);
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: var(--rounded-button);
+    background-color: rgb(var(--button-background));
+    color: rgb(var(--button-text-color));
+    text-align: center;
+    font-size: var(--text-sm);
+    letter-spacing: var(--text-letter-spacing);
+    padding-block-start: var(--spacing-2-5);
+    padding-block-end: var(--spacing-2-5);
+    padding-inline-start: var(--spacing-5);
+    padding-inline-end: var(--spacing-5);
+    font-weight: 700;
+    line-height: 1.6;
+    transition: background-color .15s ease-in-out, color .15s ease-in-out, box-shadow .15s ease-in-out;
+    display: inline-block;
+    position: relative
+}
+
+/* Seletion loading
+   * Usage: add a div with class="skeleton" and set style="width: 100px; height: 40px"
+   */
+.skeleton {
+    border-radius: 8px;
+    animation: skeleton-loading 0.6s linear infinite alternate;
+    cursor: default;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsl(200, 20%, 80%);
+    }
+
+    100% {
+        background-color: hsl(200, 20%, 95%);
+    }
+}
+
+/* Sub-header */
+.sub-header {
+    background-color: var(--background-color);
+    display: flex;
+    overflow-x: hidden;
+    --translate-x: -60px;
+    transform: translateX(var(--translate-x));
+    width: calc(100% - var(--translate-x));
+    height: var(--sub-header-height);
+    display: flex;
+    align-items: center;
+}
+
+.sub-header__list {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.sub-header__item {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    font-weight: 600;
+    color: var(--text-white-color);
+    padding: 0 84px;
+    position: relative;
+}
+
+.sub-header__item::after {
+    content: '';
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 4px;
+    background-color: var(--text-white-color);
+}
+
+/* Button */
+.btn {
+    font-size: 1.4rem;
+    line-height: 1;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    padding: 16px 24px;
+    border-radius: var(--border-radius-pill);
+    background-color: var(--white-color);
+    color: var(--text-dark-color);
+    cursor: pointer;
+    transition: all 0.1s linear;
+}
+
+.btn-primary {
+    background-color: var(--primay-color);
+    color: var(--text-white-color);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--primay-color);
+    outline: 3px solid var(--primay-color);
+}

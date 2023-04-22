@@ -1,0 +1,56 @@
+.full-bleed {
+    margin-inline-start: calc(-1 * var(--container-outer-width));
+    margin-inline-end: calc(-1 * var(--container-outer-width));
+    display: grid
+}
+
+.scroll-area::-webkit-scrollbar {
+    display: none
+}
+
+scroll-area, 
+media-carousel {
+    display: block
+}
+
+:not(.is-scrollable)~.peer-not-scrollable\:hidden,
+.hidden,
+.empty\:hidden:empty {
+    display: none
+}
+
+:has(> custom-cursor:not([hidden])) {
+    cursor: none
+}
+
+.snap-center {
+    scroll-snap-align: center;
+    scroll-snap-stop: always
+}
+
+/* Responsive */
+@media screen and (pointer: fine) {
+    .floating-controls-container:hover .is-scrollable~.circle-button:not([disabled]) {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1)
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    :not(.is-scrollable) .text-with-icons__list {
+        gap: var(--spacing-6)
+    }
+
+    :not(.is-scrollable) .text-with-icons__item {
+        padding-inline-start: 0;
+        padding-inline-end: 0
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    :not(.is-scrollable) .text-with-icons__list {
+        gap: var(--spacing-10)
+    }
+}
+
