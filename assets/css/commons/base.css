@@ -4,7 +4,7 @@
 
   --primay-color: #1d2864;
   --white-color: #fff;
-  --black-color: #fff;
+  --black-color: #000;
   --background-color: #1a1a1a;
   --text-dark-color: #272727;
   --text-white-color: #fff;
@@ -37,6 +37,11 @@ html {
 
 body {
   position: relative;
+  overflow-x: hidden;
+}
+
+.app {
+  overflow: hidden;
 }
 
 ul {

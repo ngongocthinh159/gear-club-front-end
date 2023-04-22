@@ -1,0 +1,150 @@
+.footer {
+  padding: 48px 0;
+}
+
+.footer__col-wrapper {
+  margin-bottom: 60px;
+}
+
+.footer__heading {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.6rem;
+  margin-bottom: 32px;
+  color: var(--text-dark-color);
+}
+
+.footer__paragraph {
+  margin: 0;
+  font-size: 1.6rem;
+  color: rgba(39, 39, 39, 0.7);
+  line-height: 1.5;
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+.footer__paragraph-link {
+  display: inline-block;
+  margin-right: 100%;
+  font-size: 1.6rem;
+  color: rgba(39, 39, 39, 0.7);
+  margin-bottom: 24px;
+  font-weight: 400;
+  position: relative;
+}
+
+.footer__paragraph-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 0px;
+  background-color: var(--text-dark-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.footer__paragraph-link:hover::after {
+  width: 100%;
+}
+
+.footer__heading-large {
+  font-size: 2.7rem;
+  margin: 0;
+  font-weight: 400;
+  line-height: 2.8rem;
+  color: var(--text-dark-color);
+  margin-bottom: 32px;
+  line-height: 1.6rem;
+}
+
+.footer__input-wrapper {
+  position: relative;
+}
+
+.footer__input-text {
+  font-size: 1.6rem;
+  padding: 16px 8px;
+  width: calc(100% - 20px);
+}
+
+.footer__email-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 30px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.15s linear;
+}
+
+.footer__email-btn:hover {
+  color: var(--text-white-color);
+  background-color: var(--text-dark-color);
+}
+
+.footer__email-btn i {
+  font-size: 1.2rem;
+}
+
+.footer__heading {
+}
+
+.footer__list {
+}
+
+.footer__item {
+}
+
+.footer__item-link {
+  font-size: 1.6rem;
+  color: rgba(39, 39, 39, 0.7);
+  margin-bottom: 24px;
+  font-weight: 400;
+  display: block;
+  transition: all 0.08s linear;
+}
+
+.footer__item-link:hover {
+  color: var(--black-color);
+}
+
+.sub-footer {
+  font-size: 1.4rem;
+  color: rgba(39, 39, 39, 0.7);
+  font-weight: 400;
+  text-align: start;
+}
+
+/* Reponsive
+ *
+ *
+ */
+/* Mobile & Tablet */
+@media (max-width: 1023px) {
+}
+
+/* Tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+  .footer__input-text {
+    width: 100%;
+  }
+  .footer__email-btn {
+    right: 10px;
+  }
+  .sub-footer {
+    text-align: center;
+  }
+}

@@ -46,7 +46,7 @@
   left: 16px;
   top: 16px;
   bottom: 16px;
-  width: 100%;
+  width: calc(100% - 16px);
   max-width: 380px;
   background-color: var(--text-white-color);
   border-radius: 8px;
