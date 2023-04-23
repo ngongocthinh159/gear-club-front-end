@@ -19,9 +19,11 @@
     background-image: linear-gradient(90deg, rgba(1, 12, 70, 1), rgba(24, 63, 149, 1) 100%);
     color: #0000;
     -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
     -webkit-background-clip: text;
-    background-clip: text;
+    font-size: 1.75rem;
+    line-height: 1.1;
+
+    margin-block-start: 1.5rem;
 }
 
 #features {
@@ -34,7 +36,7 @@
 }
 
 #features .table-row {
-    grid-template-columns: 140px repeat(140px, minmax(140px, 1fr));
+    grid-template-columns: 140px repeat(var(--feature-chart-values-columns-count), minmax(140px, 1fr));
     gap: 0.25rem 1.25rem;
     min-width: min-content;
     padding-block-start: 1rem;
@@ -48,47 +50,6 @@
 
 #features .feature-value {
     color: rgb(39 39 39 / .7)
-}
-
-
-#features>:not([hidden])~:not([hidden]) {
-    border-block-start-width: 1px
-}
-
-@media screen and (min-width: 1150px) {
-    .stack-horizontal {
-        justify-content: center;
-        display: flex
-    }
-
-    #introduction {
-        width: 50%
-    }
-
-    #features {
-        width: 50%;
-        padding: 1rem 3rem;
-    }
-}
-  
-@media screen and (min-width: 700px) {
-    .stack-horizontal   {
-        flex-wrap: wrap;
-        justify-content: start;
-    }
-
-    #introduction {
-        flex: 1 0 350px; 
-        max-width: 750px;
-        width: auto;
-    }
-
-    #features {
-        flex: 1 1 600px;
-        min-width: 450px;
-        width: auto;
-        border-radius: 0.75rem;
-    }
 }
 
 @media screen and (max-width: 699px) {
@@ -119,6 +80,27 @@
     }
 }
 
+  
+@media screen and (min-width: 700px) {
+    .stack-horizontal   {
+        flex-wrap: wrap;
+        justify-content: start;
+    }
+
+    #introduction {
+        flex: 1 0 350px; 
+        max-width: 750px;
+        width: auto;
+    }
+
+    #features {
+        flex: 1 1 600px;
+        min-width: 450px;
+        width: auto;
+        border-radius: 0.75rem;
+    }
+}
+
 @media screen and (min-width: 1000px) {
     .feature-chart {
         padding: 1rem 3rem
@@ -141,5 +123,23 @@
         max-width: 260px
     }
 }
+
+@media screen and (min-width: 1150px) {
+    .stack-horizontal {
+        justify-content: center;
+        display: flex
+    }
+
+    #introduction {
+        width: 50%
+    }
+
+    #features {
+        width: 50%;
+        padding: 1rem 3rem;
+    }
+}
+
+
 
 

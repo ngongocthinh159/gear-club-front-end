@@ -35,7 +35,6 @@
 
 .vendor,
 .product-name,
-.product-info__sku,
 .product-price {
     --product-info-block-spacing: 0.5rem;
 }
@@ -64,10 +63,111 @@
     line-height: 1.6
 }
 
-.product-price .product-info__badge-list {
-    align-self: center;
-    margin-inline-start: 0.25rem;
+.product-description > * {
+    margin-block-start: 0.75rem;
 }
+
+/* Variant picker  */
+#variant {
+    gap: 1.5rem;
+    grid-template-columns: minmax(0, 1fr);
+    display: grid
+}
+
+#variant-name {
+    justify-content: space-between;
+    align-items: baseline;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    color: rgb(39 39 39 / .7)
+}
+
+#variant-options {
+    gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap
+}
+
+#variant-options .option {
+    width: 1px;
+    height: 1px;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+    margin: -1px;
+    padding: 0;
+    position: absolute;
+    overflow: hidden
+}
+
+.option:focus-visible+label {
+    outline: 2px solid Highlight;
+    outline: 2px solid -webkit-focus-ring-color
+}
+
+.option-label{
+    place-items: center;
+    gap: 0.75rem;
+    height: 3.125rem;
+    border-radius: 3.75rem;
+    border-width: 1px;
+    padding-inline-start: 1.5rem;
+    padding-inline-end: 1.5rem;
+    display: flex;
+    position: relative
+}
+
+.option-label.is-disabled {
+    color: rgb(39 39 39 / .5);
+    background-image: linear-gradient(to bottom right, #0000 50%, currentColor 50% calc(50% + 2px), #0000 calc(50% + 2px))
+}
+
+.option-labeloption-label:before {
+    box-shadow: 0 0 0 2px rgb(39 39 39);
+    border-radius: inherit;
+    opacity: 0;
+    will-change: transform;
+    transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scale(.95)
+}
+
+:checked+.option-label.is-disabled {
+    background-image: linear-gradient(to bottom right, transparent 50%, rgb(var(--text-color)) 50% calc(50% + 2px), transparent calc(50% + 2px))
+}
+
+:checked+.option-label:before, .option-label.is-selected:before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+:checked+.option-label:before,
+.option-label.is-selected:before {
+    opacity: 1;
+    transform: scale(1)
+}
+
+:focus-visible+.option-label {
+    outline-offset: 4px
+}
+
+.buy-buttons {
+    align-items: start;
+    gap: 0.5rem;
+    display: grid;
+
+    font-size: 1rem;
+    padding-block-start: 1rem;
+    padding-block-end: 1rem;
+    padding-inline-start: 2rem;
+    padding-inline-end: 2rem;
+} 
+
 
 @media screen and (min-width: 1150px) {
     #product-main {
