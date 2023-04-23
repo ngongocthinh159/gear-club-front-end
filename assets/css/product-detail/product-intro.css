@@ -47,7 +47,7 @@
 }
 
 #features .feature-value {
-    color: rgb(var(--text-color) / .7)
+    color: rgb(39 39 39 / .7)
 }
 
 
@@ -125,7 +125,7 @@
     }
 
     #features .table-row {
-        grid-template-columns: 180px repeat(180px, minmax(140px, 1fr));
+        grid-template-columns: 180px repeat(var(--feature-chart-values-columns-count), minmax(140px, 1fr));
         column-gap: 1.5rem;
         padding-block-start: 1.5rem;
         padding-block-end: var(--spacing-6)
