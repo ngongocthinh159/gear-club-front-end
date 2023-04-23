@@ -60,7 +60,7 @@ function loadGallery() {
 
     for (let img of curProduct.image) {
         carousel.innerHTML += `
-        <div class="product-gallery__media  snap-center" data-media-type="image" data-media-id="31478696837365">
+        <div class="carousel-img">
             <img
                 src="` + img + `"
                 alt="` + curProduct.name + `"
@@ -70,7 +70,7 @@ function loadGallery() {
                 + img + `&width=1400 1400w, ` + img + `&width=1600 1600w"
                 width="1600" height="1600" loading="eager" fetchpriority="high"
                 sizes="(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), min(730px, 40vw)"
-                class="rounded">
+                style="border-radius: 0.75rem;" class="rounded">
         </div>
         `;
     }
@@ -92,8 +92,8 @@ function loadThumbnail() {
             alt="` + curProduct.name + `"
             srcset="` + img + `&width=56 56w, ` + img + `&width=64 64w, ` + img + `&width=112 112w, ` 
             + img + `&width=128 128w, ` + img + `&;width=168 168w, ` + img + `&width=192 192w"
-            width="1600" height="1600" loading="lazy" sizes="(max-width: 699px) 56px, 64px"
-            class="object-contain rounded-sm">
+            width="1600" height="1600" sizes="(max-width: 699px) 56px, 64px"
+            style="border-radius: 0.375rem;">
         </button>
         `;
     }
@@ -131,7 +131,7 @@ function loadInfo() {
     <div style="text-align: left;">
         <img
         src="` + curProduct.vendor_image + `"
-        alt="" style="float: none;" loading="lazy">
+        alt="" style="float: none;">
     </div>
     `;
 
@@ -147,17 +147,17 @@ function loadInfo() {
     infoDiv.querySelector("div.product-description").appendChild(div)
 
     // Load variant picker for size
-    for (let size of curProduct.size) {
-        infoDiv.querySelector("div.variant-picker__option-values").innerHTML += `
-        <input class="sr-only" type="radio" name="option1" form="product-form-7993893847285-template--16714356457717__main"
-            id="swatch-template--16714356457717__main-product-form-7993893847285-template--16714356457717__main--option1-` + size.toLowerCase() + `"
-            value="` + size + `">
-        <label class="block-swatch" for="swatch-template--16714356457717__main-product-form-7993893847285-template--16714356457717__main--option1-` + size.toLowerCase() + `"
-        data-option-value="">
-        <span>` + size + `</span>
-        </label>
-        `;
-    }
+    // for (let size of curProduct.size) {
+    //     infoDiv.querySelector("div.variant-picker__option-values").innerHTML += `
+    //     <input class="sr-only" type="radio" name="option1" form="product-form-7993893847285-template--16714356457717__main"
+    //         id="swatch-template--16714356457717__main-product-form-7993893847285-template--16714356457717__main--option1-` + size.toLowerCase() + `"
+    //         value="` + size + `">
+    //     <label class="block-swatch" for="swatch-template--16714356457717__main-product-form-7993893847285-template--16714356457717__main--option1-` + size.toLowerCase() + `"
+    //     data-option-value="">
+    //     <span>` + size + `</span>
+    //     </label>
+    //     `;
+    // }
     
     // Load related link
     let ul = document.createElement("ul")
@@ -178,7 +178,7 @@ function loadInfo() {
 // Add event listener for all thumbnail images 
 function bindFunction() {
     const thumbnails = document.querySelectorAll("button.thumbnail-btn")
-    const images = document.querySelectorAll("div[class~=product-gallery__media")
+    const images = document.querySelectorAll("div[class~=carousel-img")
 
     thumbnails.forEach( (thumbnail) => {
         thumbnail.addEventListener("click", function(e) {

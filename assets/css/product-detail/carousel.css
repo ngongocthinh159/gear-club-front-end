@@ -17,6 +17,18 @@ carousel {
     margin-inline-end: calc(-1 * var(--container-outer-width));
 }
 
+.carousel-img {
+    position: relative
+}
+
+.carousel-img img {
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+
+    scroll-snap-align: center;
+    scroll-snap-stop: always
+}
+
 #carousel-thumbnail {
     order: -1;
     grid-auto-flow: row;
@@ -137,8 +149,6 @@ carousel {
         overflow: auto;
     }
 }
-
-
 
 @media screen and (min-width: 1400px) {
     carousel {
