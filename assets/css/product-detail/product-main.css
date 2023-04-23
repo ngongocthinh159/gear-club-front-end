@@ -1,0 +1,110 @@
+#product-main {
+    --section-is-first: 1;
+    --product-grid: auto / minmax(0, 1fr);
+
+    --hash-difference: calc(var(0) - var(0, -1));
+    --hash-difference-abs: max(var(--hash-difference), -1 * var(--hash-difference));
+    --background-differs-from-previous: max(0, min(var(--hash-difference-abs, 1), 1));
+    background: rgb(255 255 255);
+    position: relative;
+
+    padding-block-start: calc(var(--background-differs-from-previous) * 48px);
+    padding-block-end: 48px;
+}
+
+#product-main {
+    grid: auto / minmax(0, 1fr);
+    align-items: start;
+    display: grid;
+    column-gap: 3rem;
+}
+
+#product-info {
+    top: 145px;
+    --product-info-block-spacing: 1.5rem;
+}
+
+#product-info>*+* {
+    margin-block-start: var(--product-info-block-spacing);
+    margin-block-end: var(--product-info-block-spacing)
+}
+
+#product-info>:last-child {
+    margin-block-end: 0
+}
+
+.vendor,
+.product-name,
+.product-info__sku,
+.product-price {
+    --product-info-block-spacing: 0.5rem;
+}
+
+.product-name{
+    font-size: 2.25rem;
+    line-height: 1.1;
+    font-family: v-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Ubuntu, Helvetica Neue, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: -0.01em;
+    text-transform: normal;
+    overflow-wrap: anywhere
+}
+
+.product-price {
+    gap: 0.5rem;
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    align-items: baseline;
+    display: grid;
+
+    justify-content: flex-start;
+    display: flex;
+    font-size: 1.5rem;
+    line-height: 1.6
+}
+
+.product-price .product-info__badge-list {
+    align-self: center;
+    margin-inline-start: 0.25rem;
+}
+
+@media screen and (min-width: 1150px) {
+    #product-main {
+        grid: auto / auto-flow auto minmax(0, 1fr);
+        align-items: start;
+    }
+
+    #product-main {
+        column-gap: 3rem;
+        gap: 3rem 2.5rem;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    #product-main {
+        column-gap: 6rem
+    }
+}
+
+@media screen and (max-width: 999px) {
+    #product-main {
+        gap: 2rem 2.5rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #product-main {
+        grid: auto / minmax(0, 1.1fr) minmax(0, 0.9fr);
+    }
+
+    #product-info {
+        top: 20px;
+        position: sticky
+    }
+}
+
+/* Price div  */
+#product-main div#price {
+    color:rgb(227 79 79);
+} 

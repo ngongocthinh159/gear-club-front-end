@@ -1,67 +1,5 @@
-.content-over-media>:is(img, video, iframe, svg, video-media) {
-    height: var(--content-over-media-height, auto);
-    min-height: 100%;
-    max-height: 100%;
-    width: 100%;
-    overflow-wrap: anywhere;
-    object-fit: cover;
-    object-position: center;
-    transform-origin: bottom;
-    border-radius: inherit;
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-    grid-area: 1 / 1 / span 3 / span 3;
-    position: relative
-}
-
-.content-over-media>:is(img, video, iframe, svg, video-media)>* {
-    border-radius: inherit
-}
-
-.content-over-media>:not(img, video, iframe, svg, video-media) {
-    max-width: var(--content-over-media-content-max-width, 780px);
-    z-index: 1;
-    grid-area: 2 / 2 / auto / span 1;
-    position: relative
-}
-
-[allow-transparent-header] :is(.content-over-media > :not(img, video, iframe, svg, video-media)) {
-    padding-block-start: calc(var(--header-height) * var(--section-is-first))
-}
-
-video-media>:is(video, iframe, img, svg) {
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    transition: opacity .2s ease-in-out, visibility .2s ease-in-out
-}
-
-video-media>svg {
-    object-fit: cover;
-    object-position: center
-}
-
-video-media>:is(iframe, img, svg) {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0
-}
-
-video-media:not([loaded])>:is(video, iframe),
-video-media[loaded]>img,
-video-media[loaded]>svg,
-video-media[loaded]::part(play-button) {
-    opacity: 0;
-    visibility: hidden
-}
-
 /* Backgrounds */
-.bg-custom {
-    background: rgb(var(--background))
-}
+
 
 /* Scroll area  */
 .scroll-area {
@@ -202,11 +140,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700
 }
 
-.text-lg {
-    font-size: var(--text-lg);
-    line-height: 1.6
-}
-
 .text-sm {
     font-size: var(--text-sm);
     line-height: 1.6
@@ -227,10 +160,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-warning {
     color: rgb(var(--warning-text))
-}
-
-.text-custom {
-    color: rgb(var(--text-color))
 }
 
 .offer {
@@ -313,11 +242,12 @@ impact-text {
     padding-block-end: var(--calculated-section-spacing-block-end)
 }
 
-/* Section-tigh  */
-.section--tight {
-    --calculated-section-spacing-block-start: min(48px, var(--section-spacing-block-start, var(--section-spacing-block, var(--context-section-spacing-block-start))));
-    --calculated-section-spacing-block-end: min(48px, var(--section-spacing-block-end, var(--section-spacing-block, var(--context-section-spacing-block-end))));
-    --calculated-section-spacing-inline: min(48px, var(--section-spacing-inline, var(--context-section-spacing-inline)))
+.product-section {
+    --hash-difference: calc(var(--section-background-hash) - var(--previous-section-background-hash, -1));
+    --hash-difference-abs: max(var(--hash-difference), -1 * var(--hash-difference));
+    --background-differs-from-previous: max(0, min(var(--hash-difference-abs, 1), 1));
+    background: rgb(var(--background));
+    position: relative;
 }
 
 /* .section--narrow */
@@ -332,12 +262,6 @@ impact-text {
     display: grid
 }
 
-/* Section-stack  */
-.section-stack {
-    gap: var(--section-stack-spacing-block, 0px) var(--section-stack-spacing-inline, 0px);
-    grid-auto-columns: minmax(0, 1fr);
-    display: grid
-}
 
 .section-stack__intro .faq-availability {
     text-align: start;
@@ -614,21 +538,7 @@ img {
 }
 
 /* Feature chart  */
-.feature-chart {
-    padding: 0 var(--container-gutter);
-    scroll-padding-top: var(--sticky-area-height);
-    display: block
-}
 
-.feature-chart__table-row {
-    --feature-chart-heading-width: 140px;
-    grid-template-columns: var(--feature-chart-heading-width) repeat(var(--feature-chart-values-columns-count), minmax(140px, 1fr));
-    gap: var(--spacing-1) var(--spacing-5);
-    min-width: min-content;
-    padding-block-start: var(--spacing-4);
-    padding-block-end: var(--spacing-4);
-    display: grid
-}
 
 .feature-chart__toggle {
     text-align: center;
@@ -698,9 +608,6 @@ img {
     display: none
 }
 
-.divide-y>:not([hidden])~:not([hidden]) {
-    border-block-start-width: 1px
-}
 
 /* Shape lines */
 .shape-line {

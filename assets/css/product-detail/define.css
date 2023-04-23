@@ -126,7 +126,7 @@
     --input-padding-inline: var(--spacing-4);
 
     /* Other sizes */
-    --sticky-area-height: calc(var(--sticky-announcement-bar-enabled, 0) * var(--announcement-bar-height, 0px) + var(--sticky-header-enabled, 0) * var(--header-height, 0px));
+    --sticky-area-height: 0;
 
     /* RTL support */
     --transform-logical-flip: 1;
@@ -191,7 +191,7 @@
     --error-text: 170 40 38;
 
     /* Product colors */
-    --on-sale-text: 227 79 79;
+    /* --on-sale-text: 227 79 79; */
     --on-sale-badge-background: 227 79 79;
     --on-sale-badge-text: 255 255 255;
     --sold-out-badge-background: 190 189 185;

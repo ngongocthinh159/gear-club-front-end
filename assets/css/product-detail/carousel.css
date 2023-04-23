@@ -1,0 +1,147 @@
+#product-carousel {
+    gap: 1.25rem;
+    grid-auto-columns: minmax(0, 1fr);
+    display: grid
+}
+
+carousel {
+    gap: 0.625rem;
+    display: grid;
+    position: relative;
+    grid: auto / auto-flow 100%;
+    gap: 0.125rem;
+    align-items: start;
+    transition: height .1s;
+
+    margin-inline-start: calc(-1 * var(--container-outer-width));
+    margin-inline-end: calc(-1 * var(--container-outer-width));
+}
+
+#carousel-thumbnail {
+    order: -1;
+    grid-auto-flow: row;
+    justify-items: center;
+    overflow: auto;
+}
+
+#carousel-thumbnail {
+    align-items: end;
+    gap: 0.5rem;
+    grid-auto-columns: 56px;
+    grid-auto-flow: column;
+    display: grid
+}
+
+
+.thumbnail-btn {
+    position: relative
+}
+
+.thumbnail-btn:after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    opacity: 0;
+    background: currentColor;
+    margin-block-start: 4px;
+    transition: opacity .15s;
+    display: block
+}
+
+.thumbnail-btn[aria-current=true]:after {
+    opacity: 1
+}
+
+@media screen and (min-width: 700px) {
+    #carousel-thumbnail {
+        grid-auto-columns: 64px
+    }
+}
+
+@media screen and (max-width: 999px) {
+    #carousel-thumbnail {
+        --scroll-shadow-size: 0px
+    }
+
+    #carousel-thumbnail {
+        display: none
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #product-carousel {
+        gap: 1.5rem 3rem
+    }
+
+    #product-carousel .product-gallery__zoom {
+        opacity: 1;
+        visibility: visible
+    }
+
+    carousel {
+        gap: calc(1.5rem / 2);
+        grid: auto / auto-flow 100%;
+    }
+
+    #carousel-thumbnail {
+        align-items: center;
+        gap: var(--spacing-4);
+        grid-auto-flow: column;
+        display: grid;
+        position: relative
+    }
+
+    #carousel-thumbnail {
+        gap: var(--spacing-4)
+    }
+
+    thumbnail>button {
+        z-index: 0;
+        opacity: 1;
+        margin-top: -3px;
+        transition: opacity .1s, transform .1s;
+        position: absolute;
+        transform: scale(1)
+    }
+
+    #carousel-thumbnail>button {
+        right: 8px
+    }
+}
+
+@media screen and (min-width: 1150px) {
+    #product-carousel {
+        grid: auto / auto-flow auto minmax(0, 1fr);
+        align-items: start
+    }
+
+
+    #carousel-thumbnail {
+        order: -1;
+        grid-auto-flow: row;
+        justify-items: center;
+        overflow: auto
+    }
+
+    #carousel-thumbnail {
+        gap: 0.625rem;
+        max-height: 600px;
+        grid-auto-flow: row;
+        overflow: auto
+    }
+
+    #product-carousel thumbnail {
+        gap: 0.625rem;
+        max-height: 600px;
+        grid-auto-flow: row;
+        overflow: auto;
+    }
+}
+
+
+
+@media screen and (min-width: 1400px) {
+    carousel {
+        gap: 1.5rem;
+    }
+}
