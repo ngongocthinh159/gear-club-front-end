@@ -2,7 +2,8 @@
   --header-height: 130px;
   --sub-header-height: 48px;
 
-  --primay-color: #1d2864;
+  --primary-color: #1d2864;
+  --primary-color-light: #3c619e;
   --white-color: #fff;
   --black-color: #000;
   --background-color: #1a1a1a;
@@ -127,12 +128,12 @@ a {
 }
 
 .btn-primary {
-  background-color: var(--primay-color);
+  background-color: var(--primary-color-light);
   color: var(--text-white-color);
 }
 
 .btn-primary:hover {
   background-color: transparent;
-  color: var(--primay-color);
-  outline: 3px solid var(--primay-color);
+  color: var(--primary-color-light);
+  outline: 3px solid var(--primary-color-light);
 }
