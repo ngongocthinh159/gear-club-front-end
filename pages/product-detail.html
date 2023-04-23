@@ -32,14 +32,12 @@
   <link rel="stylesheet" href="../assets/css/commons/footer.css" />
 
   <!-- CSS -->
-  <!-- <link rel="stylesheet" href="../assets/css/product-detail/theme.css" /> -->
   <link rel="stylesheet" href="../assets/css/product-detail/define.css" />
   <link rel="stylesheet" href="../assets/css/product-detail/general.css" />
   <link rel="stylesheet" href="../assets/css/product-detail/responsive.css" />
-  <link rel="stylesheet" href="../assets/css/product-detail/shopify-template.css" />
-  <link rel="stylesheet" href="../assets/css/product-detail/product-carousal.css" />
-  <link rel="stylesheet" href="../assets/css/product-detail/product-gallery.css" />
-  <link rel="stylesheet" href="../assets/css/product-detail/product-info.css" />
+  <link rel="stylesheet" href="../assets/css/product-detail/product-main.css" />
+  <link rel="stylesheet" href="../assets/css/product-detail/carousel.css" />
+  <link rel="stylesheet" href="../assets/css/product-detail/product-intro.css" />
   <link rel="stylesheet" href="../assets/css/product-detail/review.css" />
 </head>
 
@@ -70,51 +68,40 @@
   <main role="main" id="main" class="anchor">
 
     <!-- Product pictures and info  -->
-    <section id="product-main" class="product-section">
-      <div class="section section--tight  section-blends section-full"
-        style="--input-background: 255 255 255; --input-text-color: 112 138 92;">
-        <div class="product">
-          <div id="product-gallery" class="product-gallery product-gallery--mobile-dots product-gallery--desktop-carousel product-gallery--desktop-thumbnails-left product-gallery--mobile-expanded">
-            <div class="product-gallery__ar-wrapper">
-              <div class="product-gallery__media-list-wrapper">
-                <carousel desktop-mode="carousel_thumbnails_left"
-                  class="product-gallery__media-list full-bleed scroll-area md:unbleed is-scrollable">
-                  
-                </carousel>
-              </div>
-            </div>
-            <scroll-shadow class="product-gallery__thumbnail-list-wrapper">
-              <page-dots align-selected="" class="product-gallery__thumbnail-list scroll-area bleed md:unbleed"
-                aria-controls="product-gallery-7993893847285-template--16714356457717__main">
+    <section id="product-main" class="section">
+      <!-- Prodcut carousel -->
+          <div id="product-carousel">
+            <carousel class="scroll-area is-scrollable">
                 
-              </page-dots>
-            </scroll-shadow>
+            </carousel>
+            <thumbnail id="carousel-thumbnail" class="scroll-area">
+                
+            </thumbnail>
           </div>
-          <div id="product-info" class="product-info" style="top: 145px;">
-            <div class="product-info__vendor">
+      <!-- Product info -->
+          <div id="product-info">
+            <!-- Vendor name -->
+            <div class="vendor">
             </div>
-            <h1 class="product-info__title h1">
+
+            <!-- Product name -->
+            <h1 class="product-name">
             </h1>
-            <div class="product-info__price">
-              <div class="rating-with-text">
-                <div id="price" aria-live="polite" class="price-list price-list--lg text-lg">
-                </div>
-                <a class="rating " title="2 đánh giá">
-                  <div class="rating__stars" role="img" aria-label="">
-                    <svg role="presentation" fill="none"
-                      focusable="false" width="12" height="12" class="rating__star icon icon-rating-star"
-                      viewBox="0 0 15 15">
-                      <path
-                        d="M7.5 0L9.58587 5.2731L15 5.72949L10.875 9.44483L12.1353 15L7.5 12.0231L2.86475 15L4.125 9.44483L0 5.72949L5.41414 5.2731L7.5 0Z"
-                        fill="currentColor"></path>
-                    </svg></div>
-                </a>
+
+            <!-- Product price-->
+            <div class="product-price">
+              <!-- Price -->
+              <div id="price">
               </div>
             </div>
-            <hr class="product-info__separator">
-            <div class="product-info__description">
+            <hr>
+
+            <!-- Product description -->
+            <div class="product-description">
               
             </div>
+
+            <!-- Size pick -->
             <div class="product-info__variant-picker">
               <div id="variant-pick" class="variant-picker">
                 <fieldset class="variant-picker__option no-js:hidden">
@@ -132,6 +119,43 @@
               </div>
             </div>
             </div>
+          </div>
+    </section>
+
+    <!-- Product introduction -->
+    <section id="product-intro" class="section">
+      <div class="stack-horizontal">
+        <!-- Introduction -->
+        <div id="introduction" class="prose ">
+          <!-- Product name -->
+            <p id="name">Chuột không dây siêu nhẹ Pulsar X2 Wireless X RandomfrankP (Limited Edition)</p>
+            <!-- Summary -->
+            <h2 id="summary" class="h2">Đối xứng, Claw
+                Grip, cảm biến Pixart PAW3395 mới nhất - Đó là Pulsar X2 Wireless</h2>
+
+            <p name="line break"></p>
+
+            <!-- Product Introduction -->
+            <div id="product-introduction">
+              <p>Với form chuột đối xứng được thiết kế hoàn toàn mới bởi Pulsar, X2 Wireless là mẫu chuột đối xứng giúp bạn
+                chơi game và giành lấy những vị trí cao thật cao trên bảng xếp hạng. Trọng lượng khoảng dưới 60 gram, thiết
+                kế không lỗ cùng thời lượng pin lên đến 70 giờ giúp bạn sử dụng chuột cả ngày dài mà không lo mệt mỏi như
+                những mẫu chuột không dây nặng nề truyền thống.</p>
+            </div>
+            <p></p>
+        </div>
+
+        <!-- Table of features -->
+        <div id="features" class="feature-table scroll-area">
+          <!-- Row -->
+          <div class="table-row">
+            <!-- Feature name -->
+            <div class="feature-name">Kích thước</div>
+
+            <!-- Feature value -->
+            <div class="feature-value">
+              <p><span>Medium: 120mm x 63mm x 38mm<br>
+                  Mini: 116mm x 61mm x 37mm</span></p>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 const carousel = document.querySelector("carousel")
-const thumbnail = document.querySelector("page-dots[class~=product-gallery__thumbnail-list")
+const thumbnail = document.querySelector("thumbnail")
 const infoDiv = document.querySelector("div#product-info")
 const introDiv = document.querySelector("div.section-stack__intro")
 const featureDiv = document.querySelector("div.section-stack__main")
@@ -77,6 +77,7 @@ function loadGallery() {
 }
 
 function loadThumbnail() {
+    console.log(thumbnail)
     thumbnail.innerHTML = "";
 
     let curProduct = productArr[0];
@@ -85,10 +86,10 @@ function loadThumbnail() {
         let order = id+1;
 
         thumbnail.innerHTML += `
-        <button type="button" class="product-gallery__thumbnail" aria-current="` + ((order == 1) ? "true" : "false") + `" aria-label="Đến mục ` + order + `">
+        <button type="button" class="thumbnail-btn" aria-current="` + ((order == 1) ? "true" : "false") + `" aria-label="Đến mục ` + order + `">
         <img
             src="` + img + `"
-            alt="Chuột không dây siêu nhẹ Pulsar X2 Wireless X RandomfrankP (Limited 1500pcs)"
+            alt="` + curProduct.name + `"
             srcset="` + img + `&width=56 56w, ` + img + `&width=64 64w, ` + img + `&width=112 112w, ` 
             + img + `&width=128 128w, ` + img + `&;width=168 168w, ` + img + `&width=192 192w"
             width="1600" height="1600" loading="lazy" sizes="(max-width: 699px) 56px, 64px"
@@ -104,21 +105,21 @@ function loadInfo() {
     let curProduct = productArr[0];
 
     // Load vendor name
-    infoDiv.querySelector("div.product-info__vendor").innerHTML = `
-    <a class=" link-faded">` + curProduct.vendor_name + `</a>`;
+    infoDiv.querySelector("div.vendor").innerHTML = `
+    <a>` + curProduct.vendor_name + `</a>`;
 
     // Load product name
-    infoDiv.querySelector(".product-info__title").innerHTML = curProduct.name;
+    infoDiv.querySelector(".product-name").innerHTML = curProduct.name;
 
     // Load price
     infoDiv.querySelector("div#price").innerHTML = curProduct.price;
     // <  class="text-lg">` + curProduct.price + `</sale-price>;
 
     // Load rating
-    let rating = document.createElement("span")
-    rating.classList.add("text-sm")
-    rating.innerHTML = curProduct.rating;
-    infoDiv.querySelector("a.rating").insertBefore(rating, infoDiv.querySelector("a.rating").firstChild);
+    // let rating = document.createElement("span")
+    // rating.classList.add("text-sm")
+    // rating.innerHTML = curProduct.rating;
+    // infoDiv.querySelector("a.rating").insertBefore(rating, infoDiv.querySelector("a.rating").firstChild);
 
     // Load description
     let div = document.createElement("div")
@@ -143,7 +144,7 @@ function loadInfo() {
     <p><strong>` + curProduct.warranty + `</strong></p>
     `;
 
-    infoDiv.querySelector("div.product-info__description").appendChild(div)
+    infoDiv.querySelector("div.product-description").appendChild(div)
 
     // Load variant picker for size
     for (let size of curProduct.size) {
@@ -176,7 +177,7 @@ function loadInfo() {
 
 // Add event listener for all thumbnail images 
 function bindFunction() {
-    const thumbnails = document.querySelectorAll("button.product-gallery__thumbnail")
+    const thumbnails = document.querySelectorAll("button.thumbnail-btn")
     const images = document.querySelectorAll("div[class~=product-gallery__media")
 
     thumbnails.forEach( (thumbnail) => {
