@@ -48,10 +48,13 @@ function renderFooter(footerDOMNode) {
                 <h3 class="footer__heading-large">Nhận tin khuyến mãi</h3>
                 <div class="footer__input-wrapper">
                   <input
-                    placeholder="Email"
+                    required
+                    placeholder=" "
+                    value=""
                     type="email"
                     class="footer__input-text"
                   />
+                  <span class="footer__input-label">Email</span>
                   <button class="footer__email-btn">
                     <i class="bi bi-chevron-right"></i>
                   </button>
