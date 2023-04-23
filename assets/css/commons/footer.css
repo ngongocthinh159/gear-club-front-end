@@ -65,8 +65,32 @@
 
 .footer__input-text {
   font-size: 1.6rem;
-  padding: 16px 8px;
+  padding: 28px 16px 12px;
   width: calc(100% - 20px);
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  border: 1px solid rgba(39, 39, 39, 0.1);
+}
+
+.footer__input-text:is(:focus-visible, :focus) {
+  border: 1px solid rgba(39, 39, 39, 0.7);
+}
+
+.footer__input-label {
+  position: absolute;
+  font-size: 1.6rem;
+  color: rgba(39, 39, 39, 0.5);
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.25s ease-in-out;
+}
+
+.footer__input-text:is(:focus-visible, :focus) + .footer__input-label,
+.footer__input-text:not(:placeholder-shown) + .footer__input-label {
+  top: calc(50% - 12px);
+  font-size: 1.1rem;
 }
 
 .footer__email-btn {
