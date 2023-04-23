@@ -1,8 +1,6 @@
 const carousel = document.querySelector("carousel")
 const thumbnail = document.querySelector("thumbnail")
 const infoDiv = document.querySelector("div#product-info")
-const introDiv = document.querySelector("div.section-stack__intro")
-const featureDiv = document.querySelector("div.section-stack__main")
 
 const productArr = [
     {
@@ -70,7 +68,7 @@ function loadGallery() {
                 + img + `&width=1400 1400w, ` + img + `&width=1600 1600w"
                 width="1600" height="1600" loading="eager" fetchpriority="high"
                 sizes="(max-width: 740px) calc(100vw - 40px), (max-width: 999px) calc(100vw - 64px), min(730px, 40vw)"
-                style="border-radius: 0.75rem;" class="rounded">
+                >
         </div>
         `;
     }
@@ -113,7 +111,6 @@ function loadInfo() {
 
     // Load price
     infoDiv.querySelector("div#price").innerHTML = curProduct.price;
-    // <  class="text-lg">` + curProduct.price + `</sale-price>;
 
     // Load rating
     // let rating = document.createElement("span")
@@ -122,9 +119,7 @@ function loadInfo() {
     // infoDiv.querySelector("a.rating").insertBefore(rating, infoDiv.querySelector("a.rating").firstChild);
 
     // Load description
-    let div = document.createElement("div")
-    div.classList.add("prose")
-    div.innerHTML += `
+    infoDiv.querySelector("div[class~=product-description]").innerHTML += `
     <div style="text-align: left;">
         <strong>Pre-order:</strong> thời gian về hàng dự kiến ` +  curProduct.pre_order + `
     </div>
@@ -136,28 +131,25 @@ function loadInfo() {
     `;
 
     if (curProduct.limit) {
-        div.innerHTML += `<p><em>` + curProduct.limit + `</em></p>`
+        infoDiv.querySelector("div[class~=product-description]").innerHTML  += `<p><em>` + curProduct.limit + `</em></p>`
     }
 
-    div.innerHTML += `
+    infoDiv.querySelector("div[class~=product-description]").innerHTML  += `
     <p><strong>Designed in ` + curProduct.design_location + `</strong></p>
     <p><strong>` + curProduct.warranty + `</strong></p>
     `;
 
-    infoDiv.querySelector("div.product-description").appendChild(div)
-
     // Load variant picker for size
-    // for (let size of curProduct.size) {
-    //     infoDiv.querySelector("div.variant-picker__option-values").innerHTML += `
-    //     <input class="sr-only" type="radio" name="option1" form="product-form-7993893847285-template--16714356457717__main"
-    //         id="swatch-template--16714356457717__main-product-form-7993893847285-template--16714356457717__main--option1-` + size.toLowerCase() + `"
-    //         value="` + size + `">
-    //     <label class="block-swatch" for="swatch-template--16714356457717__main-product-form-7993893847285-template--16714356457717__main--option1-` + size.toLowerCase() + `"
-    //     data-option-value="">
-    //     <span>` + size + `</span>
-    //     </label>
-    //     `;
-    // }
+    for (let size of curProduct.size) {
+        infoDiv.querySelector("div#variant-options").innerHTML += `
+        <input class="option" type="radio"
+            id="` + size.toLowerCase() + `"
+            value="` + size + `">
+        <label class="option-label" for="` + size.toLowerCase() + `">
+        <span>` + size + `</span>
+        </label>
+        `;
+    }
     
     // Load related link
     let ul = document.createElement("ul")

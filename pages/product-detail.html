@@ -26,16 +26,15 @@
 
   <!-- Common components CSS -->
   <!-- <link rel="stylesheet" href="../assets/css/commons/base.css" /> -->
-  <link rel="stylesheet" href="../assets/css/product-detail/basic.css" />
+  
   <!-- <link rel="stylesheet" href="../assets/css/commons/grid.css" /> -->
   <link rel="stylesheet" href="../assets/css/commons/header.css" />
   <link rel="stylesheet" href="../assets/css/commons/footer.css" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="../assets/css/product-detail/define.css" />
-  <link rel="stylesheet" href="../assets/css/product-detail/general.css" />
-  <link rel="stylesheet" href="../assets/css/product-detail/responsive.css" />
+  <link rel="stylesheet" href="../assets/css/product-detail/basic.css" />
   
+  <link rel="stylesheet" href="../assets/css/product-detail/general.css" />
   <link rel="stylesheet" href="../assets/css/product-detail/product-main.css" />
   <link rel="stylesheet" href="../assets/css/product-detail/carousel.css" />
   <link rel="stylesheet" href="../assets/css/product-detail/product-intro.css" />
@@ -102,23 +101,17 @@
             </div>
 
             <!-- Size pick -->
-            <div class="product-info__variant-picker">
-              <div id="variant-pick" class="variant-picker">
-                <fieldset class="variant-picker__option no-js:hidden">
-                  <div class="variant-picker__option-info">
-                    <div class="h-stack gap-2">
-                      <legend class="text-subdued">Size:</legend>
-                    </div>
-                  </div>
-                  <div>
-                    <div data-option-selector="" class="variant-picker__option-values wrap gap-2">
-                      
-                    </div>
-                  </div>
-                </fieldset>
+            <fieldset id="variant" class="variant-picker">
+              <div id="variant-name">
+                Size:
               </div>
-            </div>
-            </div>
+              <div id="variant-options">
+              </div>
+            </fieldset>
+
+            <button type="submit" class="buy-buttons button button--xl" >
+                <div>Chọn mua</div>
+            </button>
           </div>
     </section>
 
@@ -126,7 +119,7 @@
     <section id="product-intro" class="section">
       <div class="stack-horizontal">
         <!-- Introduction -->
-        <div id="introduction" class="prose ">
+        <div id="introduction">
           <!-- Product name -->
             <p id="name">Chuột không dây siêu nhẹ Pulsar X2 Wireless X RandomfrankP (Limited Edition)</p>
             <!-- Summary -->
