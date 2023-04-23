@@ -1,6 +1,6 @@
-const carousel = document.querySelector("media-carousel")
+const carousel = document.querySelector("carousel")
 const thumbnail = document.querySelector("page-dots[class~=product-gallery__thumbnail-list")
-const infoDiv = document.querySelector("safe-sticky.product-info")
+const infoDiv = document.querySelector("div#product-info")
 const introDiv = document.querySelector("div.section-stack__intro")
 const featureDiv = document.querySelector("div.section-stack__main")
 
@@ -111,8 +111,8 @@ function loadInfo() {
     infoDiv.querySelector(".product-info__title").innerHTML = curProduct.name;
 
     // Load price
-    infoDiv.querySelector("price-list").innerHTML = `
-    <sale-price form="product-form-7993893847285-template--16714356457717__main" class="text-lg">` + curProduct.price + `</sale-price>`;
+    infoDiv.querySelector("div#price").innerHTML = curProduct.price;
+    // <  class="text-lg">` + curProduct.price + `</sale-price>;
 
     // Load rating
     let rating = document.createElement("span")
@@ -170,7 +170,7 @@ function loadInfo() {
         `;
     }
 
-    infoDiv.querySelector("div#related-link").appendChild(ul);
+    // infoDiv.querySelector("div#related-link").appendChild(ul);
 
 }
 
