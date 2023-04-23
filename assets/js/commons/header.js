@@ -143,9 +143,11 @@ function handleHeaderEvents(headerDOMNode) {
       headerDOMNode.style.backgroundColor = 'rgb(39, 39, 39)';
       headerDOMNode.style.boxShadow =
         'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px';
+      headerDOMNode.style.top = `0px`;
     } else {
       headerDOMNode.style.backgroundColor = 'transparent';
       headerDOMNode.style.boxShadow = 'none';
+      headerDOMNode.style.top = `${48 - window.scrollY}px`;
     }
   });
 }
