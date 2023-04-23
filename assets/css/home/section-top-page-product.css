@@ -8,7 +8,6 @@
   display: flex;
   align-items: end;
   position: relative;
-  margin-top: calc(var(--header-height) * -1);
 }
 
 .top-page-prod::before {

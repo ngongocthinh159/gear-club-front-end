@@ -37,12 +37,11 @@ html {
 }
 
 body {
-  position: relative;
-  overflow-x: hidden;
 }
 
 .app {
-  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
 }
 
 ul {
@@ -54,6 +53,32 @@ ul {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+/* Position */
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.right-0 {
+  right: 0;
+}
+
+.top-0 {
+  right: 0;
+}
+
+/* utils */
+.text-align-center {
+  text-align: center;
 }
 
 /* Seletion loading
