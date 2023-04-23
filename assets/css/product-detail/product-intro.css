@@ -35,7 +35,7 @@
 
 #features .table-row {
     grid-template-columns: 140px repeat(140px, minmax(140px, 1fr));
-    gap: var(--spacing-1) var(--spacing-5);
+    gap: 0.25rem 1.25rem;
     min-width: min-content;
     padding-block-start: 1rem;
     padding-block-end: 1rem;
@@ -87,7 +87,7 @@
         flex: 1 1 600px;
         min-width: 450px;
         width: auto;
-        border-radius: var(--rounded);
+        border-radius: 0.75rem;
     }
 }
 
@@ -128,12 +128,12 @@
         grid-template-columns: 180px repeat(var(--feature-chart-values-columns-count), minmax(140px, 1fr));
         column-gap: 1.5rem;
         padding-block-start: 1.5rem;
-        padding-block-end: var(--spacing-6)
+        padding-block-end: 1.5rem;
     }
 
     .feature-chart__toggle {
-        padding-block-start: var(--spacing-5);
-        padding-block-end: var(--spacing-6)
+        padding-block-start: 1.25rem;
+        padding-block-end: 1.5rem;
     }
 
     .feature-chart__product {
