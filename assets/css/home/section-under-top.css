@@ -176,7 +176,7 @@
 
 .under-top__hot-item-link:hover .under-top__hot-item-img.hover-img {
   display: block;
-  animation: fadeIn 0.2s linear;
+  animation: fadeIn 0.3s linear;
 }
 
 .under-top__hot-item-add-cart-btn {
@@ -204,7 +204,7 @@
 
 .under-top__hot-item-name {
   font-size: 1.6rem;
-  font-weight: 900;
+  font-weight: 600;
   margin: 0;
   margin-bottom: 6px;
   color: var(--text-dark-color);

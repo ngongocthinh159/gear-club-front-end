@@ -47,14 +47,15 @@ function renderFooter(footerDOMNode) {
               <div class="footer__col-wrapper">
                 <h3 class="footer__heading-large">Nhận tin khuyến mãi</h3>
                 <div class="footer__input-wrapper">
-                  <input
-                    required
-                    placeholder=" "
-                    value=""
-                    type="email"
-                    class="footer__input-text"
-                  />
-                  <span class="footer__input-label">Email</span>
+                  <div class="custom-input-wrapper">
+                    <input
+                      placeholder=" "
+                      value=""
+                      type="email"
+                      class="footer__input-text custom-input__input-text"
+                    />
+                    <span class="footer__input-label custom-input__input-label">Email</span>
+                  </div>
                   <button class="footer__email-btn">
                     <i class="bi bi-chevron-right"></i>
                   </button>

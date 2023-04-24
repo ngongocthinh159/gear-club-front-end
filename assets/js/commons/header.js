@@ -69,11 +69,11 @@ function handleHeaderEvents(headerDOMNode, isTransparentTop = false) {
       searchContainer.classList.toggle('header__search-container--active');
     });
   });
-  cartTogglers.forEach(cartToggler => {
+  cartTogglers.forEach((cartToggler) => {
     cartToggler.addEventListener('click', () => {
       cartContainer.classList.toggle('header__cart-container-wrapper--active');
     });
-  })
+  });
 
   // When windows resize from tablet -> PC, remove active of pannel 1
   let prevWidth = Number.POSITIVE_INFINITY;
