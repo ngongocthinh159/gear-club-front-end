@@ -728,6 +728,17 @@ body:has(.header__cart-container-wrapper--active) {
   border: 1px solid var(--black-alpha-70);
 }
 
+.header__cart-item-quantity-input::-webkit-outer-spin-button,
+.header__cart-item-quantity-input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.header__cart-item-quantity-input[type='number'] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
 .header__cart-item-remove-btn {
   font-size: 1.4rem;
   text-decoration: underline;
