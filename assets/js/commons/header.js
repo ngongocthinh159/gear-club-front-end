@@ -138,6 +138,7 @@ function handleHeaderEvents(headerDOMNode, isTransparentTop = false) {
   });
 
   // Handle scroll top to change color of header
+  // Sticker header logic
   window.addEventListener('scroll', () => {
     if (window.scrollY >= 48 /* Sub-header height */) {
       headerDOMNode.style.backgroundColor = 'rgb(39, 39, 39)';
@@ -157,6 +158,7 @@ function handleHeaderEvents(headerDOMNode, isTransparentTop = false) {
  * then pass this DOM element into this function to render header
  * This function also call handleHeaderEvents() to handle all related events
  * @param {DOM Element} headerDOMNode
+ * @param {boolean} isTransparentTop true if the header background color is transparent at TOP
  */
 function renderHeader(headerDOMNode, isTransparentTop = false) {
   // Update DOM
