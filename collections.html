@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Reset css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Font awesome icom -->
+    <link
+      rel="stylesheet"
+      href="./assets/fonts/fontawesome-free-6.4.0-web/css/all.min.css"
+    />
+
+    <!-- Bootstrap icon -->
+    <link
+      rel="stylesheet"
+      href="./assets/fonts/bootstrap-icons-1.10.4/font/bootstrap-icons.css"
+    />
+
+    <!-- Inter Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Common components CSS -->
+    <link rel="stylesheet" href="./assets/css/commons/base.css" />
+    <link rel="stylesheet" href="./assets/css/commons/grid.css" />
+    <link rel="stylesheet" href="./assets/css/commons/header.css" />
+    <link rel="stylesheet" href="./assets/css/commons/footer.css" />
+
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      href="./assets/css/collections/section-collection.css"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Sub-header -->
+      <div class="sub-header">
+        <ul class="sub-header__list">
+          <li class="sub-header__item">Miễn phí giao hàng đơn từ 1.000.000đ</li>
+          <li class="sub-header__item">Miễn phí quẹt thẻ</li>
+          <li class="sub-header__item">Hàng mới, chính hãng 100%</li>
+          <li class="sub-header__item">Giao hàng siêu tốc</li>
+          <li class="sub-header__item">Bảo hành nhanh chóng</li>
+        </ul>
+
+        <ul class="sub-header__list">
+          <li class="sub-header__item">Miễn phí giao hàng đơn từ 1.000.000đ</li>
+          <li class="sub-header__item">Miễn phí quẹt thẻ</li>
+          <li class="sub-header__item">Hàng mới, chính hãng 100%</li>
+          <li class="sub-header__item">Giao hàng siêu tốc</li>
+          <li class="sub-header__item">Bảo hành nhanh chóng</li>
+        </ul>
+      </div>
+
+      <!-- Header render with JS -->
+      <header class="header"></header>
+      <div class="padding-header"></div>
+
+      <!-- Section collection -->
+      <div class="collection">
+        <div class="container-1600">
+          <div
+            class="collection__banner"
+            style="
+              background-image: url('./assets/imgs/collections/banner.webp');
+            "
+          >
+            <div class="collection_banner-detail-container">
+              <h3 class="collection_banner-detail-title">
+                Bàn phím cơ không dây và có dây
+              </h3>
+              <h4 class="collection_banner-detail-sub-title">
+                Bàn phím cơ thoải mái cho lập trình viên hoặc game thủ giảm mệt
+                mỏi khi sử dụng máy tính lâu dài.
+              </h4>
+              <p class="collection_banner-detail-para">
+                Bàn phím cơ là thiết bị không thể thiếu giúp bạn sử dụng máy
+                tính hàng giờ liền tại văn phòng, tại nhà mà không cảm thấy mệt
+                mỏi. Không chỉ làm việc, bàn phím cơ còn là công cụ giúp bạn tự
+                tin chiến thắng đối thủ với những pha highlight mãn nhãn.
+              </p>
+            </div>
+          </div>
+
+          <div class="collection__main-content">
+            <div class="collection__filter-bar">
+              <div class="collection__filter-bar-availability">
+                <span class="collection__filter-bar-availability-text"
+                  >Còn hàng</span
+                >
+
+                <label
+                  class="custom-switch"
+                  for="custom-switch__checkbox-input"
+                >
+                  <input
+                    type="checkbox"
+                    class="custom-switch__checkbox-input"
+                    id="custom-switch__checkbox-input"
+                  />
+                  <span
+                    class="custom-switch__slider custom-switch__slider--round"
+                  ></span>
+                </label>
+              </div>
+
+              <ul class="collection__filter-bar-list">
+                <li class="collection__filter-bar-item">
+                  <label
+                    class="collection__filter-bar-item-label"
+                    for="collection__filter-bar-item-input-brand"
+                  >
+                    Thương hiệu
+                    <input
+                      type="checkbox"
+                      name=""
+                      class="collection__filter-bar-item-input"
+                      id="collection__filter-bar-item-input-brand"
+                      hidden
+                    />
+                    <span class="collection__filter-bar-item-label-icon">
+                      <i class="bi bi-chevron-up"></i>
+                    </span>
+                  </label>
+
+                  <ul class="collection__brand-list">
+                    <li class="collection__brand-item">
+                      <label
+                        class="collection__brand-item-label"
+                        for="filco-toggler-input"
+                      >
+                        <input
+                          type="checkbox"
+                          id="filco-toggler-input"
+                          data-brand-name="filco"
+                          hidden
+                        />
+                        Filco (<span>5</span>)
+                      </label>
+                    </li>
+
+                    <li class="collection__brand-item">
+                      <label
+                        class="collection__brand-item-label"
+                        for="keychron-toggler-input"
+                      >
+                        <input
+                          type="checkbox"
+                          id="keychron-toggler-input"
+                          data-brand-name="keychron"
+                          hidden
+                        />
+                        Keychron (<span>6</span>)
+                      </label>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="collection__filter-bar-item">
+                  <label
+                    class="collection__filter-bar-item-label"
+                    for="collection__filter-bar-item-input-type"
+                  >
+                    Loại sản phẩm
+                    <input
+                      type="checkbox"
+                      name=""
+                      class="collection__filter-bar-item-input"
+                      id="collection__filter-bar-item-input-type"
+                      hidden
+                    />
+                    <span class="collection__filter-bar-item-label-icon">
+                      <i class="bi bi-chevron-up"></i>
+                    </span>
+                  </label>
+
+                  <ul class="collection__type-list">
+                    <li class="collection__type-item">
+                      <label
+                        class="collection__type-item-label"
+                        for="keyboard-toggler-input"
+                      >
+                        <input
+                          type="checkbox"
+                          id="keyboard-toggler-input"
+                          data-type-name="keyboard"
+                          hidden
+                        />
+                        Bàn phím cơ (<span>54</span>)
+                      </label>
+                    </li>
+
+                    <li class="collection__type-item">
+                      <label
+                        class="collection__type-item-label"
+                        for="mouse-toggler-input"
+                      >
+                        <input
+                          type="checkbox"
+                          id="mouse-toggler-input"
+                          data-type-name="mouse"
+                          hidden
+                        />
+                        Chuột (<span>24</span>)
+                      </label>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="collection__filter-bar-item">
+                  <label
+                    class="collection__filter-bar-item-label"
+                    for="collection__filter-bar-item-input-price"
+                  >
+                    Giá
+                    <input
+                      type="checkbox"
+                      name=""
+                      class="collection__filter-bar-item-input"
+                      id="collection__filter-bar-item-input-price"
+                      hidden
+                    />
+                    <span class="collection__filter-bar-item-label-icon">
+                      <i class="bi bi-chevron-up"></i>
+                    </span>
+                  </label>
+                </li>
+              </ul>
+
+              <select name="" id="">
+                <option value="">123456</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer"></footer>
+    </div>
+
+    <script type="module">
+      import { renderHeader } from './assets/js/commons/header.js';
+      import { renderFooter } from './assets/js/commons/footer.js';
+
+      const header = document.querySelector('header.header');
+      renderHeader(header, false);
+
+      const footer = document.querySelector('footer.footer');
+      renderFooter(footer);
+    </script>
+
+    <script src="./assets/js/collections/section-collection.js"></script>
+  </body>
+</html>

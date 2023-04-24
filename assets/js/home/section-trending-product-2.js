@@ -82,72 +82,74 @@ function renderSectionTrendingProduct2(trendProd2DOMNode) {
           <div class="trend-prod-2__item-container trend-prod-2__item-2">
             <div class="trend-prod-2__carousel-wrapper">
               <ul class="trend-prod-2__carousel-list">
-                <li
-                  class="trend-prod-2__carousel-item trend-prod-2__carousel-item--active"
-                >
-                  <a href="" class="trend-prod-2__carousel-item-link">
-                    <img
-                      src="./assets/imgs/home/mock-product-2.webp"
-                      alt=""
-                      class="trend-prod-2__carousel-item-img"
-                      img-index-1
-                    />
-                    <img
-                      src="./assets/imgs/home/mock-product.webp"
-                      alt=""
-                      class="trend-prod-2__carousel-item-img"
-                      img-index-2
-                    />
-                    <span class="trend-prod-2__carousel-item-name">
-                      Lót chuột Pulsar eS1 Hybrid - Bruce Lee Edition
-                    </span>
-                    <span class="trend-prod-2__carousel-item-price">
-                      1.100.000đ
-                    </span>
+                <li class="trend-prod-2__carousel-item trend-prod-2__carousel-item--active product-card">
+                  <a href="" class="trend-prod-2__carousel-item-link product-card__link">
+                    <div class="trend-prod-2__carousel-item-img-wrapper product-card__img-wrapper">
+                      <img
+                        class="trend-prod-2__carousel-item-img product-card__img product-card__main-img"
+                        src="./assets/imgs/home/mock-product-2.webp"
+                        alt="Hot product image"
+                      />
 
-                    <button
-                      data-add-to-cart-btn
-                      data-product-id
-                      class="btn btn-primary trend-prod-2__carousel-item-add-btn"
-                      style="min-width: 120px;"
-                    >
-                      + Thêm
-                    </button>
+                      <img
+                        class="trend-prod-2__carousel-item-img product-card__img product-card__hover-img"
+                        src="./assets/imgs/home/mock-product.webp"
+                        alt="Hot product image"
+                      />
+                    </div>
+
+                    <p class="trend-prod-2__carousel-item-name product-card__name">
+                      Chuột không dây siêu nhẹ Pulsar X2 Wireless X RandomfrankP (Limited
+                      Edition)
+                    </p>
                   </a>
+
+                  <button
+                    class="trend-prod-2__carousel-item-add-cart-btn btn btn-primary product-card__add-cart-btn"
+                    data-product-id
+                    data-add-to-cart-btn
+                  >
+                    + Thêm
+                  </button>
+
+                  <div class="trend-prod-2__carousel-item-sold-out product-card__sold-out">Hết hàng</div>
+
+                  <p class="trend-prod-2__carousel-item-price product-card__price">2.499.000đ</p>
                 </li>
 
-                <li
-                  class="trend-prod-2__carousel-item"
-                >
-                  <a href="" class="trend-prod-2__carousel-item-link">
-                    <img
-                      src="./assets/imgs/home/mock-product-3.webp"
-                      alt=""
-                      class="trend-prod-2__carousel-item-img"
-                      img-index-1
-                    />
-                    <img
-                      src="./assets/imgs/home/mock-product.webp"
-                      alt=""
-                      class="trend-prod-2__carousel-item-img"
-                      img-index-2
-                    />
-                    <span class="trend-prod-2__carousel-item-name">
-                      Lót chuột Pulsar eS1 Hybrid - Bruce Lee Edition
-                    </span>
-                    <span class="trend-prod-2__carousel-item-price">
-                      1.100.000đ
-                    </span>
+                <li class="trend-prod-2__carousel-item product-card">
+                  <a href="" class="trend-prod-2__carousel-item-link product-card__link">
+                    <div class="trend-prod-2__carousel-item-img-wrapper product-card__img-wrapper">
+                      <img
+                        class="trend-prod-2__carousel-item-img product-card__img product-card__main-img"
+                        src="./assets/imgs/home/mock-product-3.webp"
+                        alt="Hot product image"
+                      />
 
-                    <button
-                      data-add-to-cart-btn
-                      data-product-id
-                      class="btn btn-primary trend-prod-2__carousel-item-add-btn"
-                      style="min-width: 120px;"
-                    >
-                      + Thêm
-                    </button>
+                      <img
+                        class="trend-prod-2__carousel-item-img product-card__img product-card__hover-img"
+                        src="./assets/imgs/home/mock-product.webp"
+                        alt="Hot product image"
+                      />
+                    </div>
+
+                    <p class="trend-prod-2__carousel-item-name product-card__name">
+                      Chuột không dây siêu nhẹ Pulsar X2 Wireless X RandomfrankP (Limited
+                      Edition)
+                    </p>
                   </a>
+
+                  <button
+                    class="trend-prod-2__carousel-item-add-cart-btn btn btn-primary product-card__add-cart-btn"
+                    data-product-id
+                    data-add-to-cart-btn
+                  >
+                    + Thêm
+                  </button>
+
+                  <div class="trend-prod-2__carousel-item-sold-out product-card__sold-out">Hết hàng</div>
+
+                  <p class="trend-prod-2__carousel-item-price product-card__price">2.499.000đ</p>
                 </li>
               </ul>
 
