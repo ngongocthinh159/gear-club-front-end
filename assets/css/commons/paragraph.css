@@ -21,6 +21,9 @@
 
 h1 {
     font-size: 4rem;
+}
+
+.title {
     margin-block: 64px;
 }
 
@@ -40,4 +43,23 @@ h1 {
 
 .paragraph a {
     text-decoration: underline;
+}
+
+.paragraph .input {
+    margin-bottom: 16px;
+}
+
+.paragraph .btn {
+    margin-block: 24px;
+}
+
+.error {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background-color: rgb(245, 229, 229);
+    margin-bottom: 16px;
+    border-radius: 3px;
+    color: red;
+    font-size: 1.4rem;
 }
