@@ -66,30 +66,22 @@ function renderFooter(footerDOMNode) {
                 <h3 class="footer__heading">Các chính sách</h3>
                 <ul class="footer__list">
                   <li class="footer__item">
-                    <a href="" class="footer__item-link">Trả góp 0%</a>
-                  </li>
-                  <li class="footer__item">
-                    <a href="" class="footer__item-link"
-                      >Chính sách bảo hành</a
-                    >
-                  </li>
-                  <li class="footer__item">
-                    <a href="" class="footer__item-link"
+                    <a href="./shipping.html" class="footer__item-link"
                       >Chính sách vận chuyển</a
                     >
                   </li>
                   <li class="footer__item">
-                    <a href="" class="footer__item-link"
+                    <a href="./refund.html" class="footer__item-link"
                       >Chính sách hoàn tiền</a
                     >
                   </li>
                   <li class="footer__item">
-                    <a href="" class="footer__item-link"
+                    <a href="./terms-of-service.html" class="footer__item-link"
                       >Điều khoản dịch vụ</a
                     >
                   </li>
                   <li class="footer__item">
-                    <a href="" class="footer__item-link"
+                    <a href="./privacy.html" class="footer__item-link"
                       >Chính sách bảo mật</a
                     >
                   </li>

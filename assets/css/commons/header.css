@@ -1,6 +1,5 @@
 .header {
   position: fixed;
-  /* position: -webkit-sticky; */
   background-color: var(--text-dark-color);
   height: var(--header-height);
   top: var(--sub-header-height);

@@ -210,7 +210,7 @@ function renderHeader(headerDOMNode, isTransparentTop = false) {
                     <a href="" class="header__nav-item-link">Tích điểm</a>
                   </li>
                   <li class="header__nav-item">
-                    <a href="" class="header__nav-item-link">Liên hệ</a>
+                    <a href="./contact.html" class="header__nav-item-link">Liên hệ</a>
                   </li>
                 </ul>
               </div>

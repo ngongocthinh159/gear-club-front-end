@@ -162,6 +162,9 @@
 
 /* Mobile */
 @media (max-width: 739px) {
+  .footer__heading-large {
+    line-height: 1.4;
+  }
   .footer__input-text {
     width: 100%;
   }
