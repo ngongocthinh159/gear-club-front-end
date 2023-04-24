@@ -1,3 +1,61 @@
+function handleSectionTrendingProduct2Events(trendProd2DOMNode) {
+  // Carousel next/prev btn
+  const prevBtn = trendProd2DOMNode.querySelector(
+    '.trend-prod-2__carousel-prev-btn'
+  );
+  const nextBtn = trendProd2DOMNode.querySelector(
+    '.trend-prod-2__carousel-next-btn'
+  );
+  const carouselItems = [
+    ...trendProd2DOMNode.querySelectorAll('.trend-prod-2__carousel-item'),
+  ];
+  prevBtn.addEventListener('click', (e) => {
+    // Get current active index, and turn off active item
+    let activeIndex = null;
+    carouselItems.forEach((carouselItem, index) => {
+      if (
+        carouselItem.classList.contains('trend-prod-2__carousel-item--active')
+      ) {
+        activeIndex = index;
+      }
+      carouselItem.classList.remove('trend-prod-2__carousel-item--active');
+    });
+
+    // Active the prev index
+    if (activeIndex === 0) activeIndex = carouselItems.length - 1;
+    else activeIndex--;
+
+    carouselItems[activeIndex].classList.add(
+      'trend-prod-2__carousel-item--active'
+    );
+  });
+  nextBtn.addEventListener('click', (e) => {
+    // Get current active index, and turn off active item
+    let activeIndex = null;
+    carouselItems.forEach((carouselItem, index) => {
+      if (
+        carouselItem.classList.contains('trend-prod-2__carousel-item--active')
+      ) {
+        activeIndex = index;
+      }
+      carouselItem.classList.remove('trend-prod-2__carousel-item--active');
+    });
+
+    // Active the next index
+    if (activeIndex === carouselItems.length - 1) activeIndex = 0;
+    else activeIndex++;
+    carouselItems[activeIndex].classList.add(
+      'trend-prod-2__carousel-item--active'
+    );
+  });
+}
+
+/**
+ * Create a <section class="trend-prod-2"></section> DOM element inside HTML,
+ * then pass this DOM element into this function to render header
+ * This function also call handleSectionTrendingProduct2Events() to handle all related events
+ * @param {DOM Element} trendProd2DOMNode
+ */
 function renderSectionTrendingProduct2(trendProd2DOMNode) {
   trendProd2DOMNode.innerHTML = `
     <div class="container-1600">
@@ -140,55 +198,7 @@ function renderSectionTrendingProduct2(trendProd2DOMNode) {
   `;
 
   // Handle events
-  // Carousel next/prev btn
-  const prevBtn = trendProd2DOMNode.querySelector(
-    '.trend-prod-2__carousel-prev-btn'
-  );
-  const nextBtn = trendProd2DOMNode.querySelector(
-    '.trend-prod-2__carousel-next-btn'
-  );
-  const carouselItems = [
-    ...trendProd2DOMNode.querySelectorAll('.trend-prod-2__carousel-item'),
-  ];
-  prevBtn.addEventListener('click', (e) => {
-    // Get current active index, and turn off active item
-    let activeIndex = null;
-    carouselItems.forEach((carouselItem, index) => {
-      if (
-        carouselItem.classList.contains('trend-prod-2__carousel-item--active')
-      ) {
-        activeIndex = index;
-      }
-      carouselItem.classList.remove('trend-prod-2__carousel-item--active');
-    });
-
-    // Active the prev index
-    if (activeIndex === 0) activeIndex = carouselItems.length - 1;
-    else activeIndex--;
-
-    carouselItems[activeIndex].classList.add(
-      'trend-prod-2__carousel-item--active'
-    );
-  });
-  nextBtn.addEventListener('click', (e) => {
-    // Get current active index, and turn off active item
-    let activeIndex = null;
-    carouselItems.forEach((carouselItem, index) => {
-      if (
-        carouselItem.classList.contains('trend-prod-2__carousel-item--active')
-      ) {
-        activeIndex = index;
-      }
-      carouselItem.classList.remove('trend-prod-2__carousel-item--active');
-    });
-
-    // Active the next index
-    if (activeIndex === carouselItems.length - 1) activeIndex = 0;
-    else activeIndex++;
-    carouselItems[activeIndex].classList.add(
-      'trend-prod-2__carousel-item--active'
-    );
-  });
+  handleSectionTrendingProduct2Events(trendProd2DOMNode);
 }
 
 export { renderSectionTrendingProduct2 };
