@@ -530,9 +530,9 @@ function renderHeader(headerDOMNode, isTransparentTop = false) {
                   </div>
 
                   <div class="header-cart-footer__control">
-                    <button class="header-cart-footer__payment-btn btn btn-dark">
+                    <a href="./cart.html" class="header-cart-footer__payment-btn btn btn-dark">
                       Giỏ hàng
-                    </button>
+                    </a>
                     <button class="header-cart-footer__payment-btn btn btn-primary btn-icon btn-icon-leading">
                       <i class="bi bi-credit-card"></i>
                       Thanh toán
