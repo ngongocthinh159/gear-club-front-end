@@ -1,0 +1,43 @@
+.main-content {
+    padding-top: var(--header-height)
+}
+
+.paragraph {
+    display: block;
+    max-width: 720px;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    margin-bottom: 80px;
+    padding-inline: 12px;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-block: 64px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.paragraph ul {
+    list-style-type: disc;
+    list-style: inside;
+}
+
+.paragraph ul li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.paragraph a {
+    text-decoration: underline;
+}
