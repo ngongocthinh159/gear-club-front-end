@@ -13,6 +13,15 @@
   --border-radius-pill: 500px;
 
   --box-shadow-btn: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  --over-lay: var(--black-alpha-50);
+
+  --black-alpha-70: rgba(0, 0, 0, 0.7);
+  --black-alpha-50: rgba(0, 0, 0, 0.5);
+  --black-alpha-30: rgba(0, 0, 0, 0.3);
+  --black-alpha-20: rgba(0, 0, 0, 0.2);
+  --black-alpha-10: rgba(0, 0, 0, 0.1);
+  --black-alpha-5: rgba(0, 0, 0, 0.05);
 }
 
 *,
@@ -150,6 +159,9 @@ a {
   color: var(--text-dark-color);
   cursor: pointer;
   transition: all 0.1s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-primary {
@@ -161,4 +173,29 @@ a {
   background-color: transparent;
   color: var(--primary-color-light);
   outline: 3px solid var(--primary-color-light);
+}
+
+.btn-dark {
+  background-color: var(--text-dark-color);
+  color: var(--text-white-color);
+}
+
+.btn-dark:hover {
+  background-color: transparent;
+  color: var(--text-dark-color);
+  outline: 3px solid var(--text-dark-color);
+}
+
+.btn-icon {
+}
+
+.btn-icon > i {
+  font-size: 2rem;
+}
+
+.btn-icon-leading {
+}
+
+.btn-icon-leading > i {
+  margin-right: 6px;
 }
