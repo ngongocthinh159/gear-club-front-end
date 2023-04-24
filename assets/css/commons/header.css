@@ -24,6 +24,7 @@
   background-color: transparent;
   color: var(--white-color);
   display: none;
+  cursor: pointer;
 }
 
 .header__burger-btn i {
@@ -135,6 +136,8 @@
 
 #nav-pannel-1 {
   display: block;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .header__nav-container:has(#nav-pannel-2.header__nav-pannel--active)
@@ -297,6 +300,7 @@
   cursor: pointer;
   will-change: opacity;
   transition: all 0.15s linear;
+  position: relative;
 }
 
 .header__side-nav-item:not(:last-of-type) {
@@ -304,7 +308,7 @@
 }
 
 .header__side-nav-item:hover {
-  opacity: 0.6;
+  /* opacity: 0.6; */
 }
 
 .header__side-nav-link {
@@ -316,6 +320,7 @@
 .header__side-nav-icon {
 }
 
+/* Search container */
 .header__search-container {
   position: fixed;
   left: 0;
@@ -835,6 +840,10 @@ body:has(.header__cart-container-wrapper--active) {
   .header__nav-item--hide-on-pc {
     display: block;
   }
+  .header__nav-container:has(#nav-pannel-3.header__nav-pannel--active)
+    .header__nav-header {
+    border-top-right-radius: 8px;
+  }
   .header__nav-container {
     overflow: hidden;
   }
@@ -857,6 +866,8 @@ body:has(.header__cart-container-wrapper--active) {
     padding-top: 0px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
   }
   .header__nav-container:has(#nav-pannel-1.header__nav-pannel--active)
     #nav-pannel-2
@@ -877,6 +888,44 @@ body:has(.header__cart-container-wrapper--active) {
   .header__logo-link {
     display: block;
     margin: 0 auto;
+  }
+  .header__cart-container {
+    --padding-x: 16px;
+    --padding-y: 18px;
+  }
+  .header__cart-item-body {
+    flex-direction: column;
+  }
+  .header__cart-item-img {
+    width: 80px;
+    height: 80px;
+  }
+  .header__cart-item-infor {
+    padding-right: 0;
+    margin-bottom: 12px;
+  }
+  .header__cart-item-name {
+    font-size: 1.4rem;
+  }
+  .header__cart-item-control {
+    align-self: flex-start;
+    padding-left: 16px;
+    flex-direction: row;
+  }
+  .header__cart-item-quantity-input {
+    margin-bottom: 0;
+    margin-right: 12px;
+    padding: 6px 8px;
+  }
+  .cart-footer__shipping-text {
+    margin-bottom: 16px;
+  }
+  .cart-footer__control-cart-btn,
+  .cart-footer__control-payment-btn {
+    padding-block: 12px;
+  }
+  .cart-footer__control-payment-btn i {
+    display: none;
   }
 }
 

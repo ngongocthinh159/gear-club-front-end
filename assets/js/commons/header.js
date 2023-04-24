@@ -35,11 +35,13 @@ function handleHeaderEvents(headerDOMNode, isTransparentTop = false) {
   pannel1Togglers.forEach((pannel1Toggler) => {
     pannel1Toggler.addEventListener('click', () => {
       pannel1.classList.toggle('header__nav-pannel--active');
+      body.style.overflow = 'hidden';
     });
   });
   pannel2Togglers.forEach((pannel2Toggler) => {
     pannel2Toggler.addEventListener('click', () => {
       pannel2.classList.toggle('header__nav-pannel--active');
+      body.style.overflow = 'hidden';
     });
   });
   pannel3Openers.forEach((pannel3Opener) => {
@@ -60,6 +62,7 @@ function handleHeaderEvents(headerDOMNode, isTransparentTop = false) {
     pannel1.classList.remove('header__nav-pannel--active');
     pannel2.classList.remove('header__nav-pannel--active');
     pannel3.classList.remove('header__nav-pannel--active');
+    body.style.overflow = 'unset';
   });
   navContainerOverlay.addEventListener('click', () => {
     allPannelsCloseBtn.click();
@@ -67,6 +70,26 @@ function handleHeaderEvents(headerDOMNode, isTransparentTop = false) {
   searchTogglers.forEach((searchToggler) => {
     searchToggler.addEventListener('click', (e) => {
       searchContainer.classList.toggle('header__search-container--active');
+
+      if (
+        searchContainer.classList.contains('header__search-container--active')
+      ) {
+        body.style.overflow = 'hidden';
+      } else {
+        body.style.overflow = 'unset';
+      }
+    });
+  });
+  cartTogglers.forEach((cartToggler) => {
+    cartToggler.addEventListener('click', (e) => {
+      e.stopPropagation();
+      cartContainer.classList.toggle('header__cart-container--active');
+
+      if (cartContainer.classList.contains('header__cart-container--active')) {
+        body.style.overflow = 'hidden';
+      } else {
+        body.style.overflow = 'unset';
+      }
     });
   });
   cartTogglers.forEach((cartToggler) => {
@@ -296,8 +319,97 @@ function renderHeader(headerDOMNode, isTransparentTop = false) {
             </li>
             <li class="header__side-nav-item" data-cart-toggler>
               <a class="header__side-nav-link"
+            <li class="header__side-nav-item" data-cart-toggler>
+              <a class="header__side-nav-link"
                 ><i class="header__side-nav-icon bi bi-bag-heart"></i
               ></a>
+
+              <div class="header__cart-container-overlay" data-cart-toggler></div>
+
+              <div class="header__cart-container">
+                <div class="header__cart-header">
+                  <div class="header__cart-heading-wrapper">
+                    <span class="header__cart-heading">Giỏ hàng</span>
+                    <button class="header__cart-close-btn">
+                      <i class="header__cart-close-btn-icon bi bi-x"></i>
+                    </button>
+                  </div>
+                  
+                  <div class="header__cart-free-shipping-text">Bạn được giao hàng miễn phí!</div>
+                  <div class="header__cart-header-separator"></div>
+                </div>
+
+                <div class="header__cart-body">
+                  <ul class="header_cart-list">
+                    <li class="header__cart-item">
+                      <img
+                        src="./assets/imgs/home/mock-product-2.webp"
+                        class="header__cart-item-img"
+                      /> 
+
+                      <div class="header__cart-item-body">
+                        <div class="header__cart-item-infor">
+                          <a href="" class="header__cart-item-name">
+                            Feet chuột Sapphire cho chuột Lamzu Atlantis Feet chuột Sapphire cho chuột Lamzu Atlantis
+                            Feet chuột Sapphire cho chuột Lamzu Atlantis
+                          </a>
+                          <h3 class="header__cart-item-total-price">1.760.000đ</h3>
+                          <h3 class="header__cart-item-total-quantity">Trong kho: 8</h3>
+                        </div>
+
+                        <div class="header__cart-item-control">
+                          <input type="number" class="header__cart-item-quantity-input" />
+                          <button class="header__cart-item-remove-btn" data-product-id>Bỏ</button>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="header__cart-item">
+                      <img
+                        src="./assets/imgs/home/mock-product-2.webp"
+                        class="header__cart-item-img"
+                      /> 
+
+                      <div class="header__cart-item-body">
+                        <div class="header__cart-item-infor">
+                          <a href="" class="header__cart-item-name">
+                            Feet chuột Sapphire cho chuột Lamzu Atlantis Feet chuột Sapphire cho chuột Lamzu Atlantis
+                            Feet chuột Sapphire cho chuột Lamzu Atlantis
+                          </a>
+                          <h3 class="header__cart-item-total-price">1.760.000đ</h3>
+                          <h3 class="header__cart-item-total-quantity">Trong kho: 8</h3>
+                        </div>
+
+                        <div class="header__cart-item-control">
+                          <input type="number" class="header__cart-item-quantity-input" />
+                          <button class="header__cart-item-remove-btn" data-product-id>Bỏ</button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="header__cart-footer">
+                  <div class="cart-footer__price-wrapper">
+                    <span class="cart-footer__total-text">Tổng</span>
+                    <span class="cart-footer__total-num">1.760.000 VND</span>
+                  </div>
+
+                  <div class="cart-footer__shipping-text">
+                    Đã bao gồm thuế;
+                    <a href="" class="cart-footer__shipping-link">Phí ship</a>
+                    sẽ được tính khi thanh toán
+                  </div>
+
+                  <div class="cart-footer__control">
+                    <a href="" class="cart-footer__control-cart-btn btn btn-dark">Giỏ hàng</a>
+                    <button class="cart-footer__control-payment-btn btn btn-primary btn-icon btn-icon-leading">
+                      <i class="bi bi-credit-card"></i>
+                      Thanh toán
+                    </button>
+                  </div>
+                </div>
+              </div>
             </li>
 
 

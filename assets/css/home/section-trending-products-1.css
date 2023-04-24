@@ -63,6 +63,7 @@
   will-change: transform;
   transition: all 0.4s linear;
   filter: brightness(94%);
+  border-radius: 12px;
 }
 
 .trend-prod-1__item-link:hover .trend-prod-1__item-img {
