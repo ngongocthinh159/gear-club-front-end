@@ -1,0 +1,48 @@
+.collection {
+  padding: 96px 0;
+}
+
+.collection__banner {
+  --padding-x: 42px;
+  --padding-y: 72px;
+  padding-inline: var(--padding-x);
+  padding-block: var(--padding-y);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.collection_banner-detail-container {
+  width: 100%;
+  max-width: 780px;
+  padding: 24px;
+  background-color: var(--text-dark-color);
+  border-radius: 12px;
+}
+
+.collection_banner-detail-title {
+  font-size: 6.4rem;
+  line-height: 1;
+  margin: 0;
+  margin-bottom: 16px;
+  color: var(--text-white-color);
+  font-weight: 400;
+}
+
+.collection_banner-detail-sub-title {
+  font-size: 1.6rem;
+  line-height: 1.2;
+  margin: 0;
+  margin-bottom: 32px;
+  color: var(--text-white-color);
+  font-weight: 700;
+}
+
+.collection_banner-detail-para {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  margin: 0;
+  color: var(--text-white-color);
+}

@@ -90,6 +90,11 @@ a {
   text-align: center;
 }
 
+.padding-header {
+  display: block;
+  padding-top: var(--header-height);
+}
+
 /* Seletion loading
  * Usage: add a div with class="skeleton" and set style="width: 100px; height: 40px"
  */
@@ -246,14 +251,21 @@ a {
 }
 
 .product-card__img-wrapper {
-  display: flex;
-  justify-content: center;
+  position: relative;
+  padding-top: 100%;
+  margin-bottom: 24px;
 }
 
 .product-card__img {
-  width: 80%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   display: block;
-  margin-bottom: 36px;
+  animation: fadeIn 0.2s ease-in-out;
 }
 
 .product-card__img-wrapper:hover .product-card__main-img {
@@ -267,6 +279,24 @@ a {
 .product-card__img-wrapper:hover .product-card__hover-img {
   display: block;
   animation: fadeIn 0.2s ease-in-out;
+}
+
+.product-card__name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0;
+  margin-bottom: 6px;
+  color: var(--text-dark-color);
+  text-align: start;
+  --line-height: 2.4rem;
+  line-height: var(--line-height);
+  max-height: calc(var(--line-height) * 3);
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product-card__add-cart-btn {
@@ -292,22 +322,25 @@ a {
   }
 }
 
-.product-card__name {
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin: 0;
-  margin-bottom: 6px;
+.product-card--soldout .product-card__add-cart-btn {
+  display: none!important;
+}
+
+.product-card__sold-out {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.4rem;
+  background-color: #bebdb9;
   color: var(--text-dark-color);
-  text-align: start;
-  --line-height: 2.4rem;
-  line-height: var(--line-height);
-  max-height: calc(var(--line-height) * 3);
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: var(--border-radius-pill);
+  display: none;
+}
+
+.product-card--soldout .product-card__sold-out {
   display: block;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .product-card__price {

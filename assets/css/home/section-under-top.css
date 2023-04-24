@@ -108,6 +108,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 60px;
+  gap: 24px;
 }
 
 .under-top__hot-products-heading {
@@ -115,7 +117,6 @@
   font-size: 4rem;
   font-weight: 400;
   line-height: 1;
-  margin-bottom: 60px;
   color: var(--text-dark-color);
 }
 
@@ -223,12 +224,6 @@
     align-items: start;
     margin-bottom: 48px;
   }
-  .under-top__hot-products-heading {
-    margin-bottom: 16px;
-  }
-  .under-top__hot-item-link {
-    margin-bottom: 32px;
-  }
 }
 
 /* Tablet */
@@ -242,9 +237,5 @@
 @media (max-width: 739px) {
   .under-top__brand-item-link {
     margin-bottom: 8px;
-  }
-  .under-top__hot-item-name {
-    font-size: 1.6rem;
-    font-weight: 600;
   }
 }
