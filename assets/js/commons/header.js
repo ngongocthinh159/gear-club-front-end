@@ -1,4 +1,4 @@
-function handleHeaderEvents(headerDOMNode) {
+function handleHeaderEvents(headerDOMNode, isTransparentTop = false) {
   // Handle UI toggle
   const pannel1Togglers = headerDOMNode.querySelectorAll(
     '[data-pannel-1-toggler]'
@@ -145,7 +145,7 @@ function handleHeaderEvents(headerDOMNode) {
         'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px';
       headerDOMNode.style.top = `0px`;
     } else {
-      headerDOMNode.style.backgroundColor = 'transparent';
+      if (isTransparentTop) headerDOMNode.style.backgroundColor = 'transparent';
       headerDOMNode.style.boxShadow = 'none';
       headerDOMNode.style.top = `${48 - window.scrollY}px`;
     }
@@ -158,7 +158,7 @@ function handleHeaderEvents(headerDOMNode) {
  * This function also call handleHeaderEvents() to handle all related events
  * @param {DOM Element} headerDOMNode
  */
-function renderHeader(headerDOMNode) {
+function renderHeader(headerDOMNode, isTransparentTop = false) {
   // Update DOM
   headerDOMNode.innerHTML = `
     <div class="grid wide">
@@ -420,7 +420,7 @@ function renderHeader(headerDOMNode) {
   `;
 
   // Handle event
-  handleHeaderEvents(headerDOMNode);
+  handleHeaderEvents(headerDOMNode, isTransparentTop);
 }
 
 export { renderHeader };
