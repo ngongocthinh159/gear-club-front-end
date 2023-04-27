@@ -35,11 +35,18 @@
       rel="stylesheet"
     />
 
+    <!--jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <!-- Common components CSS -->
     <link rel="stylesheet" href="./assets/css/commons/base.css" />
     <link rel="stylesheet" href="./assets/css/commons/grid.css" />
     <link rel="stylesheet" href="./assets/css/commons/header.css" />
     <link rel="stylesheet" href="./assets/css/commons/footer.css" />
+    <link
+      rel="stylesheet"
+      href="./assets/css/commons/ion.rangeSlider.min.css"
+    />
 
     <!-- CSS -->
     <link
@@ -75,6 +82,7 @@
       <!-- Section collection -->
       <div class="collection">
         <div class="container-1600">
+          <!-- Banner -->
           <div
             class="collection__banner"
             style="
@@ -99,7 +107,9 @@
           </div>
 
           <div class="collection__main-content">
+            <!-- Filter bar -->
             <div class="collection__filter-bar">
+              <!-- Availablity -->
               <div class="collection__filter-bar-availability">
                 <span class="collection__filter-bar-availability-text"
                   >Còn hàng</span
@@ -107,12 +117,14 @@
 
                 <label
                   class="custom-switch"
-                  for="custom-switch__checkbox-input"
+                  for="custom-switch__checkbox-availability"
                 >
                   <input
                     type="checkbox"
                     class="custom-switch__checkbox-input"
-                    id="custom-switch__checkbox-input"
+                    id="custom-switch__checkbox-availability"
+                    data-availability
+                    data-filter-trigger
                   />
                   <span
                     class="custom-switch__slider custom-switch__slider--round"
@@ -120,7 +132,9 @@
                 </label>
               </div>
 
+              <!-- Filter -->
               <ul class="collection__filter-bar-list">
+                <!-- Brand label -->
                 <li class="collection__filter-bar-item">
                   <label
                     class="collection__filter-bar-item-label"
@@ -139,39 +153,10 @@
                     </span>
                   </label>
 
-                  <ul class="collection__brand-list">
-                    <li class="collection__brand-item">
-                      <label
-                        class="collection__brand-item-label"
-                        for="filco-toggler-input"
-                      >
-                        <input
-                          type="checkbox"
-                          id="filco-toggler-input"
-                          data-brand-name="filco"
-                          hidden
-                        />
-                        Filco (<span>5</span>)
-                      </label>
-                    </li>
-
-                    <li class="collection__brand-item">
-                      <label
-                        class="collection__brand-item-label"
-                        for="keychron-toggler-input"
-                      >
-                        <input
-                          type="checkbox"
-                          id="keychron-toggler-input"
-                          data-brand-name="keychron"
-                          hidden
-                        />
-                        Keychron (<span>6</span>)
-                      </label>
-                    </li>
-                  </ul>
+                  <ul class="collection__brand-list"></ul>
                 </li>
 
+                <!-- Product type label -->
                 <li class="collection__filter-bar-item">
                   <label
                     class="collection__filter-bar-item-label"
@@ -190,39 +175,10 @@
                     </span>
                   </label>
 
-                  <ul class="collection__type-list">
-                    <li class="collection__type-item">
-                      <label
-                        class="collection__type-item-label"
-                        for="keyboard-toggler-input"
-                      >
-                        <input
-                          type="checkbox"
-                          id="keyboard-toggler-input"
-                          data-type-name="keyboard"
-                          hidden
-                        />
-                        Bàn phím cơ (<span>54</span>)
-                      </label>
-                    </li>
-
-                    <li class="collection__type-item">
-                      <label
-                        class="collection__type-item-label"
-                        for="mouse-toggler-input"
-                      >
-                        <input
-                          type="checkbox"
-                          id="mouse-toggler-input"
-                          data-type-name="mouse"
-                          hidden
-                        />
-                        Chuột (<span>24</span>)
-                      </label>
-                    </li>
-                  </ul>
+                  <ul class="collection__category-list"></ul>
                 </li>
 
+                <!-- Price label -->
                 <li class="collection__filter-bar-item">
                   <label
                     class="collection__filter-bar-item-label"
@@ -240,13 +196,47 @@
                       <i class="bi bi-chevron-up"></i>
                     </span>
                   </label>
+
+                  <div class="collection__price-container">
+                    <div class="range-slider-wrapper">
+                      <input
+                        type="text"
+                        class="js-range-slider"
+                        name="my_range"
+                        value=""
+                        id="price-range-slider"
+                      />
+                    </div>
+                  </div>
                 </li>
               </ul>
 
-              <select name="" id="">
-                <option value="">123456</option>
-              </select>
+              <!-- Sort -->
+              <div class="collection__sort-wrapper">
+                <span class="collection__sort-label">Sắp xếp:</span>
+                <select
+                  name=""
+                  id="collection__select-sort"
+                  class="collection__select-sort"
+                  data-filter-trigger
+                >
+                  <option value="aToZ" selected="true">
+                    Thứ tự bảng chữ cái (A-Z)
+                  </option>
+                  <option value="zToA">Thứ tự bảng chữ cái (Z-A)</option>
+                  <option value="increasingPrice">Giá (thấp đến cao)</option>
+                  <option value="decreasingPrice">Giá (cao đến thấp)</option>
+                  <option value="newestToOldest">Ngày (mới đến cũ)</option>
+                  <option value="oldestToNewest">Ngày (cũ đến mới)</option>
+                </select>
+              </div>
             </div>
+
+            <!-- Applied filter list -->
+            <ul class="collection__applied-filter-list"></ul>
+
+            <!-- Product list -->
+            <ul class="collection__product-list"></ul>
           </div>
         </div>
       </div>
@@ -266,6 +256,11 @@
       renderFooter(footer);
     </script>
 
-    <script src="./assets/js/collections/section-collection.js"></script>
+    <script src="./assets/js/commons/ion.rangeSlider.min.js"></script>
+
+    <script
+      type="module"
+      src="./assets/js/collections/section-collection.js"
+    ></script>
   </body>
 </html>

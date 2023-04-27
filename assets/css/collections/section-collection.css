@@ -83,13 +83,14 @@
   color: var(--text-dark-color);
   transition: all 0.2s linear;
   font-weight: 900;
+  height: 100%;
 }
 
 .collection__filter-bar-list:has(.collection__filter-bar-item-input:checked)
   .collection__filter-bar-item-label:not(
     :has(.collection__filter-bar-item-input:checked)
   ) {
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .collection__filter-bar-item-label-icon {
@@ -116,8 +117,9 @@
 }
 
 .collection__brand-list,
-.collection__type-list {
+.collection__category-list {
   position: absolute;
+  z-index: 1;
   left: 50%;
   top: calc(100% + 16px);
   transform: translateX(-50%);
@@ -130,6 +132,24 @@
   border-radius: 8px;
   gap: 16px;
   visibility: hidden;
+}
+
+.collection__price-container {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: calc(100% + 16px);
+  transform: translateX(-50%);
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  padding: 16px 32px;
+  background-color: var(--white-color);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 1px solid var(--black-alpha-10);
+  border-radius: 8px;
+  gap: 16px;
+  display: none;
 }
 
 .collection__filter-bar:has(#collection__filter-bar-item-input-brand:checked)
@@ -147,19 +167,25 @@
 }
 
 .collection__filter-bar:has(#collection__filter-bar-item-input-type:checked)
-  .collection__type-list {
+  .collection__category-list {
   visibility: visible;
   animation: fadeIn 0.2s linear;
 }
 
+.collection__filter-bar:has(#collection__filter-bar-item-input-price:checked)
+  .collection__price-container {
+  display: flex;
+  animation: fadeIn 0.2s linear;
+}
+
 .collection__brand-item,
-.collection__type-item {
+.collection__category-item {
   flex-shrink: 0;
   display: block;
 }
 
 .collection__brand-item-label,
-.collection__type-item-label {
+.collection__category-item-label {
   font-size: 1.6rem;
   cursor: pointer;
   padding: 12px 24px;
@@ -167,14 +193,80 @@
   color: rgba(39, 39, 39, 1);
   font-weight: 300;
   border-radius: 8px;
+  text-transform: capitalize;
 }
 
 .collection__brand-item-label:has(input:checked) {
   background-color: var(--black-alpha-5);
 }
 
-.collection__type-item-label:has(input:checked) {
+.collection__category-item-label:has(input:checked) {
   background-color: var(--black-alpha-5);
+}
+
+.range-slider-wrapper {
+  min-width: 240px;
+}
+
+.collection__sort-wrapper {
+}
+
+.collection__sort-label {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.collection__select-sort {
+  font-size: 1.6rem;
+  padding: 6px 12px;
+}
+
+.collection__select-sort option {
+  font-size: 1.6rem;
+  border-radius: 0;
+}
+
+.collection__applied-filter-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.collection__aplied-filter-item {
+}
+
+.collection__aplied-filter-label {
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 16px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  background-color: #e9e9e9;
+  border-radius: 20px;
+  display: none;
+  transition: all 0.15s linear;
+  text-transform: capitalize;
+}
+
+.collection__aplied-filter-label:hover {
+  background-color: var(--text-dark-color);
+  color: var(--text-white-color);
+}
+
+.collection__main-content:has(#custom-switch__checkbox-availability:checked) .collection__aplied-filter-item label[for="custom-switch__checkbox-availability"] {
+  display: flex;
+}
+
+.collection__aplied-filter-label i {
+  font-size: 2.4rem;
+}
+
+.collection__aplied-filter-label-price-range {
+  display: flex;
 }
 
 /* Reponsive
