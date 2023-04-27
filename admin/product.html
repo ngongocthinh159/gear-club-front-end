@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+        <!-- Font awesome icom -->
+    <link
+        rel="stylesheet"
+        href="/assets/fonts/fontawesome-free-6.4.0-web/css/all.min.css"
+    />
+
+    <!-- Inter Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500;700;900&display=swap"
+        rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/assets/css/admin/admin.css"/>
+</head>
+<body>
+    <div class="main">
+        <div class="navbar"></div>
+        <div class="content">
+            <div class="title">Product</div>
+            <div class="search-bar"></div>
+            <div class="table">
+                <table class="sortable">
+                    <thead>
+                        <th style="width: 10%">ID</th>
+                        <th>Name</th>
+                        <th style="width: 20%">Price</th>
+                        <th style="width: 80px">Edit</th>
+                        <th style="width: 80px">Delete</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Chuột Lamzu Atlantis Mini</td>
+                            <td>2.499.999</td>
+                            <td><button class="edit"><i class="fa fa-edit"></i></button></td>
+                            <td><button class="delete"><i class="fa fa-trash"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Chuột Lamzu Atlantis Mini</td>
+                            <td>2.499.999</td>
+                            <td><button class="edit"><i class="fa fa-edit"></i></button></td>
+                            <td><button class="delete"><i class="fa fa-trash"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Chuột Lamzu Atlantis Mini</td>
+                            <td>2.499.999</td>
+                            <td><button class="edit"><i class="fa fa-edit"></i></button></td>
+                            <td><button class="delete"><i class="fa fa-trash"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Chuột Lamzu Atlantis Mini</td>
+                            <td>2.499.999</td>
+                            <td><button class="edit"><i class="fa fa-edit"></i></button></td>
+                            <td><button class="delete"><i class="fa fa-trash"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Chuột Lamzu Atlantis Mini</td>
+                            <td>2.499.999</td>
+                            <td><button class="edit"><i class="fa fa-edit"></i></button></td>
+                            <td><button class="delete"><i class="fa fa-trash"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { renderNavbar, renderSearchbar } from '/assets/js/commons/adminNav.js'
+  
+        const nav = document.querySelector('div.navbar');
+        renderNavbar(nav);
+
+        const search = document.querySelector('div.search-bar');
+        renderSearchbar(search);
+    </script>
+</body>
+</html>
