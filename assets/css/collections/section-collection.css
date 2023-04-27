@@ -269,6 +269,14 @@
   display: flex;
 }
 
+.collection__product-list {
+  
+}
+
+.collection__product-item {
+  margin-bottom: 32px;
+}
+
 /* Reponsive
  *
  *

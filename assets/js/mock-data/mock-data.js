@@ -42,6 +42,17 @@ const product4 = {
   ],
 };
 
-const products = [product1, product2, product3, product4];
+const product5 = {
+  name: '5',
+  price: 1000000,
+  brand: 'razer',
+  category: 'head phone',
+  imgs: [
+    '/assets/imgs/home/mock-product-2.webp',
+    '/assets/imgs/home/mock-product-3.webp',
+  ],
+};
+
+const products = [product1, product2, product3, product4, product5];
 
 export { products };

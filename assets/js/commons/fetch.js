@@ -13,7 +13,7 @@ function fetchData(URL, callback) {
 
   setTimeout(() => {
     callback(products)
-  }, 500);
+  }, 2000);
 }
 
 export { fetchData };

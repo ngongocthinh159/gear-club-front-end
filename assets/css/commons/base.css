@@ -96,6 +96,10 @@ a {
   padding-top: var(--header-height);
 }
 
+.mb-32 {
+  margin-bottom: 32px;
+}
+
 /* Seletion loading
  * Usage: add a div with class="skeleton" and set style="width: 100px; height: 40px"
  */

@@ -376,8 +376,8 @@ function generateAppliedFilterList(brands, categories) {
         from: DEFAULT_FROM_VALUE,
         to: DEFAULT_TO_VALUE,
       });
-      updateQueryURL(getFilterStateFromDOMElements());
       priceRangeLabel.remove();
+      rerenderProductList();
     });
   }
 }
@@ -468,29 +468,32 @@ function getCurrentCollectionId() {
 function rerenderProductList() {
   const filterState = getFilterStateFromDOMElements();
   const QUERY_URL = updateQueryURL(filterState);
+  const productListUl = document.querySelector('.collection__product-list');
+
+  // Skeleton loading
+  productListUl.innerHTML = getSkeletionLoading();
 
   // Update product list
   fetchData('URL with query params', (products) => {
-    const productListUl = document.querySelector('.collection__product-list');
     productListUl.innerHTML = `
       <div class="row">
         ${products
           .map((product) => {
             return `
               <div class="col l-3 m-3 c-6">
-                <li class="collection__product-item">
+                <li class="collection__product-item mb-32">
                   <div class="product-card">
                     <a href="" class="product-card__link">
                       <div class="product-card__img-wrapper">
                         <img
                           class="product-card__img product-card__main-img"
-                          src="${product.imgs[0]}"
+                          src="${product?.imgs[0]}"
                           alt="Hot product image"
                         />
 
                         <img
                           class="product-card__img product-card__hover-img"
-                          src="${product.imgs[1]}"
+                          src="${product?.imgs[1]}"
                           alt="Hot product image"
                         />
                       </div>
@@ -520,4 +523,37 @@ function rerenderProductList() {
       </div>
     `;
   });
+}
+
+function getSkeletionLoading() {
+  const HTMLs = [];
+  HTMLs.push('<div class="row">');
+
+  for (var i = 0; i < 12; i++) {
+    HTMLs.push(`
+      <div class="col l-3 m-3 c-6">
+        <li class="collection__product-item">
+          <div class="product-card">
+            <a href="" class="product-card__link">
+              <div class="skeleton" style="height: 260px"></div>
+
+              <p class="product-card__name">
+                <div class="skeleton" style="height: 24px; width: 70%"></div>
+              </p>
+            </a>
+
+            <div class="product-card__sold-out">Hết hàng</div>
+
+            <p class="product-card__price">
+              <div class="skeleton" style="height: 24px; width: 20%"></div>
+            </p>
+          </div>
+        </li>
+      </div>
+    `);
+  }
+
+  HTMLs.push('</div>');
+
+  return HTMLs.join('');
 }
