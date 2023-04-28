@@ -1,58 +1,26 @@
-const product1 = {
-  name: '1',
-  price: 1000000,
-  brand: 'filco',
-  category: 'keyboard',
-  imgs: [
-    '/assets/imgs/home/mock-product-2.webp',
-    '/assets/imgs/home/mock-product-3.webp',
-  ],
-};
+import { getRandomIntInRange } from '../commons/ultils.js';
 
-const product2 = {
-  name: '2',
-  price: 1000000,
-  brand: 'filco',
-  category: 'keyboard',
-  imgs: [
-    '/assets/imgs/home/mock-product-2.webp',
-    '/assets/imgs/home/mock-product-3.webp',
-  ],
-};
+const brandList = ['filco', 'keychron', 'glorious', 'logitech', 'realforce'];
+const categoryList = ['mouse', 'keyboard', 'headphone', 'mousepad'];
 
-const product3 = {
-  name: '3',
-  price: 1000000,
-  brand: 'lamzu',
-  category: 'mouse',
-  imgs: [
-    '/assets/imgs/home/mock-product-2.webp',
-    '/assets/imgs/home/mock-product-3.webp',
-  ],
-};
+const products = [];
 
-const product4 = {
-  name: '4',
-  price: 1000000,
-  brand: 'akko',
-  category: 'mouse',
-  imgs: [
-    '/assets/imgs/home/mock-product-2.webp',
-    '/assets/imgs/home/mock-product-3.webp',
-  ],
-};
+for (let i = 0; i < 16; i++) {
+  const product = {
+    id: i,
+    name: `${i} Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis voluptas temporibus laborum alias quos vero soluta aspernatur rerum, repellendus obcaecati.`,
+    price: getRandomIntInRange(500000, 2500000),
+    brand: brandList[getRandomIntInRange(0, brandList.length - 1)],
+    category: categoryList[getRandomIntInRange(0, categoryList.length - 1)],
+    quantity: getRandomIntInRange(0, 20),
+    imgs: [
+      '/assets/imgs/home/mock-product-2.webp',
+      '/assets/imgs/home/mock-product-3.webp',
+      '/assets/imgs/home/mock-product.webp',
+    ],
+  };
 
-const product5 = {
-  name: '5',
-  price: 1000000,
-  brand: 'razer',
-  category: 'head phone',
-  imgs: [
-    '/assets/imgs/home/mock-product-2.webp',
-    '/assets/imgs/home/mock-product-3.webp',
-  ],
-};
-
-const products = [product1, product2, product3, product4, product5];
+  products.push(product);
+}
 
 export { products };

@@ -142,33 +142,56 @@ function handleFilterTrigger() {
  * Call rerender function (after have the DOM filter setup)
  */
 function firstFetch() {
+  // Skeleton loading before fetch not done
+  skeletionLoadingNow();
+
+  // Render sort list
+
+  // Fetch all data from collection
+  // After fetch render the brand list and category list
   fetchData('URL without params to get all possible filter', (products) => {
-    const brands = new Set();
-    const categories = new Set();
+    const brands = new Map();
+    const categories = new Map();
 
     products.forEach((product) => {
-      brands.add(product.brand.toLowerCase());
-      categories.add(product.category.toLowerCase());
+      // If current key is exist => Count + 1
+      if (brands.get(product.brand.toLowerCase())) {
+        brands.set(
+          product.brand.toLowerCase(),
+          brands.get(product.brand.toLowerCase()) + 1
+        );
+      } else {
+        brands.set(product.brand.toLowerCase(), 1);
+      }
+
+      if (categories.get(product.category.toLowerCase())) {
+        categories.set(
+          product.category.toLowerCase(),
+          categories.get(product.category.toLowerCase()) + 1
+        );
+      } else {
+        categories.set(product.category.toLowerCase(), 1);
+      }
     });
 
     // Render branch list
     const brandListUl = document.querySelector('.collection__brand-list');
     const brandHTMLs = [];
-    for (const brand of brands.values()) {
+    for (const brand of brands.entries()) {
       brandHTMLs.push(`
         <li class="collection__brand-item">
           <label
             class="collection__brand-item-label"
-            for="${brand}-toggler-input"
+            for="${brand[0]}-toggler-input"
           >
             <input
               type="checkbox"
-              id="${brand}-toggler-input"
-              data-brand="${brand}"
+              id="${brand[0]}-toggler-input"
+              data-brand="${brand[0]}"
               hidden
               data-filter-trigger
             />
-            ${brand} (<span>5</span>)
+            ${brand[0]} (<span>${brand[1]}</span>)
           </label>
         </li>
       `);
@@ -178,21 +201,21 @@ function firstFetch() {
     // Render category list
     const categoryListUl = document.querySelector('.collection__category-list');
     const categoryHTMLs = [];
-    for (const category of categories.values()) {
+    for (const category of categories.entries()) {
       categoryHTMLs.push(`
         <li class="collection__category-item">
           <label
             class="collection__category-item-label"
-            for="${category}-toggler-input"
+            for="${category[0]}-toggler-input"
           >
             <input
               type="checkbox"
-              id="${category}-toggler-input"
-              data-category="${category}"
+              id="${category[0]}-toggler-input"
+              data-category="${category[0]}"
               hidden
               data-filter-trigger
             />
-            ${category} (<span>5</span>)
+            ${category[0]} (<span>${category[1]}</span>)
           </label>
         </li>
       `);
@@ -295,7 +318,7 @@ function generateAppliedFilterList(brands, categories) {
   `);
 
   // Brands
-  for (const brand of brands.values()) {
+  for (const brand of brands.keys()) {
     HTMLs.push(`
       <li class="collection__aplied-filter-item">
         <label
@@ -315,7 +338,7 @@ function generateAppliedFilterList(brands, categories) {
   }
 
   // Category
-  for (const category of categories.values()) {
+  for (const category of categories.keys()) {
     HTMLs.push(`
       <li class="collection__aplied-filter-item">
         <label
@@ -423,14 +446,15 @@ function getFilterStateFromDOMElements() {
 }
 
 /**
- * ?collectionId=1&availability=true&brands=filco,keychron&categories=keyboard,mouse&priceFrom=21428571&priceTo=166964286&sortType=increasingPrice
+ * ?collectionId=1&pageNum=1&availability=true&brands=filco,keychron&categories=keyboard,mouse&priceFrom=21428571&priceTo=166964286&sortType=increasingPrice
  * @param {object} filterState
  * @returns string is the query string
  */
 function updateQueryURL(filterState) {
-  const collectionId = getCurrentCollectionId();
+  const [collectionId, pageNum] = getCurrentCollectionIdAndPageNum();
 
   let QUERY_URL = `?collectionId=${collectionId}`;
+  QUERY_URL += pageNum ? `&pageNum=${pageNum}` : `&pageNum=1`;
   QUERY_URL += `&availability=${filterState.availability}`;
   if (filterState.brands.length !== 0) {
     QUERY_URL += `&brands=${filterState.brands.join(',')}`;
@@ -444,10 +468,11 @@ function updateQueryURL(filterState) {
   return QUERY_URL;
 }
 
-function getCurrentCollectionId() {
+function getCurrentCollectionIdAndPageNum() {
   let temp = window.location.search.slice(1);
   let keyValueStrings = temp.split('&');
   let collectionId = null;
+  let pageNum = null;
   keyValueStrings.forEach((keyValueString) => {
     let temp2 = keyValueString.split('=');
     let key = temp2[0];
@@ -455,9 +480,13 @@ function getCurrentCollectionId() {
     if (key === 'collectionId') {
       collectionId = Number(value);
     }
+
+    if (key === 'pageNum') {
+      pageNum = value;
+    }
   });
 
-  return collectionId;
+  return [collectionId, pageNum];
 }
 
 /**
@@ -471,7 +500,7 @@ function rerenderProductList() {
   const productListUl = document.querySelector('.collection__product-list');
 
   // Skeleton loading
-  productListUl.innerHTML = getSkeletionLoading();
+  skeletionLoadingNow();
 
   // Update product list
   fetchData('URL with query params', (products) => {
@@ -480,10 +509,18 @@ function rerenderProductList() {
         ${products
           .map((product) => {
             return `
-              <div class="col l-3 m-3 c-6">
+              <div class="col l-3 m-3 c-12">
                 <li class="collection__product-item mb-32">
-                  <div class="product-card">
-                    <a href="" class="product-card__link">
+                  <div 
+                    class="product-card ${
+                      product.quantity === 0 ? 'product-card--soldout' : ''
+                    }"
+                  >
+                    <a 
+                      href="./product-detail.html?productId=${
+                        product.id
+                      }" class="product-card__link"
+                    >
                       <div class="product-card__img-wrapper">
                         <img
                           class="product-card__img product-card__main-img"
@@ -505,7 +542,7 @@ function rerenderProductList() {
 
                     <button
                       class="btn btn-primary product-card__add-cart-btn"
-                      data-product-id
+                      data-product-id="${product.id}"
                       data-add-to-cart-btn
                     >
                       + Thêm
@@ -513,7 +550,9 @@ function rerenderProductList() {
 
                     <div class="product-card__sold-out">Hết hàng</div>
 
-                    <p class="product-card__price">${product.price}</p>
+                    <p class="product-card__price">
+                      ${numberWithCommas(product.price) + 'đ'}
+                    </p>
                   </div>
                 </li>
               </div>
@@ -525,7 +564,8 @@ function rerenderProductList() {
   });
 }
 
-function getSkeletionLoading() {
+function skeletionLoadingNow() {
+  const productListUl = document.querySelector('.collection__product-list');
   const HTMLs = [];
   HTMLs.push('<div class="row">');
 
@@ -535,7 +575,7 @@ function getSkeletionLoading() {
         <li class="collection__product-item">
           <div class="product-card">
             <a href="" class="product-card__link">
-              <div class="skeleton" style="height: 260px"></div>
+              <div class="skeleton" style="height: 220px"></div>
 
               <p class="product-card__name">
                 <div class="skeleton" style="height: 24px; width: 70%"></div>
@@ -555,5 +595,5 @@ function getSkeletionLoading() {
 
   HTMLs.push('</div>');
 
-  return HTMLs.join('');
+  productListUl.innerHTML = HTMLs.join('');
 }
