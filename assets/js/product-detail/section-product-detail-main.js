@@ -3,6 +3,7 @@ import { numberWithCommas } from '../commons/utils.js';
 function renderProductDetailMain(mainDOMElement, product) {
   mainDOMElement.innerHTML = `
     <div class="row">
+      <!-- Main left -->
       <div class="col l-7 m-12 c-12">
         <div class="prod-detail-main__carousel">
           <div class="prod-detail-main__carousel-list-wrapper">
@@ -17,6 +18,7 @@ function renderProductDetailMain(mainDOMElement, product) {
                               ? 'prod-detail-main__carousel-item--active'
                               : ''
                           }"
+                    data-image-index="${index}"
                   >
                     <img
                       src="${image}"
@@ -33,12 +35,55 @@ function renderProductDetailMain(mainDOMElement, product) {
           </div>
 
           <div class="prod-detail-main__carousel-main-img-wrapper-1">
+            <div
+              class="prod-detail-main__carousel-main-img-wrapper-1-overlay"
+              data-zoom-toggler
+            >
+              <button 
+                class="prod-detail-main__carousel-zoom-close-btn"
+                data-zoom-toggler
+              >
+                <i class="bi bi-x"></i>
+              </button>
+            </div>
+
             <div class="prod-detail-main__carousel-main-img-wrapper-2">
               <img
                 src="${product?.images[0]}"
                 alt="Product image"
                 class="prod-detail-main__carousel-main-img"
               />
+
+              <div
+                class="prod-detail-main__carousel-img-zoom-btn"
+                data-zoom-toggler
+              >
+                <i class="bi bi-zoom-in"></i>
+              </div>
+
+              <div class="prod-detail-main__carousel-control">
+                <button 
+                  class="prod-detail-main__carousel-control-btn 
+                        prod-detail-main__carousel-prev-btn"
+                >
+                  <i class="bi bi-chevron-left"></i>
+                </button>
+
+                <button 
+                  class="prod-detail-main__carousel-control-btn 
+                        prod-detail-main__carousel-next-btn"
+                >
+                  <i class="bi bi-chevron-right"></i>
+                </button>
+              </div>
+
+              <div class="prod-detail-main__carousel-image-index-wrapper">
+                <span class="prod-detail-main__carousel-image-current-index">1</span>
+                <span>/</span>
+                <span class="prod-detail-main__carousel-image-total-index">
+                  ${product.images.length}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -46,7 +91,7 @@ function renderProductDetailMain(mainDOMElement, product) {
 
 
 
-
+      <!-- Main right -->
       <div class="col l-5 m-12 c-12">
         <div class="prod-detail-main__right-container">
           <span class="prod-detail-main__prod-brand">${product?.brand}</span>
@@ -90,7 +135,9 @@ function renderProductDetailMain(mainDOMElement, product) {
                 
                 <div class="prod-detail-main__prod-quantity-control">
                   <button
-                    class="prod-detail-main__prod-quantity-decrease-btn"
+                    class="prod-detail-main__prod-quantity-decrease-btn
+                          prod-detail-main__prod-quantity-btn--disabled
+                    "
                   >
                     <i class="bi bi-dash"></i>
                   </button>
@@ -134,6 +181,206 @@ function renderProductDetailMain(mainDOMElement, product) {
   `;
 
   // Event handler
+  handleEvent(mainDOMElement, product);
+}
+
+function handleEvent(mainDOMElement, product) {
+  // Handle image click (change main image)
+  const imageWrapperItems = [
+    ...mainDOMElement.querySelectorAll('.prod-detail-main__carousel-item'),
+  ];
+  const mainImage = mainDOMElement.querySelector(
+    '.prod-detail-main__carousel-main-img'
+  );
+  imageWrapperItems.forEach((imageWrapperItem) => {
+    imageWrapperItem.addEventListener('click', (e) => {
+      if (
+        imageWrapperItem.classList.contains(
+          'prod-detail-main__carousel-item--active'
+        )
+      ) {
+        return;
+      }
+
+      for (let item of imageWrapperItems) {
+        item.classList.remove('prod-detail-main__carousel-item--active');
+      }
+
+      imageWrapperItem.classList.add('prod-detail-main__carousel-item--active');
+
+      // Update image
+      mainImage.src = imageWrapperItem.querySelector(
+        '.prod-detail-main__carousel-img'
+      ).src;
+
+      // Update Active Index Text
+      updateActiveIndexText(mainDOMElement);
+    });
+  });
+
+  // Handle zoom toggler
+  const zoomTogglers = mainDOMElement.querySelectorAll('[data-zoom-toggler]');
+  const mainImageWrapper = mainDOMElement.querySelector(
+    '.prod-detail-main__carousel-main-img-wrapper-1'
+  );
+  zoomTogglers.forEach((zoomToggler) => {
+    zoomToggler.addEventListener('click', (e) => {
+      // If target is close btn or icon of close btn => Stop propagation to not toggle twice
+      if (
+        e.target.classList.contains(
+          'prod-detail-main__carousel-zoom-close-btn'
+        ) ||
+        e.target.classList.contains('bi-x')
+      ) {
+        e.stopPropagation();
+      }
+
+      mainImageWrapper.classList.toggle(
+        'prod-detail-main__carousel-main-img-wrapper-1--zoom'
+      );
+    });
+  });
+
+  // Handle next/prev image button clicks
+  handlePrevNextBtnsClick(mainDOMElement);
+
+  // Handle increase/decrease quantity
+  handleQuantityBtnsClick(mainDOMElement, product.quantity);
+}
+
+function handlePrevNextBtnsClick(mainDOMElement) {
+  const carouselControlBtns = [
+    ...mainDOMElement.querySelectorAll(
+      '.prod-detail-main__carousel-control-btn'
+    ),
+  ];
+  const carouselItems = [
+    ...mainDOMElement.querySelectorAll('.prod-detail-main__carousel-item'),
+  ];
+
+  carouselControlBtns.forEach((carouselControlBtn) => {
+    carouselControlBtn.addEventListener('click', () => {
+      // Get current active index
+      const activeItem = mainDOMElement.querySelector(
+        '.prod-detail-main__carousel-item--active'
+      );
+      let activeIndex = Number(activeItem.dataset.imageIndex);
+
+      // Get next active index
+      let nextActiveIndex = -1;
+      if (
+        carouselControlBtn.classList.contains(
+          'prod-detail-main__carousel-next-btn'
+        )
+      ) {
+        nextActiveIndex =
+          activeIndex === carouselItems.length - 1 ? 0 : ++activeIndex;
+      } else {
+        nextActiveIndex =
+          activeIndex === 0 ? carouselItems.length - 1 : --activeIndex;
+      }
+
+      // Active the next active item
+      carouselItems.forEach((carouselItem, index) => {
+        if (index !== nextActiveIndex) {
+          carouselItem.classList.remove(
+            'prod-detail-main__carousel-item--active'
+          );
+        } else {
+          carouselItem.classList.add('prod-detail-main__carousel-item--active');
+        }
+      });
+
+      // Display active image
+      const mainImage = mainDOMElement.querySelector(
+        '.prod-detail-main__carousel-main-img'
+      );
+      mainImage.src = mainDOMElement
+        .querySelector('.prod-detail-main__carousel-item--active')
+        .querySelector('.prod-detail-main__carousel-img').src;
+
+      // update Active Index Text
+      updateActiveIndexText(mainDOMElement);
+    });
+  });
+}
+
+function updateActiveIndexText(mainDOMElement) {
+  const activeItem = mainDOMElement.querySelector(
+    '.prod-detail-main__carousel-item--active'
+  );
+  const currentIndexElement = mainDOMElement.querySelector(
+    '.prod-detail-main__carousel-image-current-index'
+  );
+
+  currentIndexElement.innerHTML = Number(activeItem.dataset.imageIndex) + 1;
+}
+
+function handleQuantityBtnsClick(mainDOMElement, quantity) {
+  const decreaseBtn = mainDOMElement.querySelector(
+    '.prod-detail-main__prod-quantity-decrease-btn'
+  );
+  const increaseBtn = mainDOMElement.querySelector(
+    '.prod-detail-main__prod-quantity-increase-btn'
+  );
+  const quantityElement = mainDOMElement.querySelector(
+    '.prod-detail-main__prod-quantity-num'
+  );
+
+  decreaseBtn.addEventListener('click', () => {
+    let currentQuantity = Number(quantityElement.innerHTML);
+    let nextQuantity = currentQuantity === 1 ? 1 : --currentQuantity;
+
+    if (nextQuantity === 1) {
+      decreaseBtn.classList.add(
+        'prod-detail-main__prod-quantity-btn--disabled'
+      );
+    } else {
+      decreaseBtn.classList.remove(
+        'prod-detail-main__prod-quantity-btn--disabled'
+      );
+    }
+
+    if (nextQuantity === quantity) {
+      increaseBtn.classList.add(
+        'prod-detail-main__prod-quantity-btn--disabled'
+      );
+    } else {
+      increaseBtn.classList.remove(
+        'prod-detail-main__prod-quantity-btn--disabled'
+      );
+    }
+
+    quantityElement.innerHTML = nextQuantity;
+  });
+
+  increaseBtn.addEventListener('click', () => {
+    let currentQuantity = Number(quantityElement.innerHTML);
+    let nextQuantity =
+      currentQuantity === quantity ? quantity : ++currentQuantity;
+
+    if (nextQuantity === 1) {
+      decreaseBtn.classList.add(
+        'prod-detail-main__prod-quantity-btn--disabled'
+      );
+    } else {
+      decreaseBtn.classList.remove(
+        'prod-detail-main__prod-quantity-btn--disabled'
+      );
+    }
+
+    if (nextQuantity === quantity) {
+      increaseBtn.classList.add(
+        'prod-detail-main__prod-quantity-btn--disabled'
+      );
+    } else {
+      increaseBtn.classList.remove(
+        'prod-detail-main__prod-quantity-btn--disabled'
+      );
+    }
+
+    quantityElement.innerHTML = nextQuantity;
+  });
 }
 
 export { renderProductDetailMain };

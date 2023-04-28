@@ -35,8 +35,4 @@ function renderProductDetail(prodDetailDOMElement) {
   });
 }
 
-
-
-
-
 export { renderProductDetail };
