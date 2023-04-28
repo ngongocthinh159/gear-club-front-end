@@ -126,7 +126,7 @@ a {
 .gradient-text-primary-color-light {
   background: linear-gradient(
     to right,
-    var(--black-alpha-60),
+    var(--black-alpha-70),
     var(--primary-color-light) 70%
   );
   -webkit-background-clip: text;

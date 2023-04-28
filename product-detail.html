@@ -284,46 +284,7 @@
 
           <!-- Significant attributes -->
           <div class="prod-detail-significant">
-            <div class="row">
-              <div class="col l-4 m-4 c-12">
-                <div class="prod-detail-significant__item">
-                  <div
-                    class="prod-detail-significant__item-title gradient-text-primary-color-light"
-                  >
-                    Speed
-                  </div>
-                  <div class="prod-detail-significant__item-subtitle">
-                    Vải mix giữa sợi Lycra và Nylon
-                  </div>
-                </div>
-              </div>
-
-              <div class="col l-4 m-4 c-12">
-                <div class="prod-detail-significant__item">
-                  <div
-                    class="prod-detail-significant__item-title gradient-text-primary-color-light"
-                  >
-                    Cloth
-                  </div>
-                  <div class="prod-detail-significant__item-subtitle">
-                    Mặt vải mịn không nhám tay
-                  </div>
-                </div>
-              </div>
-
-              <div class="col l-4 m-4 c-12">
-                <div class="prod-detail-significant__item">
-                  <div
-                    class="prod-detail-significant__item-title gradient-text-primary-color-light"
-                  >
-                    SCR
-                  </div>
-                  <div class="prod-detail-significant__item-subtitle">
-                    Đế siêu bám, siêu mềm
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>
@@ -492,12 +453,16 @@
     <script type="module">
       import { renderHeader } from './assets/js/commons/header.js';
       import { renderFooter } from './assets/js/commons/footer.js';
+      import { renderProductDetail } from './assets/js/product-detail/section-product-detail.js';
 
       const header = document.querySelector('header.header');
       renderHeader(header, false);
 
       const footer = document.querySelector('footer.footer');
       renderFooter(footer);
+
+      const productDetailDOMElement = document.querySelector('.prod-detail');
+      renderProductDetail(productDetailDOMElement)
     </script>
   </body>
 </html>

@@ -11,9 +11,15 @@ function fetchData(URL, callback) {
   //   .then((data) => callback(data))
   //   .catch((e) => console.log(e));
 
-  setTimeout(() => {
-    callback(products)
-  }, 500);
+  if (URL === 'get one product') {
+    setTimeout(() => {
+      callback(products[0]);
+    }, 500);
+  } else {
+    setTimeout(() => {
+      callback(products);
+    }, 500);
+  }
 }
 
 export { fetchData };
