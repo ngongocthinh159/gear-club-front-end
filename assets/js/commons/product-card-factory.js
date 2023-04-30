@@ -8,7 +8,6 @@ function getProductCardFactory(options) {
     options?.productDetail?.name !== undefined
       ? slugify(options.productDetail.name)
       : '';
-  console.log(slug);
 
   return {
     buildHTML: () => {
@@ -138,7 +137,7 @@ function getProductCardFactory(options) {
       const handlerFunction =
         options?.addBtnEventHandler !== undefined
           ? options.addBtnEventHandler
-          : defaultAddBtnEventHandler();
+          : defaultAddBtnEventHandler;
 
       addBtn.addEventListener('click', () => {
         handlerFunction();

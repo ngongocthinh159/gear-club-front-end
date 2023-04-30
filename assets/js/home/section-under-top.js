@@ -8,7 +8,7 @@ function handleSectionUnderTopEvents(underTopDOMNode) {}
  */
 function renderSectionUnderTop(underTopDOMNode) {
   underTopDOMNode.innerHTML = `
-
+    
   `;
 
   // Handle events
