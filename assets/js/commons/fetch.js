@@ -26,6 +26,14 @@ function fetchData(URL, callback) {
 
     return;
   }
+
+  if (URL === 'get also like products') {
+    setTimeout(() => {
+      callback(products.slice(6, 10));
+    }, 500);
+
+    return;
+  }
   
   setTimeout(() => {
     callback(products);

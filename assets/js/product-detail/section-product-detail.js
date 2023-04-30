@@ -3,8 +3,8 @@ import { renderProductDetailMain } from '../product-detail/section-product-detai
 import { renderProductDetailInfo } from '../product-detail/section-product-detail-info.js';
 import { renderProductDetailSignificant } from '../product-detail/section-product-detail-significant.js';
 
-function renderProductDetail(prodDetailDOMElement) {
-  prodDetailDOMElement.innerHTML = `
+function renderProductDetail(prodDetailDOMNode) {
+  prodDetailDOMNode.innerHTML = `
     <div class="grid wide">
       <!-- Main -->
       <div class="prod-detail-main"></div>
@@ -20,15 +20,15 @@ function renderProductDetail(prodDetailDOMElement) {
   // Fetch data then put it into each section
   fetchData('get one product', (product) => {
     const mainDOMElement =
-      prodDetailDOMElement.querySelector('.prod-detail-main');
+      prodDetailDOMNode.querySelector('.prod-detail-main');
     renderProductDetailMain(mainDOMElement, product);
 
-    const infoDOMElement = prodDetailDOMElement.querySelector(
+    const infoDOMElement = prodDetailDOMNode.querySelector(
       '.prod-detail-info-and-detail'
     );
     renderProductDetailInfo(infoDOMElement, product);
 
-    const significantDOMElement = prodDetailDOMElement.querySelector(
+    const significantDOMElement = prodDetailDOMNode.querySelector(
       '.prod-detail-significant'
     );
     renderProductDetailSignificant(significantDOMElement, product);
