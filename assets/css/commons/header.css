@@ -1,3 +1,14 @@
+body:has(
+    :is(
+        .header__nav-pannel--active,
+        .header__search-container--active,
+        .header__cart-container-wrapper--active,
+
+      )
+  ) {
+  overflow-y: hidden;
+}
+
 .header {
   position: fixed;
   background-color: var(--text-dark-color);
@@ -557,10 +568,6 @@
   display: block;
 }
 
-body:has(.header__cart-container-wrapper--active) {
-  overflow-y: hidden;
-}
-
 .header__cart-overlay {
   width: 100%;
   height: 100%;
@@ -646,116 +653,6 @@ body:has(.header__cart-container-wrapper--active) {
   height: 100%;
   overflow-y: auto;
   padding-bottom: 36px;
-}
-
-.header__cart-item {
-  display: flex;
-  align-items: center;
-}
-
-.header__cart-item:not(:last-child) {
-  margin-bottom: 36px;
-}
-
-.header__cart-item-img {
-  width: 96px;
-  height: 96px;
-  object-fit: contain;
-}
-
-.header__cart-item-body {
-  display: flex;
-}
-
-.header__cart-item-infor {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 0 16px;
-}
-
-.header__cart-item-name {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--text-dark-color);
-  margin-bottom: 8px;
-  --line-height: 2rem;
-  line-height: var(--line-height);
-  max-height: calc(var(--line-height) * 3);
-  display: block;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.header__cart-item-name:hover {
-  text-decoration: underline;
-}
-
-.header__cart-item-total-price {
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: rgba(39, 39, 39, 0.7);
-  margin-bottom: 16px;
-}
-
-.header__cart-item-total-quantity {
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: rgba(39, 39, 39, 0.7);
-  font-weight: 300;
-}
-
-.header__cart-item-control {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-
-.header__cart-item-quantity-input {
-  width: 50px;
-  height: 32px;
-  font-size: 1.6rem;
-  padding: 12px 6px;
-  display: block;
-  border: none;
-  outline: none;
-  border-radius: 8px;
-  border: 1px solid var(--black-alpha-20);
-  text-align: center;
-}
-
-.header__cart-item-quantity-input:is(:focus, :focus-visible) {
-  border: 1px solid var(--black-alpha-70);
-}
-
-.header__cart-item-quantity-input::-webkit-outer-spin-button,
-.header__cart-item-quantity-input::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
-  -webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-}
-
-.header__cart-item-quantity-input[type='number'] {
-  -moz-appearance: textfield; /* Firefox */
-}
-
-.header__cart-item-remove-btn {
-  font-size: 1.4rem;
-  text-decoration: underline;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  color: rgba(39, 39, 39, 0.7);
-}
-
-.header__cart-item-remove-btn:hover {
-  opacity: 0.6;
 }
 
 .header__cart-footer {
@@ -893,30 +790,6 @@ body:has(.header__cart-container-wrapper--active) {
     --padding-x: 16px;
     --padding-y: 18px;
   }
-  .header__cart-item-body {
-    flex-direction: column;
-  }
-  .header__cart-item-img {
-    width: 80px;
-    height: 80px;
-  }
-  .header__cart-item-infor {
-    padding-right: 0;
-    margin-bottom: 12px;
-  }
-  .header__cart-item-name {
-    font-size: 1.4rem;
-  }
-  .header__cart-item-control {
-    align-self: flex-start;
-    padding-left: 16px;
-    flex-direction: row;
-  }
-  .header__cart-item-quantity-input {
-    margin-bottom: 0;
-    margin-right: 12px;
-    padding: 6px 8px;
-  }
   .cart-footer__shipping-text {
     margin-bottom: 16px;
   }
@@ -961,34 +834,8 @@ body:has(.header__cart-container-wrapper--active) {
     --padding-x: 24px;
     --padding-y: 16px;
   }
-  .header__cart-item-img {
-    width: 80px;
-    height: 80px;
-  }
-  .header__cart-item-body {
-    flex-direction: column;
-    align-items: start;
-  }
-  .header__cart-item-infor {
-    padding-right: 0;
-    margin-bottom: 16px;
-  }
-  .header__cart-item-name {
-    font-size: 1.6rem;
-  }
-  .header__cart-item-total-price {
-    margin-right: 12px;
-    font-size: 1.5rem;
-  }
-  .header__cart-item-total-quantity {
-    font-size: 1.4rem;
-  }
   .header-cart-footer__shipping-text {
     margin-bottom: 18px;
-  }
-  .header__cart-item-control {
-    margin-left: 16px;
-    flex-direction: row;
   }
   .header-cart-footer__control {
     gap: 8px;

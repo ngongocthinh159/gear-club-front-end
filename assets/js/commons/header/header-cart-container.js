@@ -1,3 +1,6 @@
+import { fetchData } from '../fetch.js';
+import { getProductCartItemFactory } from '../product-cart-item-factory.js';
+
 function renderCartContainer(headerDOMNode) {
   const cartContainerWrapperDOMElement = headerDOMNode.querySelector(
     '.header__cart-container-wrapper'
@@ -21,73 +24,7 @@ function renderCartContainer(headerDOMNode) {
       </div>
 
       <div class="header__cart-body">
-        <ul class="header__cart-list">
-          <li class="header__cart-item">
-            <img
-              src="./assets/imgs/home/mock-product-2.webp"
-              alt="Product image"
-              class="header__cart-item-img"
-            />
-
-            <div class="header__cart-item-body">
-              <div class="header__cart-item-infor">
-                <a href="" class="header__cart-item-name">
-                  Chuột không dây siêu nhẹ Pulsar X2 Wireless Aim Trainer
-                  Pack (Limited Edition)
-                </a>
-                <span class="header__cart-item-total-price"
-                  >2.499.000đ</span
-                >
-                <span class="header__cart-item-total-quantity"
-                  >Còn lại: 8</span
-                >
-              </div>
-
-              <div class="header__cart-item-control">
-                <input
-                  type="number"
-                  name=""
-                  id=""
-                  class="header__cart-item-quantity-input"
-                />
-                <button class="header__cart-item-remove-btn" data-cart-toggler>Bỏ</button>
-              </div>
-            </div>
-          </li>
-
-          <li class="header__cart-item">
-            <img
-              src="./assets/imgs/home/mock-product-2.webp"
-              alt="Product image"
-              class="header__cart-item-img"
-            />
-
-            <div class="header__cart-item-body">
-              <div class="header__cart-item-infor">
-                <a href="" class="header__cart-item-name">
-                  Chuột không dây siêu nhẹ Pulsar X2 Wireless Aim Trainer
-                  Pack (Limited Edition)
-                </a>
-                <span class="header__cart-item-total-price"
-                  >2.499.000đ</span
-                >
-                <span class="header__cart-item-total-quantity"
-                  >Còn lại: 8</span
-                >
-              </div>
-
-              <div class="header__cart-item-control">
-                <input
-                  type="number"
-                  name=""
-                  id=""
-                  class="header__cart-item-quantity-input"
-                />
-                <button class="header__cart-item-remove-btn" data-cart-toggler>Bỏ</button>
-              </div>
-            </div>
-          </li>
-        </ul>
+        <ul class="header__cart-list"></ul>
       </div>
 
       <div class="header__cart-footer">
@@ -117,6 +54,29 @@ function renderCartContainer(headerDOMNode) {
 
   // Handel events
   handleCartContainerEvents(headerDOMNode);
+
+  // Fetch shopping cart product => Render
+  fetchData('get shopping cart', (products) => {
+    const cartListUl = headerDOMNode.querySelector('.header__cart-list');
+
+    products.forEach((product) => {
+      const options = {
+        productDetail: {
+          id: product.id,
+          images: product.images,
+          name: product.name,
+          totalQuantity: product.quantity,
+          currentQuanity: 3,
+          price: product.price,
+        },
+        additionalClasses: {
+          cartItemProductPrice: 'd-none',
+        },
+      };
+      const cartItem = getProductCartItemFactory(options).buildItem();
+      cartListUl.appendChild(cartItem);
+    });
+  });
 }
 
 function handleCartContainerEvents(headerDOMNode) {
@@ -126,13 +86,12 @@ function handleCartContainerEvents(headerDOMNode) {
   );
 
   cartTogglers.forEach((cartToggler) => {
-    cartToggler.addEventListener('click', (e) => {
-      e.stopPropagation();
-      cartContainer.classList.toggle('header__cart-container--active');
-    });
-  });
-  cartTogglers.forEach((cartToggler) => {
     cartToggler.addEventListener('click', () => {
+      if (window.location.pathname === '/cart.html') {
+        window.location.reload();
+        return;
+      }
+
       cartContainer.classList.toggle('header__cart-container-wrapper--active');
     });
   });

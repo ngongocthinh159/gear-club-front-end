@@ -15,11 +15,21 @@ function fetchData(URL, callback) {
     setTimeout(() => {
       callback(products[0]);
     }, 500);
-  } else {
+
+    return;
+  } 
+  
+  if (URL === 'get shopping cart') {
     setTimeout(() => {
-      callback(products);
+      callback(products.slice(0, 8));
     }, 500);
+
+    return;
   }
+  
+  setTimeout(() => {
+    callback(products);
+  }, 500);
 }
 
 export { fetchData };

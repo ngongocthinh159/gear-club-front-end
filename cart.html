@@ -74,7 +74,139 @@
 
       <!-- Section shopping cart -->
       <section class="s-cart">
-        
+        <div class="cart-order__summary">
+          <table class="order-summary">
+            <thead class="order-summary__header">
+              <tr>
+                <th>Sản phẩm</th>
+                <th class="w-0">Số lượng</th>
+                <th class="text-end">Tổng</th>
+              </tr>
+            </thead>
+
+            <tbody class="order-summary__body">
+              <tr>
+                <td>
+                  <line-item class="line-item"
+                    ><div class="line-item__media-wrapper">
+                      <img
+                        src="//cdn.shopify.com/s/files/1/0636/9044/0949/products/ban-phim-c-filco-majestouch-minila-r-convertible-37023162794229.jpg?v=1677247743&amp;width=1200"
+                        alt="Bàn phím cơ Filco Majestouch Minila-R Convertible"
+                        srcset="
+                          //cdn.shopify.com/s/files/1/0636/9044/0949/products/ban-phim-c-filco-majestouch-minila-r-convertible-37023162794229.jpg?v=1677247743&amp;width=80   80w,
+                          //cdn.shopify.com/s/files/1/0636/9044/0949/products/ban-phim-c-filco-majestouch-minila-r-convertible-37023162794229.jpg?v=1677247743&amp;width=96   96w,
+                          //cdn.shopify.com/s/files/1/0636/9044/0949/products/ban-phim-c-filco-majestouch-minila-r-convertible-37023162794229.jpg?v=1677247743&amp;width=160 160w,
+                          //cdn.shopify.com/s/files/1/0636/9044/0949/products/ban-phim-c-filco-majestouch-minila-r-convertible-37023162794229.jpg?v=1677247743&amp;width=192 192w
+                        "
+                        width="1200"
+                        height="1200"
+                        loading="lazy"
+                        sizes="(max-width: 740px) 80px, 96px"
+                        class="line-item__media rounded-xs"
+                      /><pill-loader class="pill-loader">
+                        <div class="loader-dots">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </div>
+
+                        <svg
+                          class="loader-checkmark"
+                          fill="none"
+                          width="9"
+                          height="8"
+                          viewBox="0 0 9 8"
+                        >
+                          <path
+                            d="M1 3.5 3.3 6 8 1"
+                            stroke="currentColor"
+                            stroke-width="2"
+                          ></path>
+                        </svg>
+                      </pill-loader>
+                    </div>
+                    <div class="line-item__info">
+                      <div class="v-stack gap-0.5">
+                        <a
+                          href="/products/ban-phim-co-filco-majestouch-minila-r-convertible?variant=42632493269237"
+                          class="bold"
+                        >
+                          <span class="reversed-link hover:show"
+                            >Bàn phím cơ Filco Majestouch Minila-R
+                            Convertible</span
+                          > </a
+                        ><price-list class="price-list"
+                          ><sale-price class="text-subdued">
+                            <span class="sr-only">Giá giảm</span
+                            >12.540.000₫</sale-price
+                          ></price-list
+                        >
+                      </div>
+                      <p class="text-sm text-subdued">
+                        Sky Gray / Cherry MX Blue / Mini
+                      </p>
+                      <div class="text-sm text-subdued sm:hidden">
+                        <line-item-quantity
+                          class="h-stack justify-center gap-3"
+                        >
+                          <input
+                            class="quantity-input"
+                            type="text"
+                            is="quantity-input"
+                            inputmode="numeric"
+                            max="12"
+                            data-line-key="42632493269237:f6b3ccf43a4b51a140c8447ee9e1f084"
+                            aria-label="Sửa số lượng"
+                            value="3"
+                          />
+
+                          <span class="text-xs">
+                            <a
+                              href="/cart/change?id=42632493269237:f6b3ccf43a4b51a140c8447ee9e1f084&amp;quantity=0"
+                              class="link"
+                              >Bỏ</a
+                            >
+                          </span>
+                        </line-item-quantity>
+                      </div>
+                    </div></line-item
+                  >
+                </td>
+
+                <td
+                  class="hidden align-center text-center text-subdued sm:table-cell"
+                >
+                  <line-item-quantity class="v-stack justify-center gap-2">
+                    <input
+                      class="quantity-input"
+                      type="text"
+                      is="quantity-input"
+                      inputmode="numeric"
+                      max="12"
+                      data-line-key="42632493269237:f6b3ccf43a4b51a140c8447ee9e1f084"
+                      aria-label="Sửa số lượng"
+                      value="3"
+                    />
+
+                    <span class="text-xs">
+                      <a
+                        href="/cart/change?id=42632493269237:f6b3ccf43a4b51a140c8447ee9e1f084&amp;quantity=0"
+                        class="link"
+                        >Bỏ</a
+                      >
+                    </span>
+                  </line-item-quantity>
+                </td>
+
+                <td
+                  class="hidden align-center text-subdued text-end sm:table-cell"
+                >
+                  12.540.000₫
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <!-- Footer -->

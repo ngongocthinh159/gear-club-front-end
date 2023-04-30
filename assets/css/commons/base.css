@@ -88,7 +88,7 @@ a {
   background: #555;
 }
 
-/* utils */
+/* Utils */
 .position-relative {
   position: relative;
 }
@@ -166,13 +166,13 @@ a {
   align-items: center;
 }
 
-.sub-header__list {
-  display: flex;
+.sub-list {
+  __isplay: flex;
   flex-shrink: 0;
 }
 
-.sub-header__item {
-  font-size: 1.2rem;
+.sub-item {
+  __ont-size: 1.2rem;
   line-height: 1.2rem;
   font-weight: 600;
   color: var(--text-white-color);
@@ -180,7 +180,7 @@ a {
   position: relative;
 }
 
-.sub-header__item::after {
+.sub-item::aft__r {
   content: '';
   border-radius: 50%;
   position: absolute;
@@ -417,6 +417,194 @@ a {
   .product-card__link {
     font-size: 1.6rem;
     font-weight: 600;
+  }
+}
+
+/* Cart item */
+.cart-item {
+  display: flex;
+  align-items: center;
+}
+
+.cart-item:not(:last-child) {
+  margin-bottom: 36px;
+}
+
+.cart-item__img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+
+.cart-item__body {
+  display: flex;
+}
+
+.cart-item__info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0 16px;
+}
+
+.cart-item__name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-dark-color);
+  margin-bottom: 8px;
+  --line-height: 2rem;
+  line-height: var(--line-height);
+  max-height: calc(var(--line-height) * 3);
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cart-item__name:hover {
+  text-decoration: underline;
+}
+
+.cart-item__price-wrapper {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cart-item__total-price,
+.cart-item__product-price {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: rgba(39, 39, 39, 0.7);
+}
+
+.cart-item__total-quantity {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgba(39, 39, 39, 0.7);
+  font-weight: 300;
+}
+
+.cart-item__control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.cart-item__quantity-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cart-item__quantity-control-btn {
+  border: none;
+  outline: none;
+  background-color: var(--black-alpha-10);
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--text-dark-color);
+  transition: all 0.1s linear;
+}
+
+.cart-item__quantity-control-btn:hover {
+  background-color: var(--text-dark-color);
+  color: var(--text-white-color);
+}
+
+.cart-item__quantity-control-btn i {
+  font-size: 1.8rem;
+}
+
+.cart-item__quantity-num {
+  font-size: 1.6rem;
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid var(--black-alpha-10);
+}
+
+.cart-item__remove-btn {
+  font-size: 1.4rem;
+  text-decoration: underline;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: rgba(39, 39, 39, 0.7);
+}
+
+.cart-item__remove-btn:hover {
+  opacity: 0.6;
+}
+
+/*
+ * Responsive for cart item
+ */
+/* Mobile & Tablet */
+@media (max-width: 1023px) {
+  .cart-item__body {
+    flex-direction: column;
+  }
+  .cart-item__img {
+    width: 80px;
+    height: 80px;
+  }
+  .cart-item__info {
+    padding-right: 0;
+    margin-bottom: 12px;
+  }
+  .cart-item__name {
+    font-size: 1.4rem;
+  }
+  .cart-item__control {
+    align-self: flex-start;
+    padding-left: 16px;
+    flex-direction: row;
+  }
+  .cart-item__quantity-input {
+    margin-bottom: 0;
+    margin-right: 12px;
+    padding: 6px 8px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+  .cart-item__img {
+    width: 80px;
+    height: 80px;
+  }
+  .cart-item__body {
+    flex-direction: column;
+    align-items: start;
+  }
+  .cart-item__info {
+    padding-right: 0;
+    margin-bottom: 16px;
+  }
+  .cart-item__name {
+    font-size: 1.6rem;
+  }
+  .cart-item__total-price,
+  .cart-item__product-price {
+    font-size: 1.5rem;
+  }
+  .cart-item__total-quantity {
+    font-size: 1.4rem;
+  }
+  .cart-item__control {
+    flex-direction: row;
   }
 }
 

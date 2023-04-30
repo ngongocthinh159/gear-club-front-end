@@ -124,7 +124,7 @@ function handleMainNavEvents(headerDOMNode) {
   const pannel3Closers = headerDOMNode.querySelectorAll(
     '[data-pannel-3-closer]'
   );
-  const allPannelsCloseBtn = headerDOMNode.querySelector(
+  const allPannelsCloseBtn = headerDOMNode.querySelector(  
     '[data-all-pannels-close]'
   );
   const navContainerOverlay = headerDOMNode.querySelector(

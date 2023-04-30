@@ -10,19 +10,18 @@ function getProductCardFactory(options) {
       : '';
 
   return {
-    buildHTML: () => {
-      return ``;
-    },
     buildCardElement: () => {
       const productCard = document.createElement('div');
       productCard.className = `
         product-card 
         ${
-          options?.productDetail?.quantity === 0 ? 'product-card--soldout' : ''
+          options?.productDetail?.totalQuantity === 0
+            ? 'product-card--soldout'
+            : ''
         } 
         ${
-          options?.addtionalClasses?.productCard !== undefined
-            ? options.addtionalClasses.productCard
+          options?.additionalClasses?.productCard !== undefined
+            ? options.additionalClasses.productCard
             : ''
         }
       `;
@@ -37,17 +36,17 @@ function getProductCardFactory(options) {
                 " 
             class="product-card__link 
                   ${
-                    options?.addtionalClasses?.productCardLink !== undefined
-                      ? options.addtionalClasses.productCardLink
+                    options?.additionalClasses?.productCardLink !== undefined
+                      ? options.additionalClasses.productCardLink
                       : ''
                   }
                   "
         >
           <div class="product-card__img-wrapper 
                       ${
-                        options?.addtionalClasses?.productCardImgWrapper !==
+                        options?.additionalClasses?.productCardImgWrapper !==
                         undefined
-                          ? options.addtionalClasses.productCardImgWrapper
+                          ? options.additionalClasses.productCardImgWrapper
                           : ''
                       }
                       "
@@ -55,9 +54,9 @@ function getProductCardFactory(options) {
             <img
               class="product-card__img product-card__main-img 
                       ${
-                        options?.addtionalClasses?.productCardMainImg !==
+                        options?.additionalClasses?.productCardMainImg !==
                         undefined
-                          ? options.addtionalClasses.productCardMainImg
+                          ? options.additionalClasses.productCardMainImg
                           : ''
                       }
                     "
@@ -72,9 +71,9 @@ function getProductCardFactory(options) {
             <img
               class="product-card__img product-card__hover-img 
                       ${
-                        options?.addtionalClasses?.productCardHoverImg !==
+                        options?.additionalClasses?.productCardHoverImg !==
                         undefined
-                          ? options.addtionalClasses.productCardHoverImg
+                          ? options.additionalClasses.productCardHoverImg
                           : ''
                       }
                     "
@@ -89,8 +88,8 @@ function getProductCardFactory(options) {
 
           <p class="product-card__name 
                     ${
-                      options?.addtionalClasses?.productCardName !== undefined
-                        ? options.addtionalClasses.productCardName
+                      options?.additionalClasses?.productCardName !== undefined
+                        ? options.additionalClasses.productCardName
                         : ''
                     }
                     "
@@ -106,8 +105,8 @@ function getProductCardFactory(options) {
         <button
           class="btn btn-primary product-card__add-cart-btn 
                 ${
-                  options?.addtionalClasses?.productCardAddBtn !== undefined
-                    ? options.addtionalClasses.productCardAddBtn
+                  options?.additionalClasses?.productCardAddBtn !== undefined
+                    ? options.additionalClasses.productCardAddBtn
                     : ''
                 }
                 "
@@ -155,10 +154,10 @@ const options = {
     id: 1,
     images: ['123', '234'],
     name: 'abc',
-    quantity: 0,
+    totalQuantity: 0,
     price: 12345,
   },
-  addtionalClasses: {
+  additionalClasses: {
     productCardLink: '2',
     productCardImgWrapper: '3',
     productCardMainImg: '4',
