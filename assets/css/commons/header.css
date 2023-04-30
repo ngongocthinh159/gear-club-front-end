@@ -3,7 +3,6 @@ body:has(
         .header__nav-pannel--active,
         .header__search-container--active,
         .header__cart-container-wrapper--active,
-
       )
   ) {
   overflow-y: hidden;

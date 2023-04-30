@@ -390,22 +390,17 @@ function generateAppliedFilterList(brands, categories) {
   appliedFilterUl.innerHTML = HTMLs.join('');
 
   // Handle price range label click (reset price range)
-  if (
-    myRange.result.from !== DEFAULT_FROM_VALUE ||
-    myRange.result.to !== DEFAULT_TO_VALUE
-  ) {
-    const priceRangeFilterItem = appliedFilterUl.querySelector(
-      '.collection__aplied-filter-item:has(.collection__aplied-filter-label-price-range)'
-    );
-    priceRangeFilterItem.addEventListener('click', () => {
-      myRange.update({
-        from: DEFAULT_FROM_VALUE,
-        to: DEFAULT_TO_VALUE,
-      });
-      priceRangeFilterItem.classList.add('d-none');
-      rerenderProductList();
+  const priceRangeFilterItem = appliedFilterUl.querySelector(
+    '.collection__aplied-filter-item:has(.collection__aplied-filter-label-price-range)'
+  );
+  priceRangeFilterItem.addEventListener('click', () => {
+    myRange.update({
+      from: DEFAULT_FROM_VALUE,
+      to: DEFAULT_TO_VALUE,
     });
-  }
+    priceRangeFilterItem.classList.add('d-none');
+    rerenderProductList();
+  });
 }
 
 // Get current filter state
