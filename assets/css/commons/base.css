@@ -88,7 +88,7 @@ a {
   background: #555;
 }
 
-/* Position */
+/* utils */
 .position-relative {
   position: relative;
 }
@@ -109,7 +109,6 @@ a {
   right: 0;
 }
 
-/* utils */
 .text-align-center {
   text-align: center;
 }

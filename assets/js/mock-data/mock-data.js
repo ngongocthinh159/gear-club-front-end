@@ -8,7 +8,7 @@ const products = [];
 for (let i = 0; i < 16; i++) {
   const product = {
     id: i,
-    name: `${i} Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis voluptas temporibus laborum alias`,
+    name: `Chuột không dây siêu nhẹ Pulsar X2 Wireless Aim Trainer Pack (Limited Edition) - Medium/Mini`,
     price: getRandomIntInRange(500000, 3000000),
     brand: brandList[getRandomIntInRange(0, brandList.length - 1)],
     category: categoryList[getRandomIntInRange(0, categoryList.length - 1)],

@@ -20,9 +20,18 @@ function capitalizeTheFirstLetterOfFirstWord(string) {
   return newString;
 }
 
+function slugify(str) {
+  const slug = str
+    .toLowerCase()
+    .replace(/ /g, '-')
+    .replace(/[^\w-]+/g, '');
+
+  return slug;
+}
+
 export {
   numberWithCommas,
   getRandomIntInRange,
   capitalizeTheFirstLetterOfFirstWord,
+  slugify,
 };
-

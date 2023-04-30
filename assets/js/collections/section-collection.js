@@ -1,6 +1,6 @@
-import { products } from '../mock-data/mock-data.js';
 import { fetchData } from '../commons/fetch.js';
-import { numberWithCommas } from '../commons/ultils.js';
+import { numberWithCommas } from '../commons/utils.js';
+import { getProductCardFactory } from '../commons/product-card-factory.js';
 
 const MAX_VALUE = 200000000;
 const MIN_VALUE = 0;
@@ -505,62 +505,34 @@ function rerenderProductList() {
   // Update product list
   fetchData('URL with query params', (products) => {
     productListUl.innerHTML = `
-      <div class="row">
-        ${products
-          .map((product) => {
-            return `
-              <div class="col l-3 m-3 c-12">
-                <li class="collection__product-item mb-32">
-                  <div 
-                    class="product-card ${
-                      product.quantity === 0 ? 'product-card--soldout' : ''
-                    }"
-                  >
-                    <a 
-                      href="./product-detail.html?productId=${
-                        product.id
-                      }" class="product-card__link"
-                    >
-                      <div class="product-card__img-wrapper">
-                        <img
-                          class="product-card__img product-card__main-img"
-                          src="${product?.imgs[0]}"
-                          alt="Hot product image"
-                        />
-
-                        <img
-                          class="product-card__img product-card__hover-img"
-                          src="${product?.imgs[1]}"
-                          alt="Hot product image"
-                        />
-                      </div>
-
-                      <p class="product-card__name">
-                        ${product.name}
-                      </p>
-                    </a>
-
-                    <button
-                      class="btn btn-primary product-card__add-cart-btn"
-                      data-product-id="${product.id}"
-                      data-add-to-cart-btn
-                    >
-                      + Thêm
-                    </button>
-
-                    <div class="product-card__sold-out">Hết hàng</div>
-
-                    <p class="product-card__price">
-                      ${numberWithCommas(product.price) + 'đ'}
-                    </p>
-                  </div>
-                </li>
-              </div>
-            `;
-          })
-          .join('')}
-      </div>
+      <div class="row"></div>
     `;
+
+    const rowElement = productListUl.querySelector('.row');
+    products.forEach((product) => {
+      const col = document.createElement('div');
+      col.className = 'col l-3 m-3 c-12';
+
+      const productItemLi = document.createElement('li');
+      productItemLi.className = 'collection__product-item mb-32';
+
+      const cardOptions = {
+        productDetail: {
+          id: product.id,
+          images: product.images,
+          name: product.name,
+          quantity: product.quantity,
+          price: product.price,
+        },
+      };
+      const productCart = getProductCardFactory(cardOptions).buildCardElement();
+
+      productItemLi.appendChild(productCart);
+      col.appendChild(productItemLi);
+      rowElement.appendChild(col);
+    });
+
+    productListUl.appendChild(rowElement);
   });
 }
 
