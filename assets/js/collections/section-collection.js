@@ -82,37 +82,35 @@ function setupRangeSlider() {
       onStart: function (data) {},
       onChange: function (data) {},
       onFinish: function (data) {
+        // When slider values is changed
         rerenderProductList();
 
-        // Add applied filter item to DOM
+        // Refs
+        const priceRangeItem = document.querySelector(
+          '.collection__aplied-filter-item:has(.collection__aplied-filter-label-price-range)'
+        );
+        const priceRangeLabel = document.querySelector(
+          '.collection__aplied-filter-label-price-range'
+        );
+
+        // Update price
+        priceRangeLabel.innerHTML = `
+          ${
+            numberWithCommas(myRange.result.from) +
+            'đ - ' +
+            numberWithCommas(myRange.result.to) +
+            'đ'
+          }<i class="bi bi-x"></i>
+        `;
+
+        // Display/hide item
         if (
           myRange.result.from !== DEFAULT_FROM_VALUE ||
           myRange.result.to !== DEFAULT_TO_VALUE
         ) {
-          const appliedFilterUl = document.querySelector(
-            '.collection__applied-filter-list'
-          );
-          const priceAppliedFilterItem = document.createElement('li');
-
-          priceAppliedFilterItem.className = 'collection__aplied-filter-item';
-          priceAppliedFilterItem.innerHTML = `
-          <label
-            class="collection__aplied-filter-label collection__aplied-filter-label-price-range"
-          >
-            ${
-              numberWithCommas(myRange.result.from) +
-              'đ - ' +
-              numberWithCommas(myRange.result.to) +
-              'đ'
-            }<i class="bi bi-x"></i>
-          </label>
-        `;
-
-          const prevPriceFilter = document.querySelector(
-            '.collection__aplied-filter-item:has(.collection__aplied-filter-label-price-range)'
-          );
-          if (prevPriceFilter) appliedFilterUl.removeChild(prevPriceFilter);
-          appliedFilterUl.appendChild(priceAppliedFilterItem);
+          priceRangeItem.classList.remove('d-none');
+        } else {
+          priceRangeItem.classList.add('d-none');
         }
       },
     })
@@ -358,25 +356,30 @@ function generateAppliedFilterList(brands, categories) {
   }
 
   // Price range
+  let isDisplayFilterItem = false;
   if (
     myRange.result.from !== DEFAULT_FROM_VALUE ||
     myRange.result.to !== DEFAULT_TO_VALUE
   ) {
-    HTMLs.push(`
-      <li class="collection__aplied-filter-item">
-        <label
-          class="collection__aplied-filter-label collection__aplied-filter-label-price-range"
-        >
-          ${
-            numberWithCommas(myRange.result.from) +
-            'đ - ' +
-            numberWithCommas(myRange.result.to) +
-            'đ'
-          }<i class="bi bi-x"></i>
-        </label>
-      </li>
-    `);
+    isDisplayFilterItem = true;
   }
+  HTMLs.push(`
+    <li class="collection__aplied-filter-item 
+              ${isDisplayFilterItem ? '' : 'd-none'}
+              "
+    >
+      <label
+        class="collection__aplied-filter-label collection__aplied-filter-label-price-range"
+      >
+        ${
+          numberWithCommas(myRange.result.from) +
+          'đ - ' +
+          numberWithCommas(myRange.result.to) +
+          'đ'
+        }<i class="bi bi-x"></i>
+      </label>
+    </li>
+  `);
 
   // Add dynamic stylesheet to HTML
   var styleSheet = document.createElement('style');
@@ -391,15 +394,15 @@ function generateAppliedFilterList(brands, categories) {
     myRange.result.from !== DEFAULT_FROM_VALUE ||
     myRange.result.to !== DEFAULT_TO_VALUE
   ) {
-    const priceRangeLabel = appliedFilterUl.querySelector(
-      '.collection__aplied-filter-label-price-range'
+    const priceRangeFilterItem = appliedFilterUl.querySelector(
+      '.collection__aplied-filter-item:has(.collection__aplied-filter-label-price-range)'
     );
-    priceRangeLabel.addEventListener('click', () => {
+    priceRangeFilterItem.addEventListener('click', () => {
       myRange.update({
         from: DEFAULT_FROM_VALUE,
         to: DEFAULT_TO_VALUE,
       });
-      priceRangeLabel.remove();
+      priceRangeFilterItem.classList.add('d-none');
       rerenderProductList();
     });
   }

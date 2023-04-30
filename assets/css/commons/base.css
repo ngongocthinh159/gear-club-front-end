@@ -132,6 +132,10 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
+.d-none {
+  display: none;
+}
+
 /* Seletion loading
  * Usage: add a div with class="skeleton" and set style="width: 100px; height: 40px"
  */
