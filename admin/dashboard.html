@@ -19,17 +19,18 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500;700;900&display=swap"
         rel="stylesheet"
     />
-
+    
     <link rel="stylesheet" href="/assets/css/admin/admin.css"/>
 </head>
 <body>
     <div class="main">
         <div class="navbar"></div>
-        <div class="content"></div>
+        <div class="content">
+        </div>
     </div>
 
     <script type="module">
-        import { renderNavbar } from '/assets/js/commons/adminNav.js'
+        import { renderNavbar } from '/assets/js/admin/adminNav.js'
   
         const nav = document.querySelector('div.navbar');
         renderNavbar(nav);

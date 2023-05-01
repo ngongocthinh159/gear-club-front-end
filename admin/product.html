@@ -20,6 +20,9 @@
         rel="stylesheet"
     />
 
+    <link href="https://unpkg.com/tabulator-tables@5.4.4/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.4.4/dist/js/tabulator.min.js"></script>
+
     <link rel="stylesheet" href="/assets/css/admin/admin.css"/>
 </head>
 <body>
@@ -29,9 +32,9 @@
             <div class="title">Product</div>
             <div class="search-bar"></div>
             <div class="table">
-                <table class="sortable">
+                <!-- <table class="data">
                     <thead>
-                        <th style="width: 10%">ID</th>
+                        <th style="width: 5%">ID</th>
                         <th>Name</th>
                         <th style="width: 20%">Price</th>
                         <th style="width: 80px">Edit</th>
@@ -74,13 +77,14 @@
                             <td><button class="delete"><i class="fa fa-trash"></i></button></td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
+                <div id="table"></div>
             </div>
         </div>
     </div>
 
     <script type="module">
-        import { renderNavbar, renderSearchbar } from '/assets/js/commons/adminNav.js'
+        import { renderNavbar, renderSearchbar } from '/assets/js/admin/adminNav.js'
   
         const nav = document.querySelector('div.navbar');
         renderNavbar(nav);
@@ -88,5 +92,37 @@
         const search = document.querySelector('div.search-bar');
         renderSearchbar(search);
     </script>
+    <script type="text/javascript">
+        var tabledata = [
+            {id:1, name:"Chuột Lamzu Atlantis Mini", price: 2500000},
+            {id:2, name:"Chuột Lamzu Atlantis", price: 2500000},
+            {id:3, name:"Chuột Razer Deathadder V3", price: 3300000},
+            {id:4, name:"Chuột Glorious Model One Pro", price: 2800000},
+            {id:5, name:"Chuột Ninjutso Sora", price: 2500000},
+        ];
+
+        var table = new Tabulator("#table", {
+            autoResize:true,
+            data:tabledata, //assign data to table
+            layout:"fitDataTable",
+            responsiveLayout:true, // enable responsive layouts
+            pagination:true, //enable.
+            paginationSize:10, // this option can take any positive integer value
+            columns:[ //Define Table Columns
+                {title:"ID", field:"id", width:100},
+                {title:"Name", field:"name", minWidth: 500},
+                {title:"Price", field:"price", minWidth: 200},
+            ],
+        });
+        
+        //trigger an alert message when the row is clicked
+        table.on("rowClick", function(e, row){ 
+            var data = row.getData()
+            console.log(data.id)
+            localStorage.setItem('itemID', data.id)
+            window.location.href = '/admin/edit.html'
+        });
+    </script>
+
 </body>
 </html>
