@@ -470,8 +470,8 @@ a {
   gap: 8px;
 }
 
-.cart-item__total-price,
-.cart-item__product-price {
+.cart-item__total-price-wrapper,
+.cart-item__product-price-wrapper {
   font-size: 1.5rem;
   font-weight: 300;
   color: rgba(39, 39, 39, 0.7);
@@ -517,6 +517,12 @@ a {
 .cart-item__quantity-control-btn:hover {
   background-color: var(--text-dark-color);
   color: var(--text-white-color);
+}
+
+.cart-item__quantity-control-btn--disabled {
+  pointer-events: none;
+  background-color: var(--black-alpha-2);
+  color: var(--black-alpha-20);
 }
 
 .cart-item__quantity-control-btn i {
@@ -592,8 +598,8 @@ a {
   .cart-item__name {
     font-size: 1.6rem;
   }
-  .cart-item__total-price,
-  .cart-item__product-price {
+  .cart-item__total-price-wrapper,
+  .cart-item__product-price-wrapper {
     font-size: 1.5rem;
   }
   .cart-item__total-quantity {

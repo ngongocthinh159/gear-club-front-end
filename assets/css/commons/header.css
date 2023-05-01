@@ -685,7 +685,7 @@
   font-weight: 400;
 }
 
-.header-cart-footer__price-num {
+.header-cart-footer__price-num-wrapper {
   font-size: 1.9rem;
   color: var(--text-dark-color);
   font-weight: 400;

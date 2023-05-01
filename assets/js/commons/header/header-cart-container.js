@@ -1,6 +1,8 @@
 import { fetchData } from '../fetch.js';
 import { getProductCartItemFactory } from '../product-cart-item-factory.js';
 
+const COUNTRY_CURRENCY = "VND";
+
 function renderCartContainer(headerDOMNode) {
   const cartContainerWrapperDOMElement = headerDOMNode.querySelector(
     '.header__cart-container-wrapper'
@@ -23,14 +25,22 @@ function renderCartContainer(headerDOMNode) {
         <div class="header__cart-header-separator"></div>
       </div>
 
-      <div class="header__cart-body">
-        <ul class="header__cart-list"></ul>
-      </div>
+
+
+
+      <!-- Render cart list inside cart body -->
+      <div class="header__cart-body"></div>
+
+
+
 
       <div class="header__cart-footer">
         <div class="header-cart-footer__price-wrapper">
           <span class="header-cart-footer__price-text">Tổng</span>
-          <span class="header-cart-footer__price-num">5.878.000 VND</span>
+          <div class="header-cart-footer__price-num-wrapper">
+            
+            <span class="header-cart-footer__country-currency">${COUNTRY_CURRENCY}</span>
+          </div>
         </div>
 
         <div class="header-cart-footer__shipping-text">
@@ -56,26 +66,33 @@ function renderCartContainer(headerDOMNode) {
   handleCartContainerEvents(headerDOMNode);
 
   // Fetch shopping cart product => Render
+  const cartBody = headerDOMNode.querySelector('.header__cart-body');
+  const priceNumWrapper = headerDOMNode.querySelector(
+    '.header-cart-footer__price-num-wrapper'
+  );
   fetchData('get shopping cart', (products) => {
-    const cartListUl = headerDOMNode.querySelector('.header__cart-list');
-
+    // Data transformation then transfer to list options
     products.forEach((product) => {
-      const options = {
-        productDetail: {
-          id: product.id,
-          images: product.images,
-          name: product.name,
-          totalQuantity: product.quantity,
-          currentQuanity: 3,
-          price: product.price,
-        },
-        additionalClasses: {
-          cartItemProductPrice: 'd-none',
-        },
-      };
-      const cartItem = getProductCartItemFactory(options).buildItem();
-      cartListUl.appendChild(cartItem);
+      product.totalQuantity = product.quantity;
+      product.currentQuantity = 1;
+      delete product.quantity;
     });
+
+    // Generate options
+    const options = {
+      products: products,
+      additionalClasses: {
+        cartListItems: 'header__cart-list',
+        cartItemProductPriceWrapper: 'd-none',
+      },
+    };
+    const [cartListItems, listTotalPriceDOMNode] =
+      getProductCartItemFactory().buildListItems(options);
+
+    // Append total price node to total price wrapper
+    priceNumWrapper.prepend(listTotalPriceDOMNode);
+
+    cartBody.appendChild(cartListItems);
   });
 }
 

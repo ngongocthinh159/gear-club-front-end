@@ -1,21 +1,24 @@
 import { numberWithCommas } from '../commons/utils.js';
 import { slugify } from '../commons/utils.js';
+import { fetchData } from './fetch.js';
+import { API } from './restful-api.js';
 
 const CURRENCY = '₫';
 
-function getProductCartItemFactory(options) {
-  const slug =
-    options?.productDetail?.name !== undefined
-      ? slugify(options.productDetail.name)
-      : '';
-
+function getProductCartItemFactory() {
   return {
-    buildItem: () => {
+    buildItem: function (itemOptions) {
+      const slug =
+        itemOptions?.productDetail?.name !== undefined
+          ? slugify(itemOptions.productDetail.name)
+          : '';
+
       const cartItem = document.createElement('li');
       cartItem.className = `cart-item 
                             ${
-                              options?.additionalClasses?.cartItem !== undefined
-                                ? options.additionalClasses.cartItem
+                              itemOptions?.additionalClasses?.cartItem !==
+                              undefined
+                                ? itemOptions.additionalClasses.cartItem
                                 : ''
                             }
       `;
@@ -23,15 +26,15 @@ function getProductCartItemFactory(options) {
       cartItem.innerHTML = `
         <img
           src="${
-            options?.productDetail?.images[0] !== undefined
-              ? options.productDetail.images[0]
+            itemOptions?.productDetail?.images[0] !== undefined
+              ? itemOptions.productDetail.images[0]
               : ''
           }"
           alt="Product image"
           class="cart-item__img 
                 ${
-                  options?.additionalClasses?.cartItemImage !== undefined
-                    ? options.additionalClasses.cartItemImage
+                  itemOptions?.additionalClasses?.cartItemImage !== undefined
+                    ? itemOptions.additionalClasses.cartItemImage
                     : ''
                 }
                 "
@@ -39,92 +42,114 @@ function getProductCartItemFactory(options) {
 
         <div class="cart-item__body 
                     ${
-                      options?.additionalClasses?.cartItemBody !== undefined
-                        ? options.additionalClasses.cartItemBody
+                      itemOptions?.additionalClasses?.cartItemBody !== undefined
+                        ? itemOptions.additionalClasses.cartItemBody
                         : ''
                     }
                     "
         >
           <div class="cart-item__info 
                       ${
-                        options?.additionalClasses?.cartItemInfo !== undefined
-                          ? options.additionalClasses.cartItemInfo
+                        itemOptions?.additionalClasses?.cartItemInfo !==
+                        undefined
+                          ? itemOptions.additionalClasses.cartItemInfo
                           : ''
                       }
                       "
           >
             <a href="
                     ${
-                      options?.productDetail?.id !== undefined
-                        ? `/product-detail.html?slug=${slug}&productId=${options.productDetail.id}`
+                      itemOptions?.productDetail?.id !== undefined
+                        ? `/product-detail.html?slug=${slug}&productId=${itemOptions.productDetail.id}`
                         : ''
                     }
                     " 
               class="cart-item__name 
                     ${
-                      options?.additionalClasses?.cartItemName !== undefined
-                        ? options.additionalClasses.cartItemName
+                      itemOptions?.additionalClasses?.cartItemName !== undefined
+                        ? itemOptions.additionalClasses.cartItemName
                         : ''
                     }
                     "
               >
               ${
-                options?.productDetail?.name !== undefined
-                  ? options.productDetail.name
+                itemOptions?.productDetail?.name !== undefined
+                  ? itemOptions.productDetail.name
                   : ''
               }
             </a>
             <div class="cart-item__price-wrapper 
                         ${
-                          options?.additionalClasses?.cartItemPriceWrapper !==
-                          undefined
-                            ? options.additionalClasses.cartItemPriceWrapper
+                          itemOptions?.additionalClasses
+                            ?.cartItemPriceWrapper !== undefined
+                            ? itemOptions.additionalClasses.cartItemPriceWrapper
                             : ''
                         }
                         "
             >
-              <span class="cart-item__total-price 
+              <span class="cart-item__total-price-wrapper 
                           ${
-                            options?.additionalClasses?.cartItemTotalPrice !==
-                            undefined
-                              ? options.additionalClasses.cartItemTotalPrice
+                            itemOptions?.additionalClasses
+                              ?.cartItemTotalPriceWrapper !== undefined
+                              ? itemOptions.additionalClasses
+                                  .cartItemTotalPriceWrapper
                               : ''
                           }
                           "
               >
-                ${numberWithCommas(
-                  options.productDetail.currentQuanity *
-                    options.productDetail.price
-                )}${CURRENCY}
+                <span class="cart-item__total-price-num 
+                            ${
+                              itemOptions?.additionalClasses
+                                ?.cartItemTotalPriceNum !== undefined
+                                ? itemOptions.additionalClasses
+                                    .cartItemTotalPriceNum
+                                : ''
+                            }
+                            "
+                >${numberWithCommas(
+                  itemOptions.productDetail.currentQuantity *
+                    itemOptions.productDetail.price
+                )}</span><span class="cart-item__currency">${CURRENCY}</span>
               </span>
-              <span class="cart-item__product-price 
+              <span class="cart-item__product-price-wrapper
                           ${
-                            options?.additionalClasses?.cartItemProductPrice !==
-                            undefined
-                              ? options.additionalClasses.cartItemProductPrice
+                            itemOptions?.additionalClasses
+                              ?.cartItemProductPriceWrapper !== undefined
+                              ? itemOptions.additionalClasses
+                                  .cartItemProductPriceWrapper
                               : ''
                           }
                           "
               >
-                ${
-                  options?.productDetail?.price !== undefined
-                    ? numberWithCommas(options.productDetail.price)
+                <span class="cart-item__product-price-num 
+                            ${
+                              itemOptions?.additionalClasses
+                                ?.cartItemProductPriceNum !== undefined
+                                ? itemOptions.additionalClasses
+                                    .cartItemProductPriceNum
+                                : ''
+                            }
+                            "
+                >${
+                  itemOptions?.productDetail?.price !== undefined
+                    ? numberWithCommas(itemOptions.productDetail.price)
                     : ''
-                }${CURRENCY}
+                }</span><span class="cart-item__currency">${CURRENCY}</span>
               </span>
             </div>
             <span class="cart-item__total-quantity 
                         ${
-                          options?.additionalClasses?.cartItemTotalQuantity !==
-                          undefined
-                            ? options.additionalClasses.cartItemTotalQuantity
+                          itemOptions?.additionalClasses
+                            ?.cartItemTotalQuantity !== undefined
+                            ? itemOptions.additionalClasses
+                                .cartItemTotalQuantity
                             : ''
                         }
                         "
             >
               Còn lại: ${
-                options?.productDetail?.totalQuantity !== undefined
-                  ? options.productDetail.totalQuantity
+                itemOptions?.productDetail?.totalQuantity !== undefined
+                  ? itemOptions.productDetail.totalQuantity
                   : ''
               }
             </span>
@@ -132,27 +157,34 @@ function getProductCartItemFactory(options) {
 
           <div class="cart-item__control 
                       ${
-                        options?.additionalClasses?.cartItemControl !==
+                        itemOptions?.additionalClasses?.cartItemControl !==
                         undefined
-                          ? options.additionalClasses.cartItemControl
+                          ? itemOptions.additionalClasses.cartItemControl
                           : ''
                       }  
                       "
           >
             <div class="cart-item__quantity-wrapper 
                         ${
-                          options?.additionalClasses
+                          itemOptions?.additionalClasses
                             ?.cartItemQuantityWrapper !== undefined
-                            ? options.additionalClasses.cartItemQuantityWrapper
+                            ? itemOptions.additionalClasses
+                                .cartItemQuantityWrapper
                             : ''
                         } 
                         "
             >
               <button class="cart-item__quantity-control-btn cart-item__quantity-decrease-btn 
                             ${
-                              options?.additionalClasses
+                              itemOptions.productDetail.currentQuantity <= 1
+                                ? 'cart-item__quantity-control-btn--disabled'
+                                : ''
+                            } 
+                            ${
+                              itemOptions?.additionalClasses
                                 ?.cartItemDecreaseBtn !== undefined
-                                ? options.additionalClasses.cartItemDecreaseBtn
+                                ? itemOptions.additionalClasses
+                                    .cartItemDecreaseBtn
                                 : ''
                             }
                             "
@@ -162,25 +194,33 @@ function getProductCartItemFactory(options) {
               
               <span class="cart-item__quantity-num
                           ${
-                            options?.additionalClasses?.cartItemQuantityNum !==
-                            undefined
-                              ? options.additionalClasses.cartItemQuantityNum
+                            itemOptions?.additionalClasses
+                              ?.cartItemQuantityNum !== undefined
+                              ? itemOptions.additionalClasses
+                                  .cartItemQuantityNum
                               : ''
                           }
                           "
               >
                 ${
-                  options?.productDetail?.currentQuanity !== undefined
-                    ? options.productDetail.currentQuanity
+                  itemOptions?.productDetail?.currentQuantity !== undefined
+                    ? itemOptions.productDetail.currentQuantity
                     : ''
                 }
               </span>
 
               <button class="cart-item__quantity-control-btn cart-item__quantity-increase-btn 
                             ${
-                              options?.additionalClasses
+                              itemOptions.productDetail.currentQuanity >=
+                              itemOptions.productDetail.totalQuantity
+                                ? 'cart-item__quantity-control-btn--disabled'
+                                : ''
+                            } 
+                            ${
+                              itemOptions?.additionalClasses
                                 ?.cartItemIncreaseBtn !== undefined
-                                ? options.additionalClasses.cartItemIncreaseBtn
+                                ? itemOptions.additionalClasses
+                                    .cartItemIncreaseBtn
                                 : ''
                             }
                             "
@@ -190,9 +230,9 @@ function getProductCartItemFactory(options) {
             </div>
             <button class="cart-item__remove-btn 
                           ${
-                            options?.additionalClasses?.cartItemRemoveBtn !==
-                            undefined
-                              ? options.additionalClasses.cartItemRemoveBtn
+                            itemOptions?.additionalClasses
+                              ?.cartItemRemoveBtn !== undefined
+                              ? itemOptions.additionalClasses.cartItemRemoveBtn
                               : ''
                           }
                           "
@@ -211,58 +251,265 @@ function getProductCartItemFactory(options) {
       const removeBtn = cartItem.querySelector('.cart-item__remove-btn');
 
       const decreaseHandler =
-        options?.decreaseBtnEventHandler !== undefined
-          ? options.decreaseBtnEventHandler
+        itemOptions?.decreaseBtnEventHandler !== undefined
+          ? itemOptions.decreaseBtnEventHandler
           : defaultDecreaseHandler;
       decreaseBtn.addEventListener('click', () => {
-        decreaseHandler();
+        decreaseHandler(
+          itemOptions.productDetail.id,
+          itemOptions.productDetail.totalQuantity,
+          cartItem,
+          itemOptions.productDetail.price,
+          itemOptions.listTotalPriceDOMNode
+        );
       });
 
       const increaseHandler =
-        options?.increaseBtnEventHandler !== undefined
-          ? options.increaseBtnEventHandler
+        itemOptions?.increaseBtnEventHandler !== undefined
+          ? itemOptions.increaseBtnEventHandler
           : defaultIncreaseHandler;
       increaseBtn.addEventListener('click', () => {
-        increaseHandler();
+        increaseHandler(
+          itemOptions.productDetail.id,
+          itemOptions.productDetail.totalQuantity,
+          cartItem,
+          itemOptions.productDetail.price,
+          itemOptions.listTotalPriceDOMNode
+        );
       });
 
       const removeHandler =
-        options?.removeBtnEventHandler !== undefined
-          ? options.removeBtnEventHandler
+        itemOptions?.removeBtnEventHandler !== undefined
+          ? itemOptions.removeBtnEventHandler
           : defaultRemoveHandler;
       removeBtn.addEventListener('click', () => {
-        removeHandler();
+        removeHandler(
+          itemOptions.productDetail.id,
+          cartItem,
+          itemOptions.productDetail.price,
+          itemOptions.listTotalPriceDOMNode
+        );
       });
 
       return cartItem;
     },
+    buildListItems: function (options) {
+      const listTotalPriceDOMNode = document.createElement('span');
+      let listTotalPrice = 0;
+      listTotalPriceDOMNode.className = `cart-list-items__list-total-price 
+        ${
+          options?.additionalClasses?.cartListTotalPrice !== undefined
+            ? options.additionalClasses.cartListTotalPrice
+            : ''
+        }
+      `;
+
+      const listCartItems = document.createElement('ul');
+      listCartItems.className = `cart-list-items 
+                                ${
+                                  options?.additionalClasses?.cartListItems !==
+                                  undefined
+                                    ? options.additionalClasses.cartListItems
+                                    : ''
+                                }
+      `;
+
+      // Create each cart item => append to list
+      options.products.forEach((product) => {
+        const itemOptions = {
+          productDetail: {
+            id: product.id,
+            images: product.images,
+            name: product.name,
+            totalQuantity: product.totalQuantity,
+            currentQuantity: product.currentQuantity,
+            price: product.price,
+          },
+          additionalClasses: options.additionalClasses,
+          decreaseBtnEventHandler: options.decreaseBtnEventHandler,
+          increaseBtnEventHandler: options.increaseBtnEventHandler,
+          removeBtnEventHandler: options.removeBtnEventHandler,
+          listTotalPriceDOMNode: listTotalPriceDOMNode,
+        };
+
+        const cartItem = this.buildItem(itemOptions);
+        listCartItems.appendChild(cartItem);
+
+        listTotalPrice += product.currentQuantity * product.price;
+      });
+
+      listTotalPriceDOMNode.innerHTML = numberWithCommas(listTotalPrice);
+
+      return [listCartItems, listTotalPriceDOMNode];
+    },
   };
 }
 
-function defaultDecreaseHandler() {}
+function defaultDecreaseHandler(
+  productId,
+  totalQuantity,
+  cartItem,
+  productPrice,
+  listTotalPriceDOMNode
+) {
+  // Call decrease API first, then update UI
+  fetchData(API.getDecreaseProductQuantityInCartAPI(productId), () => {
+    // Code to update UI
+    const decreaseBtn = cartItem.querySelector(
+      '.cart-item__quantity-decrease-btn'
+    );
+    const increaseBtn = cartItem.querySelector(
+      '.cart-item__quantity-increase-btn'
+    );
+    const quantityNumDOMNode = cartItem.querySelector(
+      '.cart-item__quantity-num'
+    );
+    const itemTotalPriceNum = cartItem.querySelector(
+      '.cart-item__total-price-num'
+    );
 
-function defaultIncreaseHandler() {}
+    const nextCurrentQuantity = Number(quantityNumDOMNode.innerHTML) - 1;
 
-function defaultRemoveHandler() {}
+    // Toggle UI
+    if (nextCurrentQuantity <= 1) {
+      decreaseBtn.classList.add('cart-item__quantity-control-btn--disabled');
+    } else {
+      decreaseBtn.classList.remove('cart-item__quantity-control-btn--disabled');
+    }
+    if (nextCurrentQuantity >= totalQuantity) {
+      increaseBtn.classList.add('cart-item__quantity-control-btn--disabled');
+    } else {
+      increaseBtn.classList.remove('cart-item__quantity-control-btn--disabled');
+    }
 
-const options = {
-  productDetail: {
-    id: 1,
-    images: ['123', '234'],
-    name: 'abc',
-    totalQuantity: 8,
-    currentQuanity: 1,
-    price: 12345,
-  },
+    // Decrease quantity
+    quantityNumDOMNode.innerHTML = `
+    ${nextCurrentQuantity}
+  `;
+
+    // Change item total price
+    itemTotalPriceNum.innerText = `${numberWithCommas(
+      nextCurrentQuantity * productPrice
+    )}`;
+
+    // Change the list total price
+    if (listTotalPriceDOMNode) {
+      const nextListTotalPrice =
+        Number(listTotalPriceDOMNode.innerHTML.replaceAll('.', '')) -
+        productPrice;
+      listTotalPriceDOMNode.innerHTML = `
+      ${numberWithCommas(nextListTotalPrice)}
+    `;
+    }
+  });
+}
+
+function defaultIncreaseHandler(
+  productId,
+  totalQuantity,
+  cartItem,
+  productPrice,
+  listTotalPriceDOMNode
+) {
+  // Call increase API first, then update UI
+  fetchData(API.getIncreaseProductQuantityInCartAPI(productId), () => {
+    // Code to update UI
+    const decreaseBtn = cartItem.querySelector(
+      '.cart-item__quantity-decrease-btn'
+    );
+    const increaseBtn = cartItem.querySelector(
+      '.cart-item__quantity-increase-btn'
+    );
+    const quantityNumDOMNode = cartItem.querySelector(
+      '.cart-item__quantity-num'
+    );
+    const itemTotalPriceNum = cartItem.querySelector(
+      '.cart-item__total-price-num'
+    );
+
+    const nextCurrentQuantity = Number(quantityNumDOMNode.innerHTML) + 1;
+
+    // Toggle UI
+    if (nextCurrentQuantity <= 1) {
+      decreaseBtn.classList.add('cart-item__quantity-control-btn--disabled');
+    } else {
+      decreaseBtn.classList.remove('cart-item__quantity-control-btn--disabled');
+    }
+    if (nextCurrentQuantity >= totalQuantity) {
+      increaseBtn.classList.add('cart-item__quantity-control-btn--disabled');
+    } else {
+      increaseBtn.classList.remove('cart-item__quantity-control-btn--disabled');
+    }
+
+    // Increase quantity
+    quantityNumDOMNode.innerHTML = `
+    ${nextCurrentQuantity}
+  `;
+
+    // Change item total price
+    itemTotalPriceNum.innerText = `${numberWithCommas(
+      nextCurrentQuantity * productPrice
+    )}`;
+
+    // Change the list total price
+    if (listTotalPriceDOMNode) {
+      const nextListTotalPrice =
+        Number(listTotalPriceDOMNode.innerHTML.replaceAll('.', '')) +
+        productPrice;
+      listTotalPriceDOMNode.innerHTML = `
+        ${numberWithCommas(nextListTotalPrice)}
+      `;
+    }
+  });
+}
+
+function defaultRemoveHandler(
+  productId,
+  cartItem,
+  productPrice,
+  listTotalPriceDOMNode
+) {
+  // Call remove API first, then update UI
+  fetchData(API.getRemoveProductInCartAPI(productId), () => {
+    // Code to update UI
+    const quantityNumDOMNode = cartItem.querySelector(
+      '.cart-item__quantity-num'
+    );
+
+    const currentQuantity = Number(quantityNumDOMNode.innerHTML);
+
+    // Change the list total price
+    if (listTotalPriceDOMNode) {
+      const nextListTotalPrice =
+        Number(listTotalPriceDOMNode.innerHTML.replaceAll('.', '')) -
+        productPrice * currentQuantity;
+      listTotalPriceDOMNode.innerHTML = `
+        ${numberWithCommas(nextListTotalPrice)}
+      `;
+    }
+
+    cartItem.remove();
+  });
+}
+
+// Options template
+const listOptions = {
+  products: [], // List of products + current quantity
   additionalClasses: {
+    cartListItems: '2',
+    cartListTotalPrice: '2',
     cartItem: '2',
     cartItemImg: '2',
     cartItemBody: '2',
     cartItemInfo: '2',
     cartItemName: '2',
+
     cartItemPriceWrapper: '2',
-    cartItemTotalPrice: '2',
-    cartItemProductPrice: '2',
+    cartItemTotalPriceWrapper: '2',
+    cartItemTotalPriceNum: '2',
+    cartItemProductPriceWrapper: '2',
+    cartItemProductPriceNum: '2',
+
     cartItemTotalQuantity: '2',
     cartItemControl: '2',
     cartItemQuantityWrapper: '2',
@@ -274,6 +521,42 @@ const options = {
   decreaseBtnEventHandler: () => {},
   increaseBtnEventHandler: () => {},
   removeBtnEventHandler: () => {},
+};
+
+const itemOptions = {
+  productDetail: {
+    id: 1,
+    images: ['', ''],
+    name: '1',
+    totalQuantity: 8,
+    currentQuantity: 1,
+    price: 12345,
+  },
+  additionalClasses: {
+    cartItem: '2',
+    cartItemImg: '2',
+    cartItemBody: '2',
+    cartItemInfo: '2',
+    cartItemName: '2',
+
+    cartItemPriceWrapper: '2',
+    cartItemTotalPriceWrapper: '2',
+    cartItemTotalPriceNum: '2',
+    cartItemProductPriceWrapper: '2',
+    cartItemProductPriceNum: '2',
+
+    cartItemTotalQuantity: '2',
+    cartItemControl: '2',
+    cartItemQuantityWrapper: '2',
+    cartItemDecreaseBtn: '2',
+    cartItemQuantityNum: '2',
+    cartItemIncreaseBtn: '2',
+    cartItemRemoveBtn: '2',
+  },
+  decreaseBtnEventHandler: () => {},
+  increaseBtnEventHandler: () => {},
+  removeBtnEventHandler: () => {},
+  listTotalPriceDOMNode: {}, // A DOM node to update the value
 };
 
 export { getProductCartItemFactory };
