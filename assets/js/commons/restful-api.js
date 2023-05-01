@@ -1,6 +1,6 @@
 const BASE_URL = '';
 
-BASE_URL + "/upadate/id";
+BASE_URL + '/upadate/id';
 
 const API = {
   getIncreaseProductQuantityInCartAPI(productId) {
@@ -11,6 +11,9 @@ const API = {
   },
   getRemoveProductInCartAPI(productId) {
     return BASE_URL + 'remove path name';
+  },
+  getAddProductToCartAPI(productId, quantity) {
+    return BASE_URL + 'add path name';
   },
 };
 

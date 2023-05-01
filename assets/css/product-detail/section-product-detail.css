@@ -456,10 +456,25 @@ body:has(.prod-detail-main__carousel-main-img-wrapper-1--zoom) {
 }
 
 .prod-detail-main__add-cart-btn {
-  display: block;
+  display: flex;
   width: 100%;
   min-height: 60px;
   font-size: 1.6rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.prod-detail-main__add-cart-btn--loading:hover {
+  background-color: var(--primary-color-light);
+}
+
+.prod-detail-main__add-cart-btn-loading {
+  display: none;
+}
+
+.prod-detail-main__add-cart-btn--loading
+  .prod-detail-main__add-cart-btn-loading {
+  display: block;
 }
 
 .prod-detail-main__add-cart-btn::after {
@@ -468,6 +483,10 @@ body:has(.prod-detail-main__carousel-main-img-wrapper-1--zoom) {
 
 .prod-detail-main__add-cart-btn.btn-disabled::after {
   content: 'Hết hàng';
+}
+
+.prod-detail-main__add-cart-btn--loading::after {
+  display: none;
 }
 
 .prod-detail-info-and-detail {

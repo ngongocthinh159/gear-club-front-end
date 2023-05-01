@@ -19,6 +19,7 @@ function renderProductDetail(prodDetailDOMNode) {
 
   // Fetch data then put it into each section
   fetchData('get one product', (product) => {
+    console.log(product);
     const mainDOMElement =
       prodDetailDOMNode.querySelector('.prod-detail-main');
     renderProductDetailMain(mainDOMElement, product);

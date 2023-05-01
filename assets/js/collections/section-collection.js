@@ -509,7 +509,7 @@ function rerenderProductList() {
     const rowElement = productListUl.querySelector('.row');
     products.forEach((product) => {
       const col = document.createElement('div');
-      col.className = 'col l-3 m-3 c-12';
+      col.className = 'col l-3 m-4 c-6';
 
       const productItemLi = document.createElement('li');
       productItemLi.className = 'collection__product-item mb-32';

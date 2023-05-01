@@ -4,6 +4,8 @@ import { fetchData } from './fetch.js';
 import { API } from './restful-api.js';
 
 const CURRENCY = '₫';
+const ANIMATION_LOADING_DELAY = 0;
+const UPDATE_DELAY = 500;
 
 function getProductCartItemFactory() {
   return {
@@ -238,6 +240,11 @@ function getProductCartItemFactory() {
                           "
             >Bỏ</button>
           </div>
+
+          <!-- Loading animation -->
+          <div class="cart-item__loading">
+            <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>              
+          </div>
         </div>
       `;
 
@@ -338,7 +345,11 @@ function getProductCartItemFactory() {
         listTotalPrice += product.currentQuantity * product.price;
       });
 
+      // Get initial total price
       listTotalPriceDOMNode.innerHTML = numberWithCommas(listTotalPrice);
+
+      // Attach add new cart item function to the list
+      listCartItems.addNewCartItem = addNewCartItem;
 
       return [listCartItems, listTotalPriceDOMNode];
     },
@@ -352,6 +363,9 @@ function defaultDecreaseHandler(
   productPrice,
   listTotalPriceDOMNode
 ) {
+  // Loading state
+  cartItem.classList.add('cart-item--loading');
+
   // Call decrease API first, then update UI
   fetchData(API.getDecreaseProductQuantityInCartAPI(productId), () => {
     // Code to update UI
@@ -401,6 +415,11 @@ function defaultDecreaseHandler(
       ${numberWithCommas(nextListTotalPrice)}
     `;
     }
+
+    // Done loading state
+    setTimeout(() => {
+      cartItem.classList.remove('cart-item--loading');
+    }, ANIMATION_LOADING_DELAY);
   });
 }
 
@@ -411,6 +430,9 @@ function defaultIncreaseHandler(
   productPrice,
   listTotalPriceDOMNode
 ) {
+  // Loading state
+  cartItem.classList.add('cart-item--loading');
+
   // Call increase API first, then update UI
   fetchData(API.getIncreaseProductQuantityInCartAPI(productId), () => {
     // Code to update UI
@@ -460,6 +482,11 @@ function defaultIncreaseHandler(
         ${numberWithCommas(nextListTotalPrice)}
       `;
     }
+
+    // Done loading state
+    setTimeout(() => {
+      cartItem.classList.remove('cart-item--loading');
+    }, ANIMATION_LOADING_DELAY);
   });
 }
 
@@ -469,6 +496,9 @@ function defaultRemoveHandler(
   productPrice,
   listTotalPriceDOMNode
 ) {
+  // Loading state
+  cartItem.classList.add('cart-item--loading');
+
   // Call remove API first, then update UI
   fetchData(API.getRemoveProductInCartAPI(productId), () => {
     // Code to update UI
@@ -490,6 +520,42 @@ function defaultRemoveHandler(
 
     cartItem.remove();
   });
+}
+
+function addNewCartItem(options, addingQuantity) {
+  // This: the cart item list => Cart item list call this function
+  // This function is called when user add product in product card
+  // or in product detail page
+  const listTotalPriceDOMNode = document.querySelector(
+    '.cart-list-items__list-total-price'
+  );
+
+  // Create new cart item, then append to list
+  const itemOptions = {
+    productDetail: {
+      id: options.productDetail.id,
+      images: options.productDetail.images,
+      name: options.productDetail.name,
+      totalQuantity: options.productDetail.totalQuantity,
+      currentQuantity: addingQuantity,
+      price: options.productDetail.price,
+    },
+    additionalClasses: options.additionalClasses,
+    listTotalPriceDOMNode: listTotalPriceDOMNode,
+  };
+  const cartItem = getProductCartItemFactory().buildItem(itemOptions);
+  this.appendChild(cartItem);
+
+  // Update total price
+  if (listTotalPriceDOMNode) {
+    const nextListTotalPrice =
+      Number(listTotalPriceDOMNode.innerHTML.replaceAll('.', '')) +
+      itemOptions.productDetail.price *
+        itemOptions.productDetail.currentQuantity;
+    listTotalPriceDOMNode.innerHTML = `
+        ${numberWithCommas(nextListTotalPrice)}
+      `;
+  }
 }
 
 // Options template

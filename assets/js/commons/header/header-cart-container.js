@@ -75,7 +75,6 @@ function renderCartContainer(headerDOMNode) {
     products.forEach((product) => {
       product.totalQuantity = product.quantity;
       product.currentQuantity = 1;
-      delete product.quantity;
     });
 
     // Generate options

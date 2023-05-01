@@ -5,7 +5,7 @@ const categoryList = ['mouse', 'keyboard', 'headphone', 'mousepad'];
 
 const products = [];
 
-for (let i = 0; i < 16; i++) {
+for (let i = 0; i < 24; i++) {
   const product = {
     id: i,
     name: `Chuột không dây siêu nhẹ Pulsar X2 Wireless Aim Trainer Pack (Limited Edition) - Medium/Mini`,

@@ -1,4 +1,5 @@
 import { numberWithCommas } from '../commons/utils.js';
+import { defaultAddBtnEventHandler } from '../commons/product-card-factory.js';
 
 function renderProductDetailMain(mainDOMElement, product) {
   mainDOMElement.innerHTML = `
@@ -172,9 +173,11 @@ function renderProductDetailMain(mainDOMElement, product) {
           </div>
 
           <button
-            class="btn btn-primary prod-detail-main__add-cart-btn 
+            class="prod-detail-main__add-cart-btn btn btn-primary 
                   ${product.quantity === 0 ? 'btn-disabled' : ''}"
-          ></button>
+          >
+            <div class="prod-detail-main__add-cart-btn-loading circle-loading"></div>
+          </button>
         </div>
       </div>
     </div>
@@ -246,6 +249,9 @@ function handleEvent(mainDOMElement, product) {
 
   // Handle increase/decrease quantity
   handleQuantityBtnsClick(mainDOMElement, product.quantity);
+
+  // Handle add btn click
+  hanleAddBtnClick(mainDOMElement, product);
 }
 
 function handlePrevNextBtnsClick(mainDOMElement) {
@@ -305,6 +311,7 @@ function handlePrevNextBtnsClick(mainDOMElement) {
   });
 }
 
+// Update active index of carousel
 function updateActiveIndexText(mainDOMElement) {
   const activeItem = mainDOMElement.querySelector(
     '.prod-detail-main__carousel-item--active'
@@ -380,6 +387,39 @@ function handleQuantityBtnsClick(mainDOMElement, quantity) {
     }
 
     quantityElement.innerHTML = nextQuantity;
+  });
+}
+
+/**
+ * The main logic is in the defaultAddBtnEventHandler() function in product card factory file
+ * @param {*} mainDOMElement
+ * @param {*} product
+ */
+function hanleAddBtnClick(mainDOMElement, product) {
+  const addBtn = mainDOMElement.querySelector(
+    '.prod-detail-main__add-cart-btn'
+  );
+
+  addBtn.addEventListener('click', () => {
+    const addingQuantity = Number(
+      mainDOMElement.querySelector('.prod-detail-main__prod-quantity-num')
+        .innerText
+    );
+
+    const options = {
+      productDetail: {
+        id: product.id,
+        images: product.images,
+        name: product.name,
+        totalQuantity: product.quantity,
+        price: product.price,
+      },
+      additionalClasses: {
+        cartItemProductPriceWrapper: 'd-none',
+      },
+    };
+
+    defaultAddBtnEventHandler(options, addingQuantity, addBtn);
   });
 }
 
