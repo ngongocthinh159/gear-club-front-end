@@ -22,70 +22,193 @@ function renderSearchContainer(headerDOMNode) {
         placeholder="Tìm kiếm sản phẩm..."
       />
 
-      <div class="header__search-result-wrapper">
-        <ul class="header__search-type-list">
-          <li
-            class="header__search-type-item header__search-type-item--active"
-            data-search-type-toggler
-          >
-            Sản phẩm
-          </li>
-          <li
-            class="header__search-type-item"
-            data-search-type-toggler
-          >
-            Danh mục
-          </li>
-        </ul>
-        <ul class="header__search-result-list">
-          <li class="header__search-result-item">
-            <a href="" class="header__search-result-item-link">
-              <img
-                class="header__search-result-item-img"
-                src="./assets/imgs/home/mock-product.webp"
-                alt=""
-              />
+      <ul class="header__search-type-list">
+        <li
+          class="header__search-type-item header__search-type-item--active"
+          data-search-type-toggler
+        >
+          Sản phẩm
+        </li>
+        <li
+          class="header__search-type-item"
+          data-search-type-toggler
+        >
+          Danh mục
+        </li>
+      </ul>
 
-              <div
-                class="header__search-result-item-info header__search-result-item-info--price"
-              >
-                <h3 class="header__search-result-item-title">
-                  Chuột không dây siêu nhẹ Lamzu Atlantis Mini
-                </h3>
-                <span class="header__search-result-item-price"
-                  >2.499.999đ</span
-                >
-                <span class="header__search-result-item-quantity"
-                  >6 sản phẩm</span
-                >
-              </div>
-            </a>
-          </li>
-          <li class="header__search-result-item">
-            <a href="" class="header__search-result-item-link">
-              <img
-                class="header__search-result-item-img"
-                src="./assets/imgs/home/mock-product.webp"
-                alt=""
-              />
 
-              <div
-                class="header__search-result-item-info header__search-result-item-info--price"
+
+
+
+      <ul class="header__search-result-list">
+        <li class="header__search-result-item">
+          <a href="" class="header__search-result-item-link">
+            <img
+              class="header__search-result-item-img"
+              src="./assets/imgs/home/mock-product.webp"
+              alt=""
+            />
+
+            <div
+              class="header__search-result-item-info header__search-result-item-info--price"
+            >
+              <h3 class="header__search-result-item-title">
+                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
+              </h3>
+              <span class="header__search-result-item-price"
+                >2.499.999đ</span
               >
-                <h3 class="header__search-result-item-title">
-                  Chuột không dây siêu nhẹ Lamzu Atlantis Mini
-                </h3>
-                <span class="header__search-result-item-price"
-                  >2.499.999đ</span
-                >
-                <span class="header__search-result-item-quantity"
-                  >6 sản phẩm</span
-                >
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
+              <span class="header__search-result-item-quantity"
+                >6 sản phẩm</span
+              >
+            </div>
+          </a>
+        </li>
+        <li class="header__search-result-item">
+          <a href="" class="header__search-result-item-link">
+            <img
+              class="header__search-result-item-img"
+              src="./assets/imgs/home/mock-product.webp"
+              alt=""
+            />
+
+            <div
+              class="header__search-result-item-info header__search-result-item-info--price"
+            >
+              <h3 class="header__search-result-item-title">
+                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
+              </h3>
+              <span class="header__search-result-item-price"
+                >2.499.999đ</span
+              >
+              <span class="header__search-result-item-quantity"
+                >6 sản phẩm</span
+              >
+            </div>
+          </a>
+        </li>
+        <li class="header__search-result-item">
+          <a href="" class="header__search-result-item-link">
+            <img
+              class="header__search-result-item-img"
+              src="./assets/imgs/home/mock-product.webp"
+              alt=""
+            />
+
+            <div
+              class="header__search-result-item-info header__search-result-item-info--price"
+            >
+              <h3 class="header__search-result-item-title">
+                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
+              </h3>
+              <span class="header__search-result-item-price"
+                >2.499.999đ</span
+              >
+              <span class="header__search-result-item-quantity"
+                >6 sản phẩm</span
+              >
+            </div>
+          </a>
+        </li>
+        <li class="header__search-result-item">
+          <a href="" class="header__search-result-item-link">
+            <img
+              class="header__search-result-item-img"
+              src="./assets/imgs/home/mock-product.webp"
+              alt=""
+            />
+
+            <div
+              class="header__search-result-item-info header__search-result-item-info--price"
+            >
+              <h3 class="header__search-result-item-title">
+                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
+              </h3>
+              <span class="header__search-result-item-price"
+                >2.499.999đ</span
+              >
+              <span class="header__search-result-item-quantity"
+                >6 sản phẩm</span
+              >
+            </div>
+          </a>
+        </li>
+        <li class="header__search-result-item">
+          <a href="" class="header__search-result-item-link">
+            <img
+              class="header__search-result-item-img"
+              src="./assets/imgs/home/mock-product.webp"
+              alt=""
+            />
+
+            <div
+              class="header__search-result-item-info header__search-result-item-info--price"
+            >
+              <h3 class="header__search-result-item-title">
+                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
+              </h3>
+              <span class="header__search-result-item-price"
+                >2.499.999đ</span
+              >
+              <span class="header__search-result-item-quantity"
+                >6 sản phẩm</span
+              >
+            </div>
+          </a>
+        </li>
+        <li class="header__search-result-item">
+          <a href="" class="header__search-result-item-link">
+            <img
+              class="header__search-result-item-img"
+              src="./assets/imgs/home/mock-product.webp"
+              alt=""
+            />
+
+            <div
+              class="header__search-result-item-info header__search-result-item-info--price"
+            >
+              <h3 class="header__search-result-item-title">
+                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
+              </h3>
+              <span class="header__search-result-item-price"
+                >2.499.999đ</span
+              >
+              <span class="header__search-result-item-quantity"
+                >6 sản phẩm</span
+              >
+            </div>
+          </a>
+        </li>
+        <li class="header__search-result-item">
+          <a href="" class="header__search-result-item-link">
+            <img
+              class="header__search-result-item-img"
+              src="./assets/imgs/home/mock-product.webp"
+              alt=""
+            />
+
+            <div
+              class="header__search-result-item-info header__search-result-item-info--price"
+            >
+              <h3 class="header__search-result-item-title">
+                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
+              </h3>
+              <span class="header__search-result-item-price"
+                >2.499.999đ</span
+              >
+              <span class="header__search-result-item-quantity"
+                >6 sản phẩm</span
+              >
+            </div>
+          </a>
+        </li>
+      </ul>
+
+
+
+
+
 
       <div class="header__search-result-loading">
         <ul class="header__search-type-list">
@@ -104,7 +227,7 @@ function renderSearchContainer(headerDOMNode) {
         </ul>
         <ul class="header__search-result-list">
           <li class="header__search-result-item">
-            <div class="skeleton" style="height: 96px"></div>
+            <div class="skeleton" style="width: 100%; height: 96px"></div>
           </li>
           <li class="header__search-result-item">
             <div class="skeleton" style="height: 96px"></div>

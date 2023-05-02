@@ -375,6 +375,8 @@
   background-color: var(--white-color);
   border-radius: 8px;
   padding: 32px 40px 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .header__search-container--active .header__search-container-main {
@@ -404,6 +406,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .header__search-container-close-btn:hover {
@@ -437,13 +440,21 @@
   border-radius: 0;
 }
 
-.header__search-result-wrapper {
+.header__search-result-list {
   display: none;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .header__search-container:has(.header__search-input--search-done)
-  .header__search-result-wrapper {
-  display: block;
+  .header__search-result-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.header__search-result-loading .header__search-result-list {
+  display: flex!important;
+  flex-wrap: wrap;
 }
 
 .header__search-type-list {
@@ -451,6 +462,14 @@
   font-size: 1.8rem;
   gap: 16px;
   margin-bottom: 24px;
+}
+
+.header__search-container:has(.header__search-input--searching) .header__search-type-list {
+  display: none;
+}
+
+.header__search-result-loading .header__search-type-list {
+  display: flex!important;
 }
 
 .header__search-type-item {
@@ -470,12 +489,12 @@
   color: var(--text-dark-color);
 }
 
-.header__search-result-list {
-  overflow-y: auto;
-}
-
 .header__search-result-item {
   position: relative;
+}
+
+.header__search-result-loading .header__search-result-item {
+  width: 100%;
 }
 
 .header__search-result-item:not(:last-child) {
@@ -552,6 +571,8 @@
 .header__search-container:has(.header__search-input--searching)
   .header__search-result-loading {
   display: block;
+  flex-grow: 1;
+  height: 100%;
 }
 
 /* Shopping cart */
@@ -857,5 +878,19 @@
   }
   .header-cart-footer__payment-btn i {
     display: none;
+  }
+  .header__search-container-main {
+    --margin-around: 8px;
+    padding: 24px;
+  }
+  .header__search-result-item-img {
+    width: 60px;
+    height: 60px;
+  }
+  .header__search-result-item-title {
+    font-size: 1.5rem;
+  }
+  .header__search-result-item-price {
+    font-size: 1.4rem;
   }
 }
