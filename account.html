@@ -42,10 +42,7 @@
     <link rel="stylesheet" href="./assets/css/commons/footer.css" />
 
     <!-- CSS -->
-    <link
-      rel="stylesheet"
-      href="./assets/css/shopping-cart/section-shopping-cart.css"
-    />
+    <link rel="stylesheet" href="./assets/css/account/section-account.css" />
   </head>
   <body>
     <div class="app">
@@ -72,8 +69,8 @@
       <header class="header"></header>
       <div class="padding-header"></div>
 
-      <!-- Section shopping cart -->
-      <section class="s-cart"></section>
+      <!-- Section account -->
+      <section class="sec-account"></section>
 
       <!-- Footer -->
       <footer class="footer"></footer>
@@ -82,7 +79,7 @@
     <script type="module">
       import { renderHeader } from './assets/js/commons/header/header.js';
       import { renderFooter } from './assets/js/commons/footer.js';
-      import { renderSCartSection } from './assets/js/shopping-cart/section-shopping-cart.js';
+      import { renderSectionAccount } from './assets/js/account/section-account.js';
 
       const header = document.querySelector('header.header');
       renderHeader(header, false);
@@ -90,8 +87,8 @@
       const footer = document.querySelector('footer.footer');
       renderFooter(footer);
 
-      const sCartDOMNode = document.querySelector('.s-cart');
-      renderSCartSection(sCartDOMNode);
+      const secAccountDOMNode = document.querySelector('.sec-account');
+      renderSectionAccount(secAccountDOMNode);
     </script>
   </body>
 </html>

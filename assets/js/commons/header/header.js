@@ -40,7 +40,7 @@ function renderHeader(headerDOMNode, isTransparentTop = false) {
           </li>
 
           <li class="header__side-nav-item">
-            <a href="" class="header__side-nav-link"
+            <a href="/account.html" class="header__side-nav-link"
               ><i class="fa-regular fa-user"></i
             ></a>
           </li>

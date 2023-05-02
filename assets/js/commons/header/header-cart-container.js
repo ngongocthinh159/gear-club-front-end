@@ -1,7 +1,8 @@
 import { fetchData } from '../fetch.js';
 import { getProductCartItemFactory } from '../product-cart-item-factory.js';
+import { API } from '../restful-api.js';
 
-const COUNTRY_CURRENCY = "VND";
+const COUNTRY_CURRENCY = 'VND';
 
 function renderCartContainer(headerDOMNode) {
   const cartContainerWrapperDOMElement = headerDOMNode.querySelector(
@@ -70,7 +71,7 @@ function renderCartContainer(headerDOMNode) {
   const priceNumWrapper = headerDOMNode.querySelector(
     '.header-cart-footer__price-num-wrapper'
   );
-  fetchData('get shopping cart', (products) => {
+  fetchData(API.getShoppingCartAPI(), (products) => {
     // Data transformation then transfer to list options
     products.forEach((product) => {
       product.totalQuantity = product.quantity;

@@ -1,0 +1,119 @@
+.sec-account {
+}
+
+.sec-account__header {
+  background-color: #f4f4f4;
+  --sec-account-header-height: 64px;
+  height: var(--sec-account-header-height);
+}
+
+.sec-account__header--loading {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.sec-account__header-wrapper {
+  display: flex;
+  height: var(--sec-account-header-height);
+}
+
+.sec-account__header-nav {
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+  justify-content: center;
+  gap: 32px;
+}
+
+.sec-account__header-nav-item {
+  height: 100%;
+  font-size: 1.6rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: rgba(39, 39, 39, 0.7);
+  transition: all 0.15s linear;
+}
+
+.sec-account__header-nav-item:hover {
+  color: rgba(39, 39, 39, 1);
+}
+
+.sec-account__header-nav-item--active {
+  border-bottom: 3px solid var(--primary-color-light);
+  color: rgba(39, 39, 39, 1);
+}
+
+.sec-account__logout-btn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 16px;
+  font-size: 1.5rem;
+  color: var(--text-dark-color);
+  transition: all 0.15s linear;
+}
+
+.sec-account__logout-btn:hover {
+  opacity: 0.6;
+}
+
+.acc-info__form {
+  max-width: 1000px;
+  margin: auto;
+  padding: 48px;
+}
+
+.acc-info__form-success-update {
+  padding: 6px 24px;
+  font-size: 1.4rem;
+  border-radius: 8px;
+  border: 3px solid green;
+  color: green;
+  font-weight: 700;
+  align-items: center;
+  margin-bottom: 16px;
+  display: none;
+}
+
+.acc-info__form--success-update .acc-info__form-success-update {
+  display: inline-flex;
+}
+
+.acc-info__form-success-update i {
+  font-size: 2.4rem;
+}
+
+.acc-info__form-input-group {
+  margin-bottom: 16px;
+}
+
+.acc-info__form-label {
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.acc-info__control {
+  float: right;
+}
+
+/* 
+ * Responsive
+ */
+
+/* Mobile & Tablet */
+@media (max-width: 1023px) {
+  .acc-info__form {
+    padding: 32px 0px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+}

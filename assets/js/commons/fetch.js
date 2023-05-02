@@ -1,6 +1,6 @@
-import { products } from '../mock-data/mock-data.js';
+import { products, user } from '../mock-data/mock-data.js';
 
-const MOCK_DELAY_TIME = 2000;
+const MOCK_DELAY_TIME = 300;
 
 /**
  *
@@ -19,8 +19,8 @@ function fetchData(URL, callback) {
     }, MOCK_DELAY_TIME);
 
     return;
-  } 
-  
+  }
+
   if (URL === 'get shopping cart') {
     setTimeout(() => {
       callback(products.slice(0, 3));
@@ -36,7 +36,15 @@ function fetchData(URL, callback) {
 
     return;
   }
-  
+
+  if (URL === 'user information') {
+    setTimeout(() => {
+      callback(user);
+    }, MOCK_DELAY_TIME);
+
+    return;
+  }
+
   setTimeout(() => {
     callback(products);
   }, MOCK_DELAY_TIME);

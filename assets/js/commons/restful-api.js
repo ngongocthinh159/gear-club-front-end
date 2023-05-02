@@ -15,6 +15,15 @@ const API = {
   getAddProductToCartAPI(productId, quantity) {
     return BASE_URL + 'add path name';
   },
+  getShoppingCartAPI() {
+    return BASE_URL + 'get shopping cart';
+  },
+  getUserInformationAPI() {
+    return BASE_URL + 'user information';
+  },
+  getupdateUserInformationAPI() {
+    return BASE_URL + 'update user information';
+  },
 };
 
 export { API };

@@ -65,4 +65,11 @@ for (let i = 0; i < 24; i++) {
   products.push(product);
 }
 
-export { products };
+const user = {
+  name: 'Thinh',
+  email: 'ngongocthinh124@gmail.com',
+  phone: '+84 382 210 397',
+  address: 'RMIT University',
+};
+
+export { products, user };
