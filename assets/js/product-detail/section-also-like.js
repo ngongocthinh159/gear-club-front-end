@@ -1,7 +1,8 @@
 import { fetchData } from '../commons/fetch.js';
 import { getProductCardFactory } from '../commons/product-card-factory.js';
+import { API } from '../commons/restful-api.js';
 
-function renderAlsoLike(alsoLikeDOMNode) {
+function renderAlsoLike(alsoLikeDOMNode, currentProduct) {
   alsoLikeDOMNode.innerHTML = `
     <div class="grid wide">
       <h3 class="prod-detail__also-like-heading">Có thể bạn sẽ thích</h3>
@@ -12,7 +13,11 @@ function renderAlsoLike(alsoLikeDOMNode) {
 
   const row = alsoLikeDOMNode.querySelector('.row');
 
-  fetchData('get also like products', (products) => {
+  fetchData(API.getAlsoLikeProducts(currentProduct.category), (result) => {
+    let products = result.products;
+    shuffleArray(products);
+    products = products.slice(0, 4);
+
     products.forEach((product) => {
       const col = document.createElement('div');
       col.className = 'col l-3 m-6 c-12';
@@ -32,6 +37,13 @@ function renderAlsoLike(alsoLikeDOMNode) {
       row.appendChild(col);
     });
   });
+}
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
 }
 
 export { renderAlsoLike };

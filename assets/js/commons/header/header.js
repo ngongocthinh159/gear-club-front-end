@@ -67,7 +67,6 @@ function renderHeader(headerDOMNode, isTransparentTop = false) {
   renderNavList(headerDOMNode);
 
   // Render search container
-
   renderSearchContainer(headerDOMNode);
 
   // Render cart container

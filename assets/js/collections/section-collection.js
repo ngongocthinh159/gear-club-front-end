@@ -1,6 +1,7 @@
 import { fetchData } from '../commons/fetch.js';
 import { numberWithCommas } from '../commons/utils.js';
 import { getProductCardFactory } from '../commons/product-card-factory.js';
+import { API } from '../commons/restful-api.js';
 
 const MAX_VALUE = 200000000;
 const MIN_VALUE = 0;
@@ -15,6 +16,7 @@ const SORT_TYPE = {
   OLDEST_TO_NEWEST: 'oldestToNewest',
 };
 const DEFAULT_SORT_TYPE = SORT_TYPE.A_TO_Z;
+const DEFAULT_ITEMS_PER_PAGE = 24;
 
 // Refs
 const toggleFilterContainerLabels = document.querySelectorAll(
@@ -143,23 +145,29 @@ function firstFetch() {
   // Skeleton loading before fetch not done
   skeletionLoadingNow();
 
-  // Render sort list
-
   // Fetch all data from collection
   // After fetch render the brand list and category list
-  fetchData('URL without params to get all possible filter', (products) => {
+  fetchData(API.getAllProductAPI(), (products) => {
     const brands = new Map();
     const categories = new Map();
 
     products.forEach((product) => {
+      // Special case to handle
+      if (
+        product.vendorName.toLowerCase() === 'Lethal Gaming Gear'.toLowerCase()
+      ) {
+        product.vendorName = 'Lethal';
+      }
+      product.vendorName = product.vendorName.replaceAll(' ', '');
+
       // If current key is exist => Count + 1
-      if (brands.get(product.brand.toLowerCase())) {
+      if (brands.get(product.vendorName.toLowerCase())) {
         brands.set(
-          product.brand.toLowerCase(),
-          brands.get(product.brand.toLowerCase()) + 1
+          product.vendorName.toLowerCase(),
+          brands.get(product.vendorName.toLowerCase()) + 1
         );
       } else {
-        brands.set(product.brand.toLowerCase(), 1);
+        brands.set(product.vendorName.toLowerCase(), 1);
       }
 
       if (categories.get(product.category.toLowerCase())) {
@@ -176,6 +184,12 @@ function firstFetch() {
     const brandListUl = document.querySelector('.collection__brand-list');
     const brandHTMLs = [];
     for (const brand of brands.entries()) {
+      // Special case
+      let brandName = brand[0];
+      if (brandName === 'lethal') {
+        brandName = 'LethalGamingGear';
+      }
+
       brandHTMLs.push(`
         <li class="collection__brand-item">
           <label
@@ -189,7 +203,7 @@ function firstFetch() {
               hidden
               data-filter-trigger
             />
-            ${brand[0]} (<span>${brand[1]}</span>)
+            ${brandName} (<span>${brand[1]}</span>)
           </label>
         </li>
       `);
@@ -255,9 +269,10 @@ function updateFilterAccordingToURL() {
     if (key === 'brands') {
       const brands = value.split(',');
       brands.forEach((brand) => {
-        const currentBrandCheckbox = document.querySelector(
+        let currentBrandCheckbox = document.querySelector(
           `#${brand}-toggler-input`
         );
+
         currentBrandCheckbox.checked = true;
       });
     }
@@ -317,13 +332,19 @@ function generateAppliedFilterList(brands, categories) {
 
   // Brands
   for (const brand of brands.keys()) {
+    // Special case
+    let brandName = brand;
+    if (brand === 'lethal') {
+      brandName = 'LethalGamingGear'
+    }
+
     HTMLs.push(`
       <li class="collection__aplied-filter-item">
         <label
           class="collection__aplied-filter-label"
           for="${brand}-toggler-input"
         >
-          ${brand}<i class="bi bi-x"></i>
+          ${brandName}<i class="bi bi-x"></i>
         </label>
       </li>
     `);
@@ -449,42 +470,57 @@ function getFilterStateFromDOMElements() {
  * @returns string is the query string
  */
 function updateQueryURL(filterState) {
-  const [collectionId, pageNum] = getCurrentCollectionIdAndPageNum();
+  const [pageNum, itemsPerPage] = getCurrentQueryInformation();
 
-  let QUERY_URL = `?collectionId=${collectionId}`;
-  QUERY_URL += pageNum ? `&pageNum=${pageNum}` : `&pageNum=1`;
-  QUERY_URL += `&availability=${filterState.availability}`;
+  let QUERY_URL = '';
+
+  QUERY_URL += pageNum ? `?pageNum=${pageNum}` : `?pageNum=1`;
+
+  QUERY_URL += itemsPerPage
+    ? `&itemsPerPage=${itemsPerPage}`
+    : `&itemsPerPage=${DEFAULT_ITEMS_PER_PAGE}`;
+
+  if (filterState.availability === true) {
+    QUERY_URL += `&availability=${filterState.availability}`;
+  }
+
   if (filterState.brands.length !== 0) {
     QUERY_URL += `&brands=${filterState.brands.join(',')}`;
   }
+
   if (filterState.categories.length !== 0) {
     QUERY_URL += `&categories=${filterState.categories.join(',')}`;
   }
+
   QUERY_URL += `&priceFrom=${filterState.priceRange.from}&priceTo=${filterState.priceRange.to}`;
+
   QUERY_URL += `&sortType=${filterState.sortType}`;
+
   history.replaceState(null, null, QUERY_URL);
+
   return QUERY_URL;
 }
 
-function getCurrentCollectionIdAndPageNum() {
+function getCurrentQueryInformation() {
   let temp = window.location.search.slice(1);
   let keyValueStrings = temp.split('&');
-  let collectionId = null;
   let pageNum = null;
+  let itemsPerPage = null;
   keyValueStrings.forEach((keyValueString) => {
     let temp2 = keyValueString.split('=');
     let key = temp2[0];
     let value = temp2[1];
-    if (key === 'collectionId') {
-      collectionId = Number(value);
-    }
 
     if (key === 'pageNum') {
-      pageNum = value;
+      pageNum = Number(value);
+    }
+
+    if (key === 'itemsPerPage') {
+      itemsPerPage = Number(value);
     }
   });
 
-  return [collectionId, pageNum];
+  return [pageNum, itemsPerPage];
 }
 
 /**
@@ -501,10 +537,13 @@ function rerenderProductList() {
   skeletionLoadingNow();
 
   // Update product list
-  fetchData('URL with query params', (products) => {
+  fetchData(API.getFilteredProductAPI(window.location.href), (result) => {
     productListUl.innerHTML = `
       <div class="row"></div>
     `;
+
+    // Result form: {totalPages: 3, currentPage: 1, itemsPerPage: 24, products: [product1, product2]}
+    const products = result.products;
 
     const rowElement = productListUl.querySelector('.row');
     products.forEach((product) => {
@@ -519,7 +558,7 @@ function rerenderProductList() {
           id: product.id,
           images: product.images,
           name: product.name,
-          quantity: product.quantity,
+          totalQuantity: product.quantity,
           price: product.price,
         },
       };
@@ -531,6 +570,89 @@ function rerenderProductList() {
     });
 
     productListUl.appendChild(rowElement);
+
+    // Render pagination
+    if (products.length === 0) {
+      renderPagination(0, 0);
+    } else {
+      renderPagination(result.currentPage, result.totalPages);
+    }
+  });
+}
+
+function renderPagination(currentPage, totalPages) {
+  const pagination = document.querySelector('.collection__pagination');
+  pagination.innerHTML = `
+    <div class="collection__pagination-wrapper">
+      <button
+        class="collection__pagination-control-btn collection__pagination-prev-btn 
+          ${
+            currentPage <= 1
+              ? 'collection__pagination-control-btn--disabled'
+              : ''
+          }
+        "
+      >
+        <i class="bi bi-chevron-left"></i>
+      </button>
+      <span class="collection__pagination-page-num-wrapper">
+        <span class="collection__pagination-current-page-num">${currentPage}</span>
+        <span class="collection__pagination-separator">/</span>
+        <span class="collection__pagination-total-page-num">${totalPages}</span>
+      </span>
+      <button
+        class="collection__pagination-control-btn collection__pagination-next-btn 
+          ${
+            currentPage >= totalPages
+              ? 'collection__pagination-control-btn--disabled'
+              : ''
+          }
+        "
+      >
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  `;
+
+  // Event handler
+  const prevBtn = pagination.querySelector('.collection__pagination-prev-btn');
+  const nextBtn = pagination.querySelector('.collection__pagination-next-btn');
+  const productList = document.querySelector('.collection__filter-bar');
+  prevBtn.addEventListener('click', () => {
+    const nextPage = currentPage - 1;
+
+    if (1 <= nextPage && nextPage <= totalPages) {
+      let QUERY_URL = window.location.search;
+
+      QUERY_URL = QUERY_URL.replace(
+        `pageNum=${currentPage}`,
+        `pageNum=${nextPage}`
+      );
+      history.replaceState(null, null, QUERY_URL);
+      rerenderProductList();
+      productList.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  });
+  nextBtn.addEventListener('click', () => {
+    const nextPage = currentPage + 1;
+
+    if (1 <= nextPage && nextPage <= totalPages) {
+      let QUERY_URL = window.location.search;
+
+      QUERY_URL = QUERY_URL.replace(
+        `pageNum=${currentPage}`,
+        `pageNum=${nextPage}`
+      );
+      history.replaceState(null, null, QUERY_URL);
+      rerenderProductList();
+      productList.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
   });
 }
 

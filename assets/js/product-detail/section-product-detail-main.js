@@ -95,7 +95,7 @@ function renderProductDetailMain(mainDOMElement, product) {
       <!-- Main right -->
       <div class="col l-5 m-12 c-12">
         <div class="prod-detail-main__right-container">
-          <span class="prod-detail-main__prod-brand">${product?.brand}</span>
+          <span class="prod-detail-main__prod-brand">${product?.vendorName}</span>
           <h3 class="prod-detail-main__prod-name">${product?.name}</h3>
 
           <div class="prod-detail-main__prod-price-wrapper">
@@ -118,10 +118,10 @@ function renderProductDetailMain(mainDOMElement, product) {
 
           <span class="prod-detail-main__prod-designed-country">
             Designed in
-            <span class="">${product?.designedIn}</span>
+            <span class="">${product?.designLocation}</span>
           </span>
           <span class="prod-detail-main__prod-warranty">
-            Bảo hành: ${product?.warrantyPeriodInMonths} tháng đổi mới
+            Bảo hành: ${product?.warranty} tháng đổi mới
           </span>
           
           <!-- Render control button when quantity !== 0 -->

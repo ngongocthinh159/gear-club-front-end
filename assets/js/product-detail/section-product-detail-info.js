@@ -6,19 +6,15 @@ function renderProductDetailInfo(infoDOMElement, product) {
       <div class="col l-6 m-12 c-12">
         <div class="prod-detail-info">
           <h4 class="prod-detail-info__subtitle">
-            ${capitalizeTheFirstLetterOfFirstWord(
-              product?.information?.subtitle
-            )}
+            ${capitalizeTheFirstLetterOfFirstWord(product?.name)}
           </h4>
           <h3
             class="prod-detail-info__title gradient-text-primary-color-light"
           >
-            ${capitalizeTheFirstLetterOfFirstWord(product?.information?.title)}
+            ${capitalizeTheFirstLetterOfFirstWord(product?.title)}
           </h3>
           <p class="prod-detail-info__description">
-            ${capitalizeTheFirstLetterOfFirstWord(
-              product?.information?.description
-            )}
+            ${capitalizeTheFirstLetterOfFirstWord(product?.intro)}
           </p>
         </div>
       </div>
@@ -26,20 +22,7 @@ function renderProductDetailInfo(infoDOMElement, product) {
       <div class="col l-6 m-12 c-12">
         <div class="prod-detail-detail">
           <ul class="prod-detail-detail__list">
-            ${product?.detail
-              .map((detail) => {
-                return `
-                <li class="prod-detail-detail__item">
-                  <span class="prod-detail-detail__item-title"
-                    >${detail.title}</span
-                  >
-                  <span class="prod-detail-detail__item-detail"
-                    >${detail.content}</span
-                  >
-                </li>
-              `;
-              })
-              .join('')}
+            ${getFeaturesHTMLs(product.features)}
           </ul>
         </div>
       </div>
@@ -47,6 +30,27 @@ function renderProductDetailInfo(infoDOMElement, product) {
   `;
 
   // Event handling
+}
+
+function getFeaturesHTMLs(features) {
+  const HTMLs = [];
+  for (const name in features) {
+    const featureName = name;
+    const featureDetail = features[featureName];
+    
+    HTMLs.push(`
+      <li class="prod-detail-detail__item">
+        <span class="prod-detail-detail__item-title"
+          >${featureName}</span
+        >
+        <span class="prod-detail-detail__item-detail"
+          >${featureDetail}</span
+        >
+      </li>
+    `);
+  }
+
+  return HTMLs.join('');
 }
 
 export { renderProductDetailInfo };

@@ -1,4 +1,4 @@
-const BASE_URL = '';
+const BASE_URL = 'http://localhost:8080';
 
 BASE_URL + '/upadate/id';
 
@@ -23,6 +23,25 @@ const API = {
   },
   getupdateUserInformationAPI() {
     return BASE_URL + 'update user information';
+  },
+  getAllProductAPI() {
+    return BASE_URL + '/api/product/all';
+  },
+  getFilteredProductAPI(currentURL) {
+    // Build path name
+    let pathName = '/api/product/filter/';
+    const pathNameFromCurrentURL = currentURL.split('?')[1]; // pageNum=1&itemsPerPage=16&availability=true
+
+    pathName += pathNameFromCurrentURL;
+    return BASE_URL + pathName;
+  },
+  getProductByIdAPI(productId) {
+    return BASE_URL + '/api/product/' + productId;
+  },
+  getAlsoLikeProducts(currentProductCategory) {
+    return (
+      BASE_URL + '/api/product/filter/' + `categories=${currentProductCategory}`
+    );
   },
 };
 

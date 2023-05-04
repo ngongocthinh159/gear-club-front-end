@@ -14,6 +14,7 @@ function getProductCardFactory(options) {
   return {
     buildCardElement: () => {
       const productCard = document.createElement('div');
+      
       productCard.className = `
         product-card  
         ${

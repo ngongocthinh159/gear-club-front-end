@@ -29,9 +29,30 @@ function slugify(str) {
   return slug;
 }
 
+/**
+ * @param {*} searchString window.location.search as input
+ * @returns [[key1, value1], [key2, value2],...]
+ */
+function getKeyValueStringsFromURLSearch(searchString) {
+  const res = [];
+  const search = searchString.slice(1);
+
+  const keyValueStrings = search.split('&');
+  keyValueStrings.forEach((keyValueString) => {
+    const temp = keyValueString.split('=');
+    const key = temp[0];
+    const value = temp[1];
+
+    res.push([key, value]);
+  });
+
+  return res;
+}
+
 export {
   numberWithCommas,
   getRandomIntInRange,
   capitalizeTheFirstLetterOfFirstWord,
   slugify,
+  getKeyValueStringsFromURLSearch,
 };
