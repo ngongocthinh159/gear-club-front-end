@@ -131,7 +131,7 @@ function handleFilterTrigger() {
   ];
   filterTriggers.forEach((filterTrigger) => {
     filterTrigger.addEventListener('change', () => {
-      rerenderProductList();
+      rerenderProductList(true);
     });
   });
 }
@@ -335,7 +335,7 @@ function generateAppliedFilterList(brands, categories) {
     // Special case
     let brandName = brand;
     if (brand === 'lethal') {
-      brandName = 'LethalGamingGear'
+      brandName = 'LethalGamingGear';
     }
 
     HTMLs.push(`
@@ -469,8 +469,9 @@ function getFilterStateFromDOMElements() {
  * @param {object} filterState
  * @returns string is the query string
  */
-function updateQueryURL(filterState) {
-  const [pageNum, itemsPerPage] = getCurrentQueryInformation();
+function updateQueryURL(filterState, isResetPageTo1 = false) {
+  let [pageNum, itemsPerPage] = getCurrentQueryInformation();
+  if (isResetPageTo1) pageNum = 1;
 
   let QUERY_URL = '';
 
@@ -528,9 +529,9 @@ function getCurrentQueryInformation() {
  * After get the filter state => Update QUERY URL
  * Fetch data with filter then render it into the tree
  */
-function rerenderProductList() {
+function rerenderProductList(isResetPageTo1 = false) {
   const filterState = getFilterStateFromDOMElements();
-  const QUERY_URL = updateQueryURL(filterState);
+  const QUERY_URL = updateQueryURL(filterState, isResetPageTo1);
   const productListUl = document.querySelector('.collection__product-list');
 
   // Skeleton loading

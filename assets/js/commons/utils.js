@@ -49,10 +49,25 @@ function getKeyValueStringsFromURLSearch(searchString) {
   return res;
 }
 
+function storeToken(token) {
+  localStorage.setItem('SavedToken', 'Bearer ' + token);
+}
+
+function getToken() {
+  return localStorage.getItem('SavedToken');
+}
+
+function removeToken() {
+  localStorage.removeItem('SavedToken');
+}
+
 export {
   numberWithCommas,
   getRandomIntInRange,
   capitalizeTheFirstLetterOfFirstWord,
   slugify,
   getKeyValueStringsFromURLSearch,
+  storeToken,
+  getToken,
+  removeToken,
 };

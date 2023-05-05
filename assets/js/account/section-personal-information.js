@@ -1,5 +1,7 @@
 import { fetchData } from '../commons/fetch.js';
 import { API } from '../commons/restful-api.js';
+import { getToken } from '../commons/utils.js';
+import { request } from '../commons/fetch.js';
 
 function renderSectionPersonalInformation(
   secAccountMainDOMNode,
@@ -9,7 +11,13 @@ function renderSectionPersonalInformation(
   stateChangeNode.classList.add(loadingClass);
 
   // Fetch data about user information, then update UI
-  fetchData(API.getUserInformationAPI(), (user) => {
+  const options = {
+    headers: {
+      Authorization: getToken(),
+    },
+  };
+  request(API.getUserInformationAPI(), options, (result) => {
+    const user = result;
     secAccountMainDOMNode.innerHTML = `
       <form class="acc-info__form">
         <div class="acc-info__form-success-update">
@@ -19,7 +27,7 @@ function renderSectionPersonalInformation(
         <div class="row">
           <div class="col l-6 m-6 c-12">
             <div class="acc-info__form-input-group">
-              <label for="name" class="acc-info__form-label">Name</label>
+              <label for="name" class="acc-info__form-label">First name</label>
               <div class="custom-input-wrapper">
                 <input
                   id="name"
@@ -27,9 +35,26 @@ function renderSectionPersonalInformation(
                   name="name"
                   type="text"
                   class="custom-input__input-text"
-                  value="${user.name}"
+                  value="${user.firstName}"
                 />
-                <span class="custom-input__input-label">Ex: gearclubsogreate</span>
+                <span class="custom-input__input-label">Ex: yourlastname</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col l-6 m-6 c-12">
+            <div class="acc-info__form-input-group">
+              <label for="name" class="acc-info__form-label">Last name</label>
+              <div class="custom-input-wrapper">
+                <input
+                  id="name"
+                  placeholder=" "
+                  name="name"
+                  type="text"
+                  class="custom-input__input-text"
+                  value="${user.lastName}"
+                />
+                <span class="custom-input__input-label">Ex: yourfirstname</span>
               </div>
             </div>
           </div>
@@ -78,7 +103,7 @@ function renderSectionPersonalInformation(
                   name="address"
                   type="text"
                   class="custom-input__input-text"
-                  value="${user.address}"
+                  value="${user.shippingAddress}"
                 />
                 <span class="custom-input__input-label">Ex: RMIT University, Vietnam</span>
               </div>

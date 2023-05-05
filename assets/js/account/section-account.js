@@ -1,7 +1,14 @@
 import { renderSectionOrderHistory } from './section-order-history.js';
 import { renderSectionPersonalInformation } from './section-personal-information.js';
+import { getToken, removeToken } from '../commons/utils.js';
 
 function renderSectionAccount(secAccountDOMNode) {
+  const token = getToken();
+  if (!token) {
+    window.location.replace('/login.html');
+    return;
+  }
+
   secAccountDOMNode.innerHTML = `
     <div class="sec-account__header">
       <div class="grid wide">
@@ -28,7 +35,10 @@ function renderSectionAccount(secAccountDOMNode) {
   // Event handlers
   // Handle logout btn click
   const logoutBtn = secAccountDOMNode.querySelector('.sec-account__logout-btn');
-  logoutBtn.addEventListener('click', () => {});
+  logoutBtn.addEventListener('click', () => {
+    removeToken();
+    window.location.replace('/');
+  });
 
   // Handle nav item click
   const orderBtn = secAccountDOMNode.querySelector(

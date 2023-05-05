@@ -65,27 +65,7 @@
 
         <header class="header"></header>
 
-        <section class="main-content">
-            <h1 class="text-center" style="line-height: 1.4; margin-top:80px;">Đăng nhập</h1>
-
-            <div class="paragraph" style="max-width:450px;">
-                <div class="custom-input-wrapper input">
-                    <input placeholder=" " id="email" type="email" class="custom-input__input-text"/>
-                    <span class="custom-input__input-label">Email</span>
-                </div>
-                <div class="custom-input-wrapper input">
-                    <input placeholder=" " id="password" type="password" class="custom-input__input-text"/>
-                    <span class="custom-input__input-label">Mật khẩu</span>
-                </div>
-
-                <a href="./recover.html" title="Quên mật khẩu?">Quên mật khẩu?</a>
-
-                <div class="text-center">
-                    <button class="btn btn-dark" id="login" style="width: 100%; height: 60px">Đăng nhập</button>
-                    <a href="./signup.html" title="Đăng ký">Đăng ký</a>    
-                </div>
-            </div>
-        </section>
+        <section class="main-content"></section>
 
         <footer class="footer"></footer>
     </div>
@@ -101,22 +81,14 @@
         renderFooter(footer);  
     </script>
     <script type="module">
-        import { validateEmail, validatePassword, displayError } from './assets/js/commons/validation.js';
+        
+        import { renderSectionLogin }from './assets/js/login/section-login.js'
 
-        const loginButton = document.getElementById('login');
-        loginButton.addEventListener("click", function() {
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
+        const mainDOMNode = document.querySelector('.main-content');
+        renderSectionLogin(mainDOMNode);
 
-            if (validateEmail(email) !== true) {
-                displayError('Wrong email format.');
-            } else if (validatePassword(password) !== true) {
-                displayError(validatePassword(password));
-            } else {
-                var error = document.querySelector('.error')
-                if (error !== null) error.remove();
-            }
-        });
+
+        
     </script>
 </body>
 </html>

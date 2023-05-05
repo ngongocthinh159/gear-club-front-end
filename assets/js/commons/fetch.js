@@ -12,42 +12,13 @@ function fetchData(URL, callback) {
     .then((results) => results.json())
     .then((data) => callback(data))
     .catch((e) => console.log(e));
-
-  // if (URL === 'get one product') {
-  //   setTimeout(() => {
-  //     callback(products[0]);
-  //   }, MOCK_DELAY_TIME);
-
-  //   return;
-  // }
-
-  // if (URL === 'get shopping cart') {
-  //   setTimeout(() => {
-  //     callback(products.slice(0, 3));
-  //   }, MOCK_DELAY_TIME);
-
-  //   return;
-  // }
-
-  // if (URL === 'get also like products') {
-  //   setTimeout(() => {
-  //     callback(products.slice(6, 10));
-  //   }, MOCK_DELAY_TIME);
-
-  //   return;
-  // }
-
-  // if (URL === 'user information') {
-  //   setTimeout(() => {
-  //     callback(user);
-  //   }, MOCK_DELAY_TIME);
-
-  //   return;
-  // }
-
-  // setTimeout(() => {
-  //   callback(products);
-  // }, MOCK_DELAY_TIME);
 }
 
-export { fetchData };
+function request(URL, options, callback) {
+  fetch(URL, options)
+    .then((results) => results.json())
+    .then((data) => callback(data))
+    .catch((e) => console.log(e));
+}
+
+export { fetchData, request };

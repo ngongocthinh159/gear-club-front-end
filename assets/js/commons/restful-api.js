@@ -3,6 +3,20 @@ const BASE_URL = 'http://localhost:8080';
 BASE_URL + '/upadate/id';
 
 const API = {
+  // Authentication
+  getRegisterAPI() {
+    return BASE_URL + '/api/auth/register';
+  },
+  getAuthenticateAPI() {
+    return BASE_URL + '/api/auth/authenticate';
+  },
+
+  // User
+  getUserInformationAPI() {
+    return BASE_URL + '/api/customer/personal-information';
+  },
+
+  // Shopping cart
   getIncreaseProductQuantityInCartAPI(productId) {
     return BASE_URL + 'increase path name';
   },
@@ -17,9 +31,6 @@ const API = {
   },
   getShoppingCartAPI() {
     return BASE_URL + 'get shopping cart';
-  },
-  getUserInformationAPI() {
-    return BASE_URL + 'user information';
   },
   getupdateUserInformationAPI() {
     return BASE_URL + 'update user information';

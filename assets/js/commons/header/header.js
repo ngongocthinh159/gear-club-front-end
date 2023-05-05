@@ -63,17 +63,17 @@ function renderHeader(headerDOMNode, isTransparentTop = false) {
     </div>
   `;
 
-  // Render main nav list
-  renderNavList(headerDOMNode);
+  // // Render main nav list
+  // renderNavList(headerDOMNode);
 
-  // Render search container
-  renderSearchContainer(headerDOMNode);
+  // // Render search container
+  // renderSearchContainer(headerDOMNode);
 
-  // Render cart container
-  renderCartContainer(headerDOMNode);
+  // // Render cart container
+  // renderCartContainer(headerDOMNode);
 
-  // Handle general events
-  handleGeneralHeaderEvents(headerDOMNode, isTransparentTop);
+  // // Handle general events
+  // handleGeneralHeaderEvents(headerDOMNode, isTransparentTop);
 }
 
 function handleGeneralHeaderEvents(headerDOMNode, isTransparentTop = false) {
