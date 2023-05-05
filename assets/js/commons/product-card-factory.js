@@ -14,7 +14,7 @@ function getProductCardFactory(options) {
   return {
     buildCardElement: () => {
       const productCard = document.createElement('div');
-      
+
       productCard.className = `
         product-card  
         ${
@@ -112,12 +112,12 @@ function getProductCardFactory(options) {
                     ? options.additionalClasses.productCardAddBtn
                     : ''
                 }
-                "
+                " 
           data-product-id="${
             options?.productDetail?.id !== undefined
               ? options.productDetail.id
-              : defaultAddBtnEventHandler
-          }"
+              : ""
+          }" 
           data-add-to-cart-btn
         >
           <i class="bi bi-cart-plus"></i><span>Thêm</span>
@@ -189,6 +189,7 @@ const options = {
     price: 12345,
   },
   additionalClasses: {
+    productCard: '2',
     productCardLink: '2',
     productCardImgWrapper: '3',
     productCardMainImg: '4',

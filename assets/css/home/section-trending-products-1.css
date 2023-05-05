@@ -75,6 +75,7 @@
   font-size: 2.4rem;
   right: 46px;
   bottom: 50px;
+  left: 46px;
   margin: 0;
   color: var(--text-white-color);
   font-weight: 300;
@@ -91,9 +92,7 @@
 
 .trend-prod-1__item-1 .trend-prod-1__item-title,
 .trend-prod-1__item-2 .trend-prod-1__item-title {
-  right: 50%;
   text-align: center;
-  transform: translateX(50%);
 }
 
 /* Reponsive
@@ -106,12 +105,16 @@
   }
   .trend-prod-1__item-title {
     right: 24px;
-    bottom: 26px;
+    bottom: 16px;
+    left: 24px;
   }
 }
 
 /* Tablet */
 @media (min-width: 740px) and (max-width: 1023px) {
+  .trend-prod-1__item-title {
+    font-size: 1.9rem;
+  }
 }
 
 /* Mobile */
