@@ -20,7 +20,7 @@ function renderHeader(headerDOMNode, isTransparentTop = false) {
 
         <a href="./index.html" class="header__logo-link">
           <img
-            src="./assets/imgs/logo.avif"
+            src="./assets/imgs/logo.png"
             alt="Gear Club logo"
             class="header__logo-img"
           />
