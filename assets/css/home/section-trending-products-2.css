@@ -50,6 +50,7 @@
   top: 50px;
   color: var(--text-white-color);
   font-weight: 300;
+  line-height: 1.6;
 }
 
 .trend-prod-2__carousel-wrapper {

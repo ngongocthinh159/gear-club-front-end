@@ -35,16 +35,6 @@
       rel="stylesheet"
     />
 
-    <!-- Toast -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
-      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <link rel="stylesheet" href="./assets/css/commons/toastr.min.css" />
-    <script src="./assets/js/commons/toastr.min.js"></script>
-
     <!-- Common components CSS -->
     <link rel="stylesheet" href="./assets/css/commons/base.css" />
     <link rel="stylesheet" href="./assets/css/commons/grid.css" />
@@ -54,7 +44,20 @@
     <!-- CSS -->
     <link
       rel="stylesheet"
-      href="./assets/css/product-detail/section-product-detail.css"
+      href="./assets/css/home/section-top-page-product.css"
+    />
+    <link rel="stylesheet" href="./assets/css/home/section-under-top.css" />
+    <link
+      rel="stylesheet"
+      href="./assets/css/home/section-trending-products-1.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./assets/css/home/section-trending-products-2.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./assets/css/home/section-trending-products-3.css"
     />
   </head>
   <body>
@@ -82,11 +85,7 @@
       <header class="header"></header>
       <div class="padding-header"></div>
 
-      <!-- Section product detail -->
-      <section class="prod-detail"></section>
-
-      <!-- Secton you might also like -->
-      <section class="prod-detail__also-like"></section>
+      <button class="payment-btn">Payment</button>
 
       <!-- Footer -->
       <footer class="footer"></footer>
@@ -95,17 +94,20 @@
     <script type="module">
       import { renderHeader } from './assets/js/commons/header/header.js';
       import { renderFooter } from './assets/js/commons/footer.js';
-      import { renderProductDetail } from './assets/js/product-detail/section-product-detail.js';
-      import { renderAlsoLike } from './assets/js/product-detail/section-also-like.js';
+      import { renderSectionTrendingProduct1 } from './assets/js/home/section-trending-product-1.js';
+      import { renderSectionTrendingProduct2 } from './assets/js/home/section-trending-product-2.js';
+      import { renderSectionTrendingProduct3 } from './assets/js/home/section-trending-product-3.js';
 
       const header = document.querySelector('header.header');
-      renderHeader(header, false);
+      renderHeader(header);
 
       const footer = document.querySelector('footer.footer');
       renderFooter(footer);
 
-      const productDetailDOMNode = document.querySelector('.prod-detail');
-      renderProductDetail(productDetailDOMNode);
+      const paymentBtn = document.querySelector('.payment-btn');
+      paymentBtn.onclick = () => {
+        
+      }
     </script>
   </body>
 </html>

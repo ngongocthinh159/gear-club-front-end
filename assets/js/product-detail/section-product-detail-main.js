@@ -95,7 +95,9 @@ function renderProductDetailMain(mainDOMElement, product) {
       <!-- Main right -->
       <div class="col l-5 m-12 c-12">
         <div class="prod-detail-main__right-container">
-          <span class="prod-detail-main__prod-brand">${product?.vendorName}</span>
+          <span class="prod-detail-main__prod-brand">${
+            product?.vendorName
+          }</span>
           <h3 class="prod-detail-main__prod-name">${product?.name}</h3>
 
           <div class="prod-detail-main__prod-price-wrapper">
@@ -124,34 +126,39 @@ function renderProductDetailMain(mainDOMElement, product) {
             Bảo hành: ${product?.warranty} tháng đổi mới
           </span>
           
+
+          
           <!-- Render control button when quantity !== 0 -->
-          ${
-            product.quantity === 0
-              ? ''
-              : `
-              <div class="prod-detail-main__prod-quantity-wrapper">
-                <span class="prod-detail-main__prod-quantity-text">
-                  Số lượng:
-                </span>
-                
-                <div class="prod-detail-main__prod-quantity-control">
-                  <button
-                    class="prod-detail-main__prod-quantity-decrease-btn
-                          prod-detail-main__prod-quantity-btn--disabled
-                    "
-                  >
-                    <i class="bi bi-dash"></i>
-                  </button>
-                  <span class="prod-detail-main__prod-quantity-num">1</span>
-                  <button
-                    class="prod-detail-main__prod-quantity-increase-btn"
-                  >
-                    <i class="bi bi-plus"></i>
-                  </button>
-                </div>
-              </div>
-            `
-          }
+          <div class="prod-detail-main__prod-quantity-wrapper 
+                      ${
+                        product.quantity === 0
+                        ? 'd-none'
+                        : ''
+                      }
+                      "
+          >
+            <span class="prod-detail-main__prod-quantity-text">
+              Số lượng:
+            </span>
+            
+            <div class="prod-detail-main__prod-quantity-control">
+              <button
+                class="prod-detail-main__prod-quantity-decrease-btn
+                      prod-detail-main__prod-quantity-btn--disabled
+                "
+              >
+                <i class="bi bi-dash"></i>
+              </button>
+              <span class="prod-detail-main__prod-quantity-num">1</span>
+              <button
+                class="prod-detail-main__prod-quantity-increase-btn"
+              >
+                <i class="bi bi-plus"></i>
+              </button>
+            </div>
+          </div>
+
+
 
           <div class="prod-detail-main__prod-quantity-status 
                       ${

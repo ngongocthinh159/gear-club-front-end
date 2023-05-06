@@ -46,23 +46,17 @@ const API = {
   },
 
   // Shopping cart
-  getIncreaseProductQuantityInCartAPI(productId) {
-    return BASE_URL + 'increase path name';
+  getIncreaseProductQuantityInCartAPI() {
+    return BASE_URL + '/api/customer/cart/increase-qty';
   },
-  getDecreaseProductQuantityInCartAPI(productId) {
-    return BASE_URL + 'decrease path name';
+  getDecreaseProductQuantityInCartAPI() {
+    return BASE_URL + '/api/customer/cart/reduce-qty';
   },
-  getRemoveProductInCartAPI(productId) {
-    return BASE_URL + 'remove path name';
+  getRemoveProductInCartAPI() {
+    return BASE_URL + '/api/customer/cart/remove-item';
   },
   getAddProductToCartAPI(productId, quantity) {
-    return BASE_URL + 'add path name';
-  },
-  getShoppingCartAPI() {
-    return BASE_URL + 'get shopping cart';
-  },
-  getupdateUserInformationAPI() {
-    return BASE_URL + 'update user information';
+    return BASE_URL + '/api/customer/cart/add-item';
   },
 };
 

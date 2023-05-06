@@ -70,10 +70,10 @@ function renderHeader(headerDOMNode, isTransparentTop = false) {
   // renderSearchContainer(headerDOMNode);
 
   // // Render cart container
-  // renderCartContainer(headerDOMNode);
+  renderCartContainer(headerDOMNode);
 
   // // Handle general events
-  // handleGeneralHeaderEvents(headerDOMNode, isTransparentTop);
+  handleGeneralHeaderEvents(headerDOMNode, isTransparentTop);
 }
 
 function handleGeneralHeaderEvents(headerDOMNode, isTransparentTop = false) {

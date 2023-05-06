@@ -1,9 +1,11 @@
-import { numberWithCommas } from '../commons/utils.js';
+import { getToken, numberWithCommas } from '../commons/utils.js';
 import { slugify } from '../commons/utils.js';
-import { fetchData } from './fetch.js';
+import { fetchData, request } from './fetch.js';
 import { API } from './restful-api.js';
+import { renderCartContainer } from './header/header-cart-container.js';
 
 const CURRENCY = '₫';
+const LOADING_DELAY_ANIMATION_TIME = 1000;
 
 function getProductCardFactory(options) {
   const slug =
@@ -116,7 +118,7 @@ function getProductCardFactory(options) {
           data-product-id="${
             options?.productDetail?.id !== undefined
               ? options.productDetail.id
-              : ""
+              : ''
           }" 
           data-add-to-cart-btn
         >
@@ -153,9 +155,24 @@ function getProductCardFactory(options) {
 }
 
 function defaultAddBtnEventHandler(options, addingQuantity, stateChangeNode) {
-  // If the cart list is not loading done => abort the action
-  const cartList = document.querySelector('.cart-list-items');
-  if (!cartList) return;
+  // Toast options
+  toastr.options = {
+    closeButton: true,
+    debug: false,
+    newestOnTop: true,
+    progressBar: true,
+    positionClass: 'toast-top-right',
+    preventDuplicates: false,
+    onclick: null,
+    showDuration: '300',
+    hideDuration: '1000',
+    timeOut: '3000',
+    extendedTimeOut: '1000',
+    showEasing: 'swing',
+    hideEasing: 'linear',
+    showMethod: 'fadeIn',
+    hideMethod: 'fadeOut',
+  };
 
   // If the node is still in loading state => abort the action
   const isInLoadingState = [...stateChangeNode.classList].find((className) => {
@@ -168,14 +185,42 @@ function defaultAddBtnEventHandler(options, addingQuantity, stateChangeNode) {
 
   // Call add new product to cart API first, then update UI
   const productId = options.productDetail.id;
-  fetchData(API.getAddProductToCartAPI(productId, addingQuantity), () => {
-    // Update UI
-    options.additionalClasses = { cartItemProductPriceWrapper: 'd-none' };
-    cartList.addNewCartItem(options, addingQuantity);
-
+  const requestOptions = {
+    method: 'PUT',
+    headers: {
+      Authorization: getToken(),
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify({
+      productId: productId,
+      quantity: addingQuantity,
+    }),
+  };
+  request(API.getAddProductToCartAPI(), requestOptions, (result) => {
     // Done loading state
-    stateChangeNode.classList.remove(
-      stateChangeNode.classList[0] + '--loading'
+    setTimeout(() => {
+      stateChangeNode.classList.remove(
+        stateChangeNode.classList[0] + '--loading'
+      );
+    }, LOADING_DELAY_ANIMATION_TIME);
+
+    // If the product cannot be added
+    if (result.status === 'bad') {
+      // If duplicate => Show toast
+      if (result.message === 'duplicated') {
+        toastr['error']('Sản phẩm đã tồn tại trong giỏ hàng', 'Lỗi');
+      }
+      return;
+    }
+
+    // Added successfully => Rerender cart container
+    const headerDOMNode = document.querySelector('header.header');
+    renderCartContainer(headerDOMNode);
+
+    // Show toast
+    toastr['success'](
+      'Một sản phẩm mới vừa được thêm vào rỏ hàng',
+      'Thành công'
     );
   });
 }

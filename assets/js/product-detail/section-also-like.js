@@ -15,6 +15,7 @@ function renderAlsoLike(alsoLikeDOMNode, currentProduct) {
 
   fetchData(API.getAlsoLikeProducts(currentProduct.category), (result) => {
     let products = result.products;
+    console.log(products);
     shuffleArray(products);
     products = products.slice(0, 4);
 

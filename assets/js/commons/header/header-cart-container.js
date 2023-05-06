@@ -1,6 +1,7 @@
-import { fetchData } from '../fetch.js';
+import { fetchData, request } from '../fetch.js';
 import { getProductCartItemFactory } from '../product-cart-item-factory.js';
 import { API } from '../restful-api.js';
+import { getToken } from '../utils.js';
 
 const COUNTRY_CURRENCY = 'VND';
 
@@ -54,10 +55,10 @@ function renderCartContainer(headerDOMNode) {
           <a href="./cart.html" class="header-cart-footer__payment-btn btn btn-dark">
             Giỏ hàng
           </a>
-          <button class="header-cart-footer__payment-btn btn btn-primary btn-icon btn-icon-leading">
+          <a href="./payment.html" class="header-cart-footer__payment-btn btn btn-primary btn-icon btn-icon-leading">
             <i class="bi bi-credit-card"></i>
             Thanh toán
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -71,46 +72,81 @@ function renderCartContainer(headerDOMNode) {
   const priceNumWrapper = headerDOMNode.querySelector(
     '.header-cart-footer__price-num-wrapper'
   );
-  fetchData(API.getShoppingCartAPI(), (products) => {
-    // Data transformation then transfer to list options
-    products.forEach((product) => {
-      product.totalQuantity = product.quantity;
-      product.currentQuantity = 1;
+
+  // Fetch user infor first
+  const options = {
+    headers: {
+      Authorization: getToken(),
+    },
+  };
+  request(API.getUserInformationAPI(), options, (result) => {
+    const currentCart = result.shoppingCart[result.shoppingCart.length - 1];
+    let totalProducts = 0;
+    let index = 0;
+    Object.keys(currentCart).forEach((key) => {
+      if (key > 0) totalProducts++;
     });
+    let count = 0;
 
-    // Generate options
-    const options = {
-      products: products,
-      additionalClasses: {
-        cartListItems: 'header__cart-list',
-        cartItemProductPriceWrapper: 'd-none',
-      },
-    };
-    const [cartListItems, listTotalPriceDOMNode] =
-      getProductCartItemFactory().buildListItems(options);
+    const products = [];
+    for (const productId in currentCart) {
+      if (productId < 0) {
+        continue;
+      }
 
-    // Append total price node to total price wrapper
-    priceNumWrapper.prepend(listTotalPriceDOMNode);
+      const curIndex = index;
 
-    cartBody.appendChild(cartListItems);
+      // Fetch data of each product
+      fetchData(API.getProductByIdAPI(productId), (product) => {
+        products[curIndex] = product;
+
+        count++;
+        if (count === totalProducts) {
+          // Data transformation then transfer to list options
+          products.forEach((product) => {
+            product.totalQuantity = product.quantity;
+            product.currentQuantity = currentCart[product.id];
+          });
+
+          // Get the list of cart items
+          const options = {
+            products: products,
+            additionalClasses: {
+              cartListItems: 'header__cart-list',
+              cartItemProductPriceWrapper: 'd-none',
+            },
+          };
+          const [cartListItems, listTotalPriceDOMNode] =
+            getProductCartItemFactory().buildListItems(options);
+
+          // Append total price node to total price wrapper
+          priceNumWrapper.prepend(listTotalPriceDOMNode);
+
+          cartBody.appendChild(cartListItems);
+        }
+      });
+
+      index++;
+    }
   });
 }
 
 function handleCartContainerEvents(headerDOMNode) {
+  // Handle toggle UI
   const cartTogglers = headerDOMNode.querySelectorAll('[data-cart-toggler]');
   const cartContainer = headerDOMNode.querySelector(
     '.header__cart-container-wrapper'
   );
 
   cartTogglers.forEach((cartToggler) => {
-    cartToggler.addEventListener('click', () => {
+    cartToggler.onclick = () => {
       if (window.location.pathname === '/cart.html') {
         window.location.reload();
         return;
       }
 
       cartContainer.classList.toggle('header__cart-container-wrapper--active');
-    });
+    };
   });
 }
 
