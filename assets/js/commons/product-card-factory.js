@@ -184,11 +184,17 @@ function defaultAddBtnEventHandler(options, addingQuantity, stateChangeNode) {
   stateChangeNode.classList.add(stateChangeNode.classList[0] + '--loading');
 
   // Call add new product to cart API first, then update UI
+  const token = getToken();
+  if (!token) {
+    window.location.href = '/login.html';
+    return;
+  }
+
   const productId = options.productDetail.id;
   const requestOptions = {
     method: 'PUT',
     headers: {
-      Authorization: getToken(),
+      Authorization: token,
       'Content-type': 'application/json; charset=UTF-8',
     },
     body: JSON.stringify({

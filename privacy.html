@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
     <!-- Reset css -->
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
 
     <!-- Font awesome icom -->
     <link
-        rel="stylesheet"
-        href="./assets/fonts/fontawesome-free-6.4.0-web/css/all.min.css"
+      rel="stylesheet"
+      href="./assets/fonts/fontawesome-free-6.4.0-web/css/all.min.css"
     />
 
     <!-- Bootstrap icon -->
     <link
-        rel="stylesheet"
-        href="./assets/fonts/bootstrap-icons-1.10.4/font/bootstrap-icons.css"
+      rel="stylesheet"
+      href="./assets/fonts/bootstrap-icons-1.10.4/font/bootstrap-icons.css"
     />
 
     <!-- Inter Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500;700;900&display=swap"
-        rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500;700;900&display=swap"
+      rel="stylesheet"
     />
+
+    <!-- Toast -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet" href="./assets/css/commons/toastr.min.css" />
+    <script src="./assets/js/commons/toastr.min.js"></script>
 
     <!-- Common components CSS -->
     <link rel="stylesheet" href="./assets/css/commons/base.css" />
@@ -41,100 +51,167 @@
     <link rel="stylesheet" href="./assets/css/commons/header.css" />
     <link rel="stylesheet" href="./assets/css/commons/footer.css" />
     <link rel="stylesheet" href="./assets/css/commons/paragraph.css" />
-
-</head>
-<body>
+  </head>
+  <body>
     <div class="app">
-        <div class="sub-header">
-            <ul class="sub-header__list">
-              <li class="sub-header__item">Miễn phí giao hàng đơn từ 1.000.000đ</li>
-              <li class="sub-header__item">Miễn phí quẹt thẻ</li>
-              <li class="sub-header__item">Hàng mới, chính hãng 100%</li>
-              <li class="sub-header__item">Giao hàng siêu tốc</li>
-              <li class="sub-header__item">Bảo hành nhanh chóng</li>
-            </ul>
-    
-            <ul class="sub-header__list">
-              <li class="sub-header__item">Miễn phí giao hàng đơn từ 1.000.000đ</li>
-              <li class="sub-header__item">Miễn phí quẹt thẻ</li>
-              <li class="sub-header__item">Hàng mới, chính hãng 100%</li>
-              <li class="sub-header__item">Giao hàng siêu tốc</li>
-              <li class="sub-header__item">Bảo hành nhanh chóng</li>
-            </ul>
+      <div class="sub-header">
+        <ul class="sub-header__list">
+          <li class="sub-header__item">Miễn phí giao hàng đơn từ 1.000.000đ</li>
+          <li class="sub-header__item">Miễn phí quẹt thẻ</li>
+          <li class="sub-header__item">Hàng mới, chính hãng 100%</li>
+          <li class="sub-header__item">Giao hàng siêu tốc</li>
+          <li class="sub-header__item">Bảo hành nhanh chóng</li>
+        </ul>
+
+        <ul class="sub-header__list">
+          <li class="sub-header__item">Miễn phí giao hàng đơn từ 1.000.000đ</li>
+          <li class="sub-header__item">Miễn phí quẹt thẻ</li>
+          <li class="sub-header__item">Hàng mới, chính hãng 100%</li>
+          <li class="sub-header__item">Giao hàng siêu tốc</li>
+          <li class="sub-header__item">Bảo hành nhanh chóng</li>
+        </ul>
+      </div>
+
+      <header class="header"></header>
+
+      <section class="main-content">
+        <h1 class="text-center title" style="line-height: 1.5">
+          Chính sách quyền riêng tư
+        </h1>
+
+        <div class="paragraph">
+          <div style="text-align: center">
+            <img
+              src="./assets/imgs/policies/privacy.jpg"
+              class="image"
+              style="max-width: 480px"
+            />
+          </div>
+          <h2>Mục đích thu thập thông tin cá nhân</h2>
+          <p>
+            Mục đích của việc thu thập thông tin khách hàng nhằm liên quan đến
+            các vấn đề như:
+          </p>
+          <ul>
+            <li>Hỗ trợ khách hàng: mua hàng, thanh toán, giao hàng.</li>
+            <li>
+              Cung cấp thông tin sản phẩm, các dịch vụ và hỗ trợ theo yêu cầu
+              của khách hàng.
+            </li>
+            <li>
+              Gửi thông báo các chương trình, sản phẩm mới nhất của chúng tôi.
+            </li>
+            <li>Giải quyết vấn đề phát sinh khi mua hàng.</li>
+          </ul>
+          <h2>Phạm vi thu thập thông tin</h2>
+          <p>
+            Chúng tôi thu thập thông tin cá nhân của khách hàng khi tiến hàng
+            đặt hàng trên website:
+          </p>
+          <ul>
+            <li>Họ tên</li>
+            <li>Địa chỉ email</li>
+            <li>Số điện thoại</li>
+            <li>Địa chỉ</li>
+          </ul>
+          <h2>Thời gian lưu trữ thông tin</h2>
+          <p>
+            Dữ liệu cá nhân của Thành viên sẽ được lưu trữ cho đến khi có yêu
+            cầu hủy bỏ. Còn lại trong mọi trường hợp thông tin cá nhân thành
+            viên sẽ được bảo mật trên máy chủ của gearclub.vn.
+          </p>
+          <h2>
+            Những người hoặc tổ chức có thể được tiếp cận với thông tin đó
+          </h2>
+          <ul>
+            <li>
+              Đối với các bên vận chuyển, sẽ cung cấp các thông tin để phục vụ
+              cho việc giao nhận hàng hóa như Tên, địa chỉ và số điện thoại.
+            </li>
+            <li>
+              Đối với nhân viên công ty sẽ có các bộ phận chuyên trách để phục
+              vụ việc chăm sóc khách hàng trong quá trình sử dụng sản phẩm.
+            </li>
+            <li>
+              Các chương trình có tính liên kết, đồng thực hiện, thuê ngoài cho
+              các mục đích được nêu tại Mục 1 và luôn áp dụng các yêu cầu bảo
+              mật thông tin cá nhân.
+            </li>
+            <li>
+              Yêu cầu pháp lý: Chúng tôi có thể tiết lộ các thông tin cá nhân
+              nếu điều đó do luật pháp yêu cầu và việc tiết lộ như vậy là cần
+              thiết một cách hợp lý để tuân thủ các quy trình pháp lý.
+            </li>
+            <li>
+              Chuyển giao kinh doanh (nếu có): trong trường hợp sáp nhập, hợp
+              nhất toàn bộ hoặc một phần với công ty khác, người mua sẽ có quyền
+              truy cập thông tin được chúng tôi lưu trữ, duy trì trong đó bao
+              gồm cả thông tin cá nhân.
+            </li>
+          </ul>
+          <h2>Địa chỉ của đơn vị thu thập và quản lý thông tin</h2>
+          <ul>
+            <li>Tên doanh nghiệp: Công ty TNHH Gear Club</li>
+            <li>
+              Thành lập và hoạt động theo Giấy chứng nhận đăng ký doanh nghiệp
+              số: 0307185382 do Sở KH-ĐT TP.HCM cấp ngày 04/02/2009.
+            </li>
+            <li>Trụ sở chính: 89 Hồ Văn Huê, P9, Q.Phú Nhuận, TP.HCM.</li>
+          </ul>
+          <h2>
+            Phương thức và công cụ để người dùng tiếp cận và chỉnh sửa dữ liệu
+          </h2>
+          <p>
+            Nếu quý khách có bất cứ về yêu cầu nào về việc tiếp cận và chỉnh sửa
+            thông tin cá nhân đã cung cấp, quý khách có thể:
+          </p>
+          <ul>
+            <li>Gọi điện trực tiếp về số điện thoại: (028) 6.292.1182</li>
+            <li>Gửi mail: info@gearclub.vn</li>
+          </ul>
+          <p>
+            <b
+              >Cơ chế tiếp nhận và giải quyết khiếu nại của người tiêu dùng liên
+              quan đến việc thông tin cá nhân bị sử dụng sai mục đích hoặc phạm
+              vi đã thông báo:</b
+            >
+          </p>
+          <p>
+            Tại gearclub.vn, việc bảo vệ thông tin cá nhân của bạn là rất quan
+            trọng, bạn được đảm bảo rằng thông tin cung cấp cho chúng tôi sẽ
+            được bảo mật, gearclub.vn cam kết không chia sẻ, bán hoặc cho thuê
+            thông tin cá nhân của bạn cho bất kỳ người nào khác. gearclub.vn cam
+            kết chỉ sử dụng các thông tin của bạn vào các trường hợp sau:
+          </p>
+          <ul>
+            <li>Nâng cao chất lượng dịch vụ dành cho khách hàng</li>
+            <li>Giải quyết các tranh chấp, khiếu nại</li>
+            <li>Khi cơ quan pháp luật có yêu cầu.</li>
+          </ul>
+          <p>
+            gearclub.vn hiểu rằng quyền lợi của bạn trong việc bảo vệ thông tin
+            cá nhân cũng chính là trách nhiệm của chúng tôi nên trong bất kỳ
+            trường hợp có thắc mắc, góp ý nào liên quan đến chính sách bảo mật
+            của gearclub.vn, và liên quan đến việc thông tin cá nhân bị sử dụng
+            sai mục đích hoặc phạm vi đã thông báo vui lòng liên hệ qua số (028)
+            6.292.1182 hoặc email: info@gearclub.vn để xử lý và làm việc trực
+            tiếp với khách hàng.
+          </p>
         </div>
+      </section>
 
-        <header class="header"></header>
-
-        <section class="main-content">
-            <h1 class="text-center title" style="line-height: 1.5;">Chính sách quyền riêng tư</h1>
-
-            <div class="paragraph">
-                <div style="text-align:center;">
-                    <img src="./assets/imgs/policies/privacy.jpg" class="image" style="max-width: 480px;">
-                </div>
-                <h2>Mục đích thu thập thông tin cá nhân</h2>
-                <p>Mục đích của việc thu thập thông tin khách hàng nhằm liên quan đến các vấn đề như:</p>
-                <ul>
-                    <li>Hỗ trợ khách hàng: mua hàng, thanh toán, giao hàng.</li>
-                    <li>Cung cấp thông tin sản phẩm, các dịch vụ và hỗ trợ theo yêu cầu của khách hàng.</li>
-                    <li>Gửi thông báo các chương trình, sản phẩm mới nhất của chúng tôi.</li>
-                    <li>Giải quyết vấn đề phát sinh khi mua hàng.</li>
-                </ul>
-                <h2>Phạm vi thu thập thông tin</h2>
-                <p>Chúng tôi thu thập thông tin cá nhân của khách hàng khi tiến hàng đặt hàng trên website:</p>
-                <ul>
-                    <li>Họ tên</li>
-                    <li>Địa chỉ email</li>
-                    <li>Số điện thoại</li>
-                    <li>Địa chỉ</li>
-                </ul>
-                <h2>Thời gian lưu trữ thông tin</h2>
-                <p>Dữ liệu cá nhân của Thành viên sẽ được lưu trữ cho đến khi có yêu cầu hủy bỏ. Còn lại trong mọi trường hợp thông tin cá nhân thành viên sẽ được bảo mật trên máy chủ của gearclub.vn.</p>
-                <h2>Những người hoặc tổ chức có thể được tiếp cận với thông tin đó</h2>
-                <ul>
-                    <li>Đối với các bên vận chuyển, sẽ cung cấp các thông tin để phục vụ cho việc giao nhận hàng hóa như Tên, địa chỉ và số điện thoại.</li>
-                    <li>Đối với nhân viên công ty sẽ có các bộ phận chuyên trách để phục vụ việc chăm sóc khách hàng trong quá trình sử dụng sản phẩm.</li>
-                    <li>Các chương trình có tính liên kết, đồng thực hiện, thuê ngoài cho các mục đích được nêu tại Mục 1 và luôn áp dụng các yêu cầu bảo mật thông tin cá nhân.</li>
-                    <li>Yêu cầu pháp lý: Chúng tôi có thể tiết lộ các thông tin cá nhân nếu điều đó do luật pháp yêu cầu và việc tiết lộ như vậy là cần thiết một cách hợp lý để tuân thủ các quy trình pháp lý.</li>
-                    <li>Chuyển giao kinh doanh (nếu có): trong trường hợp sáp nhập, hợp nhất toàn bộ hoặc một phần với công ty khác, người mua sẽ có quyền truy cập thông tin được chúng tôi lưu trữ, duy trì trong đó bao gồm cả thông tin cá nhân.</li>
-                </ul>
-                <h2>Địa chỉ của đơn vị thu thập và quản lý thông tin</h2>
-                <ul>
-                    <li>Tên doanh nghiệp: Công ty TNHH Gear Club</li>
-                    <li>Thành lập và hoạt động theo Giấy chứng nhận đăng ký doanh nghiệp số: 0307185382 do Sở KH-ĐT TP.HCM cấp ngày 04/02/2009.</li>
-                    <li>Trụ sở chính: 89 Hồ Văn Huê, P9, Q.Phú Nhuận, TP.HCM.</li>
-                </ul>
-                <h2>Phương thức và công cụ để người dùng tiếp cận và chỉnh sửa dữ liệu</h2>
-                <p>Nếu quý khách có bất cứ về yêu cầu nào về việc tiếp cận và chỉnh sửa thông tin cá nhân đã cung cấp, quý khách có thể:</p>
-                <ul>
-                    <li>Gọi điện trực tiếp về số điện thoại: (028) 6.292.1182</li>
-                    <li>Gửi mail: info@gearclub.vn</li>
-                </ul>
-                <p><b>Cơ chế tiếp nhận và giải quyết khiếu nại của người tiêu dùng liên quan đến việc thông tin cá nhân bị sử dụng sai mục đích hoặc phạm vi đã thông báo:</b></p>
-                <p>Tại gearclub.vn, việc bảo vệ thông tin cá nhân của bạn là rất quan trọng, bạn được đảm bảo rằng thông tin cung cấp cho chúng tôi sẽ được bảo mật, gearclub.vn cam kết không chia sẻ, bán hoặc cho thuê thông tin cá nhân của bạn cho bất kỳ người nào khác. gearclub.vn cam kết chỉ sử dụng các thông tin của bạn vào các trường hợp sau:</p>
-                <ul>
-                    <li>Nâng cao chất lượng dịch vụ dành cho khách hàng</li>
-                    <li>Giải quyết các tranh chấp, khiếu nại</li>
-                    <li>Khi cơ quan pháp luật có yêu cầu.</li>
-                </ul>
-                <p>gearclub.vn hiểu rằng quyền lợi của bạn trong việc bảo vệ thông tin cá nhân cũng chính là trách nhiệm của chúng tôi nên trong bất kỳ trường hợp có thắc mắc, góp ý nào liên quan đến chính sách bảo mật của gearclub.vn, và liên quan đến việc thông tin cá nhân bị sử dụng sai mục đích hoặc phạm vi đã thông báo vui lòng liên hệ qua số (028) 6.292.1182 hoặc email: info@gearclub.vn để xử lý và làm việc trực tiếp với khách hàng.</p>
-            </div>
-        </section>
-
-        <footer class="footer"></footer>
+      <footer class="footer"></footer>
     </div>
 
     <script type="module">
-        import { renderHeader } from './assets/js/commons/header/header.js';
-        import { renderFooter } from './assets/js/commons/footer.js';
-  
-        const header = document.querySelector('header.header');
-        renderHeader(header);
+      import { renderHeader } from './assets/js/commons/header/header.js';
+      import { renderFooter } from './assets/js/commons/footer.js';
 
-        const footer = document.querySelector('footer.footer');
-        renderFooter(footer);  
-  
+      const header = document.querySelector('header.header');
+      renderHeader(header);
+
+      const footer = document.querySelector('footer.footer');
+      renderFooter(footer);
     </script>
-  
-</body>
+  </body>
 </html>

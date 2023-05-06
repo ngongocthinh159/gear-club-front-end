@@ -3,7 +3,7 @@
   --sub-header-height: 48px;
 
   --primary-color: #1d2864;
-  --primary-color-light: #3c619e;
+  --primary-color-light: #3c629f;
   --white-color: #fff;
   --black-color: #000;
   --background-color: #1a1a1a;
@@ -134,7 +134,7 @@ a {
 }
 
 .d-none {
-  display: none;
+  display: none!important;
 }
 
 /* Seletion loading
@@ -269,8 +269,16 @@ a {
   border: 2px solid rgba(39, 39, 39, 0.1);
 }
 
+.custom-input-wrapper--error .custom-input__input-text {
+  border: 2px solid rgba(214, 71, 71, 0.845);
+}
+
 .custom-input__input-text:is(:focus-visible, :focus) {
   border: 2px solid rgba(39, 39, 39, 0.7);
+}
+
+.custom-input-wrapper--error .custom-input__input-text:is(:focus-visible, :focus) {
+  border: 2px solid rgba(214, 71, 71, 0.845);
 }
 
 .custom-input__input-label {

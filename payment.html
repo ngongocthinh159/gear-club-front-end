@@ -35,6 +35,16 @@
       rel="stylesheet"
     />
 
+    <!-- Toast -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet" href="./assets/css/commons/toastr.min.css" />
+    <script src="./assets/js/commons/toastr.min.js"></script>
+
     <!-- Common components CSS -->
     <link rel="stylesheet" href="./assets/css/commons/base.css" />
     <link rel="stylesheet" href="./assets/css/commons/grid.css" />
@@ -42,72 +52,240 @@
     <link rel="stylesheet" href="./assets/css/commons/footer.css" />
 
     <!-- CSS -->
-    <link
-      rel="stylesheet"
-      href="./assets/css/home/section-top-page-product.css"
-    />
-    <link rel="stylesheet" href="./assets/css/home/section-under-top.css" />
-    <link
-      rel="stylesheet"
-      href="./assets/css/home/section-trending-products-1.css"
-    />
-    <link
-      rel="stylesheet"
-      href="./assets/css/home/section-trending-products-2.css"
-    />
-    <link
-      rel="stylesheet"
-      href="./assets/css/home/section-trending-products-3.css"
-    />
+    <link rel="stylesheet" href="./assets/css/payment/section-payment.css" />
   </head>
   <body>
     <div class="app">
-      <!-- Sub-header -->
-      <div class="sub-header">
-        <ul class="sub-header__list">
-          <li class="sub-header__item">Miễn phí giao hàng đơn từ 1.000.000đ</li>
-          <li class="sub-header__item">Miễn phí quẹt thẻ</li>
-          <li class="sub-header__item">Hàng mới, chính hãng 100%</li>
-          <li class="sub-header__item">Giao hàng siêu tốc</li>
-          <li class="sub-header__item">Bảo hành nhanh chóng</li>
-        </ul>
+      <!-- Section payment -->
+      <section class="sec-payment">
+        <div class="grid wide">
+          <div class="row">
+            <div class="col l-7 m-12 c-12 order-left">
+              <div class="sec-payment__left-container">
+                <a href="/" class="sec-payment__logo-link">
+                  <img
+                    src="./assets/imgs/logo.png"
+                    alt="Gearclub logo"
+                    class="sec-payment__logo-img"
+                  />
+                </a>
 
-        <ul class="sub-header__list">
-          <li class="sub-header__item">Miễn phí giao hàng đơn từ 1.000.000đ</li>
-          <li class="sub-header__item">Miễn phí quẹt thẻ</li>
-          <li class="sub-header__item">Hàng mới, chính hãng 100%</li>
-          <li class="sub-header__item">Giao hàng siêu tốc</li>
-          <li class="sub-header__item">Bảo hành nhanh chóng</li>
-        </ul>
-      </div>
+                <div class="sec-payment__breadcrumb">
+                  <a href="./cart.html" class="sec-payment__breadcrumb-link">
+                    <span class="sec-payment__breadcrumb-item">Giỏ hàng</span>
+                  </a>
 
-      <!-- Header render with JS -->
-      <header class="header"></header>
-      <div class="padding-header"></div>
+                  <span class="sec-payment__breadcrumb-separator">
+                    <i class="bi bi-chevron-right"></i>
+                  </span>
 
-      <button class="payment-btn">Payment</button>
+                  <a href="./account.html" class="sec-payment__breadcrumb-link">
+                    <span class="sec-payment__breadcrumb-item">Thông tin</span>
+                  </a>
 
-      <!-- Footer -->
-      <footer class="footer"></footer>
+                  <span class="sec-payment__breadcrumb-separator">
+                    <i class="bi bi-chevron-right"></i>
+                  </span>
+
+                  <a class="sec-payment__breadcrumb-link">
+                    <span
+                      class="sec-payment__breadcrumb-item sec-payment__breadcrumb-item--active"
+                      >Thanh toán</span
+                    >
+                  </a>
+                </div>
+
+                <div class="sec-payment__account">
+                  <h3 class="sec-payment__heading">Thông tin liên hệ</h3>
+                  <span class="sec-payment__account-first-name">Thịnh</span>
+                  <span class="sec-payment__account-last-name">Thịnh</span>
+                  <span class="sec-payment__account-email"
+                    >(ngongocthinh124@gmail.com)</span
+                  >
+                  <button class="sec-payment__logout-btn">Đăng xuất</button>
+                </div>
+
+                <div class="sec-payment__shipping">
+                  <h3 class="sec-payment__heading">Phương thức giao hàng</h3>
+
+                  <div class="sec-payment__shipping-type-wrapper">
+                    <input
+                      type="radio"
+                      name="shipping-type"
+                      id="shipping-type-cod"
+                      checked
+                      class="sec-payment__shipping-type-input"
+                    />
+                    <label
+                      for="shipping-type-cod"
+                      class="sec-payment__shipping-type-label"
+                      ><i class="bi bi-truck"></i>Vận chuyển COD</label
+                    >
+                  </div>
+                </div>
+
+                <div class="sec-payment__account-info">
+                  <h3 class="sec-payment__heading">
+                    Địa chỉ giao hàng
+                    <a
+                      href="./account.html?showPersonalInformation=true"
+                      class="sec-payment__edit-btn"
+                    >
+                      (sửa thông tin)</a
+                    >
+                  </h3>
+
+                  <div class="row">
+                    <div class="col l-6 m-12 c-12">
+                      <div
+                        class="custom-input-wrapper sec-payment__custom-input-wrapper"
+                      >
+                        <input
+                          id="name"
+                          placeholder=" "
+                          name="name"
+                          type="text"
+                          class="custom-input__input-text"
+                          value="${user.firstName}"
+                          readonly
+                        />
+                        <span class="custom-input__input-label">Tên</span>
+                      </div>
+                    </div>
+                    <div class="col l-6 m-12 c-12">
+                      <div
+                        class="custom-input-wrapper sec-payment__custom-input-wrapper"
+                      >
+                        <input
+                          id="name"
+                          placeholder=" "
+                          name="name"
+                          type="text"
+                          class="custom-input__input-text"
+                          value="${user.firstName}"
+                          readonly
+                        />
+                        <span class="custom-input__input-label">Họ</span>
+                      </div>
+                    </div>
+
+                    <div class="col l-12 m-12 c-12">
+                      <div
+                        class="custom-input-wrapper sec-payment__custom-input-wrapper"
+                      >
+                        <input
+                          id="name"
+                          placeholder=" "
+                          name="name"
+                          type="text"
+                          class="custom-input__input-text"
+                          value="${user.firstName}"
+                          readonly
+                        />
+                        <span class="custom-input__input-label"
+                          >Địa chỉ giao hàng</span
+                        >
+                      </div>
+                    </div>
+
+                    <div class="col l-12 m-12 c-12">
+                      <div
+                        class="custom-input-wrapper sec-payment__custom-input-wrapper"
+                      >
+                        <input
+                          id="name"
+                          placeholder=" "
+                          name="name"
+                          type="text"
+                          class="custom-input__input-text"
+                          value="${user.firstName}"
+                          readonly
+                        />
+                        <span class="custom-input__input-label"
+                          >Số điện thoại</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sec-payment__control">
+                  <button class="sec-payment__back-cart-btn">
+                    <i class="bi bi-chevron-left"></i> Quay lại giỏ hàng
+                  </button>
+                  <button class="btn btn-primary sec-payment__payment-btn">
+                    Thanh toán
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col l-5 m-12 c-12 order-right">
+              <div class="sec-payment__right-container">
+                <label for="summary-toggler" class="sec-payment__summary-label">
+                  <i class="bi bi-cart"></i>
+                  <span class="summary-show"
+                    >Hiện tổng quan đơn hàng<i class="bi bi-chevron-down"></i
+                  ></span>
+                  <span class="summary-hide"
+                    >Ẩn tổng quan đơn hàng<i class="bi bi-chevron-up"></i
+                  ></span>
+                </label>
+                <input type="checkbox" id="summary-toggler" hidden checked />
+
+                <div class="sec-payment__summary">
+                  <div class="sec-payment__summary-wrapper">
+                    <div class="sec-payment__prod-list-wrapper">
+                      <ul class="sec-payment__prod-list">
+                        <li class="sec-payment__prod-list-item"></li>
+                      </ul>
+                    </div>
+
+                    <div class="sec-payment__sub-total-wrapper">
+                      <span class="sec-payment__sub-total-text">Tổng phụ</span>
+                      <span class="sec-payment__sub-total-num-wrapper">
+                        <span class="sec-payment__sub-total-num"
+                          >3.850.000</span
+                        >
+                        <span class="sec-payment__sub-total-num-currency"
+                          >₫</span
+                        >
+                      </span>
+                    </div>
+
+                    <div class="sec-payment__shipping-wrapper">
+                      <span class="sec-payment__sub-shipping-left-text"
+                        >Vận chuyển <i class="bi bi-truck"></i
+                      ></span>
+                      <span class="sec-payment__sub-shipping-right-text"
+                        >Miễn phí</span
+                      >
+                    </div>
+
+                    <div class="sec-payment__total-wrapper">
+                      <span class="sec-payment__total-text">Tổng</span>
+                      <span class="sec-payment__total-num-wrapper">
+                        <span class="sec-payment__total-num-country-currency"
+                          >VND</span
+                        >
+                        <span class="sec-payment__total-num">3.850.000</span>
+                        <span class="sec-payment__total-num-currency">₫</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
     <script type="module">
-      import { renderHeader } from './assets/js/commons/header/header.js';
-      import { renderFooter } from './assets/js/commons/footer.js';
-      import { renderSectionTrendingProduct1 } from './assets/js/home/section-trending-product-1.js';
-      import { renderSectionTrendingProduct2 } from './assets/js/home/section-trending-product-2.js';
-      import { renderSectionTrendingProduct3 } from './assets/js/home/section-trending-product-3.js';
+      import { renderSectionPayment } from './assets/js/payment/section-payment.js';
 
-      const header = document.querySelector('header.header');
-      renderHeader(header);
-
-      const footer = document.querySelector('footer.footer');
-      renderFooter(footer);
-
-      const paymentBtn = document.querySelector('.payment-btn');
-      paymentBtn.onclick = () => {
-        
-      }
+      const sectionPaymentDOMNode = document.querySelector('.sec-payment');
+      renderSectionPayment(sectionPaymentDOMNode);
     </script>
   </body>
 </html>

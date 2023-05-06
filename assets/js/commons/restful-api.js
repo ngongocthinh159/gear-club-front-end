@@ -1,7 +1,5 @@
 const BASE_URL = 'http://localhost:8080';
 
-BASE_URL + '/upadate/id';
-
 const API = {
   // Authentication
   getRegisterAPI() {
@@ -14,6 +12,9 @@ const API = {
   // User
   getUserInformationAPI() {
     return BASE_URL + '/api/customer/personal-information';
+  },
+  getUpdateUserInformationAPI() {
+    return BASE_URL + '/api/customer/update-personal-information';
   },
 
   // Product
@@ -57,6 +58,9 @@ const API = {
   },
   getAddProductToCartAPI(productId, quantity) {
     return BASE_URL + '/api/customer/cart/add-item';
+  },
+  getPaymentAPI() {
+    return BASE_URL + '/api/customer/cart/payment';
   },
 };
 

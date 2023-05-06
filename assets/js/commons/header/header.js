@@ -1,6 +1,7 @@
 import { renderNavList } from './header-nav-list.js';
 import { renderSearchContainer } from './header-search-container.js';
 import { renderCartContainer } from './header-cart-container.js';
+import { getToken } from '../utils.js';
 
 /**
  * Create a <header class="header"></header> DOM element inside HTML,
@@ -64,10 +65,10 @@ function renderHeader(headerDOMNode, isTransparentTop = false) {
   `;
 
   // // Render main nav list
-  // renderNavList(headerDOMNode);
+  renderNavList(headerDOMNode);
 
   // // Render search container
-  // renderSearchContainer(headerDOMNode);
+  renderSearchContainer(headerDOMNode);
 
   // // Render cart container
   renderCartContainer(headerDOMNode);
@@ -89,6 +90,18 @@ function handleGeneralHeaderEvents(headerDOMNode, isTransparentTop = false) {
       if (isTransparentTop) headerDOMNode.style.backgroundColor = 'transparent';
       headerDOMNode.style.boxShadow = 'none';
       headerDOMNode.style.top = `${48 - window.scrollY}px`;
+    }
+  });
+
+  // Handle click cart when not login
+  const cartBtn = headerDOMNode.querySelector(
+    '.header__side-nav-item:nth-child(3)'
+  );
+  cartBtn.addEventListener('click', () => {
+    const token = getToken();
+    if (!token) {
+      window.location.href = './login.html';
+      return;
     }
   });
 }

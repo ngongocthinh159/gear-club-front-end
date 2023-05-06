@@ -52,13 +52,13 @@ function renderCartContainer(headerDOMNode) {
         </div>
 
         <div class="header-cart-footer__control">
-          <a href="./cart.html" class="header-cart-footer__payment-btn btn btn-dark">
+          <a href="./cart.html" class="header-cart-footer__cart-btn btn btn-dark">
             Giỏ hàng
           </a>
-          <a href="./payment.html" class="header-cart-footer__payment-btn btn btn-primary btn-icon btn-icon-leading">
+          <button href="./payment.html" class="header-cart-footer__payment-btn btn btn-primary btn-icon btn-icon-leading">
             <i class="bi bi-credit-card"></i>
             Thanh toán
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -74,9 +74,13 @@ function renderCartContainer(headerDOMNode) {
   );
 
   // Fetch user infor first
+  const token = getToken();
+  if (!token) {
+    return;
+  }
   const options = {
     headers: {
-      Authorization: getToken(),
+      Authorization: token,
     },
   };
   request(API.getUserInformationAPI(), options, (result) => {
@@ -147,6 +151,45 @@ function handleCartContainerEvents(headerDOMNode) {
 
       cartContainer.classList.toggle('header__cart-container-wrapper--active');
     };
+  });
+
+  // Handle payment btn click
+  const paymentBtn = headerDOMNode.querySelector(
+    '.header-cart-footer__payment-btn'
+  );
+  paymentBtn.addEventListener('click', () => {
+    const cartItems = headerDOMNode.querySelector('.cart-item');
+
+    // If there is nothing in cart => Show toast
+    if (!cartItems) {
+      toastr.options = {
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: 'toast-top-right',
+        preventDuplicates: false,
+        onclick: null,
+        showDuration: '300',
+        hideDuration: '1000',
+        timeOut: '3000',
+        extendedTimeOut: '1000',
+        showEasing: 'swing',
+        hideEasing: 'linear',
+        showMethod: 'fadeIn',
+        hideMethod: 'fadeOut',
+      };
+
+      toastr['error'](
+        'Hãy thêm sản phẩm vào giỏ hàng trước khi thanh toán',
+        'Lỗi'
+      );
+
+      return;
+    }
+
+    // There is at least 1 in cart => Go to payment page
+    window.location.href = '/payment.html';
   });
 }
 
