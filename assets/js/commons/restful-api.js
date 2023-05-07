@@ -36,6 +36,12 @@ const API = {
       BASE_URL + '/api/product/filter/' + `categories=${currentProductCategory}`
     );
   },
+  updateProduct() {
+    return BASE_URL + '/api/product/';
+  },
+  getProductByName() {
+    return BASE_URL + '/api/product/search-by-string';
+  },
 
   // Collection
   getAllTrendingCollection() {
