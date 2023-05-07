@@ -1,6 +1,6 @@
-import { numberWithCommas } from '../commons/utils.js';
+import { getToken, numberWithCommas } from '../commons/utils.js';
 import { slugify } from '../commons/utils.js';
-import { fetchData } from './fetch.js';
+import { fetchData, request } from './fetch.js';
 import { API } from './restful-api.js';
 
 const CURRENCY = '₫';
@@ -213,7 +213,7 @@ function getProductCartItemFactory() {
 
               <button class="cart-item__quantity-control-btn cart-item__quantity-increase-btn 
                             ${
-                              itemOptions.productDetail.currentQuanity >=
+                              itemOptions.productDetail.currentQuantity >=
                               itemOptions.productDetail.totalQuantity
                                 ? 'cart-item__quantity-control-btn--disabled'
                                 : ''
@@ -366,8 +366,23 @@ function defaultDecreaseHandler(
   // Loading state
   cartItem.classList.add('cart-item--loading');
 
-  // Call decrease API first, then update UI
-  fetchData(API.getDecreaseProductQuantityInCartAPI(productId), () => {
+  // Call increase API first, then update UI
+  const options = {
+    method: 'PUT',
+    headers: {
+      Authorization: getToken(),
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify({
+      productId: productId,
+    }),
+  };
+  request(API.getDecreaseProductQuantityInCartAPI(), options, (result) => {
+    if (result.status === 'bad') {
+      cartItem.classList.add('cart-item--loading');
+      return;
+    }
+
     // Code to update UI
     const decreaseBtn = cartItem.querySelector(
       '.cart-item__quantity-decrease-btn'
@@ -398,8 +413,8 @@ function defaultDecreaseHandler(
 
     // Decrease quantity
     quantityNumDOMNode.innerHTML = `
-    ${nextCurrentQuantity}
-  `;
+      ${nextCurrentQuantity}
+    `;
 
     // Change item total price
     itemTotalPriceNum.innerText = `${numberWithCommas(
@@ -412,8 +427,8 @@ function defaultDecreaseHandler(
         Number(listTotalPriceDOMNode.innerHTML.replaceAll('.', '')) -
         productPrice;
       listTotalPriceDOMNode.innerHTML = `
-      ${numberWithCommas(nextListTotalPrice)}
-    `;
+        ${numberWithCommas(nextListTotalPrice)}
+      `;
     }
 
     // Done loading state
@@ -434,7 +449,23 @@ function defaultIncreaseHandler(
   cartItem.classList.add('cart-item--loading');
 
   // Call increase API first, then update UI
-  fetchData(API.getIncreaseProductQuantityInCartAPI(productId), () => {
+  const options = {
+    method: 'PUT',
+    headers: {
+      Authorization: getToken(),
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify({
+      productId: productId,
+    }),
+  };
+
+  request(API.getIncreaseProductQuantityInCartAPI(), options, (result) => {
+    if (result.status === 'bad') {
+      cartItem.classList.add('cart-item--loading');
+      return;
+    }
+
     // Code to update UI
     const decreaseBtn = cartItem.querySelector(
       '.cart-item__quantity-decrease-btn'
@@ -465,8 +496,8 @@ function defaultIncreaseHandler(
 
     // Increase quantity
     quantityNumDOMNode.innerHTML = `
-    ${nextCurrentQuantity}
-  `;
+      ${nextCurrentQuantity}
+    `;
 
     // Change item total price
     itemTotalPriceNum.innerText = `${numberWithCommas(
@@ -499,8 +530,23 @@ function defaultRemoveHandler(
   // Loading state
   cartItem.classList.add('cart-item--loading');
 
-  // Call remove API first, then update UI
-  fetchData(API.getRemoveProductInCartAPI(productId), () => {
+  // Call increase API first, then update UI
+  const options = {
+    method: 'PUT',
+    headers: {
+      Authorization: getToken(),
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify({
+      productId: productId,
+    }),
+  };
+  request(API.getRemoveProductInCartAPI(), options, (result) => {
+    if (result.status === 'bad') {
+      cartItem.classList.add('cart-item--loading');
+      return;
+    }
+
     // Code to update UI
     const quantityNumDOMNode = cartItem.querySelector(
       '.cart-item__quantity-num'

@@ -1,7 +1,5 @@
 const BASE_URL = 'http://localhost:8080';
 
-BASE_URL + '/upadate/id';
-
 const API = {
   // Authentication
   getRegisterAPI() {
@@ -14,6 +12,9 @@ const API = {
   // User
   getUserInformationAPI() {
     return BASE_URL + '/api/customer/personal-information';
+  },
+  getUpdateUserInformationAPI() {
+    return BASE_URL + '/api/customer/update-personal-information';
   },
 
   // Product
@@ -52,23 +53,20 @@ const API = {
   },
 
   // Shopping cart
-  getIncreaseProductQuantityInCartAPI(productId) {
-    return BASE_URL + 'increase path name';
+  getIncreaseProductQuantityInCartAPI() {
+    return BASE_URL + '/api/customer/cart/increase-qty';
   },
-  getDecreaseProductQuantityInCartAPI(productId) {
-    return BASE_URL + 'decrease path name';
+  getDecreaseProductQuantityInCartAPI() {
+    return BASE_URL + '/api/customer/cart/reduce-qty';
   },
-  getRemoveProductInCartAPI(productId) {
-    return BASE_URL + 'remove path name';
+  getRemoveProductInCartAPI() {
+    return BASE_URL + '/api/customer/cart/remove-item';
   },
   getAddProductToCartAPI(productId, quantity) {
-    return BASE_URL + 'add path name';
+    return BASE_URL + '/api/customer/cart/add-item';
   },
-  getShoppingCartAPI() {
-    return BASE_URL + 'get shopping cart';
-  },
-  getupdateUserInformationAPI() {
-    return BASE_URL + 'update user information';
+  getPaymentAPI() {
+    return BASE_URL + '/api/customer/cart/payment';
   },
 };
 

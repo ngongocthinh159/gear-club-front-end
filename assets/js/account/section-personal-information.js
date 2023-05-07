@@ -27,12 +27,12 @@ function renderSectionPersonalInformation(
         <div class="row">
           <div class="col l-6 m-6 c-12">
             <div class="acc-info__form-input-group">
-              <label for="name" class="acc-info__form-label">First name</label>
+              <label for="firstName" class="acc-info__form-label">Tên</label>
               <div class="custom-input-wrapper">
                 <input
-                  id="name"
+                  id="firstName"
                   placeholder=" "
-                  name="name"
+                  name="firstName"
                   type="text"
                   class="custom-input__input-text"
                   value="${user.firstName}"
@@ -44,12 +44,12 @@ function renderSectionPersonalInformation(
 
           <div class="col l-6 m-6 c-12">
             <div class="acc-info__form-input-group">
-              <label for="name" class="acc-info__form-label">Last name</label>
+              <label for="lastName" class="acc-info__form-label">Họ</label>
               <div class="custom-input-wrapper">
                 <input
-                  id="name"
+                  id="lastName"
                   placeholder=" "
-                  name="name"
+                  name="lastName"
                   type="text"
                   class="custom-input__input-text"
                   value="${user.lastName}"
@@ -70,6 +70,7 @@ function renderSectionPersonalInformation(
                   type="email"
                   class="custom-input__input-text"
                   value="${user.email}"
+                  readonly
                 />
                 <span class="custom-input__input-label">Ex: example@gmail.com</span>
               </div>
@@ -78,15 +79,15 @@ function renderSectionPersonalInformation(
 
           <div class="col l-6 m-6 c-12">
             <div class="acc-info__form-input-group">
-              <label for="phone" class="acc-info__form-label">Phone</label>
+              <label for="phone" class="acc-info__form-label">Số điện thoại</label>
               <div class="custom-input-wrapper">
                 <input
                   id="phone"
                   placeholder=" "
                   name="phone"
-                  type="tel"
+                  type="number"
                   class="custom-input__input-text"
-                  value="${user.phone}"
+                  value="${user.phone === null ? '' : user.phone}"
                 />
                 <span class="custom-input__input-label">Ex: +84 123 456 789</span>
               </div>
@@ -95,7 +96,7 @@ function renderSectionPersonalInformation(
 
           <div class="col l-6 m-6 c-12">
             <div class="acc-info__form-input-group">
-              <label for="address" class="acc-info__form-label">Address</label>
+              <label for="address" class="acc-info__form-label">Địa chỉ</label>
               <div class="custom-input-wrapper">
                 <input
                   id="address"
@@ -103,7 +104,9 @@ function renderSectionPersonalInformation(
                   name="address"
                   type="text"
                   class="custom-input__input-text"
-                  value="${user.shippingAddress}"
+                  value="${
+                    user.shippingAddress === null ? '' : user.shippingAddress
+                  }"
                 />
                 <span class="custom-input__input-label">Ex: RMIT University, Vietnam</span>
               </div>
@@ -115,8 +118,6 @@ function renderSectionPersonalInformation(
           <button type="button" class="btn btn-primary btn-disabled acc-info__save-btn">Cập nhật</button>
         </div>
       </form>
-
-      
     `;
 
     // Event handlers
@@ -138,9 +139,34 @@ function renderSectionPersonalInformation(
 
     // Handle update btn click
     updateBtn.addEventListener('click', () => {
+      const token = getToken();
+      if (!token) {
+        window.location.replace('/');
+        return;
+      }
+
       updateBtn.classList.add('btn-disabled');
 
-      fetchData(API.getupdateUserInformationAPI(), () => {
+      // Get values from input
+      const email = secAccountMainDOMNode.querySelector('#email').value;
+      const firstName = secAccountMainDOMNode.querySelector('#firstName').value;
+      const lastName = secAccountMainDOMNode.querySelector('#lastName').value;
+      const phone = secAccountMainDOMNode.querySelector('#phone').value;
+      const address = secAccountMainDOMNode.querySelector('#address').value;
+      const options = {
+        method: 'PUT',
+        body: JSON.stringify({
+          firstName: firstName,
+          lastName: lastName,
+          phone: phone,
+          shippingAddress: address,
+        }),
+        headers: {
+          Authorization: token,
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      };
+      request(API.getUpdateUserInformationAPI(), options, (result) => {
         form.classList.add('acc-info__form--success-update');
         window.scrollTo(0, 0);
 

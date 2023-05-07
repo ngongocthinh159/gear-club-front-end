@@ -1,6 +1,7 @@
-import { fetchData } from '../commons/fetch.js';
+import { fetchData, request } from '../commons/fetch.js';
 import { getProductCartItemFactory } from '../commons/product-cart-item-factory.js';
 import { API } from '../commons/restful-api.js';
+import { getToken } from '../commons/utils.js';
 
 const CURRENCY = '₫';
 const COUNTRY_CURRENCY = 'VND';
@@ -55,45 +56,82 @@ function renderSCartSection(sCartDOMNode) {
     </div>
   `;
 
-  // Fetch data
+  // Fetch data, then update UI
   const sCartTableBody = sCartDOMNode.querySelector('.s-cart__table-body');
-  fetchData(API.getShoppingCartAPI(), (products) => {
-    // After fetch data => Get cart list from data
-    // Data transformation
-    products.forEach((product) => {
-      (product.currentQuantity = 3), (product.totalQuantity = product.quantity);
+
+  // Fetch user infor first
+  const options = {
+    headers: {
+      Authorization: getToken(),
+    },
+  };
+  request(API.getUserInformationAPI(), options, (result) => {
+    const currentCart = result.shoppingCart[result.shoppingCart.length - 1];
+    let totalProducts = 0;
+    let index = 0;
+    Object.keys(currentCart).forEach((key) => {
+      if (key > 0) totalProducts++;
     });
-    const listOptions = {
-      products: products,
-      additionalClasses: {
-        cartListItems: 's-cart__cart-list',
+    let count = 0;
 
-        cartItemBody: 's-cart__cart-item-body',
-        cartItemName: 's-cart__cart-item-name',
-        cartItemTotalPriceWrapper: 's-cart__total-price-wrapper',
-        cartItemControl: 's-cart__cart-item-control',
-      },
-    };
-    const [cartList, listTotalPriceDOMNode] =
-      getProductCartItemFactory().buildListItems(listOptions);
+    const products = [];
+    for (const productId in currentCart) {
+      if (productId < 0) {
+        continue;
+      }
 
-    // Move position of the item's total price
-    const cartItemBodys = cartList.querySelectorAll('.cart-item__body');
-    cartItemBodys.forEach((cartItemBody) => {
-      const totalPriceWrapper = cartItemBody.querySelector(
-        '.cart-item__total-price-wrapper'
-      );
+      const curIndex = index;
 
-      cartItemBody.appendChild(totalPriceWrapper);
-    });
+      // Fetch data of each product
+      fetchData(API.getProductByIdAPI(productId), (product) => {
+        products[curIndex] = product;
 
-    // Move position of list's total price
-    const totalPriceWrapper = sCartDOMNode.querySelector(
-      '.s-cart__list-total-price-num-wrapper'
-    );
-    totalPriceWrapper.prepend(listTotalPriceDOMNode);
+        count++;
+        // After fetch all products => Put data into cart list
+        if (count === totalProducts) {
+          // Data transformation
+          products.forEach((product) => {
+            product.currentQuantity = currentCart[product.id];
+            product.totalQuantity = product.quantity;
+          });
 
-    sCartTableBody.appendChild(cartList);
+          // Create new cart list
+          const listOptions = {
+            products: products,
+            additionalClasses: {
+              cartListItems: 's-cart__cart-list',
+
+              cartItemBody: 's-cart__cart-item-body',
+              cartItemName: 's-cart__cart-item-name',
+              cartItemTotalPriceWrapper: 's-cart__total-price-wrapper',
+              cartItemControl: 's-cart__cart-item-control',
+            },
+          };
+          const [cartList, listTotalPriceDOMNode] =
+            getProductCartItemFactory().buildListItems(listOptions);
+
+          // Move position of the item's total price
+          const cartItemBodys = cartList.querySelectorAll('.cart-item__body');
+          cartItemBodys.forEach((cartItemBody) => {
+            const totalPriceWrapper = cartItemBody.querySelector(
+              '.cart-item__total-price-wrapper'
+            );
+
+            cartItemBody.appendChild(totalPriceWrapper);
+          });
+
+          // Move position of list's total price
+          const totalPriceWrapper = sCartDOMNode.querySelector(
+            '.s-cart__list-total-price-num-wrapper'
+          );
+          totalPriceWrapper.prepend(listTotalPriceDOMNode);
+
+          sCartTableBody.appendChild(cartList);
+        }
+      });
+
+      index++;
+    }
   });
 }
 
