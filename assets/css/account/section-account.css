@@ -59,10 +59,92 @@
   opacity: 0.6;
 }
 
+.sec-account__main {
+  padding: 48px 0;
+}
+
+/* Order history */
+.sec-account__order-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.sec-account__order-history-item {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.sec-account__order-history-item-header {
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.6;
+  background-color: var(--text-dark-color);
+  padding: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sec-account__order-history-item-header-text {
+  font-size: 1.6rem;
+  color: var(--text-white-color);
+}
+
+.sec-account__order-history-item-header-price-text {
+  font-size: 1.5rem;
+  color: var(--text-white-color);
+}
+
+.sec-account__order-history-item-header-price-num {
+  font-size: 1.6rem;
+  color: var(--text-white-color);
+}
+
+.sec-account__order-history-item-header-price-currency {
+  font-size: 1.5rem;
+  color: var(--text-white-color);
+}
+
+.sec-account__order-history-item-list-wrapper {
+  padding: 16px;
+  display: grid;
+  grid-template-rows: 0fr;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.sec-account__order-history-item:hover .sec-account__order-history-item-list-wrapper {
+  grid-template-rows: 1fr;
+}
+
+.sec-account__order-history-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: hidden;
+}
+
+.sec-account__no-order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.sec-account__no-order img {
+  max-width: 60px;
+}
+
+.sec-account__no-order-text {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+/* Personal information */
 .acc-info__form {
   max-width: 1000px;
   margin: auto;
-  padding: 48px;
 }
 
 .acc-info__form-success-update {

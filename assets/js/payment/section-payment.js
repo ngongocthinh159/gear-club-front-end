@@ -244,7 +244,7 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
             href="./account.html?showPersonalInformation=true"
             class="sec-payment__edit-btn"
           >
-            (sửa thông tin)</a
+            (bổ sung thông tin)</a
           >
         </h3>
 
@@ -285,7 +285,9 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
           <div class="col l-12 m-12 c-12">
             <div
               class="custom-input-wrapper sec-payment__custom-input-wrapper ${
-                user.shippingAddress === null
+                user.shippingAddress === null ||
+                user.shippingAddress === undefined ||
+                user.shippingAddress === ''
                   ? 'custom-input-wrapper--error'
                   : ''
               }"
@@ -297,7 +299,9 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
                 type="text"
                 class="custom-input__input-text"
                 value="${
-                  user.shippingAddress === null
+                  user.shippingAddress === null ||
+                  user.shippingAddress === undefined ||
+                  user.shippingAddress === ''
                     ? 'Cần bổ sung'
                     : user.shippingAddress
                 }"
@@ -312,7 +316,11 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
           <div class="col l-6 m-12 c-12">
             <div
               class="custom-input-wrapper sec-payment__custom-input-wrapper ${
-                user.phone === null ? 'custom-input-wrapper--error' : ''
+                user.phone === null ||
+                user.phone === undefined ||
+                user.phone === ''
+                  ? 'custom-input-wrapper--error'
+                  : ''
               }"
             >
               <input
@@ -321,7 +329,13 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
                 name="name"
                 type="text"
                 class="custom-input__input-text"
-                value="${user.phone === null ? 'Cần bổ sung' : user.phone}"
+                value="${
+                  user.phone === null ||
+                  user.phone === undefined ||
+                  user.phone === ''
+                    ? 'Cần bổ sung'
+                    : user.phone
+                }"
                 readonly
               />
               <span class="custom-input__input-label"
@@ -385,7 +399,7 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
       const errorInputs = sectionPaymentDOMNode.querySelectorAll(
         '.custom-input-wrapper--error'
       );
-      if (!errorInputs) {
+      if (errorInputs) {
         errorInputs.forEach((errorInput) => {
           errorInput.animate(spinningAnimation, spinningAnimationTiming);
         });
@@ -394,22 +408,22 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
       }
 
       // Else proceed the payment
-      const token = getToken();
-      if (!token) {
-        window.location.replace('/');
-        return;
-      }
+      // const token = getToken();
+      // if (!token) {
+      //   window.location.replace('/');
+      //   return;
+      // }
 
-      const options = {
-        method: 'PUT',
-        headers: {
-          Authorization: token,
-        },
-      };
-      request(API.getPaymentAPI(), options, (result) => {
-        window.location.replace('/');
-        return;
-      });
+      // const options = {
+      //   method: 'PUT',
+      //   headers: {
+      //     Authorization: token,
+      //   },
+      // };
+      // request(API.getPaymentAPI(), options, (result) => {
+      //   window.location.replace('/');
+      //   return;
+      // });
     });
 
     // After render personal information done => Render product list

@@ -1,3 +1,7 @@
+import { request } from '../fetch.js';
+import { API } from '../restful-api.js';
+import { numberWithCommas } from '../utils.js';
+
 function renderSearchContainer(headerDOMNode) {
   const searchContainerDOMElement = headerDOMNode.querySelector(
     '.header__search-container'
@@ -16,13 +20,17 @@ function renderSearchContainer(headerDOMNode) {
         <i class="bi bi-x"></i>
       </button>
 
-      <input
-        type="search"
-        class="header__search-input"
-        placeholder="Tìm kiếm sản phẩm..."
-      />
+      <div class="header__search-input-wrapper">
+        <input
+          type="search"
+          class="header__search-input"
+          placeholder="Tìm kiếm sản phẩm..."
+        />
+        <span class="header__search-input-icon"><i class="bi bi-search"></i></span>
+      </div>
+      
 
-      <ul class="header__search-type-list">
+      <ul class="header__search-type-list d-none">
         <li
           class="header__search-type-item header__search-type-item--active"
           data-search-type-toggler
@@ -41,177 +49,15 @@ function renderSearchContainer(headerDOMNode) {
 
 
 
-      <ul class="header__search-result-list">
-        <li class="header__search-result-item">
-          <a href="" class="header__search-result-item-link">
-            <img
-              class="header__search-result-item-img"
-              src="./assets/imgs/home/mock-product.webp"
-              alt=""
-            />
-
-            <div
-              class="header__search-result-item-info header__search-result-item-info--price"
-            >
-              <h3 class="header__search-result-item-title">
-                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
-              </h3>
-              <span class="header__search-result-item-price"
-                >2.499.999đ</span
-              >
-              <span class="header__search-result-item-quantity"
-                >6 sản phẩm</span
-              >
-            </div>
-          </a>
-        </li>
-        <li class="header__search-result-item">
-          <a href="" class="header__search-result-item-link">
-            <img
-              class="header__search-result-item-img"
-              src="./assets/imgs/home/mock-product.webp"
-              alt=""
-            />
-
-            <div
-              class="header__search-result-item-info header__search-result-item-info--price"
-            >
-              <h3 class="header__search-result-item-title">
-                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
-              </h3>
-              <span class="header__search-result-item-price"
-                >2.499.999đ</span
-              >
-              <span class="header__search-result-item-quantity"
-                >6 sản phẩm</span
-              >
-            </div>
-          </a>
-        </li>
-        <li class="header__search-result-item">
-          <a href="" class="header__search-result-item-link">
-            <img
-              class="header__search-result-item-img"
-              src="./assets/imgs/home/mock-product.webp"
-              alt=""
-            />
-
-            <div
-              class="header__search-result-item-info header__search-result-item-info--price"
-            >
-              <h3 class="header__search-result-item-title">
-                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
-              </h3>
-              <span class="header__search-result-item-price"
-                >2.499.999đ</span
-              >
-              <span class="header__search-result-item-quantity"
-                >6 sản phẩm</span
-              >
-            </div>
-          </a>
-        </li>
-        <li class="header__search-result-item">
-          <a href="" class="header__search-result-item-link">
-            <img
-              class="header__search-result-item-img"
-              src="./assets/imgs/home/mock-product.webp"
-              alt=""
-            />
-
-            <div
-              class="header__search-result-item-info header__search-result-item-info--price"
-            >
-              <h3 class="header__search-result-item-title">
-                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
-              </h3>
-              <span class="header__search-result-item-price"
-                >2.499.999đ</span
-              >
-              <span class="header__search-result-item-quantity"
-                >6 sản phẩm</span
-              >
-            </div>
-          </a>
-        </li>
-        <li class="header__search-result-item">
-          <a href="" class="header__search-result-item-link">
-            <img
-              class="header__search-result-item-img"
-              src="./assets/imgs/home/mock-product.webp"
-              alt=""
-            />
-
-            <div
-              class="header__search-result-item-info header__search-result-item-info--price"
-            >
-              <h3 class="header__search-result-item-title">
-                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
-              </h3>
-              <span class="header__search-result-item-price"
-                >2.499.999đ</span
-              >
-              <span class="header__search-result-item-quantity"
-                >6 sản phẩm</span
-              >
-            </div>
-          </a>
-        </li>
-        <li class="header__search-result-item">
-          <a href="" class="header__search-result-item-link">
-            <img
-              class="header__search-result-item-img"
-              src="./assets/imgs/home/mock-product.webp"
-              alt=""
-            />
-
-            <div
-              class="header__search-result-item-info header__search-result-item-info--price"
-            >
-              <h3 class="header__search-result-item-title">
-                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
-              </h3>
-              <span class="header__search-result-item-price"
-                >2.499.999đ</span
-              >
-              <span class="header__search-result-item-quantity"
-                >6 sản phẩm</span
-              >
-            </div>
-          </a>
-        </li>
-        <li class="header__search-result-item">
-          <a href="" class="header__search-result-item-link">
-            <img
-              class="header__search-result-item-img"
-              src="./assets/imgs/home/mock-product.webp"
-              alt=""
-            />
-
-            <div
-              class="header__search-result-item-info header__search-result-item-info--price"
-            >
-              <h3 class="header__search-result-item-title">
-                Chuột không dây siêu nhẹ Lamzu Atlantis Mini
-              </h3>
-              <span class="header__search-result-item-price"
-                >2.499.999đ</span
-              >
-              <span class="header__search-result-item-quantity"
-                >6 sản phẩm</span
-              >
-            </div>
-          </a>
-        </li>
-      </ul>
-
+      <!--- Render search result here -->
+      <ul class="header__search-result-list"></ul>
 
 
 
 
 
       <div class="header__search-result-loading">
-        <ul class="header__search-type-list">
+        <ul class="header__search-type-list" style="display = 'none';">
           <li class="header__search-type-item">
             <div
               class="skeleton"
@@ -265,9 +111,8 @@ function handleSearchContainerEvents(headerDOMNode) {
   });
 
   // Handle input searching
-  const searchInput = headerDOMNode.querySelector(
-    '.header__search-input'
-  );
+  const resultList = headerDOMNode.querySelector('.header__search-result-list');
+  const searchInput = headerDOMNode.querySelector('.header__search-input');
   let prevTimeout = null;
   const DELAY_SEARCH_TIME = 500;
   searchInput.addEventListener('input', (e) => {
@@ -285,9 +130,58 @@ function handleSearchContainerEvents(headerDOMNode) {
     prevTimeout = setTimeout(() => {
       // TODO: implement fetch data (implement data for each search type)
       // If there is no product => Display text
+      const options = {
+        method: 'PUT',
+        body: JSON.stringify({
+          search: searchInput.value,
+        }),
+        headers: {
+          'Content-type': 'application/json',
+        },
+      };
+      request(
+        'http://localhost:8080/api/product/search-by-string',
+        options,
+        (products) => {
+          resultList.innerHTML = `
+          ${products
+            .map((product) => {
+              return `
+              <li class="header__search-result-item">
+                <a href="../../../product-detail.html?productId=${
+                  product.id
+                }" class="header__search-result-item-link">
+                  <img
+                    class="header__search-result-item-img"
+                    src="${product.images[0]}"
+                    alt="Product image"
+                  />
 
-      searchInput.classList.remove('header__search-input--searching');
-      searchInput.classList.add('header__search-input--search-done');
+                  <div
+                    class="header__search-result-item-info header__search-result-item-info--price"
+                  >
+                    <h3 class="header__search-result-item-title">
+                      ${product.name}
+                    </h3>
+                    <span class="header__search-result-item-price"
+                      >${numberWithCommas(product.price)}đ</span
+                    >
+                    <span class="header__search-result-item-quantity"
+                      >6 sản phẩm</span
+                    >
+                  </div>
+                </a>
+              </li>
+            `;
+            })
+            .join('')}
+        `;
+
+          // Done fetch data => Update UI
+          searchInput.classList.remove('header__search-input--searching');
+          searchInput.classList.add('header__search-input--search-done');
+        }
+      );
     }, DELAY_SEARCH_TIME);
   });
 
@@ -321,6 +215,86 @@ function handleSearchContainerEvents(headerDOMNode) {
       }
     });
   });
+
+  // Handle search icon click
+  const searchIcon = headerDOMNode.querySelector('.header__search-input-icon');
+  searchIcon.addEventListener('click', () => {
+    triggerSearch(headerDOMNode);
+  });
+}
+
+/**
+ * Search icon triggers searching for products
+ * @param {*} headerDOMNode
+ * @returns
+ */
+function triggerSearch(headerDOMNode) {
+  const resultList = headerDOMNode.querySelector('.header__search-result-list');
+  const searchInput = headerDOMNode.querySelector('.header__search-input');
+
+  searchInput.classList.remove('header__search-input--search-done');
+  if (!searchInput.value) {
+    searchInput.classList.remove('header__search-input--searching');
+    searchInput.classList.remove('header__search-input--search-done');
+    return;
+  } else {
+    searchInput.classList.add('header__search-input--searching');
+  }
+
+  const options = {
+    method: 'PUT',
+    body: JSON.stringify({
+      search: searchInput.value,
+    }),
+    headers: {
+      'Content-type': 'application/json',
+    },
+  };
+  request(
+    'http://localhost:8080/api/product/search-by-string',
+    options,
+    (products) => {
+      resultList.innerHTML = `
+          ${products
+            .map((product) => {
+              return `
+              <li class="header__search-result-item">
+                <a href="../../../product-detail.html?productId=${
+                  product.id
+                }" class="header__search-result-item-link">
+                  <img
+                    class="header__search-result-item-img"
+                    src="${product.images[0]}"
+                    alt="Product image"
+                  />
+
+                  <div
+                    class="header__search-result-item-info header__search-result-item-info--price"
+                  >
+                    <h3 class="header__search-result-item-title">
+                      ${product.name}
+                    </h3>
+                    <span class="header__search-result-item-price"
+                      >${numberWithCommas(product.price)}đ</span
+                    >
+                    <span class="header__search-result-item-quantity"
+                      >6 sản phẩm</span
+                    >
+                  </div>
+                </a>
+              </li>
+            `;
+            })
+            .join('')}
+        `;
+
+      // Done fetch data => Update UI
+      setTimeout(() => {
+        searchInput.classList.remove('header__search-input--searching');
+        searchInput.classList.add('header__search-input--search-done');
+      }, 300);
+    }
+  );
 }
 
 export { renderSearchContainer };

@@ -7,10 +7,10 @@ function renderFooter(footerDOMNode) {
           <div class="row">
             <div class="col l-6 m-6 c-12">
               <div class="footer__col-wrapper">
-                <h3 class="footer__heading">Công ty TNHH Phong Cách Xanh</h3>
+                <h3 class="footer__heading">Công ty TNHH Gearclub</h3>
                 <p class="footer__paragraph">
-                  Giấy phép ĐKKD: 0307185382 do Sở KH-ĐT TP.HCM cấp ngày
-                  04/02/2009
+                  Giấy phép ĐKKD: 02327496381 do Sở KH-ĐT TP.HCM cấp ngày
+                  05/01/2023
                 </p>
                 <p class="footer__paragraph">
                   Nhà phân phối độc quyền các thương hiệu Filco - Glorious -
@@ -23,19 +23,19 @@ function renderFooter(footerDOMNode) {
               <div class="footer__col-wrapper">
                 <h3 class="footer__heading">Thông tin liên hệ</h3>
                 <p class="footer__paragraph">
-                  89 Hồ Văn Huê, P9, Q.Phú Nhuận, TP.HCM
+                  702 Nguyễn Văn Linh, Quận 7, TP.HCM
                 </p>
                 <p class="footer__paragraph">
                   Giờ làm việc: 8:30 sáng - 8:00 tối
                 </p>
-                <a href="tel:+02862921182" class="footer__paragraph-link"
-                  >(028)6.292.1182</a
+                <a href="tel:+02862836481" class="footer__paragraph-link"
+                  >(028)6.283.6481</a
                 >
-                <a href="tel:+0904135321" class="footer__paragraph-link"
-                  >0904.135.321</a
+                <a href="tel:+0986233643" class="footer__paragraph-link"
+                  >0986.233.643</a
                 >
-                <a href="tel:+0899454393" class="footer__paragraph-link"
-                  >0899.454.393</a
+                <a href="tel:+0899351972" class="footer__paragraph-link"
+                  >0899.351.972</a
                 >
               </div>
             </div>

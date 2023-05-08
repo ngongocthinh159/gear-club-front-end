@@ -420,6 +420,23 @@
   font-size: 2rem;
 }
 
+.header__search-input-wrapper {
+  position: relative;
+  margin-bottom: 36px;
+}
+
+.header__search-input-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--text-dark-color);
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.6rem;
+}
+
 .header__search-input {
   display: block;
   border: none;
@@ -430,12 +447,12 @@
   color: var(--text-dark-color);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0;
-  margin-bottom: 36px;
 }
 
 .header__search-input::-webkit-search-cancel-button {
   cursor: pointer;
   content: '\F62A';
+  display: none;
 }
 
 .header__search-input:focus {

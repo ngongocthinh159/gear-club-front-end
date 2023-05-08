@@ -71,10 +71,14 @@ function renderSectionAccount(secAccountDOMNode) {
     renderSectionPersonalInformation(secAccountMainDOMNode, stateChangeNode);
   });
 
-  // Render order history first
+  // Render order history/personal information
   const secAccountMainDOMNode =
     secAccountDOMNode.querySelector('.sec-account__main');
-  renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode);
+  if (window.location.search.includes('showPersonalInformation=true')) {
+    accountBtn.click();
+  } else {
+    renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode);
+  }
 }
 
 export { renderSectionAccount };
