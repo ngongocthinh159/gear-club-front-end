@@ -40,12 +40,20 @@
                     <input id="name" type="text" class="input">
                 </div>
                 <div class="input_field">
-                    <label>Price</label>
-                    <input id="price" type="text" class="input">
+                    <label>Vendor Name</label>
+                    <input id="vendorName" type="text" class="input">
                 </div>
                 <div class="input_field">
-                    <label>Brand</label>
-                    <input id="brand" type="text" class="input">
+                    <label>Title</label>
+                    <input id="title" type="text" class="input">
+                </div>
+                <div class="input_field">
+                    <label>Price</label>
+                    <input id="price" type="number" class="input">
+                </div>
+                <div class="input_field">
+                    <label>Design Location</label>
+                    <input id="designLocation" type="text" class="input">
                 </div>
                 <div class="input_field">
                     <label>Category</label>
@@ -53,35 +61,48 @@
                         <select id="category">
                             <option value="mouse">Mouse</option>
                             <option value="keyboard">Keyboard</option>
-                            <option value="mousePad">Mouse Pad</option>
+                            <option value="pad">Mouse Pad</option>
                         </select>
                     </div>
                 </div>
                 <div class="input_field">
                     <label>Quantity</label>
-                    <input id="quantity" type="text" class="input">
+                    <input id="quantity" type="number" class="input">
+                </div>
+                <div class="input_field">
+                    <label>Warranty (Month)</label>
+                    <input id="warranty" type="number" class="input">
                 </div>
                 <div class="input_field">
                     <label>Images</label>
                     <textarea class="textarea" id="images"></textarea>
                 </div>
                 <div class="input_field">
+                    <label>Introduction</label>
+                    <textarea class="textarea" id="intro"></textarea>
+                </div>
+                <div class="input_field">
                     <label>Description</label>
                     <textarea class="textarea" id="description"></textarea>
                 </div>
                 <div class="input_field">
-                    <label>Designed in</label>
-                    <input id="designedIn" type="text" class="input">
+                    <label>Features</label>
+                    <textarea class="textarea" id="features"></textarea>
                 </div>
                 <div class="input_field">
-                    <label>Warranty (Month)</label>
-                    <input id="warranty" type="text" class="input">
+                    <label>Highlights</label>
+                    <textarea class="textarea" id="highlights"></textarea>
                 </div>
                 <div class="buttons">
                     <button id="delete">Delete</button>
                     <button id="save">Save</button>
                 </div>
             </div>
+            <dialog class="modal" id="modal">
+                <h2 class="modal-title"></h2>
+                <p class="modal-message"></p>
+                <button class="close-button">Close</button>
+            </dialog>
         </div>
     </div>
 
@@ -91,5 +112,6 @@
         const nav = document.querySelector('div.navbar');
         renderNavbar(nav);
     </script>
+    <script type="module" src="/assets/js/admin/editProduct.js"></script>
 </body>
 </html>

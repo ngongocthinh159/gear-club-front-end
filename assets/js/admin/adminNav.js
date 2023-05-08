@@ -38,8 +38,8 @@ function renderNavbar(navbarDOMnode) {
 function renderSearchbar(searchbarDOMnode) {
     searchbarDOMnode.innerHTML = `
         <i class="fa fa-search"></i>
-        <input type="text" placeholder="Search here...">
-        <button class="search-button">Search</button> 
+        <input type="text" id="search-text" placeholder="Search here...">
+        <button class="search-button" id="search-button">Search</button> 
     `;
 }
 
