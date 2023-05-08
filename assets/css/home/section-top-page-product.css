@@ -1,7 +1,6 @@
 .top-page-prod {
   --section-trending-product-height: 720px;
   height: var(--section-trending-product-height);
-  background-image: url('../../imgs/home/top-background.webp');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

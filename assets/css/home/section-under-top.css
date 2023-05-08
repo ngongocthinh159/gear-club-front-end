@@ -98,7 +98,16 @@
 }
 
 .under-top__brand-item-img {
-  height: 40px;
+  height: 36px;
+}
+
+.under-top__brand-list .col:nth-child(8) .under-top__brand-item-img {
+  height: unset;
+  width: 70px;
+}
+
+.under-top__brand-list .col:nth-child(9) .under-top__brand-item-img {
+  height: 70px;
 }
 
 .under-top__hot-products-container {

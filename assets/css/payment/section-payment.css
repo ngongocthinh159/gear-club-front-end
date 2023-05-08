@@ -327,4 +327,7 @@
 
 /* Mobile */
 @media (max-width: 739px) {
+  .sec-payment__right-container {
+    margin-inline: -12px;
+  }
 }

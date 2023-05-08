@@ -49,6 +49,7 @@ function getKeyValueStringsFromURLSearch(searchString) {
   return res;
 }
 
+// Bearer token storage
 function storeToken(token) {
   localStorage.setItem('SavedToken', 'Bearer ' + token);
 }
@@ -59,6 +60,12 @@ function getToken() {
 
 function removeToken() {
   localStorage.removeItem('SavedToken');
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 const spinningAnimation = [
@@ -89,6 +96,7 @@ export {
   storeToken,
   getToken,
   removeToken,
+  getRandomInt,
   spinningAnimation,
   spinningAnimationTiming,
 };

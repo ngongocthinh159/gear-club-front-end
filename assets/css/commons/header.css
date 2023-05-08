@@ -176,6 +176,8 @@
 
 .header__nav-list {
   display: flex;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .header__nav-pannel--active .header__nav-list {
@@ -217,6 +219,7 @@
   will-change: opacity;
   transition: all 0.15s linear;
   position: relative;
+  line-height: 1.2;
 }
 
 .header__nav-item:not(:last-child) {
@@ -453,7 +456,7 @@
 }
 
 .header__search-result-loading .header__search-result-list {
-  display: flex!important;
+  display: flex !important;
   flex-wrap: wrap;
 }
 
@@ -464,12 +467,13 @@
   margin-bottom: 24px;
 }
 
-.header__search-container:has(.header__search-input--searching) .header__search-type-list {
+.header__search-container:has(.header__search-input--searching)
+  .header__search-type-list {
   display: none;
 }
 
 .header__search-result-loading .header__search-type-list {
-  display: flex!important;
+  display: flex !important;
 }
 
 .header__search-type-item {

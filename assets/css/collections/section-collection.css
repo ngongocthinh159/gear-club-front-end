@@ -12,6 +12,9 @@
   background-size: cover;
   border-radius: 24px;
   overflow: hidden;
+  min-height: 470px;
+  display: flex;
+  align-items: center;
 }
 
 .collection_banner-detail-container {

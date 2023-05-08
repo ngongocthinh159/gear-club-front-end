@@ -36,7 +36,12 @@
     />
 
     <!-- Toast -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <link rel="stylesheet" href="./assets/css/commons/toastr.min.css" />
     <script src="./assets/js/commons/toastr.min.js"></script>
 
@@ -85,26 +90,11 @@
       <div class="collection">
         <div class="container-1600">
           <!-- Banner -->
-          <div
-            class="collection__banner"
-            style="
-              background-image: url('./assets/imgs/collections/banner.webp');
-            "
-          >
+          <div class="collection__banner">
             <div class="collection_banner-detail-container">
-              <h3 class="collection_banner-detail-title">
-                Bàn phím cơ không dây và có dây
-              </h3>
-              <h4 class="collection_banner-detail-sub-title">
-                Bàn phím cơ thoải mái cho lập trình viên hoặc game thủ giảm mệt
-                mỏi khi sử dụng máy tính lâu dài.
-              </h4>
-              <p class="collection_banner-detail-para">
-                Bàn phím cơ là thiết bị không thể thiếu giúp bạn sử dụng máy
-                tính hàng giờ liền tại văn phòng, tại nhà mà không cảm thấy mệt
-                mỏi. Không chỉ làm việc, bàn phím cơ còn là công cụ giúp bạn tự
-                tin chiến thắng đối thủ với những pha highlight mãn nhãn.
-              </p>
+              <h3 class="collection_banner-detail-title"></h3>
+              <h4 class="collection_banner-detail-sub-title"></h4>
+              <p class="collection_banner-detail-para"></p>
             </div>
           </div>
 
@@ -228,8 +218,8 @@
                   <option value="zToA">Thứ tự bảng chữ cái (Z-A)</option>
                   <option value="increasingPrice">Giá (tăng dần)</option>
                   <option value="decreasingPrice">Giá (giảm dần)</option>
-                  <option value="newestToOldest">Ngày (mới nhất)</option>
-                  <option value="oldestToNewest">Ngày (cũ nhất)</option>
+                  <!-- <option value="newestToOldest">Ngày (mới nhất)</option>
+                  <option value="oldestToNewest">Ngày (cũ nhất)</option> -->
                 </select>
               </div>
             </div>
@@ -253,12 +243,58 @@
     <script type="module">
       import { renderHeader } from './assets/js/commons/header/header.js';
       import { renderFooter } from './assets/js/commons/footer.js';
+      import { getRandomInt } from './assets/js/commons/utils.js';
 
       const header = document.querySelector('header.header');
       renderHeader(header, false);
 
       const footer = document.querySelector('footer.footer');
       renderFooter(footer);
+
+      // Script for random banner
+      const banners = [
+        {
+          title: 'Bàn phím cơ không dây và có dây',
+          subtitle:
+            'Bàn phím cơ thoải mái cho lập trình viên hoặc game thủ giảm mệt mỏi khi sử dụng máy tính lâu dài.',
+          description:
+            'Bàn phím cơ là thiết bị không thể thiếu giúp bạn sử dụng máy tính hàng giờ liền tại văn phòng, tại nhà mà không cảm thấy mệt mỏi. Không chỉ làm việc, bàn phím cơ còn là công cụ giúp bạn tự tin chiến thắng đối thủ với những pha highlight mãn nhãn.',
+          img: './assets/imgs/collections/banner-1.png',
+        },
+        {
+          title: 'Chuột chơi game chuyên nghiệp',
+          subtitle:
+            'Chọn chuột tốt nhất cho bạn từ các thương hiệu nổi tiếng như Finalmouse, Glorious, Pulsar, Lamzu, Ninjutso, Logitech và Razer.',
+          description:
+            'Chuột gaming, chuột văn phòng hay những chú chuột không dây, có dây mới nhất bạn có thể tìm thấy tại Gearclub sẽ xuất hiện tại đây.',
+          img: './assets/imgs/collections/banner-2.png',
+        },
+        {
+          title: 'Lót chuột máy tính',
+          subtitle:
+            'Lót chuột giúp bảo vệ feet chuột của bạn và đảm bảo mỗi cú lướt chuột điều nhanh và chính xác, không bị tình trạng giật cục.',
+          description:
+            'Chỉ cần thay một lót chuột với bề mặt khác, cảm giác lướt chuột của bạn sẽ control hoặc speed tùy theo loại pad bạn chọn để phù hợp nhất với phong cách sử dụng chuột của bạn.',
+          img: './assets/imgs/collections/banner-3.png',
+        },
+      ];
+      const banner = banners[getRandomInt(0, 2)];
+
+      const collectionBanner = document.querySelector('.collection__banner');
+      const bannerTitle = document.querySelector(
+        '.collection_banner-detail-title'
+      );
+      const bannerSubTitle = document.querySelector(
+        '.collection_banner-detail-sub-title'
+      );
+      const bannerDescription = document.querySelector(
+        '.collection_banner-detail-para'
+      );
+
+      collectionBanner.style = `background-image: url('${banner.img}');`;
+      bannerTitle.innerHTML = banner.title;
+      bannerSubTitle.innerHTML = banner.subtitle;
+      bannerDescription.innerHTML = banner.description;
     </script>
 
     <script src="./assets/js/commons/ion.rangeSlider.min.js"></script>
