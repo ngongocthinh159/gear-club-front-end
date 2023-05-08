@@ -8,13 +8,7 @@ function renderNavbar(navbarDOMnode) {
                 </a>
             </li>
             <li>
-                <a href="/admin/dashboard.html" style="margin-top: 24px">
-                    <i class="fas fa-home" aria-hidden="true"></i>
-                    <span class="nav-item">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="/admin/product.html">
+                <a href="/admin/product.html" style="margin-top: 24px">
                     <i class="fas fa-gamepad" aria-hidden="true"></i>
                     <span class="nav-item">Product</span>
                 </a>
@@ -23,6 +17,12 @@ function renderNavbar(navbarDOMnode) {
                 <a href="/admin/user.html">
                     <i class="fas fa-user" aria-hidden="true"></i>
                     <span class="nav-item">User</span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/collection.html">
+                    <i class="fas fa-th-large" aria-hidden="true"></i>
+                    <span class="nav-item">Collection</span>
                 </a>
             </li>
             <li>

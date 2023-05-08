@@ -51,6 +51,9 @@ const API = {
   getTrendingCollectionByNameAPI(collectionName) {
     return BASE_URL + '/api/collection/' + collectionName;
   },
+  updateCollection() {
+    return BASE_URL + '/api/collection/'
+  },
 
   // Shopping cart
   getIncreaseProductQuantityInCartAPI() {
