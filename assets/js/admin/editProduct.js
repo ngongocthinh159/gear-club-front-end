@@ -40,9 +40,10 @@ const str2map = (str) => {
 
     for (let i = 0; i < lines.length; i++) {
         if (lines[i].includes(":") === false) continue
-        let temp = lines[i].split(":")
-        if (temp[0].trim() === "" || temp[1].trim() === "") continue
-        map[temp[0].trim()] = temp[1].trim()
+        let [keys, ...value] = lines[i].split(":")
+        let content = value.join(':')
+        if (keys.trim() === "" || content.trim() === "") continue
+        map[keys.trim()] = content.trim()
     }
 
     return map
@@ -119,7 +120,6 @@ const checkProduct = (product) => {
 }
 
 function saveProduct(method) {
-
     if (checkHighlightCount()) {
         let product = Object()
         if (method === "PUT") product.id = Number(document.querySelector("#id").value)

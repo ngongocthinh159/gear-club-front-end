@@ -23,29 +23,24 @@
     <link href="https://unpkg.com/tabulator-tables@5.4.4/dist/css/tabulator.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.4.4/dist/js/tabulator.min.js"></script>
 
-    <link rel="stylesheet" href="/assets/css/admin/admin.css"/>
+    <link rel="stylesheet" href="/assets/css/admin/login.css"/>
 </head>
 <body>
-    <div class="main">
-        <div class="navbar"></div>
-        <div class="content">
-            <div class="title">Product</div>
-            <div class="search-bar"></div>
-            <div class="table">
-                <div id="table"></div>
+    <div class="center">
+        <h1>Login</h1>
+        <form method="post">
+            <div class="text_field">
+                <input type="text" required>
+                <span></span>
+                <label>Username</label>
             </div>
-        </div>
+            <div class="text_field">
+                <input type="password" required>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <button id="login">Login</button>
+        </form>
     </div>
-
-    <script type="module">
-        import { renderNavbar, renderSearchbar } from '/assets/js/admin/adminNav.js'
-  
-        const nav = document.querySelector('div.navbar');
-        renderNavbar(nav);
-
-        const search = document.querySelector('div.search-bar');
-        renderSearchbar(search);
-    </script>
-    <script type="module" src="/assets/js/admin/product.js"></script>
 </body>
 </html>

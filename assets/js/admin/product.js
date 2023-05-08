@@ -31,8 +31,6 @@ function loadTable(tabledata) {
     //trigger an alert message when the row is clicked
     table.on("rowClick", function (e, row) {
         var data = row.getData()
-        console.log(data.id)
-        localStorage.setItem('itemID', data.id)
         window.location.href = '/admin/editProduct.html?id=' + data.id
     });
 
