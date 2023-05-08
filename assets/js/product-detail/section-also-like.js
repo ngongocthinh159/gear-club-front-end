@@ -20,7 +20,7 @@ function renderAlsoLike(alsoLikeDOMNode, currentProduct) {
 
     products.forEach((product) => {
       const col = document.createElement('div');
-      col.className = 'col l-3 m-6 c-12';
+      col.className = 'col l-3 m-6 c-6';
 
       const options = {
         productDetail: {

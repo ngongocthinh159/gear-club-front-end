@@ -19,9 +19,10 @@ function renderSectionLogin(mainDOMNode) {
         <div class="custom-input-wrapper input">
             <input placeholder=" " id="password" type="password" class="custom-input__input-text"/>
             <span class="custom-input__input-label">Mật khẩu</span>
+            <span class="custom-input__password-display-toggle"></span>
         </div>
 
-        <a href="./recover.html" title="Quên mật khẩu?">Quên mật khẩu?</a>
+        <a href="./recover.html" title="Quên mật khẩu?" class="d-none">Quên mật khẩu?</a>
 
         <div class="text-center">
             <button class="btn btn-dark" id="login" style="width: 100%; height: 60px">Đăng nhập</button>
@@ -33,6 +34,7 @@ function renderSectionLogin(mainDOMNode) {
   // Validation in FE before requestiong BE
   const loginButton = document.getElementById('login');
   loginButton.addEventListener('click', function () {
+    loginButton.classList.add('btn-disabled');
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
 
@@ -63,8 +65,38 @@ function renderSectionLogin(mainDOMNode) {
           window.location.replace('/'); // Redirect back to home page
         } else {
           // TODO: Hiển thị trạng thái sai pass + mật khẩu
+          displayError(
+            'Địa chỉ email đăng nhập hoặc mật khẩu không chính xác.'
+          );
+
+          loginButton.classList.remove('btn-disabled');
         }
       });
+    }
+  });
+
+  // Listen to enter events
+  const inputs = mainDOMNode.querySelectorAll('.custom-input-wrapper input');
+  inputs.forEach((input) => {
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        if (!loginButton.classList.contains('btn-disabled'))
+          loginButton.click();
+      }
+    });
+  });
+
+  // Handle password hide/show toggle]
+  const passwordToggler = mainDOMNode.querySelector(
+    '.custom-input__password-display-toggle'
+  );
+  passwordToggler.addEventListener('click', () => {
+    const passwordInput = mainDOMNode.querySelector('#password');
+
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+    } else {
+      passwordInput.type = 'password';
     }
   });
 }

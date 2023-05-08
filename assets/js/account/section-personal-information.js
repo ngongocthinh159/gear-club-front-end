@@ -27,6 +27,42 @@ function renderSectionPersonalInformation(
         <div class="row">
           <div class="col l-6 m-6 c-12">
             <div class="acc-info__form-input-group">
+              <label for="email" class="acc-info__form-label">Email</label>
+              <div class="custom-input-wrapper">
+                <input
+                  id="email"
+                  placeholder=" "
+                  name="email"
+                  type="email"
+                  class="custom-input__input-text"
+                  value="${user.email}"
+                  readonly
+                  style="background-color: var(--black-alpha-5); color: var(--black-alpha-30)"
+                />
+                <span class="custom-input__input-label">Ex: example@gmail.com</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col l-6 m-6 c-12">
+            <div class="acc-info__form-input-group">
+              <label for="phone" class="acc-info__form-label">Số điện thoại</label>
+              <div class="custom-input-wrapper">
+                <input
+                  id="phone"
+                  placeholder=" "
+                  name="phone"
+                  type="number"
+                  class="custom-input__input-text"
+                  value="${user.phone === null ? '' : user.phone}"
+                />
+                <span class="custom-input__input-label">Ex: +84 123 456 789</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col l-6 m-6 c-12">
+            <div class="acc-info__form-input-group">
               <label for="firstName" class="acc-info__form-label">Tên</label>
               <div class="custom-input-wrapper">
                 <input
@@ -55,41 +91,6 @@ function renderSectionPersonalInformation(
                   value="${user.lastName}"
                 />
                 <span class="custom-input__input-label">Ex: yourfirstname</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col l-6 m-6 c-12">
-            <div class="acc-info__form-input-group">
-              <label for="email" class="acc-info__form-label">Email</label>
-              <div class="custom-input-wrapper">
-                <input
-                  id="email"
-                  placeholder=" "
-                  name="email"
-                  type="email"
-                  class="custom-input__input-text"
-                  value="${user.email}"
-                  readonly
-                />
-                <span class="custom-input__input-label">Ex: example@gmail.com</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col l-6 m-6 c-12">
-            <div class="acc-info__form-input-group">
-              <label for="phone" class="acc-info__form-label">Số điện thoại</label>
-              <div class="custom-input-wrapper">
-                <input
-                  id="phone"
-                  placeholder=" "
-                  name="phone"
-                  type="number"
-                  class="custom-input__input-text"
-                  value="${user.phone === null ? '' : user.phone}"
-                />
-                <span class="custom-input__input-label">Ex: +84 123 456 789</span>
               </div>
             </div>
           </div>
@@ -131,6 +132,10 @@ function renderSectionPersonalInformation(
     );
     inputs.forEach((input) => {
       input.addEventListener('input', () => {
+        secAccountMainDOMNode
+          .querySelector(`.custom-input-wrapper:has(#${input.id})`)
+          .classList.remove('custom-input-wrapper--error');
+
         if (updateBtn.classList.contains('btn-disabled')) {
           updateBtn.classList.remove('btn-disabled');
         }
@@ -148,11 +153,43 @@ function renderSectionPersonalInformation(
       updateBtn.classList.add('btn-disabled');
 
       // Get values from input
-      const email = secAccountMainDOMNode.querySelector('#email').value;
-      const firstName = secAccountMainDOMNode.querySelector('#firstName').value;
-      const lastName = secAccountMainDOMNode.querySelector('#lastName').value;
-      const phone = secAccountMainDOMNode.querySelector('#phone').value;
-      const address = secAccountMainDOMNode.querySelector('#address').value;
+      const email = secAccountMainDOMNode.querySelector('#email').value.trim();
+      const firstName = secAccountMainDOMNode.querySelector('#firstName').value.trim();
+      const lastName = secAccountMainDOMNode.querySelector('#lastName').value.trim();
+      const phone = secAccountMainDOMNode.querySelector('#phone').value.trim();
+      const address = secAccountMainDOMNode.querySelector('#address').value.trim();
+
+      // Validator in FE first
+      let isValid = true;
+      if (firstName.length === 0) {
+        secAccountMainDOMNode
+          .querySelector('.custom-input-wrapper:has(#firstName)')
+          .classList.add('custom-input-wrapper--error');
+          isValid = false;
+      }
+      if (lastName.length === 0) {
+        secAccountMainDOMNode
+          .querySelector('.custom-input-wrapper:has(#lastName)')
+          .classList.add('custom-input-wrapper--error');
+        isValid = false;
+      }
+      if (!(1 <= phone.length && phone.length <= 15)) {
+        secAccountMainDOMNode
+          .querySelector('.custom-input-wrapper:has(#phone)')
+          .classList.add('custom-input-wrapper--error');
+        isValid = false;
+      }
+      if (!(1 <= address.length && address.length <= 15)) {
+        secAccountMainDOMNode
+          .querySelector('.custom-input-wrapper:has(#address)')
+          .classList.add('custom-input-wrapper--error');
+        isValid = false;
+      }
+      if (!isValid) {
+        return;
+      }
+
+      // If all field is valid
       const options = {
         method: 'PUT',
         body: JSON.stringify({

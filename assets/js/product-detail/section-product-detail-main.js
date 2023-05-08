@@ -115,7 +115,7 @@ function renderProductDetailMain(mainDOMElement, product) {
           </div>
 
           <p class="prod-detail-main__prod-description">
-            ${product?.description}
+            ${product?.intro}
           </p>
 
           <span class="prod-detail-main__prod-designed-country">

@@ -3,7 +3,7 @@
 }
 
 .prod-detail-main {
-  margin-bottom: 64px;
+  margin-bottom: 100px;
 }
 
 .prod-detail-main__carousel {
@@ -503,6 +503,7 @@ body:has(.prod-detail-main__carousel-main-img-wrapper-1--zoom) {
   font-weight: 900;
   margin: 0;
   margin-bottom: 32px;
+  line-height: 1.4;
 }
 
 .prod-detail-info__title {
@@ -521,17 +522,27 @@ body:has(.prod-detail-main__carousel-main-img-wrapper-1--zoom) {
 }
 
 .prod-detail-detail {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: all 0.4s linear;
+}
+
+.prod-detail-detail:hover {
+  grid-template-rows: 1fr;
 }
 
 .prod-detail-detail__list {
   background-color: #f4f4f4;
   border-radius: 12px;
   padding: 16px 48px;
+  min-height: 245px;
+  overflow: hidden;
 }
 
 .prod-detail-detail__item {
   padding: 24px 0;
   display: flex;
+  gap: 16px;
 }
 
 .prod-detail-detail__item:not(:last-child) {
@@ -542,8 +553,9 @@ body:has(.prod-detail-main__carousel-main-img-wrapper-1--zoom) {
   font-size: 1.6rem;
   font-weight: 700;
   color: var(--text-dark-color);
-  min-width: 200px;
+  min-width: 240px;
   display: inline-block;
+  max-width: 240px;
 }
 
 .prod-detail-detail__item-detail {
@@ -613,6 +625,9 @@ body:has(.prod-detail-main__carousel-main-img-wrapper-1--zoom) {
   .prod-detail {
     padding-top: 24px;
   }
+  .prod-detail-main {
+    margin-bottom: 60px;
+  }
   .prod-detail-main__carousel {
     flex-direction: column;
     gap: 0;
@@ -626,7 +641,6 @@ body:has(.prod-detail-main__carousel-main-img-wrapper-1--zoom) {
     padding-bottom: 0;
     padding-right: 48px;
   }
-
   .prod-detail-main__carousel-item {
     width: 120px;
     padding-top: 116px;
@@ -652,6 +666,9 @@ body:has(.prod-detail-main__carousel-main-img-wrapper-1--zoom) {
   .prod-detail-info {
     padding-right: 0;
     margin-bottom: 28px;
+  }
+  .prod-detail-info-and-detail {
+    margin-bottom: 60px;
   }
   .prod-detail-significant__item-title {
     font-size: 4rem;
@@ -694,6 +711,9 @@ body:has(.prod-detail-main__carousel-main-img-wrapper-1--zoom) {
   }
   .prod-detail-info__title {
     font-size: 3.2rem;
+  }
+  .prod-detail-detail {
+    display: block;
   }
   .prod-detail-detail__list {
     padding-inline: 24px;

@@ -17,6 +17,8 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
   };
   request(API.getUserInformationAPI(), options, (result) => {
     secAccountMainDOMNode.innerHTML = `
+      <h1 class="sec-account__order-history-heading"><i class="bi bi-receipt"></i>Lịch sử mua hàng</h1>
+
       <ul class="sec-account__order-history-list"></ul>
     `;
     const orderList = document.querySelector(

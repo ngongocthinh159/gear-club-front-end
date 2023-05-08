@@ -29,9 +29,10 @@ function renderSectionRegister(mainDOMNode) {
         <div class="custom-input-wrapper input">
             <input placeholder=" " id="password" type="password" class="custom-input__input-text" />
             <span class="custom-input__input-label">Mật khẩu</span>
+            <span class="custom-input__password-display-toggle"></span>
         </div>
 
-        <a href="" title="Quên mật khẩu?">Quên mật khẩu?</a>
+        <a href="" title="Quên mật khẩu?" class="d-none">Quên mật khẩu?</a>
 
         <div class="text-center">
             <button class="btn btn-dark" id="signup" style="width: 100%; height: 60px">
@@ -80,6 +81,20 @@ function renderSectionRegister(mainDOMNode) {
         storeToken(result.token);
         window.location.replace('/'); // After register redirect back to home
       });
+    }
+  });
+
+  // Handle password hide/show toggle]
+  const passwordToggler = mainDOMNode.querySelector(
+    '.custom-input__password-display-toggle'
+  );
+  passwordToggler.addEventListener('click', () => {
+    const passwordInput = mainDOMNode.querySelector('#password');
+
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+    } else {
+      passwordInput.type = 'password';
     }
   });
 }

@@ -14,7 +14,7 @@ function renderProductDetailInfo(infoDOMElement, product) {
             ${capitalizeTheFirstLetterOfFirstWord(product?.title)}
           </h3>
           <p class="prod-detail-info__description">
-            ${capitalizeTheFirstLetterOfFirstWord(product?.intro)}
+            ${capitalizeTheFirstLetterOfFirstWord(product?.description)}
           </p>
         </div>
       </div>

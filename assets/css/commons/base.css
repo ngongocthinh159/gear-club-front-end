@@ -259,6 +259,28 @@ a {
   position: relative;
 }
 
+.custom-input-wrapper:has(input[type="password"]#password) .custom-input__password-display-toggle::after {
+  content: '\F341';
+  position: absolute;
+  font-family: 'Bootstrap-icons';
+  font-size: 2rem;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.custom-input-wrapper:has(input[type="text"]#password) .custom-input__password-display-toggle::after {
+  content: '\F340';
+  position: absolute;
+  font-family: 'Bootstrap-icons';
+  font-size: 2rem;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
 .custom-input__input-text {
   font-size: 1.6rem;
   padding: 28px 16px 12px;
