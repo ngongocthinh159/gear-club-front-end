@@ -6,23 +6,35 @@
     text-decoration: none;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
+
+    --navbar-small-width: 90px;
+    --navbar-large-width: 280px;
 }
 
 body {
     background: #dfe9f5;
 }
 
-.navbar {
+.main {
     position: relative;
+}
+
+.navbar {
+    position: fixed;
     top: 0;
     bottom: 0;
-    height: 100%;
     left: 0;
+    z-index: 1;
     background: #fff;
-    width: 90px;
     overflow: hidden;
+    width: var(--navbar-small-width);
     transition: width 0.2s linear;
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1)
+}
+
+.navbar:hover {
+    width: var(--navbar-large-width);
+    transition: all 0.5s ease;
 }
 
 .logo {
@@ -75,11 +87,6 @@ a:hover {
     background: #eee;
 }
 
-.navbar:hover {
-    width: 280px;
-    transition: all 0.5s ease;
-}
-
 .logout {
     position: absolute;
     bottom: 0;
@@ -91,15 +98,32 @@ a:hover {
 }
 
 .content {
+    --padding-inline: 32px;
+    --max-width: 1400px;
+    --padding-block: 48px;
     position: relative;
     flex-grow: 1;
-    padding: 0px 40px;
+    padding: 0 var(--padding-inline) 0 calc(var(--navbar-small-width) + var(--padding-inline));
+    padding-block: var(--padding-block);
+    height: fit-content;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.2s linear;
+}
+
+.navbar:hover + .content {
+    padding-left: calc(var(--navbar-large-width) + var(--padding-inline));
+    transition: all 0.5s ease;
 }
 
 .title {
     font-size: 32px;
     color: rgb(80, 80, 80);
-    margin: 24px 0 48px 32px;
+    display: inline-block;
+    width: min(var(--max-width), 100%);
+    margin-inline: auto;
 }
 
 .search-bar {
@@ -198,11 +222,11 @@ a:hover {
 }
 
 .form {
+    flex-shrink: 0;
     font-size: 18px;
-    max-width: 60%;
     background: #fff;
-    margin: auto;
     padding: 30px;
+    width: min(var(--max-width), 100%);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.125);
 }
 

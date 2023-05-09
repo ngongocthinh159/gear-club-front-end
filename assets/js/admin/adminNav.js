@@ -1,5 +1,7 @@
 function renderNavbar(navbarDOMnode) {
     navbarDOMnode.innerHTML = `
+        <div class="navbar__overlay"></div>
+
         <ul>
             <li>
                 <a href="#" class="logo">
