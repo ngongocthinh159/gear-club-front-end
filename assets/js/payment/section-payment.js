@@ -192,20 +192,16 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
           <i class="bi bi-chevron-right"></i>
         </span>
 
-        <a href="./account.html" class="sec-payment__breadcrumb-link">
-          <span class="sec-payment__breadcrumb-item">Thông tin</span>
-        </a>
+        <span class="sec-payment__breadcrumb-item sec-payment__breadcrumb-item--active">Thông tin</span>
 
         <span class="sec-payment__breadcrumb-separator">
           <i class="bi bi-chevron-right"></i>
         </span>
 
-        <a class="sec-payment__breadcrumb-link">
-          <span
-            class="sec-payment__breadcrumb-item sec-payment__breadcrumb-item--active"
-            >Thanh toán</span
-          >
-        </a>
+        <span
+          class="sec-payment__breadcrumb-item"
+          >Thanh toán</span
+        >
       </div>
 
       <div class="sec-payment__account">
@@ -217,161 +213,163 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
         >
         <button class="sec-payment__logout-btn">Đăng xuất</button>
       </div>
+      
+      <div class="sec-payment__left-main">
+        <div class="sec-payment__shipping">
+          <h3 class="sec-payment__heading">Phương thức giao hàng</h3>
 
-      <div class="sec-payment__shipping">
-        <h3 class="sec-payment__heading">Phương thức giao hàng</h3>
-
-        <div class="sec-payment__shipping-type-wrapper">
-          <input
-            type="radio"
-            name="shipping-type"
-            id="shipping-type-cod"
-            checked
-            class="sec-payment__shipping-type-input"
-          />
-          <label
-            for="shipping-type-cod"
-            class="sec-payment__shipping-type-label"
-            ><i class="bi bi-truck"></i>Vận chuyển COD</label
-          >
+          <div class="sec-payment__shipping-type-wrapper">
+            <input
+              type="radio"
+              name="shipping-type"
+              id="shipping-type-cod"
+              checked
+              class="sec-payment__shipping-type-input"
+            />
+            <label
+              for="shipping-type-cod"
+              class="sec-payment__shipping-type-label"
+              ><i class="bi bi-truck"></i>Vận chuyển COD</label
+            >
+          </div>
         </div>
-      </div>
 
-      <div class="sec-payment__account-info">
-        <h3 class="sec-payment__heading">
-          Địa chỉ giao hàng
-          <a
-            href="./account.html?showPersonalInformation=true"
-            class="sec-payment__edit-btn"
-          >
-            (bổ sung thông tin)</a
-          >
-        </h3>
-
-        <div class="row">
-          <div class="col l-6 m-12 c-12">
-            <div
-              class="custom-input-wrapper sec-payment__custom-input-wrapper"
+        <div class="sec-payment__account-info">
+          <h3 class="sec-payment__heading">
+            Địa chỉ giao hàng
+            <a
+              href="./account.html?showPersonalInformation=true"
+              class="sec-payment__edit-btn"
             >
-              <input
-                id="name"
-                placeholder=" "
-                name="name"
-                type="text"
-                class="custom-input__input-text"
-                value="${user.firstName}"
-                readonly
-              />
-              <span class="custom-input__input-label">Tên</span>
+              (bổ sung thông tin)</a
+            >
+          </h3>
+
+          <div class="row">
+            <div class="col l-6 m-12 c-12">
+              <div
+                class="custom-input-wrapper sec-payment__custom-input-wrapper"
+              >
+                <input
+                  id="name"
+                  placeholder=" "
+                  name="name"
+                  type="text"
+                  class="custom-input__input-text"
+                  value="${user.firstName}"
+                  readonly
+                />
+                <span class="custom-input__input-label">Tên</span>
+              </div>
             </div>
-          </div>
-          <div class="col l-6 m-12 c-12">
-            <div
-              class="custom-input-wrapper sec-payment__custom-input-wrapper"
-            >
-              <input
-                id="name"
-                placeholder=" "
-                name="name"
-                type="text"
-                class="custom-input__input-text"
-                value="${user.lastName}"
-                readonly
-              />
-              <span class="custom-input__input-label">Họ</span>
+            <div class="col l-6 m-12 c-12">
+              <div
+                class="custom-input-wrapper sec-payment__custom-input-wrapper"
+              >
+                <input
+                  id="name"
+                  placeholder=" "
+                  name="name"
+                  type="text"
+                  class="custom-input__input-text"
+                  value="${user.lastName}"
+                  readonly
+                />
+                <span class="custom-input__input-label">Họ</span>
+              </div>
             </div>
-          </div>
 
-          <div class="col l-12 m-12 c-12">
-            <div
-              class="custom-input-wrapper sec-payment__custom-input-wrapper ${
-                user.shippingAddress === null ||
-                user.shippingAddress === undefined ||
-                user.shippingAddress === ''
-                  ? 'custom-input-wrapper--error'
-                  : ''
-              }"
-            >
-              <input
-                id="name"
-                placeholder=" "
-                name="name"
-                type="text"
-                class="custom-input__input-text"
-                value="${
+            <div class="col l-12 m-12 c-12">
+              <div
+                class="custom-input-wrapper sec-payment__custom-input-wrapper ${
                   user.shippingAddress === null ||
                   user.shippingAddress === undefined ||
                   user.shippingAddress === ''
-                    ? 'Cần bổ sung'
-                    : user.shippingAddress
+                    ? 'custom-input-wrapper--error'
+                    : ''
                 }"
-                readonly
-              />
-              <span class="custom-input__input-label"
-                >Địa chỉ giao hàng</span
               >
+                <input
+                  id="name"
+                  placeholder=" "
+                  name="name"
+                  type="text"
+                  class="custom-input__input-text"
+                  value="${
+                    user.shippingAddress === null ||
+                    user.shippingAddress === undefined ||
+                    user.shippingAddress === ''
+                      ? 'Cần bổ sung'
+                      : user.shippingAddress
+                  }"
+                  readonly
+                />
+                <span class="custom-input__input-label"
+                  >Địa chỉ giao hàng</span
+                >
+              </div>
             </div>
-          </div>
 
-          <div class="col l-6 m-12 c-12">
-            <div
-              class="custom-input-wrapper sec-payment__custom-input-wrapper ${
-                user.phone === null ||
-                user.phone === undefined ||
-                user.phone === ''
-                  ? 'custom-input-wrapper--error'
-                  : ''
-              }"
-            >
-              <input
-                id="name"
-                placeholder=" "
-                name="name"
-                type="text"
-                class="custom-input__input-text"
-                value="${
+            <div class="col l-6 m-12 c-12">
+              <div
+                class="custom-input-wrapper sec-payment__custom-input-wrapper ${
                   user.phone === null ||
                   user.phone === undefined ||
                   user.phone === ''
-                    ? 'Cần bổ sung'
-                    : user.phone
+                    ? 'custom-input-wrapper--error'
+                    : ''
                 }"
-                readonly
-              />
-              <span class="custom-input__input-label"
-                >Số điện thoại</span
               >
+                <input
+                  id="name"
+                  placeholder=" "
+                  name="name"
+                  type="text"
+                  class="custom-input__input-text"
+                  value="${
+                    user.phone === null ||
+                    user.phone === undefined ||
+                    user.phone === ''
+                      ? 'Cần bổ sung'
+                      : user.phone
+                  }"
+                  readonly
+                />
+                <span class="custom-input__input-label"
+                  >Số điện thoại</span
+                >
+              </div>
             </div>
-          </div>
 
-          <div class="col l-6 m-12 c-12">
-            <div
-              class="custom-input-wrapper sec-payment__custom-input-wrapper"
-            >
-              <input
-                id="name"
-                placeholder=" "
-                name="name"
-                type="text"
-                class="custom-input__input-text"
-                value="${user.email}"
-                readonly
-              />
-              <span class="custom-input__input-label"
-                >Email</span
+            <div class="col l-6 m-12 c-12">
+              <div
+                class="custom-input-wrapper sec-payment__custom-input-wrapper"
               >
+                <input
+                  id="name"
+                  placeholder=" "
+                  name="name"
+                  type="text"
+                  class="custom-input__input-text"
+                  value="${user.email}"
+                  readonly
+                />
+                <span class="custom-input__input-label"
+                  >Email</span
+                >
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="sec-payment__control">
-        <button class="sec-payment__back-cart-btn">
-          <i class="bi bi-chevron-left"></i> Quay lại
-        </button>
-        <button class="btn btn-primary sec-payment__payment-btn">
-          Thanh toán
-        </button>
+        <div class="sec-payment__control">
+          <button class="sec-payment__back-cart-btn">
+            <i class="bi bi-chevron-left"></i> Quay lại
+          </button>
+          <button class="btn btn-primary sec-payment__payment-btn">
+            Đi đến thanh toán
+          </button>
+        </div>      
       </div>
     `;
 

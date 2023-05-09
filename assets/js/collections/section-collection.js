@@ -153,6 +153,9 @@ function firstFetch() {
 
     products.forEach((product) => {
       // Special case to handle
+      if (product.vendorName === 'Endgame Gear') {
+        return;
+      }
       if (
         product.vendorName.toLowerCase() === 'Lethal Gaming Gear'.toLowerCase()
       ) {

@@ -46,6 +46,7 @@ function renderSectionRegister(mainDOMNode) {
   // Validation in FE before requestiong BE
   const signupButton = document.getElementById('signup');
   signupButton.addEventListener('click', function () {
+    signupButton.classList.add('btn-disabled');
     var lastName = document.getElementById('lastName').value;
     var firstName = document.getElementById('firstName').value;
     var email = document.getElementById('email').value;
@@ -53,12 +54,16 @@ function renderSectionRegister(mainDOMNode) {
 
     if (lastName === '') {
       displayError('Họ không được để trống.');
+      signupButton.classList.remove('btn-disabled');
     } else if (firstName === '') {
       displayError('Tên không được để trống.');
+      signupButton.classList.remove('btn-disabled');
     } else if (validateEmail(email) !== true) {
       displayError('Wrong email format.');
+      signupButton.classList.remove('btn-disabled');
     } else if (validatePassword(password) !== true) {
       displayError(validatePassword(password));
+      signupButton.classList.remove('btn-disabled');
     } else {
       var error = document.querySelector('.error');
       if (error !== null) error.remove();
@@ -78,13 +83,20 @@ function renderSectionRegister(mainDOMNode) {
         },
       };
       request(API.getRegisterAPI(), options, (result) => {
+        // If can not create account => Duplicate email
+        if (!result.token) {
+          signupButton.classList.remove('btn-disabled');
+          displayError('Email đăng ký đã được sử dụng');
+          return;
+        }
+
         storeToken(result.token);
         window.location.replace('/'); // After register redirect back to home
       });
     }
   });
 
-  // Handle password hide/show toggle]
+  // Handle password hide/show toggle
   const passwordToggler = mainDOMNode.querySelector(
     '.custom-input__password-display-toggle'
   );
@@ -96,6 +108,18 @@ function renderSectionRegister(mainDOMNode) {
     } else {
       passwordInput.type = 'password';
     }
+  });
+
+  // Handle enter click when focus on input
+  // Listen to enter events
+  const inputs = mainDOMNode.querySelectorAll('.custom-input-wrapper input');
+  inputs.forEach((input) => {
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        if (!signupButton.classList.contains('btn-disabled'))
+          signupButton.click();
+      }
+    });
   });
 }
 

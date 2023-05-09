@@ -276,6 +276,14 @@
  *
  *
  */
+@media (max-width: 1130px) {
+  .sec-payment__summary {
+    max-width: 360px;
+  }
+}
+
+
+
 /* Mobile & Tablet */
 @media (max-width: 1023px) {
   .order-left {
@@ -285,11 +293,12 @@
     order: 1;
   }
   .sec-payment__left-container {
-    padding: 32px 0 0 0;
+    padding: 32px 0 48px 0;
   }
   .sec-payment__logo-link {
-    position: fixed;
-    top: 16px;
+    position: absolute;
+    top: 0;
+    padding: 16px;
     margin: 0;
   }
   .sec-payment__logo-img {

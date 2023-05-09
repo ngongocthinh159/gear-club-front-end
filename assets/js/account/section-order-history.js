@@ -16,6 +16,8 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
     },
   };
   request(API.getUserInformationAPI(), options, (result) => {
+    stateChangeNode.classList.remove(loadingClass);
+
     secAccountMainDOMNode.innerHTML = `
       <h1 class="sec-account__order-history-heading"><i class="bi bi-receipt"></i>Lịch sử mua hàng</h1>
 
@@ -42,7 +44,7 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
 
       return;
     }
-    
+
     // If there is at least one order => Fetch data for each order => Render
     carts.forEach((cart) => {
       const orderItem = document.createElement('li');
@@ -129,8 +131,6 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
         });
       }
     });
-
-    stateChangeNode.classList.remove(loadingClass);
   });
 }
 

@@ -40,8 +40,10 @@ function renderSectionLogin(mainDOMNode) {
 
     if (validateEmail(email) !== true) {
       displayError('Wrong email format.');
+      loginButton.classList.remove('btn-disabled');
     } else if (validatePassword(password) !== true) {
       displayError(validatePassword(password));
+      loginButton.classList.remove('btn-disabled');
     } else {
       var error = document.querySelector('.error');
       if (error !== null) error.remove();

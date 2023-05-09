@@ -20,12 +20,27 @@ body {
     width: 400px;
     background: white;
     border-radius: 10px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 
 .center h1 {
     text-align: center;
-    padding: 20px 0;
-    border-bottom: 1px solid silver;
+    padding: 30px 0 20px 0;
+    font-size: 2rem;
+    font-weight: 600;
+    position: relative;
+    color: #333;
+}
+
+.center h1::before {
+    content: "";
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background-color: #333;
 }
 
 .center form {
@@ -92,5 +107,12 @@ body {
     font-weight: 700;
     cursor: pointer;
     outline: none;
-    margin: 30px 0;
+    margin: 16px 0 30px 0;
+    transition: all 0.15s linear;
+}
+
+#login:hover {
+    outline: 2px solid #2691d9;
+    background-color: transparent;
+    color: #2691d9;
 }
