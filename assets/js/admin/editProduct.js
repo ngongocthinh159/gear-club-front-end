@@ -81,9 +81,10 @@ function initializeEdit() {
 }
 
 const checkHighlightCount = () => {
-    let count = document.querySelector("#highlights").value.trim().split('\n').length
-    return count <= 3
-}
+    let highlights = str2map(document.querySelector('#highlights').value);
+    let count = Object.keys(highlights).length;
+    return count <= 3;
+};
 
 const editModal = (title, message, url = "") => {
     var modal = document.getElementById("modal");
