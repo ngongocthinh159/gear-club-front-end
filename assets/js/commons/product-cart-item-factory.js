@@ -73,6 +73,7 @@ function getProductCartItemFactory() {
                         : ''
                     }
                     "
+              target="_blank"
               >
               ${
                 itemOptions?.productDetail?.name !== undefined

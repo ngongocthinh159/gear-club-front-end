@@ -154,10 +154,16 @@ function renderSectionPersonalInformation(
 
       // Get values from input
       const email = secAccountMainDOMNode.querySelector('#email').value.trim();
-      const firstName = secAccountMainDOMNode.querySelector('#firstName').value.trim();
-      const lastName = secAccountMainDOMNode.querySelector('#lastName').value.trim();
+      const firstName = secAccountMainDOMNode
+        .querySelector('#firstName')
+        .value.trim();
+      const lastName = secAccountMainDOMNode
+        .querySelector('#lastName')
+        .value.trim();
       const phone = secAccountMainDOMNode.querySelector('#phone').value.trim();
-      const address = secAccountMainDOMNode.querySelector('#address').value.trim();
+      const address = secAccountMainDOMNode
+        .querySelector('#address')
+        .value.trim();
 
       // Validator in FE first
       let isValid = true;
@@ -165,7 +171,7 @@ function renderSectionPersonalInformation(
         secAccountMainDOMNode
           .querySelector('.custom-input-wrapper:has(#firstName)')
           .classList.add('custom-input-wrapper--error');
-          isValid = false;
+        isValid = false;
       }
       if (lastName.length === 0) {
         secAccountMainDOMNode
@@ -179,7 +185,7 @@ function renderSectionPersonalInformation(
           .classList.add('custom-input-wrapper--error');
         isValid = false;
       }
-      if (!(1 <= address.length && address.length <= 15)) {
+      if (!(1 <= address.length && address.length <= 200)) {
         secAccountMainDOMNode
           .querySelector('.custom-input-wrapper:has(#address)')
           .classList.add('custom-input-wrapper--error');

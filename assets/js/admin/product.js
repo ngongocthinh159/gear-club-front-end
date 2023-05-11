@@ -2,13 +2,6 @@ import { request } from '/assets/js/commons/fetch.js'
 import { API } from '/assets/js/commons/restful-api.js'
 import { getToken } from '/assets/js/commons/utils.js'
 
-const options = {
-    method: 'GET',
-    headers: {
-        Authorization: getToken(),
-    }
-}
-
 function loadTable(tabledata) {
     var table = new Tabulator("#table", {
         autoResize: true,
@@ -18,14 +11,14 @@ function loadTable(tabledata) {
         pagination: true, //enable.
         paginationSize: 20, // this option can take any positive integer value
         columns: [ //Define Table Columns
-            { title: "ID", field: "id", width: 100 },
+            { title: "id", field: "id", width: 100 },
             { title: "Name", field: "name", minWidth: 500 },
             { title: "Vendor Name", field: "vendorName", minWidth: 150 },
             { title: "Price", field: "price", minWidth: 150 },
             { title: "Category", field: "category", minWidth: 200 }
         ],
         footerElement: `<button id="add-button">Add Product</button>`,
-        groupBy: "category",
+        // groupBy: "category",
     });
 
     //trigger an alert message when the row is clicked
@@ -42,9 +35,16 @@ function loadTable(tabledata) {
 }
 
 function initialize() {
+    const options = {
+        method: 'GET',
+        headers: {
+        Authorization: getToken(),
+        },
+    };
+
     request(API.getAllProductAPI(), options, (result) => {
-        loadTable(result)
-    })
+        loadTable(result);
+    });
 }
 
 function search() {

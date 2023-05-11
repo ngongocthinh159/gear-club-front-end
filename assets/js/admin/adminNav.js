@@ -1,5 +1,5 @@
 function renderNavbar(navbarDOMnode) {
-    navbarDOMnode.innerHTML = `
+  navbarDOMnode.innerHTML = `
         <div class="navbar__overlay"></div>
 
         <ul>
@@ -12,21 +12,28 @@ function renderNavbar(navbarDOMnode) {
             <li>
                 <a href="/admin/product.html" style="margin-top: 24px">
                     <i class="fas fa-gamepad" aria-hidden="true"></i>
-                    <span class="nav-item">Product</span>
+                    <span class="nav-item">Sản phẩm</span>
                 </a>
             </li>
             <li>
                 <a href="/admin/user.html">
                     <i class="fas fa-user" aria-hidden="true"></i>
-                    <span class="nav-item">User</span>
+                    <span class="nav-item">Khách hàng</span>
                 </a>
             </li>
             <li>
                 <a href="/admin/collection.html">
                     <i class="fas fa-th-large" aria-hidden="true"></i>
-                    <span class="nav-item">Collection</span>
+                    <span class="nav-item">Bộ sưu tập</span>
                 </a>
             </li>
+            <li>
+                <a href="/admin/order.html">
+                    <i class="fas fa-cart-shopping"></i>
+                    <span class="nav-item">Đơn hàng</span>
+                </a>
+            </li>
+
             <li>
                 <a href="/login.html" class="logout">
                     <i class="fas fa-sign-out-alt"></i>
@@ -38,7 +45,7 @@ function renderNavbar(navbarDOMnode) {
 }
 
 function renderSearchbar(searchbarDOMnode) {
-    searchbarDOMnode.innerHTML = `
+  searchbarDOMnode.innerHTML = `
         <i class="fa fa-search"></i>
         <input type="text" id="search-text" placeholder="Search here...">
         <button class="search-button" id="search-button">Search</button> 

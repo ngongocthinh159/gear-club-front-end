@@ -129,11 +129,10 @@ a:hover {
 .search-bar {
     position: relative;
     height: 76px;
-    width: 100%;
+    width: min(var(--max-width), 100%);
     background: #fff;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.1);
-    margin-bottom: 24px;
 }
 
 .search-bar i,

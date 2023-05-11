@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Font awesome icom -->
+    <link
+      rel="stylesheet"
+      href="/assets/fonts/fontawesome-free-6.4.0-web/css/all.min.css"
+    />
+
+    <!-- Inter Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://unpkg.com/tabulator-tables@5.4.4/dist/css/tabulator.min.css"
+      rel="stylesheet"
+    />
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/tabulator-tables@5.4.4/dist/js/tabulator.min.js"
+    ></script>
+
+    <link rel="stylesheet" href="/assets/css/admin/admin.css" />
+    <link rel="stylesheet" href="/assets/css/commons/base.css" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="navbar"></div>
+      <div class="content">
+        <div class="title">Thông tin đơn hàng</div>
+
+        <div class="order-detail-wrapper">
+          <h1 class="order-detail__title">Tóm tắt đơn hàng</h1>
+          <div class="order-detail__summary">
+            <span class="order-detail__customer-summary-wrapper"></span>
+
+            <span class="order-detail__item-header-price-wrapper">
+              <span class="order-detail__item-header-price-text"
+                >Tổng:
+              </span>
+              <span class="order-detail__item-header-price-num">
+              </span>
+              <span
+                class="order-detail__item-header-price-currency"
+              >
+                VND</span
+              >
+            </span>
+          </div>
+
+          <br />
+          <br />
+          <br />
+
+          <h1 class="order-detail__title">Chi tiết đơn hàng</h1>
+          <div class="order-detail__list-wrapper"></div>
+
+          <br />
+          <br />
+          <br />
+
+          <h1 class="order-detail__title">Trạng thái đơn hàng</h1>
+          <div class="order-detail__order-status"></div>
+          <div class="order-detail__order-control d-none">
+            <button class="btn btn-dark order-detail__decline-btn">Huỷ đơn</button>
+            <button class="btn btn-primary order-detail__accept-btn">Chấp nhận đơn</button>
+          </div>
+        </div>
+        <dialog class="modal" id="modal">
+          <h2 class="modal-title"></h2>
+          <p class="modal-message"></p>
+          <button class="close-button">Close</button>
+        </dialog>
+      </div>
+    </div>
+
+    <script type="module">
+      import {
+        renderNavbar,
+        renderSearchbar,
+      } from '/assets/js/admin/adminNav.js';
+
+      const nav = document.querySelector('div.navbar');
+      renderNavbar(nav);
+    </script>
+    <script type="module" src="/assets/js/admin/editOrder.js"></script>
+
+    <style>
+      .content {
+        align-items: flex-start;
+      }
+      .order-detail-wrapper {
+        --max-width: 1400px;
+        width: min(var(--max-width), 100%);
+        margin-inline: auto;
+      }
+      .order-detail__title {
+        margin-bottom: 16px;
+      }
+
+      .order-detail__summary {
+      }
+
+      .order-detail__customer-summary-wrapper {
+        font-size: 1.6rem;
+        color: var(--text-dark-color);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .order-detail__item-header-price-text, .order-detail__item-header-price-num, .order-detail__item-header-price-currency {
+        font-size: 1.7rem;
+        color: var(--text-dark-color);
+        font-weight: 600;
+      }
+
+      .order-detail__item {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .order-detail__item-name {
+        width: unset;
+      }
+      .order-detail__item-name:hover {
+        background-color: unset;
+      }
+
+      .order-detail__item-quantity-num {
+        background-color: white;
+        margin-left: 24px;
+      }
+
+      .order-detail__item-body {
+        flex-direction: column;
+      }
+      
+      .order-detail__item-control {
+        align-self: flex-start;
+      }
+
+      .order-detail__item-total-price-wrapper {
+        margin-left: 10px;
+      }
+
+      .order-detail__order-status {
+        --status-color: black;
+        font-size: 1.6rem;
+        font-weight: 600;
+        border: 2px solid var(--status-color);
+        color: var(--status-color);
+        border-radius: 8px;
+        display: inline-block;
+        padding: 12px 16px;
+      }
+
+      .order-detail__order-control {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        margin-top: 32px;
+      }
+    </style>
+  </body>
+</html>

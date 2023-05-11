@@ -15,6 +15,8 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
       Authorization: getToken(),
     },
   };
+  let cartCount = 0;
+  const orderItems = [];
   request(API.getUserInformationAPI(), options, (result) => {
     stateChangeNode.classList.remove(loadingClass);
 
@@ -27,8 +29,9 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
       '.sec-account__order-history-list'
     );
 
-    // Get all carts
+    // Get all carts except the last
     const carts = result.shoppingCart.slice(0, result.shoppingCart.length - 1);
+    const totalCart = carts.length;
 
     // If user not yet place any order
     if (carts.length === 0) {
@@ -53,6 +56,7 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
         <div class ="sec-account__order-history-item-header">
           <span class="sec-account__order-history-item-header-text">Đơn hàng:
             <span class="sec-account__order-history-item-time"></span>
+            (<span class="sec-account__order-history-item-status-text"></span>)
           </span>
           <span class="sec-account__order-history-item-header-price-wrapper">
             <span class="sec-account__order-history-item-header-price-text">Tổng: </span>
@@ -84,6 +88,8 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
           count++;
           // Done fetch all products of 1 cart => Append
           if (count === totalProducts) {
+            cartCount++;
+
             // Data transformation then transfer to list options
             cartProduct.forEach((product) => {
               product.totalQuantity = product.quantity;
@@ -123,10 +129,66 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
             const timeDOMNode = orderItem.querySelector(
               '.sec-account__order-history-item-time'
             );
-            timeDOMNode.innerHTML = `${timeConverter(timeUnix)}`;
+            timeDOMNode.innerHTML = `${timeUnix}`;
 
-            // Append orderItem into listOrderItem
-            orderList.appendChild(orderItem);
+            // Status
+            const status = cart[-2];
+            const statusText = orderItem.querySelector(
+              '.sec-account__order-history-item-status-text'
+            );
+            if (status === 2) {
+              statusText.innerHTML = 'Chờ xử lý';
+              orderItem.style = '--status-color: orange;'
+            }
+            if (status === 3) {
+              statusText.innerHTML = 'Thành công';
+              orderItem.style = '--status-color: var(--primary-color-light);';
+
+            }
+            if (status === 4) {
+              statusText.innerHTML = 'Đã bị huỷ';
+              orderItem.style = '--status-color:  red;';
+            }
+
+
+            // Append orderItem into orderItems list => Until all cart has been fetch
+            // => Render
+            orderItems.push(orderItem);
+            if (cartCount === totalCart) {
+              // Sort by date
+              orderItems.sort((item1, item2) => {
+                const time1 = item1.querySelector(
+                  '.sec-account__order-history-item-time'
+                );
+
+                const time2 = item2.querySelector(
+                  '.sec-account__order-history-item-time'
+                );
+
+                if (Number(time1.innerHTML) < Number(time2.innerHTML)) {
+                  return 1;
+                }
+                if (Number(time1.innerHTML) > Number(time2.innerHTML)) {
+                  return -1;
+                }
+
+                return 0;
+              });
+
+              for (const orderItem of orderItems) {
+                // Convert time
+                orderItem.querySelector(
+                  '.sec-account__order-history-item-time'
+                ).innerHTML = timeConverter(
+                  Number(
+                    orderItem.querySelector(
+                      '.sec-account__order-history-item-time'
+                    ).innerHTML
+                  )
+                );
+                orderList.appendChild(orderItem);
+              }
+            }
           }
         });
       }

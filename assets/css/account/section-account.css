@@ -98,7 +98,7 @@
   display: flex;
   justify-content: space-between;
   line-height: 1.6;
-  background-color: var(--text-dark-color);
+  background-color: var(--status-color);
   padding: 12px;
   flex-wrap: wrap;
   gap: 8px;

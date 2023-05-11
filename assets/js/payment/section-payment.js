@@ -397,7 +397,7 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
       const errorInputs = sectionPaymentDOMNode.querySelectorAll(
         '.custom-input-wrapper--error'
       );
-      if (errorInputs) {
+      if (!(errorInputs.length === 0)) {
         errorInputs.forEach((errorInput) => {
           errorInput.animate(spinningAnimation, spinningAnimationTiming);
         });
@@ -405,23 +405,26 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
         return;
       }
 
-      // Else proceed the payment
-      // const token = getToken();
-      // if (!token) {
-      //   window.location.replace('/');
-      //   return;
-      // }
 
-      // const options = {
-      //   method: 'PUT',
-      //   headers: {
-      //     Authorization: token,
-      //   },
-      // };
-      // request(API.getPaymentAPI(), options, (result) => {
-      //   window.location.replace('/');
-      //   return;
-      // });
+
+
+      // Else proceed the payment
+      const token = getToken();
+      if (!token) {
+        window.location.replace('/');
+        return;
+      }
+
+      const options = {
+        method: 'PUT',
+        headers: {
+          Authorization: token,
+        },
+      };
+      request(API.getPaymentAPI(), options, (result) => {
+        window.location.replace('/');
+        return;
+      });
     });
 
     // After render personal information done => Render product list
