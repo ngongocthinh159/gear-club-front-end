@@ -43,7 +43,7 @@ body {
     background-color: #333;
 }
 
-.center form {
+.center .form {
     padding: 0 40px;
     box-sizing: border-box;
 }

@@ -8,6 +8,9 @@ const API = {
   getAuthenticateAPI() {
     return BASE_URL + '/api/auth/authenticate';
   },
+  getAuthenticateAdminAPI() {
+    return BASE_URL + '/api/auth/authenticate/admin';
+  },
 
   // User
   getUserInformationAPI() {
@@ -74,19 +77,19 @@ const API = {
 
   // Admin
   getAllCartsAPI() {
-    return BASE_URL + '/api/customer/all-cart';
+    return BASE_URL + '/api/admin/all-cart';
   },
   getCartByCustomerIdAndCartPosition(customerId, cartPosition) {
     return (
       BASE_URL +
-      `/api/customer/cart?customerId=${customerId}&cartPosition=${cartPosition}`
+      `/api/admin/cart?customerId=${customerId}&cartPosition=${cartPosition}`
     );
   },
   getCartAcceptAPI() {
-    return BASE_URL + '/api/customer/cart/accept-cart';
+    return BASE_URL + '/api/admin/cart/accept-cart';
   },
   getCartDeclineAPI() {
-    return BASE_URL + '/api/customer/cart/decline-cart';
+    return BASE_URL + '/api/admin/cart/decline-cart';
   },
 };
 

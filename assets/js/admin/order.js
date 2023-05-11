@@ -1,18 +1,18 @@
-import { request } from '/assets/js/commons/fetch.js';
-import { API } from '/assets/js/commons/restful-api.js';
-import { getToken, timeConverter } from '/assets/js/commons/utils.js';
+import { request } from '../commons/fetch.js';
+import { API } from '../commons/restful-api.js';
+import { getAdminToken, timeConverter, timeConverterSortable } from '../commons/utils.js';
 
 const options = {
   method: 'GET',
   headers: {
-    Authorization: getToken(),
+    Authorization: getAdminToken(),
   },
 };
 
 function initialize() {
   request(API.getAllCartsAPI(), options, (result) => {
     result.forEach(cart => {
-      cart.cartPaymentTime = timeConverter(Number(cart.cartPaymentTime));
+      cart.cartPaymentTime = timeConverterSortable(Number(cart.cartPaymentTime));
 
       if (cart.cartStatus === 2) {
         cart.cartStatus = 'Chờ xử lý';
@@ -41,19 +41,19 @@ function loadTable(tabledata) {
     columns: [
       //Define Table Columns
       {
-        title: 'Date',
+        title: 'Ngày tạo',
         field: 'cartPaymentTime',
         width: 280,
       },
-      { title: 'Status', field: 'cartStatus', width: 200 },
-      { title: 'Total (VND)', field: 'cartTotalPrice', minWidth: 200 },
-      { title: 'Customer ID', field: 'customerId', width: 150 },
+      { title: 'Trạng thái', field: 'cartStatus', width: 200 },
+      { title: 'Tổng (VND)', field: 'cartTotalPrice', minWidth: 200 },
+      { title: 'ID khách hàng', field: 'customerId', width: 150 },
       {
-        title: 'Customer first name',
+        title: 'Tên khách hàng',
         field: 'customerFirstName',
         minWidth: 150,
       },
-      { title: 'Customer email', field: 'customerEmail', minWidth: 200 },
+      { title: 'Địa chỉ email', field: 'customerEmail', minWidth: 200 },
     ],
     initialSort: [
       { column: 'cartPaymentTime', dir: 'desc' }, //sort by this first
@@ -67,30 +67,4 @@ function loadTable(tabledata) {
   });
 }
 
-function search() {
-  if (document.getElementById('search-text').value === '') {
-    initialize();
-  } else {
-    let object = { search: document.getElementById('search-text').value };
-    let searchOptions = {
-      method: 'PUT',
-      body: JSON.stringify(object),
-      headers: {
-        Authorization: getToken(),
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    };
-    request(API.getProductByName(), searchOptions, (result) => {
-      loadTable(result);
-    });
-  }
-}
-
 initialize();
-
-document.getElementById('search-text').onchange = () => {
-  search();
-};
-document
-  .getElementById('search-button')
-  .addEventListener('click', () => search());

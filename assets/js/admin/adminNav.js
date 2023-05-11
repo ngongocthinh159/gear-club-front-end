@@ -1,11 +1,13 @@
+import { removeAdminToken } from '../commons/utils.js';
+
 function renderNavbar(navbarDOMnode) {
   navbarDOMnode.innerHTML = `
         <div class="navbar__overlay"></div>
 
         <ul>
             <li>
-                <a href="#" class="logo">
-                    <img src="https://via.placeholder.com/400" alt="">
+                <a class="logo">
+                    <img src="/assets/imgs/admin-avatar.png" alt="Admin avatar">
                     <span class="nav-item">Admin</span>
                 </a>
             </li>
@@ -35,13 +37,20 @@ function renderNavbar(navbarDOMnode) {
             </li>
 
             <li>
-                <a href="/login.html" class="logout">
+                <a class="logout">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="nav-item">Log out</span>
                 </a>
             </li>
         </ul>
     `;
+
+  // Logout event handler
+  const logoutBtn = navbarDOMnode.querySelector('.logout');
+  logoutBtn.addEventListener('click', () => {
+    removeAdminToken();
+    window.location.replace('../../../admin/login.html');
+  });
 }
 
 function renderSearchbar(searchbarDOMnode) {

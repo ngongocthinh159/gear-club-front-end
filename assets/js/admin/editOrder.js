@@ -1,7 +1,7 @@
 import { request } from '../commons/fetch.js';
 import { getProductCartItemFactory } from '../commons/product-cart-item-factory.js';
 import { API } from '../commons/restful-api.js';
-import { getToken } from '../commons/utils.js';
+import { getAdminToken } from '../commons/utils.js';
 
 function renderOrderDetail() {
   // Refs
@@ -22,13 +22,13 @@ function renderOrderDetail() {
   const customerId = keyValuePairs[0].split('=')[1];
   const cartPosition = keyValuePairs[1].split('=')[1];
 
-  const token = getToken();
+  const token = getAdminToken();
   if (!token) {
   }
 
   const options = {
     headers: {
-      Authorization: getToken(),
+      Authorization: getAdminToken(),
     },
   };
   request(
@@ -95,22 +95,22 @@ function renderOrderDetail() {
         orderStatus.innerHTML = `
           Đang chờ xử lý
         `;
-        orderStatus.style = '--status-color: orange';
+        orderStatus.style = '--status-color: var(--danger-color)';
         orderControl.classList.remove('d-none');
       }
 
       if (cart.cartStatus === 3) {
         orderStatus.innerHTML = `
-          Thành công
+          Đã chấp nhận
         `;
-        orderStatus.style = '--status-color: green';
+        orderStatus.style = '--status-color: var(--success-color)';
       }
 
       if (cart.cartStatus === 4) {
         orderStatus.innerHTML = `
           Đã huỷ
         `;
-        orderStatus.style = '--status-color: red';
+        orderStatus.style = '--status-color: var(--error-color)';
       }
 
       // Handle oder detail control
@@ -124,7 +124,7 @@ function renderOrderDetail() {
             cartPosition: cartPosition,
           }),
           headers: {
-            Authorization: getToken(),
+            Authorization: getAdminToken(),
             'Content-type': 'application/json; charset=UTF-8',
           },
         };
@@ -148,7 +148,7 @@ function renderOrderDetail() {
             cartPosition: cartPosition,
           }),
           headers: {
-            Authorization: getToken(),
+            Authorization: getAdminToken(),
             'Content-type': 'application/json; charset=UTF-8',
           },
         };

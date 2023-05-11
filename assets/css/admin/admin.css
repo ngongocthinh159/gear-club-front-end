@@ -292,13 +292,17 @@ a:hover {
 .buttons {
     display: flex;
     justify-content: space-around;
+    gap: 36px;
 }
 
 #delete,
 #save {
-    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 50%;
     height: 40px;
-    font-size: 24px;
+    font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
 }

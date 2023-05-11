@@ -1,6 +1,6 @@
 import { request } from '/assets/js/commons/fetch.js'
 import { API } from '/assets/js/commons/restful-api.js'
-import { getToken } from '/assets/js/commons/utils.js'
+import { getAdminToken } from '/assets/js/commons/utils.js'
 
 
 const getCollectionName = () => {
@@ -74,15 +74,15 @@ function saveCollection() {
         let collection = Object()
         collection.id = Number(document.querySelector("#id").value)
         collection.name = document.querySelector("#name").value
-        collection.createdAt = document.querySelector("#createdAt").value
-        collection.updatedAt = document.querySelector("#updatedAt").value
+        // collection.createdAt = document.querySelector("#createdAt").value
+        // collection.updatedAt = document.querySelector("#updatedAt").value
         collection.productList = str2map(document.querySelector("#productList").value)
 
         const options = {
-            method: 'POST',
+            method: 'PUT',
             body: JSON.stringify(collection),
             headers: {
-                Authorization: getToken(),
+                Authorization: getAdminToken(),
                 'Content-type': 'application/json; charset=UTF-8',
             }
         }
@@ -100,7 +100,7 @@ function initializeEdit() {
     const options = {
         method: 'GET',
         headers: {
-            Authorization: getToken(),
+            Authorization: getAdminToken(),
         }
     }
 

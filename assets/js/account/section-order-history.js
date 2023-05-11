@@ -138,16 +138,16 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
             );
             if (status === 2) {
               statusText.innerHTML = 'Chờ xử lý';
-              orderItem.style = '--status-color: orange;'
+              orderItem.style = '--status-color: var(--danger-color);'
             }
             if (status === 3) {
               statusText.innerHTML = 'Thành công';
-              orderItem.style = '--status-color: var(--primary-color-light);';
+              orderItem.style = '--status-color: var(--success-color);';
 
             }
             if (status === 4) {
               statusText.innerHTML = 'Đã bị huỷ';
-              orderItem.style = '--status-color:  red;';
+              orderItem.style = '--status-color:  var(--error-color);';
             }
 
 

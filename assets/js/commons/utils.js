@@ -49,19 +49,6 @@ function getKeyValueStringsFromURLSearch(searchString) {
   return res;
 }
 
-// Bearer token storage
-function storeToken(token) {
-  localStorage.setItem('SavedToken', 'Bearer ' + token);
-}
-
-function getToken() {
-  return localStorage.getItem('SavedToken');
-}
-
-function removeToken() {
-  localStorage.removeItem('SavedToken');
-}
-
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -114,17 +101,99 @@ function timeConverter(UNIX_timestamp) {
   return time;
 }
 
+function timeConverterSortable(UNIX_timestamp) {
+  var a = new Date(UNIX_timestamp * 1000);
+  var months = [
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
+  ];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  var time =
+    date + '/' + month + '/' + year + ' ' + hour + ':' + min + ':' + sec;
+  return time;
+}
+
+// ------ Customer Bearer token storage ------
+function storeToken(token) {
+  localStorage.setItem('SavedToken', 'Bearer ' + token);
+}
+
+function getToken() {
+  const token = localStorage.getItem('SavedToken');
+  if (!token) {
+    return undefined;
+  }
+
+  if (isTokenExpired(token)) {
+    removeToken();
+    return undefined;
+  } else {
+    return token;
+  }
+}
+
+function removeToken() {
+  localStorage.removeItem('SavedToken');
+}
+
+function isTokenExpired(token) {
+  const expiry = JSON.parse(atob(token.split('.')[1])).exp;
+  return Math.floor(new Date().getTime() / 1000) >= expiry;
+}
+
+// ------ Admin Bearer token storage ------
+function storeAdminToken(token) {
+  localStorage.setItem('SavedAdminToken', 'Bearer ' + token);
+}
+
+function getAdminToken() {
+  const token = localStorage.getItem('SavedAdminToken');
+  if (!token) {
+    return undefined;
+  }
+
+  if (isTokenExpired(token)) {
+    removeAdminToken();
+    return undefined;
+  } else {
+    return token;
+  }
+}
+
+function removeAdminToken() {
+  localStorage.removeItem('SavedAdminToken');
+}
+
 export {
   numberWithCommas,
   getRandomIntInRange,
   capitalizeTheFirstLetterOfFirstWord,
   slugify,
   getKeyValueStringsFromURLSearch,
-  storeToken,
-  getToken,
-  removeToken,
   getRandomInt,
   spinningAnimation,
   spinningAnimationTiming,
   timeConverter,
+  timeConverterSortable,
+  storeToken,
+  getToken,
+  removeToken,
+  storeAdminToken,
+  getAdminToken,
+  removeAdminToken,
 };
