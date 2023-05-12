@@ -13,10 +13,10 @@ function loadTable(tabledata) {
     columns: [
       //Define Table Columns
       { title: 'id', field: 'id', width: 100 },
-      { title: 'Name', field: 'name', minWidth: 500 },
-      { title: 'Vendor Name', field: 'vendorName', minWidth: 150 },
-      { title: 'Price', field: 'price', minWidth: 150 },
-      { title: 'Category', field: 'category', minWidth: 200 },
+      { title: 'Tên sản phẩm', field: 'name', minWidth: 500 },
+      { title: 'Nhà phân phối', field: 'vendorName', minWidth: 150 },
+      { title: 'Giá (VND)', field: 'price', minWidth: 150 },
+      { title: 'Danh mục', field: 'category', minWidth: 200 },
     ],
     footerElement: `<button id="add-button">Add Product</button>`,
     // groupBy: "category",

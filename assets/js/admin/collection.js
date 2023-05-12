@@ -20,9 +20,9 @@ function loadTable(tabledata) {
     columns: [
       //Define Table Columns
       { title: 'ID', field: 'id', width: 100 },
-      { title: 'Name', field: 'name', minWidth: 300 },
-      { title: 'Created At', field: 'createdAt', minWidth: 300 },
-      { title: 'Updated At', field: 'updatedAt', minWidth: 300 },
+      { title: 'Tên bộ sưu tập', field: 'name', minWidth: 300 },
+      { title: 'Ngày tạo', field: 'createdAt', minWidth: 300 },
+      { title: 'Lần cuối cập nhật', field: 'updatedAt', minWidth: 300 },
     ],
   });
 
