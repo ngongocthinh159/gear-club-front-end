@@ -25,6 +25,9 @@ const API = {
   getAllPurchasedCartsOfACustomerAPI() {
     return BASE_URL + '/api/customer/purchased-carts/all';
   },
+  getCurrentCartAPI() {
+    return BASE_URL + '/api/customer/cart/current';
+  },
 
   // Product
   getAllProductAPI() {

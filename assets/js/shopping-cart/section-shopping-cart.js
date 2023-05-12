@@ -56,82 +56,56 @@ function renderSCartSection(sCartDOMNode) {
     </div>
   `;
 
-  // Fetch data, then update UI
   const sCartTableBody = sCartDOMNode.querySelector('.s-cart__table-body');
 
-  // Fetch user infor first
+  // Fetch cart data, then update UI
   const options = {
     headers: {
       Authorization: getToken(),
     },
   };
-  request(API.getUserInformationAPI(), options, (result) => {
-    const currentCart = result.shoppingCart[result.shoppingCart.length - 1];
-    let totalProducts = 0;
-    let index = 0;
-    Object.keys(currentCart).forEach((key) => {
-      if (key > 0) totalProducts++;
+  request(API.getCurrentCartAPI(), options, (cart) => {
+    const products = cart.productList;
+
+    // Data transformation
+    products.forEach((product) => {
+      product.currentQuantity = product.paymentQuantity;
+      product.totalQuantity = product.quantity;
     });
-    let count = 0;
 
-    const products = [];
-    for (const productId in currentCart) {
-      if (productId < 0) {
-        continue;
-      }
+    // Create new cart list
+    const listOptions = {
+      products: products,
+      additionalClasses: {
+        cartListItems: 's-cart__cart-list',
 
-      const curIndex = index;
+        cartItemBody: 's-cart__cart-item-body',
+        cartItemName: 's-cart__cart-item-name',
+        cartItemTotalPriceWrapper: 's-cart__total-price-wrapper',
+        cartItemControl: 's-cart__cart-item-control',
+      },
+    };
 
-      // Fetch data of each product
-      fetchData(API.getProductByIdAPI(productId), (product) => {
-        products[curIndex] = product;
+    const [cartList, listTotalPriceDOMNode] =
+      getProductCartItemFactory().buildListItems(listOptions);
 
-        count++;
-        // After fetch all products => Put data into cart list
-        if (count === totalProducts) {
-          // Data transformation
-          products.forEach((product) => {
-            product.currentQuantity = currentCart[product.id];
-            product.totalQuantity = product.quantity;
-          });
+    // Move position of the item's total price
+    const cartItemBodys = cartList.querySelectorAll('.cart-item__body');
+    cartItemBodys.forEach((cartItemBody) => {
+      const totalPriceWrapper = cartItemBody.querySelector(
+        '.cart-item__total-price-wrapper'
+      );
 
-          // Create new cart list
-          const listOptions = {
-            products: products,
-            additionalClasses: {
-              cartListItems: 's-cart__cart-list',
+      cartItemBody.appendChild(totalPriceWrapper);
+    });
 
-              cartItemBody: 's-cart__cart-item-body',
-              cartItemName: 's-cart__cart-item-name',
-              cartItemTotalPriceWrapper: 's-cart__total-price-wrapper',
-              cartItemControl: 's-cart__cart-item-control',
-            },
-          };
-          const [cartList, listTotalPriceDOMNode] =
-            getProductCartItemFactory().buildListItems(listOptions);
+    // Move position of list's total price
+    const totalPriceWrapper = sCartDOMNode.querySelector(
+      '.s-cart__list-total-price-num-wrapper'
+    );
+    totalPriceWrapper.prepend(listTotalPriceDOMNode);
 
-          // Move position of the item's total price
-          const cartItemBodys = cartList.querySelectorAll('.cart-item__body');
-          cartItemBodys.forEach((cartItemBody) => {
-            const totalPriceWrapper = cartItemBody.querySelector(
-              '.cart-item__total-price-wrapper'
-            );
-
-            cartItemBody.appendChild(totalPriceWrapper);
-          });
-
-          // Move position of list's total price
-          const totalPriceWrapper = sCartDOMNode.querySelector(
-            '.s-cart__list-total-price-num-wrapper'
-          );
-          totalPriceWrapper.prepend(listTotalPriceDOMNode);
-
-          sCartTableBody.appendChild(cartList);
-        }
-      });
-
-      index++;
-    }
+    sCartTableBody.appendChild(cartList);
   });
 }
 

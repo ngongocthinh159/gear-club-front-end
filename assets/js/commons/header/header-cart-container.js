@@ -67,13 +67,12 @@ function renderCartContainer(headerDOMNode) {
   // Handel events
   handleCartContainerEvents(headerDOMNode);
 
-  // Fetch shopping cart product => Render
   const cartBody = headerDOMNode.querySelector('.header__cart-body');
   const priceNumWrapper = headerDOMNode.querySelector(
     '.header-cart-footer__price-num-wrapper'
   );
 
-  // Fetch user infor first
+  // Fetch current cart => Render
   const token = getToken();
   if (!token) {
     return;
@@ -83,55 +82,30 @@ function renderCartContainer(headerDOMNode) {
       Authorization: token,
     },
   };
-  request(API.getUserInformationAPI(), options, (result) => {
-    const currentCart = result.shoppingCart[result.shoppingCart.length - 1];
-    let totalProducts = 0;
-    let index = 0;
-    Object.keys(currentCart).forEach((key) => {
-      if (key > 0) totalProducts++;
+  request(API.getCurrentCartAPI(), options, (cart) => {
+    const products = cart.productList;
+
+    // Data transformation then transfer to list options
+    products.forEach((product) => {
+      product.totalQuantity = product.quantity;
+      product.currentQuantity = product.paymentQuantity;
     });
-    let count = 0;
 
-    const products = [];
-    for (const productId in currentCart) {
-      if (productId < 0) {
-        continue;
-      }
+    // Get the list of cart items
+    const options = {
+      products: products,
+      additionalClasses: {
+        cartListItems: 'header__cart-list',
+        cartItemProductPriceWrapper: 'd-none',
+      },
+    };
+    const [cartListItems, listTotalPriceDOMNode] =
+      getProductCartItemFactory().buildListItems(options);
 
-      const curIndex = index;
+    // Append total price node to total price wrapper
+    priceNumWrapper.prepend(listTotalPriceDOMNode);
 
-      // Fetch data of each product
-      fetchData(API.getProductByIdAPI(productId), (product) => {
-        products[curIndex] = product;
-
-        count++;
-        if (count === totalProducts) {
-          // Data transformation then transfer to list options
-          products.forEach((product) => {
-            product.totalQuantity = product.quantity;
-            product.currentQuantity = currentCart[product.id];
-          });
-
-          // Get the list of cart items
-          const options = {
-            products: products,
-            additionalClasses: {
-              cartListItems: 'header__cart-list',
-              cartItemProductPriceWrapper: 'd-none',
-            },
-          };
-          const [cartListItems, listTotalPriceDOMNode] =
-            getProductCartItemFactory().buildListItems(options);
-
-          // Append total price node to total price wrapper
-          priceNumWrapper.prepend(listTotalPriceDOMNode);
-
-          cartBody.appendChild(cartListItems);
-        }
-      });
-
-      index++;
-    }
+    cartBody.appendChild(cartListItems);
   });
 }
 

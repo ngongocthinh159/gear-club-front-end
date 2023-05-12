@@ -54,6 +54,7 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
       `;
 
       const productList = cart.productList;
+      // If length > 1 => Allow show/hide order detail
       if (productList.length > 1) {
         orderItem.classList.add('sec-account__order-history-item--collapsed');
         const itemControl = orderItem.querySelector(
