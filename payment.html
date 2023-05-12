@@ -45,6 +45,9 @@
     <link rel="stylesheet" href="./assets/css/commons/toastr.min.css" />
     <script src="./assets/js/commons/toastr.min.js"></script>
 
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+
     <!-- Common components CSS -->
     <link rel="stylesheet" href="./assets/css/commons/base.css" />
     <link rel="stylesheet" href="./assets/css/commons/grid.css" />
@@ -57,228 +60,7 @@
   <body>
     <div class="app">
       <!-- Section payment -->
-      <section class="sec-payment">
-        <div class="grid wide">
-          <div class="row">
-            <div class="col l-7 m-12 c-12 order-left">
-              <div class="sec-payment__left-container">
-                <a href="/" class="sec-payment__logo-link">
-                  <img
-                    src="./assets/imgs/logo.png"
-                    alt="Gearclub logo"
-                    class="sec-payment__logo-img"
-                  />
-                </a>
-
-                <div class="sec-payment__breadcrumb">
-                  <a href="./cart.html" class="sec-payment__breadcrumb-link">
-                    <span class="sec-payment__breadcrumb-item">Giỏ hàng</span>
-                  </a>
-
-                  <span class="sec-payment__breadcrumb-separator">
-                    <i class="bi bi-chevron-right"></i>
-                  </span>
-
-                  <a href="./account.html" class="sec-payment__breadcrumb-link">
-                    <span class="sec-payment__breadcrumb-item">Thông tin</span>
-                  </a>
-
-                  <span class="sec-payment__breadcrumb-separator">
-                    <i class="bi bi-chevron-right"></i>
-                  </span>
-
-                  <a class="sec-payment__breadcrumb-link">
-                    <span
-                      class="sec-payment__breadcrumb-item sec-payment__breadcrumb-item--active"
-                      >Thanh toán</span
-                    >
-                  </a>
-                </div>
-
-                <div class="sec-payment__account">
-                  <h3 class="sec-payment__heading">Thông tin liên hệ</h3>
-                  <span class="sec-payment__account-first-name">Thịnh</span>
-                  <span class="sec-payment__account-last-name">Thịnh</span>
-                  <span class="sec-payment__account-email"
-                    >(ngongocthinh124@gmail.com)</span
-                  >
-                  <button class="sec-payment__logout-btn">Đăng xuất</button>
-                </div>
-
-                <div class="sec-payment__shipping">
-                  <h3 class="sec-payment__heading">Phương thức giao hàng</h3>
-
-                  <div class="sec-payment__shipping-type-wrapper">
-                    <input
-                      type="radio"
-                      name="shipping-type"
-                      id="shipping-type-cod"
-                      checked
-                      class="sec-payment__shipping-type-input"
-                    />
-                    <label
-                      for="shipping-type-cod"
-                      class="sec-payment__shipping-type-label"
-                      ><i class="bi bi-truck"></i>Vận chuyển COD</label
-                    >
-                  </div>
-                </div>
-
-                <div class="sec-payment__account-info">
-                  <h3 class="sec-payment__heading">
-                    Địa chỉ giao hàng
-                    <a
-                      href="./account.html?showPersonalInformation=true"
-                      class="sec-payment__edit-btn"
-                    >
-                      (sửa thông tin)</a
-                    >
-                  </h3>
-
-                  <div class="row">
-                    <div class="col l-6 m-12 c-12">
-                      <div
-                        class="custom-input-wrapper sec-payment__custom-input-wrapper"
-                      >
-                        <input
-                          id="name"
-                          placeholder=" "
-                          name="name"
-                          type="text"
-                          class="custom-input__input-text"
-                          value="${user.firstName}"
-                          readonly
-                        />
-                        <span class="custom-input__input-label">Tên</span>
-                      </div>
-                    </div>
-                    <div class="col l-6 m-12 c-12">
-                      <div
-                        class="custom-input-wrapper sec-payment__custom-input-wrapper"
-                      >
-                        <input
-                          id="name"
-                          placeholder=" "
-                          name="name"
-                          type="text"
-                          class="custom-input__input-text"
-                          value="${user.firstName}"
-                          readonly
-                        />
-                        <span class="custom-input__input-label">Họ</span>
-                      </div>
-                    </div>
-
-                    <div class="col l-12 m-12 c-12">
-                      <div
-                        class="custom-input-wrapper sec-payment__custom-input-wrapper"
-                      >
-                        <input
-                          id="name"
-                          placeholder=" "
-                          name="name"
-                          type="text"
-                          class="custom-input__input-text"
-                          value="${user.firstName}"
-                          readonly
-                        />
-                        <span class="custom-input__input-label"
-                          >Địa chỉ giao hàng</span
-                        >
-                      </div>
-                    </div>
-
-                    <div class="col l-12 m-12 c-12">
-                      <div
-                        class="custom-input-wrapper sec-payment__custom-input-wrapper"
-                      >
-                        <input
-                          id="name"
-                          placeholder=" "
-                          name="name"
-                          type="text"
-                          class="custom-input__input-text"
-                          value="${user.firstName}"
-                          readonly
-                        />
-                        <span class="custom-input__input-label"
-                          >Số điện thoại</span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="sec-payment__control">
-                  <button class="sec-payment__back-cart-btn">
-                    <i class="bi bi-chevron-left"></i> Quay lại giỏ hàng
-                  </button>
-                  <button class="btn btn-primary sec-payment__payment-btn">
-                    Thanh toán
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div class="col l-5 m-12 c-12 order-right">
-              <div class="sec-payment__right-container">
-                <label for="summary-toggler" class="sec-payment__summary-label">
-                  <i class="bi bi-cart"></i>
-                  <span class="summary-show"
-                    >Hiện tổng quan đơn hàng<i class="bi bi-chevron-down"></i
-                  ></span>
-                  <span class="summary-hide"
-                    >Ẩn tổng quan đơn hàng<i class="bi bi-chevron-up"></i
-                  ></span>
-                </label>
-                <input type="checkbox" id="summary-toggler" hidden checked />
-
-                <div class="sec-payment__summary">
-                  <div class="sec-payment__summary-wrapper">
-                    <div class="sec-payment__prod-list-wrapper">
-                      <ul class="sec-payment__prod-list">
-                        <li class="sec-payment__prod-list-item"></li>
-                      </ul>
-                    </div>
-
-                    <div class="sec-payment__sub-total-wrapper">
-                      <span class="sec-payment__sub-total-text">Tổng phụ</span>
-                      <span class="sec-payment__sub-total-num-wrapper">
-                        <span class="sec-payment__sub-total-num"
-                          >3.850.000</span
-                        >
-                        <span class="sec-payment__sub-total-num-currency"
-                          >₫</span
-                        >
-                      </span>
-                    </div>
-
-                    <div class="sec-payment__shipping-wrapper">
-                      <span class="sec-payment__sub-shipping-left-text"
-                        >Vận chuyển <i class="bi bi-truck"></i
-                      ></span>
-                      <span class="sec-payment__sub-shipping-right-text"
-                        >Miễn phí</span
-                      >
-                    </div>
-
-                    <div class="sec-payment__total-wrapper">
-                      <span class="sec-payment__total-text">Tổng</span>
-                      <span class="sec-payment__total-num-wrapper">
-                        <span class="sec-payment__total-num-country-currency"
-                          >VND</span
-                        >
-                        <span class="sec-payment__total-num">3.850.000</span>
-                        <span class="sec-payment__total-num-currency">₫</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <section class="sec-payment"></section>
     </div>
 
     <script type="module">
@@ -287,5 +69,151 @@
       const sectionPaymentDOMNode = document.querySelector('.sec-payment');
       renderSectionPayment(sectionPaymentDOMNode);
     </script>
+
+    <style>
+      /* Variables */
+      /* * {
+        box-sizing: border-box;
+      } */
+
+      /* body {
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        height: 100vh;
+        width: 100vw;
+      } */
+
+      form {
+        width: 30vw;
+        min-width: 500px;
+        align-self: center;
+        box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
+          0px 2px 5px 0px rgba(50, 50, 93, 0.1),
+          0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
+        border-radius: 7px;
+        padding: 40px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      #payment-message {
+        color: rgb(105, 115, 134);
+        font-size: 16px;
+        line-height: 20px;
+        padding-top: 12px;
+        text-align: center;
+      }
+
+      #payment-element {
+        margin-bottom: 24px;
+      }
+
+      /* Buttons and links */
+      .submit-btn {
+        background: #5469d4;
+        font-family: Arial, sans-serif;
+        color: #ffffff;
+        border-radius: 4px;
+        border: 0;
+        padding: 12px 16px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        display: block;
+        transition: all 0.2s ease;
+        box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+        width: 100%;
+      }
+      .submit-btn:hover {
+        filter: contrast(115%);
+      }
+      .submit-btn:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+
+      /* spinner/processing state, errors */
+      .spinner,
+      .spinner:before,
+      .spinner:after {
+        border-radius: 50%;
+      }
+      .spinner {
+        color: #ffffff;
+        font-size: 22px;
+        text-indent: -99999px;
+        margin: 0px auto;
+        position: relative;
+        width: 20px;
+        height: 20px;
+        box-shadow: inset 0 0 0 2px;
+        -webkit-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        transform: translateZ(0);
+      }
+      .spinner:before,
+      .spinner:after {
+        position: absolute;
+        content: '';
+      }
+      .spinner:before {
+        width: 10.4px;
+        height: 20.4px;
+        background: #5469d4;
+        border-radius: 20.4px 0 0 20.4px;
+        top: -0.2px;
+        left: -0.2px;
+        -webkit-transform-origin: 10.4px 10.2px;
+        transform-origin: 10.4px 10.2px;
+        -webkit-animation: loading 2s infinite ease 1.5s;
+        animation: loading 2s infinite ease 1.5s;
+      }
+      .spinner:after {
+        width: 10.4px;
+        height: 10.2px;
+        background: #5469d4;
+        border-radius: 0 10.2px 10.2px 0;
+        top: -0.1px;
+        left: 10.2px;
+        -webkit-transform-origin: 0px 10.2px;
+        transform-origin: 0px 10.2px;
+        -webkit-animation: loading 2s infinite ease;
+        animation: loading 2s infinite ease;
+      }
+
+      @-webkit-keyframes loading {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes loading {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
+      @media only screen and (max-width: 600px) {
+        form {
+          width: 80vw;
+          min-width: initial;
+        }
+      }
+    </style>
   </body>
 </html>

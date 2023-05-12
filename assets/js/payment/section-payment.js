@@ -7,6 +7,7 @@ import {
   spinningAnimationTiming,
 } from '../commons/utils.js';
 import { getProductCartItemFactory } from '../commons/product-cart-item-factory.js';
+import { initialize, checkStatus, handleSubmit } from './checkout.js';
 
 function renderSectionPayment(sectionPaymentDOMNode) {
   sectionPaymentDOMNode.innerHTML = `
@@ -366,10 +367,36 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
           <button class="sec-payment__back-cart-btn">
             <i class="bi bi-chevron-left"></i> Quay lại
           </button>
-          <button class="btn btn-primary sec-payment__payment-btn">
+          <button class="btn btn-primary sec-payment__go-payment-btn">
             Đi đến thanh toán
           </button>
         </div>      
+      </div>
+
+
+
+      <div class="sec-payment__credit-card-info d-none">
+        <h3 class="sec-payment__heading">Thông tin thẻ</h3>
+
+        <form id="payment-form">
+          <div id="link-authentication-element">
+            <!--Stripe.js injects the Link Authentication Element-->
+          </div>
+          <div id="payment-element">
+            <!--Stripe.js injects the Payment Element-->
+          </div>
+          <button id="submit" class="submit-btn">
+            <div class="spinner hidden" id="spinner"></div>
+            <span id="button-text">Pay now</span>
+          </button>
+          <div id="payment-message" class="hidden"></div>
+        </form>
+
+        <div class="sec-payment__control">
+          <button class="sec-payment__back-info-btn">
+            <i class="bi bi-chevron-left"></i> Thông tin
+          </button>
+        </div>
       </div>
     `;
 
@@ -378,11 +405,21 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
       '.sec-payment__back-cart-btn'
     );
     const paymentBtn = sectionPaymentDOMNode.querySelector(
-      '.sec-payment__payment-btn'
+      '.sec-payment__go-payment-btn'
     );
     const logoutBtn = sectionPaymentDOMNode.querySelector(
       '.sec-payment__logout-btn'
     );
+    const backInfoBtn = sectionPaymentDOMNode.querySelector(
+      '.sec-payment__back-info-btn'
+    );
+    const leftMainDOMNode = sectionPaymentDOMNode.querySelector(
+      '.sec-payment__left-main'
+    );
+    const creditCartInfo = sectionPaymentDOMNode.querySelector(
+      '.sec-payment__credit-card-info'
+    );
+    const paymentForm = sectionPaymentDOMNode.querySelector('#payment-form');
 
     cartBackBtn.addEventListener('click', () => {
       window.history.go(-1);
@@ -405,30 +442,22 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
         return;
       }
 
-
-
-
-      // Else proceed the payment
-      const token = getToken();
-      if (!token) {
-        window.location.replace('/');
-        return;
-      }
-
-      const options = {
-        method: 'PUT',
-        headers: {
-          Authorization: token,
-        },
-      };
-      request(API.getPaymentAPI(), options, (result) => {
-        window.location.replace('/');
-        return;
-      });
+      // Render card input
+      leftMainDOMNode.classList.add('d-none');
+      creditCartInfo.classList.remove('d-none');
+      paymentForm.onsubmit = handleSubmit;
+    });
+    backInfoBtn.addEventListener('click', () => {
+      leftMainDOMNode.classList.remove('d-none');
+      creditCartInfo.classList.add('d-none');
     });
 
-    // After render personal information done => Render product list
+    // After render personal information done => Render summary
     renderSummary(sectionPaymentDOMNode, user);
+
+    // Initialize stripe
+    initialize();
+    checkStatus();
   });
 }
 

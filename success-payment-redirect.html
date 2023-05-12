@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thành công</title>
+  </head>
+  <body>
+    <main></main>
+
+    <script type="module">
+      import { changeInDatabase } from './assets/js/payment/success-redirect.js';
+
+      if (window.location.search.includes('redirect_status=succeeded')) {
+        document.querySelector('main').innerHTML = `
+          <h1>Thanh toán thành công, chuẩn bị chuyển hướng..</h1>
+        `;
+
+        changeInDatabase();
+      }
+    </script>
+  </body>
+</html>

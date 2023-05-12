@@ -25,14 +25,17 @@ const API = {
   getUpdateUserInformationAPI() {
     return BASE_URL + '/api/customer/update-personal-information';
   },
-  getPaymentAPI() {
-    return BASE_URL + '/api/customer/cart/payment';
-  },
   getAllPurchasedCartsOfACustomerAPI() {
     return BASE_URL + '/api/customer/purchased-carts/all';
   },
   getCurrentCartAPI() {
     return BASE_URL + '/api/customer/cart/current';
+  },
+  getCreatePaymentIntentAPI() {
+    return BASE_URL + '/api/customer/cart/create-payment';
+  },
+  getPaymentAPI() {
+    return BASE_URL + '/api/customer/cart/payment';
   },
 
   // Product
@@ -117,8 +120,7 @@ const API = {
   },
   getSoftDeleteProductByIdAPI(productId) {
     return BASE_URL + '/api/product/soft-delete/' + productId;
-  }
-  
+  },
 };
 
 export { API };
