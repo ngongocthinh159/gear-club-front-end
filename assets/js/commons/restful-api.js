@@ -13,6 +13,12 @@ const API = {
   },
 
   // User
+  getAllUser() {
+    return BASE_URL + '/api/customer/all';
+  },
+  searchUser() {
+    return BASE_URL + '/api/customer/search-by-string';
+  },
   getUserInformationAPI() {
     return BASE_URL + '/api/customer/personal-information';
   },
