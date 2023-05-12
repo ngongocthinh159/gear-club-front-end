@@ -22,6 +22,9 @@ const API = {
   getPaymentAPI() {
     return BASE_URL + '/api/customer/cart/payment';
   },
+  getAllPurchasedCartsOfACustomerAPI() {
+    return BASE_URL + '/api/customer/purchased-carts/all';
+  },
 
   // Product
   getAllProductAPI() {
@@ -96,7 +99,7 @@ const API = {
   },
   getUpdateCustomerAPI() {
     return BASE_URL + '/api/admin/update-customer';
-  }
+  },
 };
 
 export { API };

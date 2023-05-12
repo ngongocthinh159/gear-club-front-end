@@ -92,6 +92,7 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  position: relative;
 }
 
 .sec-account__order-history-item-header {
@@ -129,12 +130,51 @@
   display: grid;
   grid-template-rows: 0fr;
 
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-out;
 }
 
-.sec-account__order-history-item:hover
+.sec-account__order-history-item--expanded
   .sec-account__order-history-item-list-wrapper {
   grid-template-rows: 1fr;
+}
+
+.sec-account__order-history-item-control {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sec-account__order-history-item--collapsed
+  .sec-account__order-history-item-control::after {
+  content: 'Xem chi tiết +';
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  height: 100%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sec-account__order-history-item--expanded
+  .sec-account__order-history-item-control::after {
+  content: 'Ẩn chi tiết -';
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  height: 100%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sec-account__order-history-item-list {
