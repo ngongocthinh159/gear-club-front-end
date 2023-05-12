@@ -72,8 +72,8 @@
         window.location.replace('./product.html');
       }
 
+      // Handle login button click
       const loginBtn = document.querySelector('#login');
-
       loginBtn.addEventListener('click', () => {
         const email = document.querySelector('#email').value;
         const password = document.querySelector('#password').value;
@@ -103,6 +103,16 @@
               error.classList.add('d-none');
             }, 3000);
           });
+      });
+
+      // Listen enter event
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach((input) => {
+        input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            loginBtn.click();
+          }
+        });
       });
     </script>
 
