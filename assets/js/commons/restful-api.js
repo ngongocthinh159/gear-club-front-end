@@ -49,9 +49,6 @@ const API = {
       BASE_URL + '/api/product/filter/' + `categories=${currentProductCategory}`
     );
   },
-  updateProduct() {
-    return BASE_URL + '/api/product/';
-  },
   getProductByName() {
     return BASE_URL + '/api/product/search-by-string';
   },
@@ -103,6 +100,19 @@ const API = {
   getUpdateCustomerAPI() {
     return BASE_URL + '/api/admin/update-customer';
   },
+  updateProduct() {
+    return BASE_URL + '/api/product/';
+  },
+  getAllSoftDeleteProductsAPI() {
+    return BASE_URL + '/api/product/deleted';
+  },
+  getRecoverProductByIdAPI(productId) {
+    return BASE_URL + '/api/product/recover/' + productId;
+  },
+  getSoftDeleteProductByIdAPI(productId) {
+    return BASE_URL + '/api/product/soft-delete/' + productId;
+  }
+  
 };
 
 export { API };

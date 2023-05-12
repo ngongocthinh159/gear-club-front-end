@@ -185,7 +185,7 @@ $('.confirm').modaal({
   confirm_cancel_button_text: 'Cancel',
   confirm_title: 'Xác nhận hành động',
   confirm_content:
-    'Đây là hành động xoá vĩnh viễn không thể phục hồi. Bạn có đồng ý xoá?',
+    'Đây là hành động xoá mềm. Bạn có đồng ý xoá?',
   confirm_callback: function () {
     deleteProduct();
   },
@@ -206,7 +206,7 @@ function deleteProduct() {
     },
   };
 
-  fetch(API.getProductByIdAPI(id), options)
+  fetch(API.getSoftDeleteProductByIdAPI(id), options)
     .then(() => {
       modal.showModal();
     })
