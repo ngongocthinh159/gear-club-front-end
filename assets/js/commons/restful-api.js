@@ -91,6 +91,12 @@ const API = {
   getCartDeclineAPI() {
     return BASE_URL + '/api/admin/cart/decline-cart';
   },
+  getAllCustomerAPI() {
+    return BASE_URL + '/api/admin/all-customers';
+  },
+  getUpdateCustomerAPI() {
+    return BASE_URL + '/api/admin/update-customer';
+  }
 };
 
 export { API };
