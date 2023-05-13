@@ -1,13 +1,29 @@
 .container-1600 {
-  padding: 0 12px;
+  padding: 0 60px;
   max-width: 1624px;
   margin: 0 auto;
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+  .container-1600 {
+    padding: 0 12px;
+  }
 }
 
 .grid {
   width: 100%;
   display: block;
-  padding: 0 12px;
+  padding: 0 60px;
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+  .grid {
+    width: 100%;
+    display: block;
+    padding: 0 12px;
+  }
 }
 
 .grid.wide {
