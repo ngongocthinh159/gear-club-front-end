@@ -60,20 +60,22 @@ function renderSectionLogin(mainDOMNode) {
           'Content-type': 'application/json; charset=UTF-8',
         },
       };
-      request(API.getAuthenticateAPI(), options, (result) => {
-        const token = result.token;
-        if (token !== undefined) {
-          storeToken(token);
-          window.location.replace('/'); // Redirect back to home page
-        } else {
-          // TODO: Hiển thị trạng thái sai pass + mật khẩu
+      fetch(API.getAuthenticateAPI(), options)
+        .then((result) => result.json())
+        .then((result) => {
+          const token = result.token;
+          if (token !== undefined) {
+            storeToken(token);
+            window.location.replace('/'); // Redirect back to home page
+          }
+        })
+        .catch((err) => {
           displayError(
             'Địa chỉ email đăng nhập hoặc mật khẩu không chính xác.'
           );
 
           loginButton.classList.remove('btn-disabled');
-        }
-      });
+        });
     }
   });
 
