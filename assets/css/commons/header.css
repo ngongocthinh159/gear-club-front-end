@@ -858,6 +858,9 @@
   .hide-on-tablet {
     display: none;
   }
+  .header__nav-item:nth-child(4) {
+    display: none;
+  }
 }
 
 /* Mobile */

@@ -1,28 +1,26 @@
 .container-1600 {
-  padding: 0 60px;
+  padding: 0 12px;
   max-width: 1624px;
   margin: 0 auto;
 }
 
 /* Mobile */
-@media (max-width: 739px) {
+@media (min-width: 1023px) {
   .container-1600 {
-    padding: 0 12px;
+    padding: 0 60px;
   }
 }
 
 .grid {
   width: 100%;
   display: block;
-  padding: 0 60px;
+  padding: 0 12px;
 }
 
 /* Mobile */
-@media (max-width: 739px) {
+@media (min-width: 1239px) {
   .grid {
-    width: 100%;
-    display: block;
-    padding: 0 12px;
+    padding: 0 60px;
   }
 }
 
