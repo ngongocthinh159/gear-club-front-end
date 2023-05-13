@@ -1,5 +1,13 @@
-// const BASE_URL = 'http://localhost:8080';
-const BASE_URL = 'http://54.252.161.146:8080';
+// BASE_URL in production
+let BASE_URL = 'http://54.252.161.146:8080';
+
+// BASE_URL in development
+if (
+  window.location.href.includes('localhost') ||
+  window.location.href.includes('127.0.0.1')
+) {
+  BASE_URL = 'http://localhost:8080';
+}
 
 const API = {
   // Authentication
