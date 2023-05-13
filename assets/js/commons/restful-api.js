@@ -1,5 +1,5 @@
 // const BASE_URL = 'http://localhost:8080';
-const BASE_URL = 'http://3.27.112.207:8080';
+const BASE_URL = 'http://54.252.161.146:8080';
 
 const API = {
   // Authentication
