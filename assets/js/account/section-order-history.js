@@ -29,12 +29,25 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
       if (cart1.cartPaymentTime > cart2.cartPaymentTime) return -1;
       if (cart1.cartPaymentTime < cart2.cartPaymentTime) return 1;
       return 0;
-    })
+    });
 
-    carts.forEach(cart => {
+    // If there is not previous cart
+    if (carts.length === 0) {
+      secAccountMainDOMNode.innerHTML = `
+        <div class="sec-account__no-order">
+          <img src="../../../assets/imgs/account/keyboard.png">
+          <span class="sec-account__no-order-text">Bạn vẫn chưa đặt hàng</span>
+          <a href="../../../collections.html" class="btn btn-primary">Tiếp tục mua hàng</a>
+        </div>
+      `;
+
+      return;
+    }
+
+    // There is at least 1 cart => Render UI
+    carts.forEach((cart) => {
       const orderItem = document.createElement('li');
-      orderItem.className =
-        'sec-account__order-history-item';
+      orderItem.className = 'sec-account__order-history-item';
       orderItem.innerHTML = `
         <div class ="sec-account__order-history-item-header">
           <span class="sec-account__order-history-item-header-text">Đơn hàng:
@@ -61,7 +74,11 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
           '.sec-account__order-history-item-control'
         );
         itemControl.addEventListener('click', () => {
-          if (orderItem.classList.contains('sec-account__order-history-item--collapsed')) {
+          if (
+            orderItem.classList.contains(
+              'sec-account__order-history-item--collapsed'
+            )
+          ) {
             orderItem.classList.remove(
               'sec-account__order-history-item--collapsed'
             );
@@ -76,7 +93,7 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
               'sec-account__order-history-item--collapsed'
             );
           }
-        })
+        });
       }
 
       // Data transformation then transfer to list options
@@ -140,8 +157,8 @@ function renderSectionOrderHistory(secAccountMainDOMNode, stateChangeNode) {
       }
 
       orderList.appendChild(orderItem);
-    })
-  })
+    });
+  });
 }
 
 export { renderSectionOrderHistory };
