@@ -1,5 +1,5 @@
 // BASE_URL in production
-let BASE_URL = 'http://13.250.8.209:8080';
+let BASE_URL = 'http://18.141.236.181:8080';
 
 // BASE_URL in development
 if (
