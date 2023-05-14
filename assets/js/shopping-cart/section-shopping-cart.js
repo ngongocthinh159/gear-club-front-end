@@ -49,7 +49,7 @@ function renderSCartSection(sCartDOMNode) {
               sẽ được tính khi thanh toán
             </div>
 
-            <a href="./payment.html" class="s-cart__payment-btn btn btn-primary btn-icon btn-icon-leading"><i class="bi bi-credit-card"></i>Thanh toán</a>
+            <button class="s-cart__payment-btn btn btn-primary btn-icon btn-icon-leading"><i class="bi bi-credit-card"></i>Thanh toán</button>
           </div>
         </div>
       </div>
@@ -106,6 +106,48 @@ function renderSCartSection(sCartDOMNode) {
     totalPriceWrapper.prepend(listTotalPriceDOMNode);
 
     sCartTableBody.appendChild(cartList);
+
+    // Handle events
+    handleEvents(sCartDOMNode);
+  });
+}
+
+function handleEvents(sCartDOMNode) {
+  const paymentBtn = sCartDOMNode.querySelector('.s-cart__payment-btn');
+
+  paymentBtn.addEventListener('click', () => {
+    const cartItems = sCartDOMNode.querySelectorAll('.cart-item');
+
+    // If there is nothing in cart => Show toast
+    if (cartItems.length === 0) {
+      toastr.options = {
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: 'toast-top-right',
+        preventDuplicates: false,
+        onclick: null,
+        showDuration: '300',
+        hideDuration: '1000',
+        timeOut: '3000',
+        extendedTimeOut: '1000',
+        showEasing: 'swing',
+        hideEasing: 'linear',
+        showMethod: 'fadeIn',
+        hideMethod: 'fadeOut',
+      };
+
+      toastr['error'](
+        'Hãy thêm sản phẩm vào giỏ hàng trước khi thanh toán',
+        'Lỗi'
+      );
+
+      return;
+    }
+
+    // There is at least 1 in cart => Go to payment page
+    window.location.href = '../../../payment.html';
   });
 }
 

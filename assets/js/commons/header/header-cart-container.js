@@ -132,10 +132,10 @@ function handleCartContainerEvents(headerDOMNode) {
     '.header-cart-footer__payment-btn'
   );
   paymentBtn.addEventListener('click', () => {
-    const cartItems = headerDOMNode.querySelector('.cart-item');
+    const cartItems = headerDOMNode.querySelectorAll('.cart-item');
 
     // If there is nothing in cart => Show toast
-    if (!cartItems) {
+    if (cartItems.length === 0) {
       toastr.options = {
         closeButton: true,
         debug: false,
