@@ -86,13 +86,13 @@ function renderSectionPayment(sectionPaymentDOMNode) {
     </div>
   `;
 
-  // Render personal information first
-  // Then render summary
+  // Get current cart => Render personal information first
+  // Having current cart => Then render summary
   // renderSummary() is called inside renderPersonalInformation(), after it done
   renderPersonalInformation(sectionPaymentDOMNode);
 }
 
-function renderSummary(sectionPaymentDOMNode, user) {
+function renderSummary(sectionPaymentDOMNode, cart) {
   const productListWrapper = sectionPaymentDOMNode.querySelector(
     '.sec-payment__prod-list-wrapper'
   );
@@ -103,59 +103,34 @@ function renderSummary(sectionPaymentDOMNode, user) {
     '.sec-payment__sub-total-num'
   );
 
-  const currentCart = user.shoppingCart[user.shoppingCart.length - 1];
-  let totalProducts = 0;
-  let index = 0;
-  Object.keys(currentCart).forEach((key) => {
-    if (key > 0) totalProducts++;
+  const products = cart.productList;
+
+  // Data transformation then transfer to list options
+  products.forEach((product) => {
+    product.totalQuantity = product.quantity;
+    product.currentQuantity = product.paymentQuantity;
   });
-  let count = 0;
 
-  const products = [];
-  for (const productId in currentCart) {
-    if (productId < 0) {
-      continue;
-    }
+  // Get the list of cart items
+  const options = {
+    products: products,
+    additionalClasses: {
+      cartListItems: 'sec-payment__prod-list',
+      cartItemProductPriceWrapper: 'd-none',
+      cartItemTotalQuantity: 'd-none',
+      cartItemDecreaseBtn: 'd-none',
+      cartItemIncreaseBtn: 'd-none',
+      cartItemRemoveBtn: 'd-none',
+    },
+  };
+  const [cartListItems, listTotalPriceDOMNode] =
+    getProductCartItemFactory().buildListItems(options);
 
-    const curIndex = index;
+  // Append total price node to total price wrapper
+  totalPrice.appendChild(listTotalPriceDOMNode);
+  subTotalNum.innerHTML = listTotalPriceDOMNode.innerHTML;
 
-    // Fetch data of each product
-    fetchData(API.getProductByIdAPI(productId), (product) => {
-      products[curIndex] = product;
-
-      count++;
-      if (count === totalProducts) {
-        // Data transformation then transfer to list options
-        products.forEach((product) => {
-          product.totalQuantity = product.quantity;
-          product.currentQuantity = currentCart[product.id];
-        });
-
-        // Get the list of cart items
-        const options = {
-          products: products,
-          additionalClasses: {
-            cartListItems: 'sec-payment__prod-list',
-            cartItemProductPriceWrapper: 'd-none',
-            cartItemTotalQuantity: 'd-none',
-            cartItemDecreaseBtn: 'd-none',
-            cartItemIncreaseBtn: 'd-none',
-            cartItemRemoveBtn: 'd-none',
-          },
-        };
-        const [cartListItems, listTotalPriceDOMNode] =
-          getProductCartItemFactory().buildListItems(options);
-
-        // Append total price node to total price wrapper
-        totalPrice.appendChild(listTotalPriceDOMNode);
-        subTotalNum.innerHTML = listTotalPriceDOMNode.innerHTML;
-
-        productListWrapper.appendChild(cartListItems);
-      }
-    });
-
-    index++;
-  }
+  productListWrapper.appendChild(cartListItems);
 }
 
 function renderPersonalInformation(sectionPaymentDOMNode) {
@@ -174,7 +149,7 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
   const leftContainer = sectionPaymentDOMNode.querySelector(
     '.sec-payment__left-container'
   );
-  request(API.getUserInformationAPI(), options, (user) => {
+  request(API.getCurrentCartAPI(), options, (cart) => {
     leftContainer.innerHTML = `
       <a href="/" class="sec-payment__logo-link">
         <img
@@ -193,24 +168,30 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
           <i class="bi bi-chevron-right"></i>
         </span>
 
-        <span class="sec-payment__breadcrumb-item sec-payment__breadcrumb-item--active">Thông tin</span>
+        <span id="breadcrumb-item-info" class="sec-payment__breadcrumb-item sec-payment__breadcrumb-item--active">Thông tin</span>
 
         <span class="sec-payment__breadcrumb-separator">
           <i class="bi bi-chevron-right"></i>
         </span>
 
         <span
+          id="breadcrumb-item-payment"
           class="sec-payment__breadcrumb-item"
-          >Thanh toán</span
         >
+          Thanh toán
+        </span>
       </div>
 
       <div class="sec-payment__account">
         <h3 class="sec-payment__heading">Thông tin liên hệ</h3>
-        <span class="sec-payment__account-first-name">${user.firstName}</span>
-        <span class="sec-payment__account-last-name">${user.lastName}</span>
+        <span class="sec-payment__account-first-name">
+          ${cart.customerFirstName}
+        </span>
+        <span class="sec-payment__account-last-name">
+          ${cart.customerLastName}
+        </span>
         <span class="sec-payment__account-email"
-          >(${user.email})</span
+          >(${cart.customerEmail})</span
         >
         <button class="sec-payment__logout-btn">Đăng xuất</button>
       </div>
@@ -257,7 +238,7 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
                   name="name"
                   type="text"
                   class="custom-input__input-text"
-                  value="${user.firstName}"
+                  value="${cart.customerFirstName}"
                   readonly
                 />
                 <span class="custom-input__input-label">Tên</span>
@@ -273,7 +254,7 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
                   name="name"
                   type="text"
                   class="custom-input__input-text"
-                  value="${user.lastName}"
+                  value="${cart.customerLastName}"
                   readonly
                 />
                 <span class="custom-input__input-label">Họ</span>
@@ -283,9 +264,9 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
             <div class="col l-12 m-12 c-12">
               <div
                 class="custom-input-wrapper sec-payment__custom-input-wrapper ${
-                  user.shippingAddress === null ||
-                  user.shippingAddress === undefined ||
-                  user.shippingAddress === ''
+                  cart.customerAddress === null ||
+                  cart.customerAddress === undefined ||
+                  cart.customerAddress === ''
                     ? 'custom-input-wrapper--error'
                     : ''
                 }"
@@ -297,11 +278,11 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
                   type="text"
                   class="custom-input__input-text"
                   value="${
-                    user.shippingAddress === null ||
-                    user.shippingAddress === undefined ||
-                    user.shippingAddress === ''
+                    cart.customerAddress === null ||
+                    cart.customerAddress === undefined ||
+                    cart.customerAddress === ''
                       ? 'Cần bổ sung'
-                      : user.shippingAddress
+                      : cart.customerAddress
                   }"
                   readonly
                 />
@@ -314,9 +295,9 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
             <div class="col l-6 m-12 c-12">
               <div
                 class="custom-input-wrapper sec-payment__custom-input-wrapper ${
-                  user.phone === null ||
-                  user.phone === undefined ||
-                  user.phone === ''
+                  cart.customerPhone === null ||
+                  cart.customerPhone === undefined ||
+                  cart.customerPhone === ''
                     ? 'custom-input-wrapper--error'
                     : ''
                 }"
@@ -328,11 +309,11 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
                   type="text"
                   class="custom-input__input-text"
                   value="${
-                    user.phone === null ||
-                    user.phone === undefined ||
-                    user.phone === ''
+                    cart.customerPhone === null ||
+                    cart.customerPhone === undefined ||
+                    cart.customerPhone === ''
                       ? 'Cần bổ sung'
-                      : user.phone
+                      : cart.customerPhone
                   }"
                   readonly
                 />
@@ -352,7 +333,7 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
                   name="name"
                   type="text"
                   class="custom-input__input-text"
-                  value="${user.email}"
+                  value="${cart.customerEmail}"
                   readonly
                 />
                 <span class="custom-input__input-label"
@@ -404,7 +385,7 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
     const cartBackBtn = sectionPaymentDOMNode.querySelector(
       '.sec-payment__back-cart-btn'
     );
-    const paymentBtn = sectionPaymentDOMNode.querySelector(
+    const goPaymentBtn = sectionPaymentDOMNode.querySelector(
       '.sec-payment__go-payment-btn'
     );
     const logoutBtn = sectionPaymentDOMNode.querySelector(
@@ -420,6 +401,12 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
       '.sec-payment__credit-card-info'
     );
     const paymentForm = sectionPaymentDOMNode.querySelector('#payment-form');
+    const breadcrumbInfo = sectionPaymentDOMNode.querySelector(
+      '#breadcrumb-item-info'
+    );
+    const breadcrumbPayment = sectionPaymentDOMNode.querySelector(
+      '#breadcrumb-item-payment'
+    );
 
     cartBackBtn.addEventListener('click', () => {
       window.history.go(-1);
@@ -429,7 +416,7 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
       removeToken();
       window.location.replace('/');
     });
-    paymentBtn.addEventListener('click', () => {
+    goPaymentBtn.addEventListener('click', () => {
       // If still have error inputs
       const errorInputs = sectionPaymentDOMNode.querySelectorAll(
         '.custom-input-wrapper--error'
@@ -445,15 +432,22 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
       // Render card input
       leftMainDOMNode.classList.add('d-none');
       creditCartInfo.classList.remove('d-none');
-      paymentForm.onsubmit = handleSubmit;
+      breadcrumbInfo.classList.remove('sec-payment__breadcrumb-item--active');
+      breadcrumbPayment.classList.add('sec-payment__breadcrumb-item--active');
     });
     backInfoBtn.addEventListener('click', () => {
       leftMainDOMNode.classList.remove('d-none');
       creditCartInfo.classList.add('d-none');
+      breadcrumbInfo.classList.add('sec-payment__breadcrumb-item--active');
+      breadcrumbPayment.classList.remove(
+        'sec-payment__breadcrumb-item--active'
+      );
     });
 
+    paymentForm.onsubmit = handleSubmit;
+
     // After render personal information done => Render summary
-    renderSummary(sectionPaymentDOMNode, user);
+    renderSummary(sectionPaymentDOMNode, cart);
 
     // Initialize stripe
     initialize();
