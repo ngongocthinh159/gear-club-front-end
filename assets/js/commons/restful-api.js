@@ -1,5 +1,6 @@
 // BASE_URL in production
-let BASE_URL = 'http://54.254.163.226:8080';
+// let BASE_URL = 'http://54.254.163.226:8080';
+let BASE_URL = 'https://gearclub.duckdns.org:8443';
 
 // BASE_URL in development
 if (
