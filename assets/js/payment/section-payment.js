@@ -211,7 +211,20 @@ function renderPersonalInformation(sectionPaymentDOMNode) {
             <label
               for="shipping-type-cod"
               class="sec-payment__shipping-type-label"
-              ><i class="bi bi-truck"></i>Vận chuyển COD</label
+              ><i class="bi bi-truck"></i>Vận chuyển tận nhà</label
+            >
+          </div>
+          <div class="sec-payment__shipping-type-wrapper">
+            <input
+              type="radio"
+              name="shipping-type"
+              id="shipping-type-in-shop"
+              class="sec-payment__shipping-type-input"
+            />
+            <label
+              for="shipping-type-in-shop"
+              class="sec-payment__shipping-type-label"
+              ><i class="bi bi-house"></i>Nhận tại cửa hàng</label
             >
           </div>
         </div>
