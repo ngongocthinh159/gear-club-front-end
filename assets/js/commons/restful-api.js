@@ -1,12 +1,13 @@
 // BASE_URL in production
-let BASE_URL = 'http://18.141.236.181:8080';
+// let BASE_URL = 'http://18.141.236.181:8080';
+let BASE_URL = 'https://18.143.149.24:443';
 
 // BASE_URL in development
 if (
   window.location.href.includes('localhost') ||
   window.location.href.includes('127.0.0.1')
 ) {
-  BASE_URL = 'http://localhost:8080';
+  BASE_URL = 'https://localhost:443';
 }
 
 const API = {
