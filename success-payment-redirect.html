@@ -10,27 +10,50 @@
       type="image/x-icon"
       href="./assets/imgs/logo-only-figure-colored.png"
     />
+
+    <!-- Sweet alert -->
+    <link rel="stylesheet" href="sweetalert2.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
-  <body>
-    <main></main>
+  <body style="padding: 0; margin: 0">
+    <main style="width: 100%; height: 100vh; height: 100svh">
+      <img
+        src="./assets/imgs/payment-success-background.jpg"
+        alt="Background image"
+        style="width: 100%; height: 100%; object-fit: cover"
+      />
+    </main>
+
+    <div
+      class="text"
+      style="position: fixed; left: 16px; top: 16px; color: white"
+    ></div>
 
     <script type="module">
       import { changeInDatabase } from './assets/js/payment/success-redirect.js';
 
       if (window.location.search.includes('redirect_status=succeeded')) {
-        document.querySelector('main').innerHTML = `
+        document.querySelector('.text').innerHTML = `
           <h1>Thanh toán thành công, chuẩn bị chuyển hướng..</h1>
         `;
 
-        setTimeout(changeInDatabase(), 2000);
+        Swal.fire(
+          'Thanh toán thành công!!!',
+          'Chuẩn bị chuyển hướng...',
+          'success'
+        );
+
+        setTimeout(changeInDatabase(), 3000);
       } else {
-        document.querySelector('main').innerHTML = `
+        document.querySelector('.text').innerHTML = `
           <h1>Thanh toán xảy ra lỗi, chuẩn bị chuyển hướng..</h1>
         `;
 
+        Swal.fire('Đã xảy ra lỗi!', 'Chuẩn bị chuyển hướng...', 'error');
+
         setTimeout(() => {
           window.location.replace('/');
-        }, 2000);
+        }, 3000);
       }
     </script>
   </body>
