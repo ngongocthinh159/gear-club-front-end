@@ -7,7 +7,8 @@
 
 .sec-payment__left-container {
   padding-right: 66px;
-  padding-top: 96px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .sec-payment__logo-link {
@@ -74,17 +75,24 @@
   display: flex;
   align-items: center;
   padding: 0 24px;
-  border-radius: 4px;
-  border: 1px solid var(--primary-color-light);
   cursor: pointer;
+  border: 1px solid var(--black-alpha-20);
+  color: var(--text-dark-color);
+}
+
+.sec-payment__shipping-type-wrapper:first-of-type {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.sec-payment__shipping-type-wrapper:last-of-type {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .sec-payment__shipping-type-wrapper:has(input:checked) {
-  background-color: rgba(60, 97, 158, 0.07);
-}
-
-.sec-payment__shipping-type-wrapper:nth-of-type(1) {
-  margin-bottom: 12px;
+  border: 1px solid var(--primary-color-light);
+  background-color: rgba(60, 97, 158, 0.08);
 }
 
 .sec-payment__shipping-type-input {
@@ -160,7 +168,7 @@
 
 .sec-payment__right-container {
   background-color: var(--text-white-color);
-  height: 100vh;
+  height: max(100vh, 100%);
   padding-top: 96px;
   margin-right: -1000px;
   padding-left: 44px;
