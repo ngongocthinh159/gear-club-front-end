@@ -70,6 +70,19 @@
 .footer__input-label {
 }
 
+.footer__input-label-error {
+  color: red;
+  font-size: 1.3rem;
+  position: absolute;
+  bottom: -22px;
+  left: 0;
+  display: none;
+}
+
+.custom-input-wrapper--error .footer__input-label-error {
+  display: block;
+}
+
 .footer__email-btn {
   position: absolute;
   top: 50%;

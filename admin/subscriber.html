@@ -25,6 +25,15 @@
       rel="stylesheet"
     />
 
+    <!-- Notie -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/notie/dist/notie.min.css"
+    />
+    <script src="https://unpkg.com/notie"></script>
+
+    <!-- Tabulator -->
     <link
       href="https://unpkg.com/tabulator-tables@5.4.4/dist/css/tabulator.min.css"
       rel="stylesheet"
@@ -40,9 +49,9 @@
     <div class="main">
       <div class="navbar"></div>
       <div class="content">
-        <div class="title">User</div>
+        <div class="title">Danh sách email đăng ký nhận tin</div>
         <div class="search-bar"></div>
-        
+
         <div class="table-wrapper">
           <div class="table">
             <div id="table"></div>
@@ -66,6 +75,24 @@
       const search = document.querySelector('div.search-bar');
       renderSearchbar(search);
     </script>
-    <script type="module" src="/assets/js/admin/user.js"></script>
+    <script type="module" src="/assets/js/admin/subscriber.js"></script>
+
+    <style>
+      .tabulator-row.tabulator-selectable:hover {
+        background-color: transparent;
+        cursor: default;
+      }
+
+      .tabulator-row:nth-child(2n + 2).tabulator-selectable:hover {
+        background-color: #efefef;
+        cursor: default;
+      }
+
+      .admin-subscriber__email-btn:hover i,
+      .admin-subscriber__delete-btn:hover i {
+        opacity: 0.5;
+        cursor: pointer;
+      }
+    </style>
   </body>
 </html>

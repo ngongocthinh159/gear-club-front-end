@@ -1,7 +1,7 @@
 import { removeAdminToken } from '../commons/utils.js';
 
 function renderNavbar(navbarDOMnode) {
-  navbarDOMnode.innerHTML = `
+    navbarDOMnode.innerHTML = `
         <div class="navbar__overlay"></div>
 
         <ul>
@@ -24,15 +24,21 @@ function renderNavbar(navbarDOMnode) {
                 </a>
             </li>
             <li>
+                <a href="/admin/order.html">
+                    <i class="fas fa-cart-shopping"></i>
+                    <span class="nav-item">Đơn hàng</span>
+                </a>
+            </li>
+            <li>
                 <a href="/admin/collection.html">
                     <i class="fas fa-th-large" aria-hidden="true"></i>
                     <span class="nav-item">Bộ sưu tập</span>
                 </a>
             </li>
             <li>
-                <a href="/admin/order.html">
-                    <i class="fas fa-cart-shopping"></i>
-                    <span class="nav-item">Đơn hàng</span>
+                <a href="/admin/subscriber.html">
+                    <i class="fas fa-envelope"></i>
+                    <span class="nav-item">Gửi tin</span>
                 </a>
             </li>
 

@@ -41,8 +41,12 @@
       <div class="navbar"></div>
       <div class="content">
         <div class="title">Các đơn hàng</div>
-        <div class="table">
-          <div id="table"></div>
+        <div class="search-bar"></div>
+
+        <div class="table-wrapper">
+          <div class="table">
+            <div id="table"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -58,6 +62,9 @@
 
       const nav = document.querySelector('div.navbar');
       renderNavbar(nav);
+
+      const search = document.querySelector('div.search-bar');
+      renderSearchbar(search);
     </script>
     <script type="module" src="/assets/js/admin/order.js"></script>
   </body>

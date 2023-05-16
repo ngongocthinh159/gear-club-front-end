@@ -213,6 +213,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .btn-primary {
@@ -249,6 +250,38 @@ a {
 
 .btn-icon-leading > i {
   margin-right: 6px;
+}
+
+.btn-loading {
+  position: relative;
+  cursor: default;
+  pointer-events: none;
+  transition: all 0.2s linear;
+  background-color: #e9e9e9;
+  color: var(--black-alpha-20);
+}
+
+.btn-loading::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #e9e9e9;
+  z-index: 1;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border: 3px solid var(--text-dark-color);
+  border-top-color: transparent;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  animation: rotate 1s ease-in infinite;
+  z-index: 2;
 }
 
 .btn-disabled {

@@ -131,6 +131,23 @@ const API = {
   getSoftDeleteProductByIdAPI(productId) {
     return BASE_URL + '/api/product/soft-delete/' + productId;
   },
+  getSendEmailToAllSubscribersAPI() {
+    return BASE_URL + '/api/admin/send-email-to-all-subscribers';
+  },
+  getSendEmailToOneSubscriberAPI(subscriberId) {
+    return BASE_URL + '/api/admin/send-email-to-one-subscriber/' + subscriberId;
+  },
+
+  // Subscriber
+  getEmailSubscribeAPI(email) {
+    return BASE_URL + '/api/subscriber/' + email;
+  },
+  getAllSubscribersAPI() {
+    return BASE_URL + '/api/subscriber/all';
+  },
+  getDeleteSubscribersByIdAPI(subscriberId) {
+    return BASE_URL + '/api/subscriber/delete/' + subscriberId;
+  }
 };
 
-export { API };
+export { API, BASE_URL };

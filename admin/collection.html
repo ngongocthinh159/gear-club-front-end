@@ -41,8 +41,12 @@
       <div class="navbar"></div>
       <div class="content">
         <div class="title">Bộ sưu tập trang chủ</div>
-        <div class="table">
-          <div id="table" style="margin-top: 40px"></div>
+        <div class="search-bar"></div>
+
+        <div class="table-wrapper">
+          <div class="table">
+            <div id="table"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -51,10 +55,16 @@
     <script src="../assets/js/admin/redirect-script.js" type="module"></script>
 
     <script type="module">
-      import { renderNavbar } from '/assets/js/admin/adminNav.js';
+      import {
+        renderNavbar,
+        renderSearchbar,
+      } from '/assets/js/admin/adminNav.js';
 
       const nav = document.querySelector('div.navbar');
       renderNavbar(nav);
+
+      const search = document.querySelector('div.search-bar');
+      renderSearchbar(search);
     </script>
     <script type="module" src="/assets/js/admin/collection.js"></script>
   </body>

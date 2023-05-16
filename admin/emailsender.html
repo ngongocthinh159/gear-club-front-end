@@ -25,6 +25,15 @@
       rel="stylesheet"
     />
 
+    <!-- Notie -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/notie/dist/notie.min.css"
+    />
+    <script src="https://unpkg.com/notie"></script>
+
+    <!-- Tabulator -->
     <link
       href="https://unpkg.com/tabulator-tables@5.4.4/dist/css/tabulator.min.css"
       rel="stylesheet"
@@ -35,19 +44,15 @@
     ></script>
 
     <link rel="stylesheet" href="/assets/css/admin/admin.css" />
+    <link rel="stylesheet" href="/assets/css/commons/base.css" />
   </head>
   <body>
     <div class="main">
       <div class="navbar"></div>
       <div class="content">
-        <div class="title">User</div>
-        <div class="search-bar"></div>
+        <div class="title">Gửi email</div>
         
-        <div class="table-wrapper">
-          <div class="table">
-            <div id="table"></div>
-          </div>
-        </div>
+        <div class="form"></div>
       </div>
     </div>
 
@@ -62,10 +67,7 @@
 
       const nav = document.querySelector('div.navbar');
       renderNavbar(nav);
-
-      const search = document.querySelector('div.search-bar');
-      renderSearchbar(search);
     </script>
-    <script type="module" src="/assets/js/admin/user.js"></script>
+    <script type="module" src="/assets/js/admin/emailSender.js"></script>
   </body>
 </html>

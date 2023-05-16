@@ -6,20 +6,23 @@ function loadTable(tabledata) {
   var table = new Tabulator('#table', {
     autoResize: true,
     data: tabledata, //assign data to table
-    layout: 'fitDataTable',
+    layout: 'fitColumns',
     responsiveLayout: true, // enable responsive layouts
     pagination: true, //enable.
     paginationSize: 20, // this option can take any positive integer value
     columns: [
       //Define Table Columns
       { title: 'id', field: 'id', width: 100 },
-      { title: 'Tên sản phẩm', field: 'name', minWidth: 500 },
+      { title: 'Tên sản phẩm', field: 'name', minWidth: 500, widthGrow: 1 },
       { title: 'Nhà phân phối', field: 'vendorName', minWidth: 150 },
       { title: 'Giá (VND)', field: 'price', minWidth: 150 },
       { title: 'Danh mục', field: 'category', minWidth: 200 },
     ],
     footerElement: `<button id="add-button">Add Product</button>`,
     // groupBy: "category",
+    initialSort: [
+      { column: 'name', dir: 'asc' }, //sort by this first
+    ],
   });
 
   //trigger an alert message when the row is clicked

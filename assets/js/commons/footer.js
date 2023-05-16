@@ -1,3 +1,6 @@
+import { API } from './restful-api.js';
+import { request } from './fetch.js';
+
 function renderFooter(footerDOMNode) {
   // Update DOM
   footerDOMNode.innerHTML = `
@@ -45,18 +48,21 @@ function renderFooter(footerDOMNode) {
           <div class="row">
             <div class="col l-7 m-6 c-12">
               <div class="footer__col-wrapper">
-                <h3 class="footer__heading-large">Nhận tin khuyến mãi</h3>
+                <h3 class="footer__heading-large">Nhận tin sản phẩm mới</h3>
+
                 <div class="footer__input-wrapper">
                   <div class="custom-input-wrapper">
                     <input
                       placeholder=" "
                       value=""
                       type="email"
+                      id="email-subscribe-input"
                       class="footer__input-text custom-input__input-text"
                     />
                     <span class="footer__input-label custom-input__input-label">Email</span>
+                    <span class="footer__input-label-error">*Sai định dạng</span>
                   </div>
-                  <button class="footer__email-btn">
+                  <button id="email-subscribe-btn" class="footer__email-btn">
                     <i class="bi bi-chevron-right"></i>
                   </button>
                 </div>
@@ -103,6 +109,60 @@ function renderFooter(footerDOMNode) {
   handleFooterEvents(footerDOMNode);
 }
 
-function handleFooterEvents(footerDOMNode) {}
+function handleFooterEvents(footerDOMNode) {
+  // Handle email btn click
+  const emailBtn = footerDOMNode.querySelector('#email-subscribe-btn');
+  const emailInput = footerDOMNode.querySelector('#email-subscribe-input');
+  const customInputWrapper = footerDOMNode.querySelector(
+    '.custom-input-wrapper'
+  );
+  var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
+  emailInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      emailBtn.click();
+    }
+  });
+
+  emailBtn.addEventListener('click', () => {
+    const email = emailInput.value;
+
+    if (email.match(pattern)) {
+      customInputWrapper.classList.remove('custom-input-wrapper--error');
+
+      // Request subscribe API
+      const options = {
+        method: 'POST',
+      };
+      request(API.getEmailSubscribeAPI(email), options, (result) => {
+        // If subscribe failed => Display message
+        if (result.status !== 'subscribe_ok') {
+          window.notie.alert({
+            type: 3, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+            text: 'Email này đã đăng ký nhận thông tin trước đó!',
+            stay: false, // optional, default = false
+            time: 3, // optional, default = 3, minimum = 1,
+            position: 'top', // optional, default = 'top', enum: ['top', 'bottom']
+          });
+
+          return;
+        }
+
+        // If subscribe ok => Display message
+        window.notie.alert({
+          type: 1, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+          text: 'Đăng ký nhận thông tin thành công',
+          stay: false, // optional, default = false
+          time: 3, // optional, default = 3, minimum = 1,
+          position: 'top', // optional, default = 'top', enum: ['top', 'bottom']
+        });
+
+        emailInput.value = '';
+      });
+    } else {
+      customInputWrapper.classList.add('custom-input-wrapper--error');
+    }
+  });
+}
 
 export { renderFooter };
