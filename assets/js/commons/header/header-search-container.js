@@ -140,7 +140,7 @@ function handleSearchContainerEvents(headerDOMNode) {
         },
       };
       request(
-        'http://localhost:8080/api/product/search-by-string',
+        API.getProductByName(),
         options,
         (products) => {
           resultList.innerHTML = `
